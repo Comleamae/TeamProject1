@@ -4,7 +4,6 @@ import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 
-
 function App() {
 
   return (
@@ -26,7 +25,13 @@ function App() {
 
       {/* 관리자 페이지 */}
       <Route path='/admin' element={<AdminLayout/>}>
-
+          
+          {/* 차트 작성 */}
+          <Route path='chartWrite' element={<chartWrite/>}/>
+          {/* 진료 이력 */}
+          <Route path='chartCheck' element={<chartCheck/>}/>
+          {/* 처방전 */}
+          <Route path='chartEat' element={<chartEat/>}/>
       </Route>
 
       {/*  */}
