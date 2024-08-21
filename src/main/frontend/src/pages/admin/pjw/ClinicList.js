@@ -3,7 +3,8 @@ import React from 'react'
 const ClinicList = () => {
   return (
     <div>
-      의사가 작성한 증명서 보기
+      의사가 증명서를 작성할거임
+  
     </div>
   )
 }

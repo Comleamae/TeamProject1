@@ -32,7 +32,6 @@ function App() {
         <Route path='/admin' element={<AdminLayout/>}>
           <Route path='clinicList' element={<ClinicList/>}/>
         </Route>
-  
        </Routes>
      </div>
     
