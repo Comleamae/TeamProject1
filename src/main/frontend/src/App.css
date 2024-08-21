@@ -5,12 +5,6 @@
   margin-top: 20px;
 }
 
-.login-main-div>ul{
-  display: flex;
-  justify-content: end;
-  margin-top: 20px;
-  margin-right: 20px;
-}
 .app-content-div{
   margin: 0 auto;
 }
@@ -27,6 +21,7 @@
 }
 .work-selector>div:nth-child(1){
   background-color: red;
+  height: 100%;
 }
 .work-selector>div:nth-child(2){
   background-color: blue;
@@ -39,7 +34,11 @@
 }
 .work-selector>div:nth-child(5){
   background-color: aqua;
+  height: 100%;
 }
 .work-selector span{
   cursor: pointer;
+}
+.layout-div{
+  margin-top: 20px;
 }

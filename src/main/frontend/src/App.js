@@ -21,22 +21,24 @@ function App() {
         
       </div>
       
-     <Routes>
-      {/* 유저 페이지 */}
-      <Route path='/user' element={<UserLayout/>}>
-        <Route path='clinicPrint' element={<ClinicPrint/>}/>
-      </Route>
-
-      {/* 관리자 페이지 */}
-      <Route path='/admin' element={<AdminLayout/>}>
-        <Route path='clinicList' element={<ClinicList/>}/>
-      </Route>
-
-     </Routes>
+     <div className='layout-div'>
+       <Routes>
+        {/* 유저 페이지 */}
+        <Route path='/user' element={<UserLayout/>}>
+          <Route path='clinicPrint' element={<ClinicPrint/>}/>
+        </Route>
+  
+        {/* 관리자 페이지 */}
+        <Route path='/admin' element={<AdminLayout/>}>
+          <Route path='clinicList' element={<ClinicList/>}/>
+        </Route>
+  
+       </Routes>
+     </div>
     
      <div className='work-selector'>
         <div>
-          로그인하기
+          로그인
         </div>
         <div>
           <span onClick={navigate('/user/clinicPrint')}>진료기능</span>

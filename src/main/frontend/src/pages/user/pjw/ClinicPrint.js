@@ -2,7 +2,7 @@ import React from 'react'
 import './ClinicPrint.css'
 
 const ClinicPrint = () => {
-
+  // 증명서를 뽑기위해서 창에 접근했을때 로그인 상태가 아니라면 
   return (
     <div className='app-content-div'>
 
