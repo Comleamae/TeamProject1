@@ -4,7 +4,6 @@ import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 
-
 function App() {
 
   return (
@@ -18,7 +17,7 @@ function App() {
           <li><input type='password' name='pwData'/></li>
         </ul>
       </div>
-     <Routes>
+    <Routes>
       {/* 유저 페이지 */}
       <Route path='/user' element={<UserLayout/>}>
         {/* <Route path='' element={}/> */}
@@ -26,14 +25,15 @@ function App() {
 
       {/* 관리자 페이지 */}
       <Route path='/admin' element={<AdminLayout/>}>
-
+          
+        
       </Route>
 
       {/*  */}
       <Route>
 
       </Route>
-     </Routes>
+    </Routes>
     </div>
   );
 }
