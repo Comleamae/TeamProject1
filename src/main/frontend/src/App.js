@@ -1,39 +1,57 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './reset.css'
-import AdminLayout from '../src/pages/admin/AdminLayout'
-import UserLayout from '../src/pages/user/UserLayout'
+import UserLayout from './pages/user/UserLayout'
+import AdminLayout from './pages/admin/AdminLayout'
+import ClinicPrint from './pages/user/pjw/ClinicPrint';
+import ClinicList from './pages/admin/pjw/ClinicList';
 
 
 function App() {
 
+  const navigate = useNavigate()
+
   return (
     <div className="App">
       <h1>그린 대학 병원</h1>
-      <div className='login-main-div'>
-        <ul>
-          <li>아이디</li>
-          <li><input type='text' name='idData'/></li>
-          <li>비밀번호</li>
-          <li><input type='password' name='pwData'/></li>
-        </ul>
+
+     
+
+      <div className='intro-div'>
+        
       </div>
+      
      <Routes>
       {/* 유저 페이지 */}
       <Route path='/user' element={<UserLayout/>}>
-        {/* <Route path='' element={}/> */}
+        <Route path='clinicPrint' element={<ClinicPrint/>}/>
       </Route>
 
       {/* 관리자 페이지 */}
       <Route path='/admin' element={<AdminLayout/>}>
-
+        <Route path='clinicList' element={<ClinicList/>}/>
       </Route>
 
-      {/*  */}
-      <Route>
-
-      </Route>
      </Routes>
+    
+     <div className='work-selector'>
+        <div>
+          로그인하기
+        </div>
+        <div>
+          <span onClick={navigate('/user/clinicPrint')}>진료기능</span>
+        </div>
+        <div>
+          <span onClick={navigate('/admin/cliniList')}>의사기능</span>
+        </div>
+        <div>
+          계산기능
+        </div>
+        <div>
+          병원소개
+        </div>
+      </div>
+
     </div>
   );
 }

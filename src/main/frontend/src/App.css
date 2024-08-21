@@ -1,5 +1,8 @@
 .App {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  margin-top: 20px;
 }
 
 .login-main-div>ul{
@@ -7,4 +10,36 @@
   justify-content: end;
   margin-top: 20px;
   margin-right: 20px;
+}
+.app-content-div{
+  margin: 0 auto;
+}
+
+.work-selector{
+  display: grid;
+  background-color: chartreuse;
+  margin: 0 auto;
+  width: 100vh;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  font-size: 50px;
+  margin-top: 20px;
+}
+.work-selector>div:nth-child(1){
+  background-color: red;
+}
+.work-selector>div:nth-child(2){
+  background-color: blue;
+}
+.work-selector>div:nth-child(3){
+  background-color: blueviolet;
+}
+.work-selector>div:nth-child(4){
+  background-color: green;
+}
+.work-selector>div:nth-child(5){
+  background-color: aqua;
+}
+.work-selector span{
+  cursor: pointer;
 }
