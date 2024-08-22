@@ -32,7 +32,7 @@ function App() {
        <Routes>
         {/* 유저 페이지 */}
         <Route path='/user' element={<UserLayout/>}>
-          <Route path='clinicPrint' element={<ClinicPrint/>}>
+          <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
             <Route path='printForm' element={<PrintForm/>}/>
             <Route path='printForm2' element={<PrintForm2/>}/>
           </Route>
