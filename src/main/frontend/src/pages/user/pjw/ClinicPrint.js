@@ -1,22 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ClinicPrint.css'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 const ClinicPrint = ({isLogin}) => {
   const navigate = useNavigate()
+  //환자 리스트를 받아와서 저장할 state변수
+  const[patientList, setPatientList]=useState([])
+  //인증이 됫는지 저장할 state변수
+  const [isConfirm, setIsConfirm]=useState(true)
+  //인증이 되지 않았다면 form-selector가 보이지 않게하라
   
-  // 증명서를 뽑기위해서 창에 접근했을때 로그인 상태가 아니라면 
+  //환자리스트에서
+
   return (
     <div className='app-content-div'>
-      <Outlet/>
       {
-        !isLogin
+        isConfirm==false
+        ?
+        <Outlet/>
+        :
+        null
+      }
+      
+      {
+        isLogin==null
         ?
         <div className='selfDefWhenOnLogin'>
           <div>
-            회원의 본인 인증
+            <div>
+              인증번호:<input type='text'/>
+            </div>
+            <button type='button' onClick={(e)=>{setIsConfirm(!isConfirm)}}>인증하기</button>
           </div>
-          <div className='form-selector'>
+          {
+            isConfirm==false
+            ?
+            <div className='form-selector'>
             <div onClick={(e)=>{navigate('/user/clinicPrint/printForm')}}>
               진료확인서
             </div>
@@ -29,7 +48,11 @@ const ClinicPrint = ({isLogin}) => {
             <div>
               영수증
             </div>
-          </div>
+            </div>
+            :
+            null
+          }
+         
         </div>
         :
         <div className='selfDefWhenNotLogin'>

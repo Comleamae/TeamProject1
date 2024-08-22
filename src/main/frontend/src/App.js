@@ -50,15 +50,15 @@ function App() {
           로그인
         </div>
         <div onClick={(e)=>{navigate('/user/clinicPrint')}}>
-          <span>진료기능</span>
+          <span>진료</span>
         </div>
         <div onClick={(e)=>{navigate('/admin/cliniList')}}>
-          <span>의사기능</span>
+          <span>의사</span>
         </div>
         {/* 로그인 정보에 따라서 계산하는 사이트가 달라져야한다 */}
         <div onClick={(e)=>{navigate(`/${isLogin.memRole}/
           moneyln`)}}>
-          데스크기능
+          데스크
         </div>
       </div>
 
