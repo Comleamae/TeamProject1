@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
+//진료확인서
 const PrintForm = () => {
   
   const navigate = useNavigate()
@@ -9,7 +9,7 @@ const PrintForm = () => {
     <div>
       <table className='print-table'> 
           <tr>
-            <td colSpan={6}>진료확인서</td>
+            <td colSpan={6}><h2>진료확인서</h2></td>
           </tr>
           <tr>
             <td>성명</td>
@@ -110,6 +110,11 @@ const PrintForm = () => {
                 <tr>
                   <td>전화번호:</td>
                   <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <h2>그린대학병원</h2>
+                  </td>
                 </tr>
               </table>
             </td>
