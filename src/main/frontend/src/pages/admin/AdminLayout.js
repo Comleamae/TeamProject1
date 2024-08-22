@@ -1,22 +1,22 @@
 import React from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import chartCheck from './chartCheck';
 
 const AdminLayout = () => {
 
   const navigate = useNavigate();
 
+
   return (
     <div>
       관리자페이지 레이아웃
       <div>
-        <button type='button' onClick={(e)=>(
-          navigate('chartWrite'))
-          }>차트작성</button>
-        <button type='button'>진료이력</button>
-        <button type='button'>처방전</button>
-        <Outlet/>
+        <div>
+          <button type='button' onClick={(e)=>{navigate('/admin/ksh/chartWrite')}}>진료 기록 작성</button>
+          <button type='button' onClick={(e)=>{navigate('/admin/ksh/chartCheck')}}>진료 이력 조회</button>
+          <button type='button' onClick={(e)=>{navigate('/admin/ksh/chartEat')}}>처방전 작성</button>
+        </div>  
       </div>
+      <Outlet/>
     </div>
   )
 }

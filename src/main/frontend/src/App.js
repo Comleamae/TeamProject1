@@ -3,6 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
+import ChartCheck from './pages/admin/ksh/ChartCheck';
+import ChartWrite from './pages/admin/ksh/ChartWrite';
+import ChartEat from './pages/admin/ksh/ChartEat';
 
 function App() {
 
@@ -25,8 +28,16 @@ function App() {
 
       {/* 관리자 페이지 */}
       <Route path='/admin' element={<AdminLayout/>}>
-          
-        
+
+        {/* 차트 작성  */}
+        <Route path='ksh/chartWrite' element={<ChartWrite/>}/>
+
+        {/* 진료 이력 */}
+        <Route path='ksh/chartCheck' element={<ChartCheck/>}/>
+
+        {/* 처방전 */}
+        <Route path='ksh/chartEat' element={<ChartEat/>}/>
+
       </Route>
 
       {/*  */}

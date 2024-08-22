@@ -1,0 +1,32 @@
+.main-div{
+  border: 1px solid red;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.pres-div{
+  margin: 0 auto;
+  border: 1px solid black;
+  width: 100%;
+}
+
+table > tr > td {
+  padding: 10px;
+}
+
+.medical-div{
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 50%;
+}
+
+.medical-div > div:nth-child(2){
+  margin-top: 10px;
+}
+
+.medical-posion {
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 100%;
+}

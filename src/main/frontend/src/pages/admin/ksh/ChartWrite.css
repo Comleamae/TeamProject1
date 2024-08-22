@@ -1,0 +1,61 @@
+/* 환자 검색 관련 css */
+
+.main-chart-div{
+  display: flex;
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 30%;
+}
+
+.left-chart-div > div:nth-child(1){
+  margin-top: 10px;
+}
+
+.left-chart-div{
+  /* border: 1px solid red; */
+  width: 55%;
+}
+
+.right-chart-div{
+  /* border: 1px solid green; */
+  width: 45%;
+}
+
+.search-chart-div{
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-chart-div{
+  text-align: left;
+  padding: 10px;
+}
+
+/* 환자 정보 입력 */
+
+.info-chart-div{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 10px;
+}
+
+.right-chart-div > div:nth-child(1){
+  margin-bottom: 10px;
+}
+
+.right-chart-div {
+  border-left: 1px solid black;
+}
+
+.insertBtn{
+  text-align: center;
+}
