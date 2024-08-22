@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class MailServiceImpl {
     @Autowired
     private JavaMailSender javaMailSender;
-    private static final String senderEmail= "메일을 보낼 구글 이메일";
+    private static final String senderEmail= "lbcy00@gmail.com";
     private static int number;
 
     // 랜덤으로 숫자 생성
