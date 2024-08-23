@@ -6,6 +6,8 @@
     <resultMap id="patient" type="com.green.TeamProject1.patient.PatientVO">
         <result column="PAT_NUM" property="patNum"/>
         <result column="PAT_NAME" property="patName"/>
+        <result column="AGE" property="age"/>
+        <result column="GENDER" property="gender"/>
         <result column="DISEASE" property="disease"/>
         <result column="DOC_LINUM" property="docLinum"/>
         <result column="ABOUT_PAT" property="aboutPat"/>
@@ -15,6 +17,18 @@
         <result column="OUTHOPI_DATE" property="outhopiDate"/>
         <result column="OPER_DATE" property="operDate"/>
     </resultMap>
+    <!--환자 전체 리스트-->
+    <select id="getPatientList" resultMap="patient">
+        SELECT *
+        FROM PATIENT
+    </select>
+
+    <!--환자 한명의 내용-->
+    <select id="getPatientOne" resultMap="patient">
+        SELECT *
+        FROM PATIENT
+        WHERE PAT_NUM = #{patNum}
+    </select>
 </mapper>
 
 

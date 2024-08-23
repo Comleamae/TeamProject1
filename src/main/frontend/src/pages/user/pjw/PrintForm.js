@@ -1,9 +1,22 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //진료확인서
 const PrintForm = () => {
-  
   const navigate = useNavigate()
+  //불러온 환자 정보를 저장할 변수
+  const[patientOne, setPatientOne] = useState({})
+  const patNum=1
+  useEffect(()=>{
+    axios
+    .get(`/patient/getOne/${patNum}`)
+    .then((res)=>{
+      setPatientOne(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }, [])
 
   return (
     <div>
@@ -13,23 +26,23 @@ const PrintForm = () => {
           </tr>
           <tr>
             <td>성명</td>
-            <td>박주원</td>
+            <td>{patientOne.patName}</td>
             <td>성별</td>
-            <td>남</td>
+            <td>{patientOne.gender}</td>
             <td>연령</td>
-            <td>30</td>
+            <td>{patientOne.age}</td>
           </tr>
           <tr>
             <td>주민등록번호</td>
-            <td colSpan={5}>940420-1********</td>
+            <td colSpan={5}></td>
           </tr>
           <tr>
             <td>주소</td>
-            <td colSpan={5}>울산광역시</td>
+            <td colSpan={5}></td>
           </tr>
           <tr>
             <td>병명</td>
-            <td colSpan={3}>코로나</td>
+            <td colSpan={3}>{patientOne.disease}</td>
             <td colSpan={2}>질병코드</td>
           </tr>
           <tr>
@@ -39,10 +52,10 @@ const PrintForm = () => {
                   <table className='in-date-table'>
                     <tr>
                       <td rowSpan={2}>입 원</td>
-                      <td colSpan={5}>년 월 일 부터</td>
+                      <td colSpan={5}>{patientOne.inhopiDate}부터</td>
                     </tr>
                     <tr>
-                      <td colSpan={5}>년 월 일까지( 일간)</td>
+                      <td colSpan={5}>{patientOne.outhopiDate}까지(({patientOne.outhopiDate-patientOne.inhopiDate})일간)</td>
                     </tr>
                     <tr>
                       <td rowSpan={3}>통 원</td>
@@ -85,7 +98,7 @@ const PrintForm = () => {
                 </tr>
                 <tr>
                   <td></td>
-                  <td>발행일:</td>
+                  <td>발행일:{}</td>
                 </tr>
                 <tr>
                   <td>요양기관명:</td>
@@ -121,7 +134,7 @@ const PrintForm = () => {
           </tr>
         </table>
         <div className='btn-div'>
-          <button type='button' className='btn' onClick={navigate('/user')}>출력</button>
+          <button type='button' className='btn' onClick={(e)=>{navigate('/user')}}>출력</button>
         </div>
     </div>
   )

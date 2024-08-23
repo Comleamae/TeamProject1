@@ -9,4 +9,8 @@ public class PatientServiceImpl implements PatientService{
     @Autowired
     private SqlSessionTemplate sqlSession;
 
+    @Override
+    public PatientVO getPatientOne(int patientNum) {
+        return sqlSession.selectOne("patientMapper.getPatientOne", patientNum);
+    }
 }

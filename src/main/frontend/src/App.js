@@ -57,25 +57,6 @@ function App() {
           데스크
         </div>
       </div>
-
-    <Routes>
-      {/* 유저 페이지 */}
-      <Route path='/user' element={<UserLayout/>}>
-        {/* <Route path='' element={}/> */}
-      </Route>
-
-      {/* 관리자 페이지 */}
-      <Route path='/admin' element={<AdminLayout/>}>
-          
-        
-      </Route>
-
-      {/*  */}
-      <Route>
-
-      </Route>
-    </Routes>
-
     </div>
   );
 }
