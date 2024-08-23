@@ -2,19 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
-<mapper namespace="memberMapper">
-    <resultMap id="member" type="com.green.TeamProject1.member.MemberVO">
-        <result column="MEM_NUM" property="memNum"/>
-        <result column="MEM_ID" property="memId"/>
-        <result column="MEM_PW" property="memPw"/>
-        <result column="MEM_NAME" property="memName"/>
-        <result column="MEM_TEL" property="memTel"/>
-        <result column="CITIZEN_NUM" property="citizenNum"/>
-        <result column="MEM_ADDR" property="memAddr"/>
-        <result column="ADDR_DETAIL" property="addrDetail"/>
-        <result column="MEM_EMAIL" property="memEmail"/>
-        <result column="POST" property="post"/>
-        <result column="MEM_ROLE" property="memRole"/>
+<mapper namespace="deskMapper">
+    <resultMap id="desk" type="com.green.TeamProject1.desk.DeskVO">
+        <result column="DESK_NUM" property="deskNum"/>
+        <result column="PAT_NUM" property="patNum"/>
+        <result column="DESK_DATE" property="deskDate"/>
     </resultMap>
 </mapper>
 
