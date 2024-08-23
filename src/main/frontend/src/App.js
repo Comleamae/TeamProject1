@@ -15,10 +15,7 @@ function App() {
   const navigate = useNavigate()
 
   //로그인 정보를 받아올 state변수
-  const[isLogin, setIsLogin] = useState({
-    memId:'1234'
-    , memRole:'user'
-  })
+  const[isLogin, setIsLogin] = useState(false)
 
 
   return (
