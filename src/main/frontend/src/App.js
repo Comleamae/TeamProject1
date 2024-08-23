@@ -1,8 +1,10 @@
 import './App.css';
+import './reset.css';
 import { Route, Routes } from 'react-router-dom';
-import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
+import PayMoney from './pages/user/cyh/PayMoney';
+import MoneyIn from './pages/user/cyh/MoneyIn';
 
 
 function App() {
@@ -18,22 +20,24 @@ function App() {
           <li><input type='password' name='pwData'/></li>
         </ul>
       </div>
-     <Routes>
-      {/* 유저 페이지 */}
-      <Route path='/user' element={<UserLayout/>}>
-        {/* <Route path='' element={}/> */}
-      </Route>
+      <div className='layout-div'>
+        <Routes>
+          {/* 유저 페이지 */}
+          <Route path='/user' element={<UserLayout/>}>
+    
+            {/* 진료비 수납내용 */}
+            <Route path='money' element={<MoneyIn />} />
 
-      {/* 관리자 페이지 */}
-      <Route path='/admin' element={<AdminLayout/>}>
-
-      </Route>
-
-      {/*  */}
-      <Route>
-
-      </Route>
-     </Routes>
+            {/* 진료비 결제창 */}
+            <Route path='payMoney' element={<PayMoney />} />
+          </Route>
+    
+          {/* 관리자 페이지 */}
+          <Route path='/admin' element={<AdminLayout/>}>
+    
+          </Route>
+        </Routes>
+      </div>
     </div>
   );
 }
