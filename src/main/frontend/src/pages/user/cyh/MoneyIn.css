@@ -1,47 +1,77 @@
 
 .money-content {
-  width: 100%;
-  border: 0.5px solid indigo;
+  width: 80%;
+  background: #FBFCFD;
+  margin: 0 auto;
 }
 
 .money-box {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
-  border: 1px solid red;
+  padding: 10px;
+
 }
 
-.left-box {
-  width: 50%;
-}
-.left-table{
+.text-div{
   width: 100%;
-  margin: 10px;
+  height: 30px;
+  display: inline;
+  background-color: #eee;
 }
-.left-table tr , td {
+
+.left-right {
+  width: 49%;
+  margin: 5px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.left-right tr,td {
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid lightgray;
+}
+
+.left-table { 
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .left-table > thead {
-  background-color: aqua;
+  background-color: #eee;
 }
 
 .money-memo {
   width: 100%;
-  margin: 10px;
-  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid red;
 }
 
-.right-box {
-  width: 50%;
+.money-memo > p {
+  width: 20%;
+  height: 140px;
+  line-height: 140px;
+  background-color: #eee;
 }
 
-.right-table{
+.money-memo > textarea {
+  width: 60%;
+  height: 140px;
+  resize: none;
+  border: none;
+  border-top: 0.5px solid #eee;
+  border-bottom: 0.5px solid #eee;
+}
+
+.money-memo > button {
+  width: 20%;
+  height: 140px;
+  border: none;
+  cursor: pointer;
+}
+
+.right-table { 
   width: 100%;
-  margin: 10px;
+  margin-bottom: 10px;
 }
