@@ -1,26 +1,67 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import './reset.css'
+
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 import Reserv from './pages/admin/Reserv';
 import PatientInfo from './pages/admin/PatientInfo';
 import MedicalHistory from './pages/admin/MedicalHistory';
-import Presc from './pages/admin/Presc';
+import ClinicPrint from './pages/user/pjw/ClinicPrint';
+import ClinicList from './pages/admin/pjw/ClinicList';
+import PrintForm from './pages/user/pjw/PrintForm';
+import PrintForm2 from './pages/user/pjw/PrintForm2';
 
 function App() {
+
+  const navigate = useNavigate()
+
+  //로그인 정보를 받아올 state변수
+  const[isLogin, setIsLogin] = useState(false)
+
 
   return (
     <div className="App">
       <h1>그린 대학 병원</h1>
-      <div className='login-main-div'>
-        <ul>
-          <li>아이디</li>
-          <li><input type='text' name='idData'/></li>
-          <li>비밀번호</li>
-          <li><input type='password' name='pwData'/></li>
-        </ul>
+      <div className='intro-div'>
+        
       </div>
+      
+     <div className='layout-div'>
+       <Routes>
+        {/* 유저 페이지 */}
+        <Route path='/user' element={<UserLayout/>}>
+          <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
+            <Route path='printForm' element={<PrintForm/>}/>
+            <Route path='printForm2' element={<PrintForm2/>}/>
+          </Route>
+        </Route>
+  
+        {/* 관리자 페이지 */}
+        <Route path='/admin' element={<AdminLayout/>}>
+          <Route path='clinicList' element={<ClinicList/>}/>
+        </Route>
+       </Routes>
+     </div>
+    
+     <div className='work-selector'>
+        <div>
+          로그인
+        </div>
+        <div onClick={(e)=>{navigate('/user/clinicPrint')}}>
+          <span>진료</span>
+        </div>
+        <div onClick={(e)=>{navigate('/admin/cliniList')}}>
+          <span>의사</span>
+        </div>
+        {/* 로그인 정보에 따라서 계산하는 사이트가 달라져야한다 */}
+        <div onClick={(e)=>{navigate(`/${isLogin.memRole}/
+          moneyln`)}}>
+          데스크
+        </div>
+      </div>
+
     <Routes>
       {/* 유저 페이지 */}
       <Route path='/user' element={<UserLayout/>}>
@@ -45,6 +86,7 @@ function App() {
 
       </Route>
     </Routes>
+
     </div>
   );
 }
