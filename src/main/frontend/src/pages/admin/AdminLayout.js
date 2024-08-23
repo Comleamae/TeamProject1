@@ -1,23 +1,25 @@
 import React from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, Route, useNavigate } from 'react-router-dom'
 
 const AdminLayout = () => {
 
   const navigate = useNavigate();
 
-
+  // navigate('/admin/ksh/chartWrite'
   return (
-    <div>
+    <>
+    <div className='admin-div'>
       관리자페이지 레이아웃
-      <div>
-        <div>
-          <button type='button' onClick={(e)=>{navigate('/admin/ksh/chartWrite')}}>진료 기록 작성</button>
-          <button type='button' onClick={(e)=>{navigate('/admin/ksh/chartCheck')}}>진료 이력 조회</button>
-          <button type='button' onClick={(e)=>{navigate('/admin/ksh/chartEat')}}>처방전 작성</button>
-        </div>  
-      </div>
       <Outlet/>
     </div>
+
+    <div className='admin-btn'>
+        <button type='button' onClick={()=>{navigate('reserv')}}>예약조회</button>
+        <button type='button' onClick={()=>{navigate('patientInfo')}}>환자정보</button>
+        <button type='button' onClick={()=>{navigate('MedicalHistory')}}>진료이력</button>
+        <button type='button' onClick={()=>{navigate('Presc')}}>처 방 전</button>
+        </div>
+    </>
   )
 }
 

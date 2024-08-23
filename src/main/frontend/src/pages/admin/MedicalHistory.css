@@ -1,0 +1,4 @@
+.div-span{
+  display: flex;
+  flex-direction: column;
+}

@@ -3,9 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
-import ChartCheck from './pages/admin/ksh/ChartCheck';
-import ChartWrite from './pages/admin/ksh/ChartWrite';
-import ChartEat from './pages/admin/ksh/ChartEat';
+import Reserv from './pages/admin/Reserv';
+import PatientInfo from './pages/admin/PatientInfo';
+import MedicalHistory from './pages/admin/MedicalHistory';
+import Presc from './pages/admin/Presc';
 
 function App() {
 
@@ -27,20 +28,19 @@ function App() {
       </Route>
 
       {/* 관리자 페이지 */}
-      <Route path='/admin' element={<AdminLayout/>}>
+      <Route path='/admin' element={<AdminLayout/>}/>
 
-        {/* 차트 작성  */}
-        <Route path='ksh/chartWrite' element={<ChartWrite/>}/>
+          {/* 예약 조회 */}
+          <Route path='/admin/reserv' element={<Reserv/>}/>
+          {/* 환자 정보 */}
+          <Route path='/admin/patientInfo' element={<PatientInfo/>}/>
+          {/* 환자 정보 수정 */}
 
-        {/* 진료 이력 */}
-        <Route path='ksh/chartCheck' element={<ChartCheck/>}/>
-
-        {/* 처방전 */}
-        <Route path='ksh/chartEat' element={<ChartEat/>}/>
-
-      </Route>
-
-      {/*  */}
+          {/* 진료 이력 */}
+          <Route path='/admin/MedicalHistory' element={<MedicalHistory/>}/>
+          {/* 처 방 전 */}
+          <Route path='/admin/Presc' element={<Presc/>}/>
+        
       <Route>
 
       </Route>

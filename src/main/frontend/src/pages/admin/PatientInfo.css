@@ -1,0 +1,11 @@
+h1{
+  margin-bottom: 10px;
+}
+h4{
+  margin-bottom: 10px;
+}
+
+.div-span{
+  display: flex;
+  flex-direction: column;
+}
