@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="patientMapper">
+    <resultMap id="patient" type="com.green.TeamProject1.patient.PatientVO">
+        <result column="PAT_NUM" property="patNum"/>
+        <result column="PAT_NAME" property="patName"/>
+        <result column="DISEASE" property="disease"/>
+        <result column="DOC_LINUM" property="docLinum"/>
+        <result column="ABOUT_PAT" property="aboutPat"/>
+        <result column="MEDICINE" property="medicine"/>
+        <result column="PAT_PRICE" property="patPrice"/>
+        <result column="INHOPI_DATE" property="inhopiDate"/>
+        <result column="OUTHOPI_DATE" property="outhopiDate"/>
+        <result column="OPER_DATE" property="operDate"/>
+    </resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
