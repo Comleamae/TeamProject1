@@ -1,0 +1,17 @@
+package com.green.TeamProject1.member.service;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service("memberService")
+public class MemberServiceImpl implements MemberService{
+    @Autowired
+    private SqlSessionTemplate sqlSession;
+
+    @Override
+    public boolean checkId(String memId) {
+        String selectedId = sqlSession.selectOne("memberMapper.checkId",memId);
+        return selectedId == null;
+    }
+}
