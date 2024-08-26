@@ -43,11 +43,13 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
     axios
     .post(`/mail/checkNum`,{num:inputNum})
     .then((res)=>{
-      alert('성공')
+      res==true?
+      setIsConfirm(false)
+      :
       setIsConfirm(true)
     })
     .catch((error)=>{
-
+      console.log(error)
     })
   }
   return (
@@ -90,10 +92,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
             }
         </div>
       }
-  
-      
       <Outlet/>
-      
     </div>
   )
 }

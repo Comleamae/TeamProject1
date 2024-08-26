@@ -2,11 +2,15 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //진료확인서
+const patNum = 1
 const PrintForm = () => {
   const navigate = useNavigate()
   //불러온 환자 정보를 저장할 변수
   const[patientOne, setPatientOne] = useState({})
-  const patNum=1
+
+  //불러온 의사 정보를 저장할 변수
+  const[doctorOne, setDoctorOne] = useState({})
+
   useEffect(()=>{
     axios
     .get(`/patient/getOne/${patNum}`)
@@ -34,7 +38,7 @@ const PrintForm = () => {
           </tr>
           <tr>
             <td>주민등록번호</td>
-            <td colSpan={5}></td>
+            <td colSpan={5}>{patientOne.citizenNum}</td>
           </tr>
           <tr>
             <td>주소</td>
@@ -43,7 +47,6 @@ const PrintForm = () => {
           <tr>
             <td>병명</td>
             <td colSpan={3}>{patientOne.disease}</td>
-            <td colSpan={2}>질병코드</td>
           </tr>
           <tr>
             <td colSpan={6}>
@@ -52,10 +55,10 @@ const PrintForm = () => {
                   <table className='in-date-table'>
                     <tr>
                       <td rowSpan={2}>입 원</td>
-                      <td colSpan={5}>{patientOne.inhopiDate}부터</td>
+                      <td colSpan={5}>{}부터</td>
                     </tr>
                     <tr>
-                      <td colSpan={5}>{patientOne.outhopiDate}까지(({patientOne.outhopiDate-patientOne.inhopiDate})일간)</td>
+                      <td colSpan={5}>{}까지(일간)</td>
                     </tr>
                     <tr>
                       <td rowSpan={3}>통 원</td>

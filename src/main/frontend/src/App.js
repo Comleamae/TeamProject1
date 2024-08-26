@@ -8,6 +8,8 @@ import ClinicList from './pages/admin/pjw/ClinicList';
 import { useState } from 'react';
 import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
+import PrintForm3 from './pages/user/pjw/PrintForm3';
+import PrintForm4 from './pages/user/pjw/PrintForm4';
 
 function App() {
 
@@ -31,6 +33,8 @@ function App() {
           <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
             <Route path='printForm' element={<PrintForm/>}/>
             <Route path='printForm2' element={<PrintForm2/>}/>
+            <Route path='printForm3' element={<PrintForm3/>}/>
+            <Route path='printForm4' element={<PrintForm4/>}/>
           </Route>
         </Route>
   
@@ -51,9 +55,7 @@ function App() {
         <div onClick={(e)=>{navigate('/admin/cliniList')}}>
           <span>의사</span>
         </div>
-        {/* 로그인 정보에 따라서 계산하는 사이트가 달라져야한다 */}
-        <div onClick={(e)=>{navigate(`/${isLogin.memRole}/
-          moneyln`)}}>
+        <div onClick={(e)=>{navigate(`/admin/moneyln`)}}>
           데스크
         </div>
       </div>

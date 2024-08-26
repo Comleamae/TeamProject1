@@ -1,10 +1,43 @@
-import { tab } from '@testing-library/user-event/dist/tab'
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //수술확인서
 const PrintForm2 = () => {
 
+  //발급 당시의 시간을 저장할 변수
+  const newDate = new Date()
+
+  let patNum = 1
+
   const navigate = useNavigate()
+   //불러온 환자 정보를 저장할 변수
+   const[patientOne, setPatientOne] = useState({})
+
+   //불러온 의사 정보를 저장할 변수
+  const[doctorOne, setDoctorOne] = useState({})
+
+
+  useEffect(()=>{
+    axios
+    .get(`patient/getOne/${patNum}`)
+    .then((res)=>{
+      setPatientOne(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
+
+  useEffect(()=>{
+    axios
+    .get(`docotr/getOne/${patientOne.docLinum}`)
+    .then((res)=>{
+      setDoctorOne(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }, [])
 
   return (
     <div>
@@ -14,46 +47,46 @@ const PrintForm2 = () => {
           </tr>
           <tr>
             <td>진료과</td>
-            <td colSpan={2}>내과</td>
+            <td colSpan={2}>{doctorOne.dept}</td>
             <td>작성자</td>
-            <td>박주원</td>
+            <td>{doctorOne.docName}</td>
             <td>일자</td>
-            <td colSpan={2}>240822</td>
+            <td colSpan={2}></td>
           </tr>
           <tr>
             <td colSpan={5}>병록번호</td>
-            <td colSpan={3}>12313</td>
+            <td colSpan={3}></td>
           </tr>
           <tr>
             <td>일련번호</td>
-            <td>1675</td>
+            <td></td>
             <td>주민번호</td>
-            <td colSpan={6}>940420-1********</td>
+            <td colSpan={6}>{patientOne.citizenNum}</td>
           </tr>
           <tr>
             <td>입원과</td>
-            <td>내과</td>
-            <td>202호실</td>
+            <td>{doctorOne.dept}</td>
+            <td>{}호실</td>
             <td>입원날짜</td>
-            <td colSpan={4}>240802</td>
+            <td colSpan={4}></td>
           </tr>
           <tr>
             <td>환자성명</td>
-            <td>존도</td>
+            <td>{patientOne.patName}</td>
             <td>성별</td>
-            <td>남</td>
+            <td>{patientOne.gender}</td>
             <td>생년월일</td>
-            <td>931205</td>
+            <td>{patientOne.citizenNum}</td>
             <td>연령</td>
-            <td>만25세</td>
+            <td>{patientOne.age}</td>
           </tr>
           <tr>
             <td>환자주소</td>
-            <td colSpan={7}>울산광역시 남구 삼산동</td>
+            <td colSpan={7}>{patientOne.addr}</td>
           </tr>
           <tr>
             <td>진단명</td>
-            <td colSpan={7}>뇌졸증</td>
+            <td colSpan={7}>{patientOne.disease}</td>
           </tr>
         </table>
         <div>
@@ -64,10 +97,8 @@ const PrintForm2 = () => {
 
           <table>
             <tr>
-              <td>
-                발행일
-              </td>
-              <td></td>
+              <td>발행일</td>
+              <td>{newDate}</td>
             </tr>
             <tr>
               <td>의사성명</td>
