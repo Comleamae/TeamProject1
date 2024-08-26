@@ -12,8 +12,8 @@ public class PatientController {
     private PatientServiceImpl patientService;
 
     /*환자 전체 중에 해당 이메일 가진 사람이 있는가*/
-    @PostMapping("/getList/{patEmil}")
-    List<PatientVO> getPatientList(@PathVariable(name = "patEmail") String patEmail){
+    @PostMapping("/getList")
+    List<PatientVO> getPatientList(@RequestBody String patEmail){
         return patientService.getPatListWhereEmail(patEmail);
     }
 

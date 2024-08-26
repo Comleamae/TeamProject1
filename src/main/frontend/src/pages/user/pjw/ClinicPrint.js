@@ -50,14 +50,15 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   // 전체 환자 리스트에 해당 이메일을 가지고 있는 사람이 있는지 확인
   useEffect(()=>{
     axios
-    .get(`/patient/getList/${inputMailAddress}`)
+    .post(`/patient/getList`, inputMailAddress)
     .then((res)=>{
       console.log(res.data)
+      setPatNum(res.data.patNum)
     })
     .catch((error)=>{
       console.log(error)
     })
-  },[])
+  },[inputMailAddress])
 
   return (
     <div className='app-content-div'>
