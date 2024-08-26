@@ -4,9 +4,10 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="doctorMapper">
     <resultMap id="doctor" type="com.green.TeamProject1.doctor.DoctorVO">
-        <result column="DOC_LINUM" property="docLinum"/>
+        <id column="DOC_LINUM" property="docLinum"/>
         <result column="DOC_NAME" property="docName"/>
         <result column="DEPT" property="dept"/>
+        <collection property="medList" resultMap="patientMapper.infoMedicine"/>
     </resultMap>
     <!--의사 한명의 정보를 받아옴-->
     <select id="getOneDoc" resultMap="doctor">

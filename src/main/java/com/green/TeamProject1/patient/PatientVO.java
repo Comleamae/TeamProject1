@@ -6,9 +6,11 @@ import lombok.Data;
 public class PatientVO {
     private int patNum;
     private String patName;
+    private String patEmail;
     private int age;
     private String gender;
     private String address;
+    private String citizenNum;
     private String disease;
     private int docLinum;
     private String aboutPat;

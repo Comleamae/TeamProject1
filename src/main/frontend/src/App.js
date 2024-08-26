@@ -31,10 +31,10 @@ function App() {
         {/* 유저 페이지 */}
         <Route path='/user' element={<UserLayout/>}>
           <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
-            <Route path='printForm' element={<PrintForm/>}/>
-            <Route path='printForm2' element={<PrintForm2/>}/>
-            <Route path='printForm3' element={<PrintForm3/>}/>
-            <Route path='printForm4' element={<PrintForm4/>}/>
+            <Route path='printForm/:patNum' element={<PrintForm/>}/>
+            <Route path='printForm2/:patNum' element={<PrintForm2/>}/>
+            <Route path='printForm3/:patNum' element={<PrintForm3/>}/>
+            <Route path='printForm4/:patNum' element={<PrintForm4/>}/>
           </Route>
         </Route>
   

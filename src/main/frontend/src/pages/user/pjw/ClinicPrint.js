@@ -8,18 +8,13 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   const navigate = useNavigate()
   //인증번호를 저장할 statue변수
   const[inputNum, setInputNum] = useState(0)
-  //환자 리스트를 받아와서 저장할 state변수
-  const[patientList, setPatientList]=useState([])
   //인증이 됫는지 저장할 state변수
   const [isConfirm, setIsConfirm]=useState(false)
   //입력받은 이메일 정보를 저장할 변수
   const [inputMailAddress, setInputMailaddress] = useState('')
-
-  //임시 로그인 버튼
-  function checkLogin(){
-    setIsLogin(!isLogin)
-  }
-
+  //인증된 사람의 환자번호를 저장할 변수
+  const[patNum, setPatNum]=useState(0)
+  
   //변하는 데이터를 변수에 저장할 함수
   function changeData(e){
     setInputMailaddress(e.target.value)
@@ -43,7 +38,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
     axios
     .post(`/mail/checkNum`,{num:inputNum})
     .then((res)=>{
-      res==true?
+      res.data==true?
       setIsConfirm(false)
       :
       setIsConfirm(true)
@@ -52,10 +47,20 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
       console.log(error)
     })
   }
+  // 전체 환자 리스트에 해당 이메일을 가지고 있는 사람이 있는지 확인
+  useEffect(()=>{
+    axios
+    .get(`/patient/getList/${inputMailAddress}`)
+    .then((res)=>{
+      console.log(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
+
   return (
     <div className='app-content-div'>
-      <button type='button' onClick={(e)=>{checkLogin()}}>로그인 상태변환</button>
-      <button type='button' onClick={(e)=>{setIsConfirm(!isConfirm)}}>인증 상태변환</button>
       {
         isLogin
         ?

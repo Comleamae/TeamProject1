@@ -23,6 +23,6 @@ public class MailController {
     //인증번호 체크
     @PostMapping("/checkNum")
     boolean checkNum(@RequestBody Map<String, Integer> recoData){
-        return recoData.get("num")==recoNum?true:false;
+        return recoData.get("num")==recoNum?false:true;
     }
 }

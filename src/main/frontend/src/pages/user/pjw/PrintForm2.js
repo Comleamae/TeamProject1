@@ -2,12 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //수술확인서
-const PrintForm2 = () => {
-
+const PrintForm2 = ({patNum}) => {
   //발급 당시의 시간을 저장할 변수
-  const newDate = new Date()
-
-  let patNum = 1
 
   const navigate = useNavigate()
    //불러온 환자 정보를 저장할 변수
@@ -30,7 +26,7 @@ const PrintForm2 = () => {
 
   useEffect(()=>{
     axios
-    .get(`docotr/getOne/${patientOne.docLinum}`)
+    .post(`docotr/getOne/`, patientOne.docLinum)
     .then((res)=>{
       setDoctorOne(res.data)
     })
@@ -66,7 +62,7 @@ const PrintForm2 = () => {
           <tr>
             <td>입원과</td>
             <td>{doctorOne.dept}</td>
-            <td>{}호실</td>
+            <td>{patientOne.patName}호실</td>
             <td>입원날짜</td>
             <td colSpan={4}></td>
           </tr>
@@ -90,7 +86,7 @@ const PrintForm2 = () => {
           </tr>
         </table>
         <div>
-          위 환자는 뇌졸증으로 인해 24년 8월 2일부터 24년 8월 3일까지 수술을 시행하였음을 확인함.
+          위 환자는 뇌졸증으로 인해 부터 까지 수술을 시행하였음을 확인함.
 
           <p>수술명:</p>
           <p>수술일자:</p>
@@ -98,7 +94,7 @@ const PrintForm2 = () => {
           <table>
             <tr>
               <td>발행일</td>
-              <td>{newDate}</td>
+              <td>{}</td>
             </tr>
             <tr>
               <td>의사성명</td>

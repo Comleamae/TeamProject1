@@ -2,8 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //진료확인서
-const patNum = 1
-const PrintForm = () => {
+
+const PrintForm = ({patNum}) => {
   const navigate = useNavigate()
   //불러온 환자 정보를 저장할 변수
   const[patientOne, setPatientOne] = useState({})
@@ -42,7 +42,7 @@ const PrintForm = () => {
           </tr>
           <tr>
             <td>주소</td>
-            <td colSpan={5}></td>
+            <td colSpan={5}>{patientOne.address}</td>
           </tr>
           <tr>
             <td>병명</td>
@@ -55,14 +55,14 @@ const PrintForm = () => {
                   <table className='in-date-table'>
                     <tr>
                       <td rowSpan={2}>입 원</td>
-                      <td colSpan={5}>{}부터</td>
+                      {/* <td colSpan={5}>{patientOne.dateVO.inHopi}부터</td> */}
                     </tr>
                     <tr>
-                      <td colSpan={5}>{}까지(일간)</td>
+                      {/* <td colSpan={5}>{patientOne.dateVO.outHopi}까지(일간)</td> */}
                     </tr>
                     <tr>
                       <td rowSpan={3}>통 원</td>
-                      <td colSpan={5}>년 월 일까지( 일간)</td>
+                      <td colSpan={5}>년 월 일부터( 일간)</td>
                     </tr>
                     <tr>
                       <td colSpan={5}>년 월 일까지( 일간)</td>
@@ -79,19 +79,6 @@ const PrintForm = () => {
                 </div>
               </div>
             </td>
-          </tr>
-          <tr>
-            <td rowSpan={3}>실 통원일자</td>
-            <td> :월</td>
-            <td colSpan={4}>:</td>
-          </tr>
-          <tr>
-            <td> :월</td>
-            <td colSpan={4}>:</td>
-          </tr>
-          <tr>
-            <td> :월</td>
-            <td colSpan={4}>:</td>
           </tr>
           <tr>
             <td colSpan={6}>
@@ -116,10 +103,6 @@ const PrintForm = () => {
                   <td></td>
                 </tr>
                 <tr>
-                  <td>전문의면허번호:</td>
-                  <td></td>
-                </tr>
-                <tr>
                   <td>원 장:</td>
                   <td></td>
                 </tr>
@@ -128,7 +111,7 @@ const PrintForm = () => {
                   <td></td>
                 </tr>
                 <tr>
-                  <td>
+                  <td colSpan={2}>
                     <h2>그린대학병원</h2>
                   </td>
                 </tr>
