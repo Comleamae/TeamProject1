@@ -14,14 +14,14 @@ public class PatientController {
 
     /*환자 전체 중에 해당 이메일 가진 사람이 있는가*/
     @PostMapping("/getList")
-    List<PatientVO> getPatientList(@RequestBody Map<String, String> emailData){
+    List<PatientVO> getPatientList(@RequestBody Map<String, PatientVO> emailData){
         return patientService.getPatListWhereEmail(emailData.get("patEmail"));
     }
 
     /*환자 한명에 대한 정보를 얻는 기능*/
     @PostMapping("/getOne")
-    PatientVO getPatientOne(@RequestBody Map<String, Integer> patientData){
-        System.out.println(patientData.get("patNum"));
-        return patientService.getPatientOne(patientData.get("patNum"));
+    PatientVO getPatientOne(@RequestBody int patNum){
+        System.out.println(patNum);
+        return patientService.getPatientOne(patNum);
     }
 }

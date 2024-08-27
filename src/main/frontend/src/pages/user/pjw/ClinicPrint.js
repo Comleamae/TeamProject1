@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './ClinicPrint.css'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import FormSelector from './FormSelector'
 
@@ -68,7 +68,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
         //session에 인증 정보를 저장하기 위한 객체 생성
         const recoData ={
           recoNum:{num:inputNum}
-          , patNum:res.data.patNum
+          , patNum:1
         }
         const json_recoData = JSON.stringify(recoData)
         window.sessionStorage.setItem('recoData', json_recoData)

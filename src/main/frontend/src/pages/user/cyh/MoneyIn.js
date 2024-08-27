@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const MoneyIn = () => {
   const navigate = useNavigate();
+  
   return (
     <div className='money-content'>
       <div className='text-div'>진료비 수납</div>  

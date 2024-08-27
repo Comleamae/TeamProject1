@@ -10,6 +10,7 @@ import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
+import MoneyIn from './pages/user/cyh/MoneyIn';
 
 function App() {
 
@@ -34,12 +35,15 @@ function App() {
           <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
             <Route path='printForm' element={<PrintForm/>}/>
             <Route path='printForm2' element={<PrintForm2/>}/>
+            <Route path='printForm3' element={<PrintForm3/>}/>
+            <Route path='printForm4' element={<PrintForm4/>}/>
           </Route>
         </Route>
   
         {/* 관리자 페이지 */}
         <Route path='/admin' element={<AdminLayout/>}>
           <Route path='clinicList' element={<ClinicList/>}/>
+          <Route path='moneyln' element={<MoneyIn/>}/>
         </Route>
        </Routes>
      </div>

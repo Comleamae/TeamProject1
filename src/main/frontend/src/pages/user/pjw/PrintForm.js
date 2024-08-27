@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //진료확인서
 
-const PrintForm = (patientData) => {
+const PrintForm = () => {
   
   const navigate = useNavigate()
   //불러온 환자 정보를 저장할 변수
@@ -12,10 +12,14 @@ const PrintForm = (patientData) => {
   //불러온 의사 정보를 저장할 변수
   const[doctorOne, setDoctorOne] = useState({})
 
+  //인증으로 저장된 정보를 통해 환자 정보를 얻어오자
+  const patNum = JSON.parse(window.sessionStorage.getItem('recoData')).patNum
+
   useEffect(()=>{
     axios
-    .post(`/patient/getOne`, patientData)
+    .post(`/patient/getOne`, patNum)
     .then((res)=>{
+      console.log(res)
       setPatientOne(res.data)
     })
     .catch((error)=>{
