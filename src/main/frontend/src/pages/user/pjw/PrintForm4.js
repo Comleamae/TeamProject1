@@ -24,7 +24,7 @@ const PrintForm4 = ({patNum}) => {
   }, [])
 
   return (
-    <div>
+    <div className='result'>
       <table className='print-table'> 
           <tr>
             <td colSpan={11}><h2>진료비 영수증</h2></td>

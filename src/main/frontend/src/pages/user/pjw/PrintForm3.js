@@ -34,7 +34,7 @@ const PrintForm3 = ({patNum}) => {
     }, [])
   //처방전
   return (
-    <div>
+    <div className='result'>
       <table className='print-table'> 
           <tr>
             <td colSpan={6}><h2>처방전</h2></td>

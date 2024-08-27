@@ -20,10 +20,8 @@ public class PatientController {
 
     /*환자 한명에 대한 정보를 얻는 기능*/
     @PostMapping("/getOne")
-    PatientVO getPatientOne(@RequestBody int patNum){
-        System.out.println(patNum);
-        return patientService.getPatientOne(patNum);
+    PatientVO getPatientOne(@RequestBody Map<String, Integer> patientData){
+        System.out.println(patientData.get("patNum"));
+        return patientService.getPatientOne(patientData.get("patNum"));
     }
-
-
 }
