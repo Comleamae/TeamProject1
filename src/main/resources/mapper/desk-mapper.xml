@@ -4,7 +4,7 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="deskMapper">
     <resultMap id="desk" type="com.green.TeamProject1.desk.DeskVO">
-        <result column="DESK_NUM" property="deskNum"/>
+        <id column="DESK_NUM" property="deskNum"/>
         <result column="PAT_NUM" property="patNum"/>
         <result column="DESK_DATE" property="deskDate"/>
     </resultMap>

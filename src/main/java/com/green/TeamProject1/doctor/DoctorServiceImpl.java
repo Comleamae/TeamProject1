@@ -9,4 +9,8 @@ public class DoctorServiceImpl implements DoctorService{
     @Autowired
     private SqlSessionTemplate sqlSession;
 
+    @Override
+    public DoctorVO getOneDoc(DoctorVO doctorVO) {
+        return sqlSession.selectOne("doctorMapper.getOneDoc", doctorVO);
+    }
 }

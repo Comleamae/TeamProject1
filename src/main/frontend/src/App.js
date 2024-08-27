@@ -1,13 +1,4 @@
 import './App.css';
-<<<<<<< HEAD
-import './reset.css';
-import { Route, Routes } from 'react-router-dom';
-import AdminLayout from '../src/pages/admin/AdminLayout'
-import UserLayout from '../src/pages/user/UserLayout'
-import PayMoney from './pages/user/cyh/PayMoney';
-import MoneyIn from './pages/user/cyh/MoneyIn';
-
-=======
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './reset.css'
 import UserLayout from './pages/user/UserLayout'
@@ -17,7 +8,8 @@ import ClinicList from './pages/admin/pjw/ClinicList';
 import { useState } from 'react';
 import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
->>>>>>> main
+import PrintForm3 from './pages/user/pjw/PrintForm3';
+import PrintForm4 from './pages/user/pjw/PrintForm4';
 
 function App() {
 
@@ -42,12 +34,6 @@ function App() {
           <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
             <Route path='printForm' element={<PrintForm/>}/>
             <Route path='printForm2' element={<PrintForm2/>}/>
-            
-            {/* 진료비 수납내용 */}
-            <Route path='money' element={<MoneyIn />} />
-
-            {/* 진료비 결제창 */}
-            <Route path='payMoney' element={<PayMoney />} />
           </Route>
         </Route>
   
@@ -68,31 +54,10 @@ function App() {
         <div onClick={(e)=>{navigate('/admin/cliniList')}}>
           <span>의사</span>
         </div>
-        {/* 로그인 정보에 따라서 계산하는 사이트가 달라져야한다 */}
-        <div onClick={(e)=>{navigate(`/${isLogin.memRole}/
-          moneyln`)}}>
+        <div onClick={(e)=>{navigate(`/admin/moneyln`)}}>
           데스크
         </div>
       </div>
-
-    <Routes>
-      {/* 유저 페이지 */}
-      <Route path='/user' element={<UserLayout/>}>
-        {/* <Route path='' element={}/> */}
-      </Route>
-
-      {/* 관리자 페이지 */}
-      <Route path='/admin' element={<AdminLayout/>}>
-          
-        
-      </Route>
-
-      {/*  */}
-      <Route>
-
-      </Route>
-    </Routes>
-
     </div>
   );
 }
