@@ -14,6 +14,11 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   const [inputMailAddress, setInputMailaddress] = useState('')
   //인증된 사람의 환자번호를 저장할 변수
   const[patNum, setPatNum]=useState(0)
+  //인증후 폼셀렉터를 보이게하고 메시지를 띄울줄 함수
+  function viewSelector(res){
+    alert("")
+    setIsConfirm(!res.data)
+  }
   
   //변하는 데이터를 변수에 저장할 함수
   function changeData(e){
@@ -24,10 +29,15 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   }
   //랜덤 숫자를 이메일로 보내줄 axios
   function sendEmail(inputMailAddress){
+    if(inputMailAddress==""){
+      alert("이메일을 입력하세요")
+      return
+    }
+
     axios
     .post(`/mail/sendMail`, {email:inputMailAddress})
     .then((res)=>{
-      console.log('sucess')
+      alert('이메일을 발송했습니다')
     })
     .catch((error)=>{
       console.log(error)
@@ -35,24 +45,35 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   }
   //메일로 온 인증번호와 입력하는 수가 일치하는지 확인할 axios
   function checkNum(inputNum){
+    if(inputNum==""){
+      alert('인증번호를 입력하세요')
+      return 
+    }
+
     axios
     .post(`/mail/checkNum`,{num:inputNum})
     .then((res)=>{
-      res.data==true?
-      setIsConfirm(false)
-      :
-      setIsConfirm(true)
+      if(res.data==true){
+        alert("인증번호를 확인해주세요")
+        setIsConfirm(false)
+        
+      }
+      else{
+        alert("인증되었습니다")
+        setIsConfirm(true)
+      }
     })
     .catch((error)=>{
       console.log(error)
     })
   }
+  let emailData = {patEmail:inputMailAddress}
   // 전체 환자 리스트에 해당 이메일을 가지고 있는 사람이 있는지 확인
   useEffect(()=>{
     axios
-    .post(`/patient/getList`, inputMailAddress)
+    .post(`/patient/getList`, emailData)
     .then((res)=>{
-      console.log(res.data)
+      console.log(res)
       setPatNum(res.data.patNum)
     })
     .catch((error)=>{

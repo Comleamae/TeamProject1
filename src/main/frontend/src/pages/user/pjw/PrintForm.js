@@ -2,8 +2,9 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //진료확인서
-
-const PrintForm = ({patNum}) => {
+const patNum = 1
+const PrintForm = () => {
+  
   const navigate = useNavigate()
   //불러온 환자 정보를 저장할 변수
   const[patientOne, setPatientOne] = useState({})
@@ -13,7 +14,7 @@ const PrintForm = ({patNum}) => {
 
   useEffect(()=>{
     axios
-    .get(`/patient/getOne/${patNum}`)
+    .post(`/patient/getOne`, patNum)
     .then((res)=>{
       setPatientOne(res.data)
     })

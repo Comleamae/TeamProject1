@@ -18,7 +18,7 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public PatientVO getPatientOne(int patientNum) {
-        return sqlSession.selectOne("patientMapper.getPatientOne", patientNum);
+    public PatientVO getPatientOne(int patNum) {
+        return sqlSession.selectOne("patientMapper.getPatientOne", patNum);
     }
 }
