@@ -1,38 +1,79 @@
 
-
 .pay-content {
-  width: 60%;
-  height: 800px;
-  margin: 0 auto;
-  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  background: #f3f4f6;  
+  border: 1px solid #f3f4f6;
 }
 
+.pay {
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.19);
+}
+
+.pay-text > h3 {
+  height: 50px;
+  line-height: 50px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.pay-money {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
 .pay-div {
-  width: 100%;
+  width: 50%;
   padding: 10px;
   border: 1px solid black;
 }
 
 .pay-box {
   width: 100%;
-  height: 40px;
   border-radius: 8px;
-  border: 1px solid violet;
 }
 
-#card-div {
+.pay-box > h3 {
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+  border-top: 1px solid lightgray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card-div{
   width: 100%;
-  height: 300px;
-  border: 1px solid salmon;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #333b48;
+  background: #f9fafb;
+  cursor: pointer;
 }
 
-.bank {
-  display: grid;
-
+.card-div:hover {
+  border: 1px solid lightgray;
 }
 
 .pay-box-div{
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,8 +81,34 @@
 }
 
 .pay-box1 {
-  width: 33%;
-  height: 40px;
+  width: 32%;
+  height: 50px;
+  line-height: 50px;
   border-radius: 8px;
-  border: 1px solid violet;
+  font-weight: bold;
+  color: #333b48;
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.pay-box1:hover {
+  border: 1px solid lightgray;
+}
+
+
+.pay-btn {
+  width: 120px;
+  height: 30px;
+  margin: 30px 3px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333b48;;
+  border-radius: 8px;
+  border: none;
+}
+
+.pay-btn:hover {
+  background-color: #fff;
+  color: #333b48;
+  border: 1px solid lightgray;
 }

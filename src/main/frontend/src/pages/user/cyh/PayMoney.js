@@ -1,46 +1,56 @@
 import React, { useState } from 'react'
 import '../../../reset.css';
 import '../cyh/PayMoney.css'
+import { useNavigate } from 'react-router-dom';
 
 const PayMoney = () => {
+  const navigate = useNavigate();
 
-  function payClick(){
-    const bankdiv = document.getElementById('card-div');
-
-    if(bankdiv.style.display === 'none'){
-      bankdiv.style.display = 'block';
-    }else{
-      bankdiv.style.display = 'none';
-    }
-  }
-
-
-  return (
-    <div className='pay-content'>
-
-      <h3>그린대학병원 진료비 결제</h3>
+  return ( 
+  <div className='pay-content'>
+    <div className='pay'>
+      <div className='pay-text'>
+        <h3>📌그린대학병원 진료비 결제</h3>
+        <div className='pay-money'>
+          <h4>💰 총 진료비</h4>
+          <span>￦ 348,510원</span>
+        </div>
+      </div>
       
       <div className='pay-box' >
-        <p id='card-div'> 카드결제 </p>
+        <h3>결제방법</h3>
+        <div className='card-div'>
+          카드결제
+        </div>
         <div>
-          <ul className='bank'>
-            <li>ㅇㅇ은행</li>
-            <li>ㅇㅇ은행</li>
-            <li>ㅇㅇ은행</li>
-            <li>ㅇㅇ은행</li>
-            <li>ㅇㅇ은행</li>
-          </ul>
+          {/* 은행카드박스 들어가야함 */}
+          <div className='bank'>
+            {/* <div>농협은행</div>
+            <div>국민은행</div> */}
+          </div>
         </div>
       </div>
 
       <div className='pay-box-div'>
-        <div className='pay-box1'> 카카오페이 </div>
-        <div className='pay-box1'> 토스페이 </div>
-        <div className='pay-box1'> 네이버페이 </div>
+        <div className='pay-box1'>
+          <p>카카오페이</p>
+        </div>
+        <div className='pay-box1'>
+          <p>토스페이</p>
+        </div>
+        <div className='pay-box1'>
+          <p>네이버페이</p>
+        </div>
       </div>
 
-      <div></div>
+      <div>
+        <button className='pay-btn' type='button' onClick={()=>{
+          navigate('/user/moneyln')
+        }} >결제취소</button>
+        <button className='pay-btn' type='button' onClick={()=>{}} >결제하기</button>
+      </div>
     </div>
+  </div>
   )
 }
 
