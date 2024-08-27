@@ -69,7 +69,6 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
         const recoData ={
           recoNum:{num:inputNum}
           , patNum:res.data.patNum
-          , patEmail:res.data.patEmail
         }
         const json_recoData = JSON.stringify(recoData)
         window.sessionStorage.setItem('recoData', json_recoData)

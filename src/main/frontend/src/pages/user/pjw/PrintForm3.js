@@ -70,7 +70,7 @@ const PrintForm3 = ({patNum}) => {
           </tr>
           <tr>
             <td></td>
-            <td>서명또는 날인</td>
+            <td>서명 또는 날인</td>
             <td>면허번호</td>
             <td>제 면허번호 호</td>
           </tr>
