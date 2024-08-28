@@ -10,7 +10,7 @@ const PrintForm = (patientData) => {
   const[patientOne, setPatientOne] = useState({})
 
   //불러온 의사 정보를 저장할 변수
-  const[doctorOne, setDoctorOne] = useState({})
+  const[doctorOne, setDoctorOne] = useState([])
 
   useEffect(()=>{
     axios
@@ -19,10 +19,21 @@ const PrintForm = (patientData) => {
       setPatientOne(res.data)
     })
     .catch((error)=>{
-      console.log(error)
+      console.log('환자정보 받아오는데서 에러', error)
     })
   }, [])
 
+  useEffect(()=>{
+    axios
+    .post(`/doctor/getOne`, patientData.docLinum)
+    .then((res)=>{
+      console.log(res)
+      setDoctorOne(res.data)
+    })
+    .catch((error)=>{
+      console.log('의사정보 받아오는데서 에러', error)
+    })
+  },[])
   return (
     <div className='result'>
       <table className='print-table'> 
@@ -94,7 +105,7 @@ const PrintForm = (patientData) => {
                     </tr>
                     <tr>
                       <td></td>
-                      <td>발행일:{}</td>
+                      <td>발행일: {new Date().toLocaleDateString()}</td>
                     </tr>
                     <tr>
                       <td>요양기관명:</td>
@@ -106,7 +117,7 @@ const PrintForm = (patientData) => {
                     </tr>
                     <tr>
                       <td>의사 면허번호:</td>
-                      <td></td>
+                      <td>{}</td>
                     </tr>
                     <tr>
                       <td>원 장:</td>

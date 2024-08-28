@@ -1,7 +1,7 @@
 import './App.css';
+import './reset.css'
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 import Reserv from './pages/admin/ksh/Reserv';
@@ -16,22 +16,21 @@ import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
 
+
 function App() {
 
   const navigate = useNavigate()
 
   //로그인 정보를 받아올 state변수
-  const[isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
 
 
   return (
   <div className="App">
       <h1>그린 대학 병원</h1>
       <div className='intro-div'>
-        
       </div>
 
-      
       <div className='layout-div'>
         <Routes>
         {/* 유저 페이지 */}
@@ -52,8 +51,6 @@ function App() {
         </Routes>
       </div>
     
-      
-
     <Routes>
       {/* 유저 페이지 */}
       <Route path='/user' element={<UserLayout/>}>

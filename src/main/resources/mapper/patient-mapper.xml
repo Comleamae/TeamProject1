@@ -39,11 +39,11 @@
         <result column="PAT_NUM" property="patNum"/>
     </resultMap>
 
-    <!--환자 전체 리스트 중 해당 이메일을 가진 사람이 있는가?-->
+    <!--환자 전체 리스트 중 해당 주민번호를 가진 사람이 있나?-->
     <select id="getPatientList" resultMap="patient">
         SELECT PAT_NUM, PAT_EMAIL
         FROM patient
-        WHERE PAT_EMAIL = #{patEmail}
+        WHERE CITIZEN_NUM = #{citizenNum}
     </select>
 
     <!--환자 한명의 내용-->
