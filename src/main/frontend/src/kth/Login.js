@@ -2,10 +2,6 @@ import React, { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-<<<<<<< HEAD:src/main/frontend/src/kth/Login.js
-=======
-//import { Modal } from 'bootstrap'
->>>>>>> pjw:src/main/frontend/src/Login.js
 
 const Login = () => {
 

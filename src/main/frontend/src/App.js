@@ -15,7 +15,6 @@ import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
-import MoneyIn from './pages/user/cyh/MoneyIn';
 import Join from './kth/Join';
 import Login from './kth/Login';
 
