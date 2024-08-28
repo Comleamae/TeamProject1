@@ -69,7 +69,7 @@ const Presc = () => {
           <tr>
             <td>조제량</td>
             <td colSpan={2}>30일분</td>
-            <td colSpan={4} rowSpan={3}>처방전 상담</td>
+            <td colSpan={4} rowSpan={3}>처방 내역 들어오는 곳</td>
           </tr>
           <tr>
             <td>복용방법</td>
