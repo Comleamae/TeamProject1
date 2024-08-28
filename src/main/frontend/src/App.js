@@ -25,7 +25,7 @@ function App() {
 
 
   return (
-    <div className="App">
+  <div className="App">
       <h1>그린 대학 병원</h1>
       <div className='intro-div'>
         
@@ -52,20 +52,7 @@ function App() {
         </Routes>
       </div>
     
-      <div className='work-selector'>
-        <div>
-          로그인
-        </div>
-        <div onClick={(e)=>{navigate('/user/clinicPrint')}}>
-          <span>진료</span>
-        </div>
-        <div onClick={(e)=>{navigate('/admin/cliniList')}}>
-          <span>의사</span>
-        </div>
-        <div onClick={(e)=>{navigate(`/admin/moneyln`)}}>
-                      데스크
-        </div>
-      </div>
+      
 
     <Routes>
       {/* 유저 페이지 */}
@@ -75,7 +62,6 @@ function App() {
 
       {/* 관리자 페이지 */}
       <Route path='/admin' element={<AdminLayout/>}/>
-
           {/* 예약 조회 */}
           <Route path='/admin/reserv' element={<Reserv/>}/>
           {/* 환자 정보 */}
@@ -86,11 +72,24 @@ function App() {
           <Route path='/admin/MedicalHistory' element={<MedicalHistory/>}/>
           {/* 처 방 전 */}
           <Route path='/admin/Presc' element={<Presc/>}/>
-        
-      <Route>
-
+        <Route>
       </Route>
     </Routes>
+
+    <div className='work-selector'>
+        <div>
+          로그인
+        </div>
+        <div onClick={(e)=>{navigate('/user/clinicPrint')}}>
+          <span>진료</span>
+        </div>
+        <div onClick={(e)=>{navigate('/admin/clinicList')}}>
+          <span>의사</span>
+        </div>
+        <div onClick={(e)=>{navigate(`/admin/moneyln`)}}>
+            데스크
+        </div>
+      </div>
     </div>
   );
 }

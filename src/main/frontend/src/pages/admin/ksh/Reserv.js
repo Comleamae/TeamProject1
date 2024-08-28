@@ -1,23 +1,24 @@
 import React from 'react'
 import './Reserv.css';
+import { useNavigate } from 'react-router-dom';
 
 const Reserv = () => {
+
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <div className='main-medical-div'>
+      <div className='reserv-main-div'>
+          <h1>예약 대기자 명단</h1>
+        
         <div>
-          <span>
-            <h1>환자 예약 정보 조회</h1>
-          </span>
-          <div>
-            
-            <span className='span-cursor'onClick={(e)=>{alert(1)}}>환자이름</span> 환자나이
-            
-          </div>
-          <div><button type='button'>조회</button></div>
+          {/* 환자 이름을 누르면 환자의 간략한 정보에 환자 간략한 정보가 나오게 만듬. */}
+          <span onClick={()=>{
+            navigate('/admin/patientInfo')
+          }}>환자이름/나이</span>
+          <span>2</span>
+          <span>3</span>
         </div>
       </div>
-    </div>
   )
 }
 

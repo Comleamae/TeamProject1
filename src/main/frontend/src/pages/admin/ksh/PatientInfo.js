@@ -7,29 +7,48 @@ const PatientInfo = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <div className='main-medical-div'>
-        <div>
-          <span>
-            <h1>환자 정보 관리</h1>
-          </span>
-            <h4>신규/기존 환자입니다.</h4>
-          <div>
-            <div className='div-span'>
-              <span>이름 : <input type='text'/></span>
-              <span>나이 : <input type='text'/></span>
-              <span>성별 : <input type='text'/></span>
-              <span>주소 : <input type='text'/></span>
-              <span>번호 : <input type='text'/></span>
-            </div>
+      <div className="detail-info">
+        <h1>환자 정보</h1>
+        <div className='patient-info'>
+          <div className='p-key-info'>
+            <span>회원번호</span>
+            <span>이름</span>
+            <span>나이</span>
+            <span>성별</span>
+            <span>생년월일</span>
+            <span>주민등록번호</span>
+            <span>전화번호</span>
+            <span>주소</span>
+            <span>최종내원일</span>
+            <span>내원경로</span>
+            <span>내원이유</span>
           </div>
-          <div>
-            <button type='button' onClick={()=>{alert(1)}}>등록</button>
-            <button type='button' onClick={()=>{alert(1)}}>수정</button>
+
+          <div className='p-value-info'>
+            <span>1234-12</span>
+            <span>김세훈</span>
+            <span>33</span>
+            <span>남</span>
+            <span>2024-08-28</span>
+            <span>999999-1******</span>
+            <span>010-1111-2222</span>
+            <span><input type='text' className='p-input-tag'/></span>
+            <span><input type='date'/></span>
+            <span>
+              <select className='p-select-tag'>
+                <option>지인 추천</option>
+                <option>인터넷 검색</option>
+                <option>광고</option>
+              </select>
+            </span>
+            <span><input type='text' onChange={()=>{}} className='p-input-tag'/></span>
           </div>
         </div>
-      </div>
-    </div>
+        <div className='p-insert-btn'>
+          <button type='button' onClick={()=>{
+            navigate('/admin/medicalHistory')
+          }}>정보 등록</button></div>
+      </div>        
   )
 }
 

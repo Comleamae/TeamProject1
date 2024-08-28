@@ -1,11 +1,68 @@
-h1{
-  margin-bottom: 10px;
-}
-h4{
-  margin-bottom: 10px;
+.detail-info {
+  width: 500px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
 }
 
-.div-span{
+.mh-body-div{
+  margin-top: 10px;
+}
+
+.patient-info{
+  display: flex;
+  margin-top: 10px;
+}
+
+.patient-info > div:nth-child(1){
+  width: 30%;
+}
+
+.patient-info > div:nth-child(2){
+  width: 70%;
+}
+
+.p-key-info{
   display: flex;
   flex-direction: column;
+}
+
+.p-key-info > span {
+  background-color: #eeeeee;
+  border-bottom: 1px solid black;
+}
+
+.p-value-info{
+  display: flex;
+  flex-direction: column;
+}
+
+.p-value-info > span{
+  border-bottom: 1px solid black;
+}
+
+span{
+  height: 30px;
+  line-height: 30px;
+}
+
+.p-input-tag{
+  border: none;
+}
+
+.p-select-tag{
+  border: none;
+}
+
+.p-insert-btn{
+  margin-top: 15px;
+}
+
+.p-insert-btn > button{
+  border-radius: 20px;
+  border: none;
+  width: 140px;
+  height: 40px;
+  font-size: 1.5rem;
 }
