@@ -3,8 +3,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import './reset.css'
 import UserLayout from './pages/user/UserLayout'
 import AdminLayout from './pages/admin/AdminLayout'
-import PayMoney from './pages/user/cyh/PayMoney';
-import MoneyIn from './pages/user/cyh/MoneyIn';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import { useState } from 'react';
@@ -34,7 +32,7 @@ function App() {
        <Routes>
         {/* 유저 페이지 */}
         <Route path='/user' element={<UserLayout/>}>
-          <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
+          <Route path='clinicPrint' element={<ClinicPrint/>}>
             <Route path='printForm' element={<PrintForm/>}/>
             <Route path='printForm2' element={<PrintForm2/>}/>
             <Route path='printForm3' element={<PrintForm3/>}/>
