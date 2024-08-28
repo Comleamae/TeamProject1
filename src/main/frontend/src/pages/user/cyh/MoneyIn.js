@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const MoneyIn = () => {
   const navigate = useNavigate();
+  
   return (
     <div className='pay-main-box'>
       <div className='money-content'>

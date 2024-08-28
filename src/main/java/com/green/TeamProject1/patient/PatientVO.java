@@ -6,12 +6,18 @@ import lombok.Data;
 public class PatientVO {
     private int patNum;
     private String patName;
+    private String patEmail;
+    private int age;
+    private String gender;
+    private String address;
+    private String citizenNum;
     private String disease;
     private int docLinum;
     private String aboutPat;
-    private String medicine;
     private int patPrice;
-    private String inhopiDate;
-    private String outhopiDate;
-    private String operDate;
+    private String patDate;
+    private String inHopi;
+    private String medicine;
+    private DateVO dateVO;
+    private MedicineVO medicineVO;
 }
