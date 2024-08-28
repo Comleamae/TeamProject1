@@ -1,0 +1,25 @@
+.login-container{
+  font-size: 50px;
+}
+
+.login-form-div{
+  background-color: rgb(202, 202, 202);
+  border: 1px solid black;
+  width: 800px;
+  height: 600px;
+  margin:  auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+input{
+  font-size: 15px;
+  background-color: rgb(163, 163, 163);
+  border-radius: 5px;
+}
+
+input{
+  background-color: white;
+}
+
