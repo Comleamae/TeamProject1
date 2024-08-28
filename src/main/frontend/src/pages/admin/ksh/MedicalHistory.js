@@ -8,7 +8,7 @@ const MedicalHistory = () => {
 
   return (
     <div className="medical-info">
-        <h1>진료 이력</h1>
+        <h1>진료 내역</h1>
         <div className='medical-info-div'>
           <div className='m-key-info'>
             <span>회원번호</span>
