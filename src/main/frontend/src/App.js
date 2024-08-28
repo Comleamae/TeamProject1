@@ -1,7 +1,6 @@
 import './App.css';
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './reset.css'
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
@@ -9,7 +8,6 @@ import Reserv from './pages/admin/ksh/Reserv';
 import PatientInfo from './pages/admin/ksh/PatientInfo';
 import MedicalHistory from './pages/admin/ksh/MedicalHistory';
 import Presc from './pages/admin/ksh/Presc';
-import MoneyIn from './pages/user/cyh/MoneyIn';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
@@ -72,7 +70,7 @@ function App() {
         </div>
 
         {/* 메인화면 */}
-        {isMainVisible && <Main />}
+        {/* {isMainVisible && <Main />} */}
 
       </div>
 
