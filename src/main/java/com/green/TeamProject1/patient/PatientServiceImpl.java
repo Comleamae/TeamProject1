@@ -13,8 +13,8 @@ public class PatientServiceImpl implements PatientService{
 
 
     @Override
-    public List<PatientVO> getPatListWhereEmail(PatientVO patientVO) {
-        return sqlSession.selectList("patientMapper.getPatientList", patientVO);
+    public List<PatientVO> getPatListWhereEmail(String patEmail) {
+        return sqlSession.selectList("patientMapper.getPatientList", patEmail);
     }
 
     @Override
