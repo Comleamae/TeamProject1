@@ -22,13 +22,14 @@ function App() {
 
   return (
     <div className="App">
+
       <h1>그린 대학 병원</h1>
       <div className='intro-div'>
-        
       </div>
 
       
       <div className='layout-div'>
+
         <Routes>
           {/* 유저 페이지 */}
           <Route path='/user' element={<UserLayout/>}>
@@ -38,18 +39,18 @@ function App() {
             </Route>
 
             {/* 진료비 수납내용 */}
-            <Route path='moneyln' element={<MoneyIn />}>
-              
-            </Route>
+            <Route path='moneyln' element={<MoneyIn />} />
+
             {/* 진료비 결제창 */}
             <Route path='payMoney' element={<PayMoney />} />
 
           </Route>
-    
+
           {/* 관리자 페이지 */}
           <Route path='/admin' element={<AdminLayout/>}>
             <Route path='clinicList' element={<ClinicList/>}/>
           </Route>
+
         </Routes>
       </div>
     
