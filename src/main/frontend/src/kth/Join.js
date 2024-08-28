@@ -4,6 +4,10 @@ import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom'
 import { joinValidate } from './joinValidate';
 import axios from 'axios';
+<<<<<<< HEAD:src/main/frontend/src/kth/Join.js
+=======
+//import { Modal } from 'bootstrap';
+>>>>>>> pjw:src/main/frontend/src/pages/Join.js
 const Join = () => {
 
   const navigate = useNavigate()
@@ -230,6 +234,20 @@ const Join = () => {
         <button type='button' name='join' className='btn-div' onClick={(e) => { join() }}>회원가입</button>
         <button type='button' name='join-cancel' className='btn-div' onClick={(e) => { joinCancel() }}>취소</button>
       </div>
+<<<<<<< HEAD:src/main/frontend/src/kth/Join.js
+=======
+
+
+      {/* {
+        isShow
+          ?
+          <Modal setIsShow={setIsShow}
+            setModalContent={setModalContent}
+          />
+          :
+          null
+      } */}
+>>>>>>> pjw:src/main/frontend/src/pages/Join.js
     </div>
   )
 }

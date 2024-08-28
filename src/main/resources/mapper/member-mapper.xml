@@ -3,31 +3,44 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
-    <resultMap id="member" type="com.green.TeamProject1.member.vo.MemberVO">
+<<<<<<< HEAD
+    <resultMap id="member" type="com.green.TeamProject1.member.MemberVO">
         <id column="MEM_NUM" property="memNum"/>
         <result column="MEM_ID" property="memId"/>
         <result column="MEM_PW" property="memPw"/>
         <result column="MEM_NAME" property="memName"/>
         <result column="MEM_TEL" property="memTel"/>
         <result column="CITIZEN_NUM" property="citizenNum"/>
-        <result column="MEM_ADDR" property="memAddr"/>
+        <result column="MEM_ADDER" property="memAddr"/>
         <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEM_EMAIL" property="memEmail"/>
         <result column="POST" property="post"/>
         <result column="MEM_ROLE" property="memRole"/>
     </resultMap>
-
+=======
+    <resultMap id="member" type="com.green.TeamProject1.member.vo.MemberVO">
+        <id column="MEM_ID" property="memId"/>
+        <result column="MEM_PW" property="memPw"/>
+        <result column="CONFIRM_PW" property="confirmPw"/>
+        <result column="MEM_NAME" property="memName"/>
+        <result column="MEM_TEL" property="memTel"/>
+        <result column="MEM_EMAIL" property="memEmail"/>
+        <result column="CITIZEN_NUM" property="citizenNum"/>
+        <result column="POST" property="post"/>
+        <result column="MEM_ADDR" property="memAddr"/>
+        <result column="ADDR_DETAIL" property="addrDetail"/>
+    </resultMap>
 
     <!--id 중복 체크-->
     <select id="checkId" resultType="String">
         SELECT MEM_ID
-        FROM MEMBER
+        FROM TAK_MEMBER
         WHERE MEM_ID = #{memId};
     </select>
 
     <!--회원가입 쿼리-->
     <insert id="join">
-        INSERT INTO MEMBER(
+        INSERT INTO tak_member(
         MEM_ID
         , MEM_PW
         , MEM_NAME
@@ -51,10 +64,11 @@
     <!--로그인 쿼리-->
     <select id="login" resultMap="member">
         SELECT MEM_ID, MEM_PW
-        FROM MEMBER
+        FROM TAK_MEMBER
         WHERE MEM_ID = #{memId}
         AND MEM_PW = #{memPw}
     </select>
+>>>>>>> kth
 </mapper>
 
 

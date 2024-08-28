@@ -11,14 +11,9 @@
         <result column="GENDER" property="gender"/>
         <result column="CITIZEN_NUM" property="citizenNum"/>
         <result column="ADDRESS" property="address"/>
-        <result column="DISEASE" property="disease"/>
-        <result column="DOC_LINUM" property="docLinum"/>
-        <result column="ABOUT_PAT" property="aboutPat"/>
-        <result column="PAT_PRICE" property="patPrice"/>
-        <result column="PAT_DATE"  property="patDate"/>
-        <result column="MEDICINE" property="medicine"/>
-        <association property="dateVO" resultMap="infoMedicine"/>
+       <!-- <association property="dateVO" resultMap="infoMedicine"/>
         <association property="medicineVO" resultMap="infoDate"/>
+        <collection property="treatList" resultMap="infoTreat"/>-->
     </resultMap>
 
     <!--환자에 대한 약 정보-->
@@ -39,9 +34,21 @@
         <result column="PAT_NUM" property="patNum"/>
     </resultMap>
 
+    <!--진료 정보 리스트-->
+    <resultMap id="infoTreat" type="com.green.TeamProject1.patient.TreatVO">
+        <id column="TRE_NUM" property="treNum"/>
+        <result column="PAT_NUM" property="patNum"/>
+        <result column="DISEASE" property="disease"/>
+        <result column="DOC_LINUM" property="docLinum"/>
+        <result column="ABOUT_PAT" property="aboutPat"/>
+        <result column="TRE_DATE" property="treDate"/>
+        <result column="DATE_NUM" property="dateNum"/>
+        <result column="MED_NUM" property="medNum"/>
+    </resultMap>
+
     <!--환자 전체 리스트 중 해당 주민번호를 가진 사람이 있나?-->
     <select id="getPatientList" resultMap="patient">
-        SELECT PAT_NUM, PAT_EMAIL
+        SELECT PAT_NUM, PAT_NAME
         FROM patient
         WHERE CITIZEN_NUM = #{citizenNum}
     </select>
@@ -55,7 +62,13 @@
         AND PATIENT.PAT_NUM = #{patNum}
     </select>
 
-
+    <!--한 환자에 대한 진료기록-->
+    <select id="getOneTreList" resultMap="patient">
+        SELECT TRE_DATE
+        FROM PATIENT, INFO_TREAT
+        WHERE PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
+        AND PATIENT.PAT_NUM = #{patNum}
+    </select>
 </mapper>
 
 
