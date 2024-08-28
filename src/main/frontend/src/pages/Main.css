@@ -1,0 +1,51 @@
+
+.intro-div {
+  width: 100%;
+  height: 650px;
+  position: absolute;
+  top: 103px;
+  left: 0;
+  background: ivory;
+}
+
+.banner-main-img{
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(60%);
+}
+
+.img-text {
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  text-align: left;
+  color: #fff;
+  font-size: 40PX;
+}
+
+.self-box {
+  width: 60%;
+  position: absolute;
+  bottom: 0px;
+  left: 20%;
+  display: flex;
+}
+
+.sub-idex-box {
+  width: 230px;
+  height: 230px;
+  line-height: 90px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid gray;
+}
+
+.sub-idex-box > p {
+  font-size: 30px;
+}
+
+.icon{
+  font-size: 90px;
+}

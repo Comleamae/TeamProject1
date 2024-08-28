@@ -3,8 +3,7 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
-<<<<<<< HEAD
-    <resultMap id="member" type="com.green.TeamProject1.member.MemberVO">
+    <resultMap id="member" type="com.green.TeamProject1.member.vo.MemberVO">
         <id column="MEM_NUM" property="memNum"/>
         <result column="MEM_ID" property="memId"/>
         <result column="MEM_PW" property="memPw"/>
@@ -17,19 +16,7 @@
         <result column="POST" property="post"/>
         <result column="MEM_ROLE" property="memRole"/>
     </resultMap>
-=======
-    <resultMap id="member" type="com.green.TeamProject1.member.vo.MemberVO">
-        <id column="MEM_ID" property="memId"/>
-        <result column="MEM_PW" property="memPw"/>
-        <result column="CONFIRM_PW" property="confirmPw"/>
-        <result column="MEM_NAME" property="memName"/>
-        <result column="MEM_TEL" property="memTel"/>
-        <result column="MEM_EMAIL" property="memEmail"/>
-        <result column="CITIZEN_NUM" property="citizenNum"/>
-        <result column="POST" property="post"/>
-        <result column="MEM_ADDR" property="memAddr"/>
-        <result column="ADDR_DETAIL" property="addrDetail"/>
-    </resultMap>
+
 
     <!--id 중복 체크-->
     <select id="checkId" resultType="String">
@@ -68,7 +55,7 @@
         WHERE MEM_ID = #{memId}
         AND MEM_PW = #{memPw}
     </select>
->>>>>>> kth
+
 </mapper>
 
 
