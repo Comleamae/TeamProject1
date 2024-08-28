@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './reset.css'
 import UserLayout from './pages/user/UserLayout'
 import AdminLayout from './pages/admin/AdminLayout'
@@ -24,9 +24,21 @@ function App() {
   return (
     <div className="App">
 
-      <h1>그린 대학 병원</h1>
-      <div className='intro-div'>
+
+      <div className='header'>
+        <Link to="/" className='logo'>그린대학교병원</Link>
+        <div className='login-box'>
+          {/* 로그인 + 회원가입 + 관리자전용 */}
+        </div>
+        <div className='intro-div'>
+          {/* 병원이미지 + 레이아웃 */}
+        </div>
       </div>
+
+
+
+
+
       <div className='layout-div'>
 
         <Routes>
