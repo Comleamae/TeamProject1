@@ -26,7 +26,7 @@ function App() {
 
         </Route>
         {/* 로그인 페이지 */}
-        <Route path='/login' element={<Login />} />
+        <Route path='/loginForm' element={<Login />} />
         {/* 회원가입 페이지 */}
         <Route path='/join' element={<Join />} />
 

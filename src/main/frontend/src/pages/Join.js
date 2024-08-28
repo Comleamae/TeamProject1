@@ -3,8 +3,8 @@ import './Join.css'
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom'
 import { joinValidate } from './joinValidate';
-import { Modal } from 'bootstrap';
 import axios from 'axios';
+import { Modal } from 'bootstrap';
 const Join = () => {
 
   const navigate = useNavigate()
@@ -29,6 +29,29 @@ const Join = () => {
   function handleClick() {
     open({ onComplete: handleComplete });
   }
+
+  // 회원가입 성공 여부 state변수
+
+
+  // 모달창이 띄워질 여부 state 변수(초기값 false)
+  const [isShow, setIsShow] = useState(false)
+
+  // 모달창의 내용을 설정할 함수
+  function setModalContent() {
+    {
+      //중복 확인 버튼 눌렀을 때 되고 / 말고
+      //회원가입 눌렀을 때 유효성 / 중복 버튼 여부 / 완료 시
+      //이러한 조건을 만들기 위한 변수를 따로 지정해야한다. 혹은 case문을 사용한다.
+      
+      return (
+        <div></div>
+      )
+    }
+  }
+
+  // 모달창 닫혔을 때 실행할 함수
+  // func
+
 
   //id 중복 체크 여부를 저장할 변수
   const [isCheckId, setIsCheckId] = useState(false);
@@ -74,54 +97,51 @@ const Join = () => {
 
   //데이터 입력 때마다
   function changeJoinData(e) {
+
+    //삼항연산자 사용을 위한 변수
+    let newValue;
+    if (e.target.name == 'citizenNum') {
+      newValue = citizenNum_1.current.value + citizenNum_2.current.value;
+    } else if (e.target.name == 'memEmail') {
+      newValue = email_1.current.value + email_2.current.value;
+    } else {
+      newValue = e.target.value
+    }
+
+
+
     const newData = {
       ...joinData,
-      [e.target.name]: e.target.name == 'citizenNum' ?
-        citizenNum_1.current.value + citizenNum_2.current.value : e.target.name == 'memEmail' ?
-          email_1.current.value + email_2.current.value : e.target.value
+      [e.target.name]: newValue
     }
     const result = joinValidate(newData, valid_tag, e.target.name);
     setValidResult(result);
 
     // //유효성 검사 끝난 데이터를 joinData에 저장
     setJoinData(newData);
-    console.log(joinData)
+
   }
 
-  //모달창 여부 state변수
-  const [isShow, setIsShow] = useState(false);
-
-  //모달창 클릭시 페이지 이동
-  function onClickModalBtn() {
-    navigate('/')
-  }
-
-  //모달창 내용 설정
-  function setModalContent() {
-    return (
-      '회원 가입 완료'
-    )
-  }
 
   //아이디 중복확인 버튼 클릭
   function idEnable() {
     axios.get(`/api_member/checkId/${joinData.memId}`)
-    .then((res)=>{
-      if(res.data){
-        alert('사용 가능한 id')
-        setIsCheckId(true);
-      }
-      else{
-        alert('중복된 id')
-      }
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
+      .then((res) => {
+        if (res.data) {
+          setIsCheckId(true)
+        }
+        else {
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   //회원 가입 버튼 누를 시
   function join() {
+    // setIsShow(true)
+    console.log(joinData)
     if (!validResult) {
       alert('입력 데이터 확인하세요')
       return;
@@ -130,7 +150,22 @@ const Join = () => {
       alert('ID 중복 체크 하세요')
       return;
     }
-    setIsShow(true)
+    axios.post('api_member/join', joinData)
+      .then((res) => {
+        alert('회원가입 완료')
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  // 가입 취소
+  function joinCancel() {
+    const cancelChk = window.confirm('가입을 취소하겠습니까?')
+    if (cancelChk) {
+      navigate('/loginForm')
+    }
   }
 
   return (
@@ -181,49 +216,47 @@ const Join = () => {
             <tr>
               <td>이메일</td>
               <td>
-                <input type='text' name='email1' placeholder='ex)abc123@naver.com' onChange={(e) => { changeJoinData(e) }} />@
-                <select name='email2' onChange={(e) => { changeJoinData(e) }} >
-                  <option >naver.com</option>
-                  <option >kakao.com</option>
-                  <option >gmail.com</option>
+                <input type='text' name='memEmail' placeholder='ex)abc123@naver.com' ref={email_1} onChange={(e) => { changeJoinData(e) }} />@
+                <select name='memEmail' ref={email_2} defaultValue={'@naver.com'} onChange={(e) => { changeJoinData(e) }} >
+                  <option value={'@naver.com'}>naver.com</option>
+                  <option value={'@kakao.com'}>kakao.com</option>
+                  <option value={'@gmail.com'}>gmail.com</option>
                 </select>
-                </td>
+              </td>
             </tr>
             <tr>
               <td>주민번호</td>
               <td>
-                <input type='text' name='citizenNum1' placeholder='주민번호 앞자리' onChange={(e) => { changeJoinData(e) }} /> -
-                <input type='password' name='citizenNum2' placeholder='주민번호 뒷자리' onChange={(e) => { changeJoinData(e) }} />
+                <input type='text' name='citizenNum' placeholder='주민번호 앞자리' ref={citizenNum_1} onChange={(e) => { changeJoinData(e) }} /> -
+                <input type='password' name='citizenNum' placeholder='주민번호 뒷자리' ref={citizenNum_2} onChange={(e) => { changeJoinData(e) }} />
                 <div className='feedback' ref={citizenNum_valid_tag}></div>
               </td>
             </tr>
             <tr>
               <td>주소</td>
               <td>
-                <div><input type='text' name='post' placeholder='우편번호' value={joinData.post} onClick={(e) => { handleClick() }} readOnly  onChange={(e) => { changeJoinData(e) }} /><button type='button' onClick={(e) => { handleClick() }} >주소 검색</button></div>
-                <div><input type='text' name='memAddr' placeholder='주소' value={joinData.memAddr} onClick={(e) => { handleClick() }} readOnly  onChange={(e) => { changeJoinData(e) }} /></div>
-                <div><input type='text' name='addrDetail' placeholder='상세주소'  onChange={(e) => { changeJoinData(e) }} /></div>
+                <div><input type='text' name='post' placeholder='우편번호' value={joinData.post} onClick={(e) => { handleClick() }} readOnly onChange={(e) => { changeJoinData(e) }} /><button type='button' onClick={(e) => { handleClick() }} >주소 검색</button></div>
+                <div><input type='text' name='memAddr' placeholder='주소' value={joinData.memAddr} onClick={(e) => { handleClick() }} readOnly onChange={(e) => { changeJoinData(e) }} /></div>
+                <div><input type='text' name='addrDetail' placeholder='상세주소' onChange={(e) => { changeJoinData(e) }} /></div>
               </td>
             </tr>
           </tbody>
         </table>
 
         <button type='button' name='join' className='btn-div' onClick={(e) => { join() }}>회원가입</button>
-        <button type='button' name='join-cancel' className='btn-div' >취소</button>
+        <button type='button' name='join-cancel' className='btn-div' onClick={(e) => { joinCancel() }}>취소</button>
       </div>
 
 
-      {/* 모달 창 띄우기 */}
       {
         isShow
-          ?
-          <Modal setIsShow={setIsShow}
-            content={setModalContent}
-            clickCloseBtn={onClickModalBtn} />
-          :
-          null
+        ?
+        <Modal setIsShow={setIsShow}
+        setModalContent={setModalContent}
+        />
+        :
+        null
       }
-
     </div>
   )
 }

@@ -1,5 +1,5 @@
 //유효성 검사 결과
-let resultArr = [
+const resultArr = [
   false, //아이디
   false, //비밀번호
   false, //이름
@@ -124,38 +124,31 @@ export const joinValidate = (newData, valid_tag, tagName) => {
 
       }
       break;
-    case 'citizenNum1':
-    case 'citizenNum2':
-      const regex_citizenNum1 = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
+    case 'citizenNum':
+      const regex_citizenNum = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))[1-8][0-9]{6}$/;
 
-      const regex_citizenNum2 = /^[1-8][0-9]{6}$/;
-      if (regex_citizenNum1.test(newData.citizenNum1) ) {
-        citizenNum1 = true;
-      }
-      else {
-        citizenNum1 = false;
-      }
-      if( regex_citizenNum2.test(newData.citizenNum2)){
-        citizenNum2 = true;
-      }
-      else{
-        citizenNum2 = false
-      }
-      if (citizenNum1 && citizenNum2){
+      // 주민번호 유효성 검사
+      if (regex_citizenNum.test(newData.citizenNum) ) {
         sendFeedbackMsg(valid_tag[5], '올바른 주민번호입니다.', 'good');
         resultArr[4] = true;
       }
-      else{
+      else {
         sendFeedbackMsg(valid_tag[5], '잘못된 주민번호입니다.', 'error');
         resultArr[4] = false;
       }
 
   }
 
+  //유효성검사 메세지 띄우기
+  function sendFeedbackMsg(feedbackTag, msg, type) {
+    feedbackTag.current.className = `feedback ${type}`;
+    feedbackTag.current.textContent = msg;
+  }
 
   //배열의 매개변수로 전달된 데이터가 존재 한다면 리턴 true;
   // return !resultArr.includes(false);
 
+  console.log(resultArr)
   //resultArr의 모든 데이터가 true일 때만 리턴 true
   for (const e of resultArr) {
     if (!e) {
@@ -164,10 +157,5 @@ export const joinValidate = (newData, valid_tag, tagName) => {
   }
   return true;
 
-  //각각의 유효성 결과 메세지를 띄우는 함수
-  function sendFeedbackMsg(feedbackTag, msg, type) {
-    feedbackTag.current.className = `feedback ${type}`;
-    feedbackTag.current.textContent = msg;
-  }
 
 }
