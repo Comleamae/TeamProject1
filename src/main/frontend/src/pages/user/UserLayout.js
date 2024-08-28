@@ -1,13 +1,14 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import './UserLayout.css'
 
 const UserLayout = () => {
-  
+  const navigate = useNavigate();
+
   return (
     <div>
-      유저페이지메뉴
-      <Outlet/>
+      유저페이지 레이아웃
+      <Outlet />
     </div>
   )
 }
