@@ -47,7 +47,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
           setIsConfirm(false);
         } else {
           alert('인증되었습니다');
-          const data = { recoNum: num, patNum: 1 };
+          const data = { recoNum: num, patNum:1 };
           window.sessionStorage.setItem('recoData', JSON.stringify(data));
           setRecoData(data);
           setIsConfirm(true);
@@ -63,7 +63,6 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
       axios.post('/patient/getList', { patEmail: inputMailAddress })
         .then((res) => {
           console.log(res.data);
-          // 받아온 데이터로 상태 업데이트 또는 필요한 로직 추가
         })
         .catch((error) => {
           console.error('환자 정보 조회 중 오류 발생:', error);

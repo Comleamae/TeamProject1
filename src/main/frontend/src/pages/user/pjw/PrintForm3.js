@@ -48,28 +48,28 @@ const PrintForm3 = ({ patNum }) => {
         <table className='print-table'> 
           <tbody>
             <tr>
-              <td colSpan={6}><h2>처방전</h2></td>
+              <td colSpan={7}><h2>처방전</h2></td>
             </tr>
             <tr>
-              <td>교부번호</td>
-              <td>{/* 교부번호 데이터 */}</td>
+              <td>발행일/발행번호</td>
+              <td>{new Date().toLocaleDateString()} / N/A</td>
               <td>제 {/* 제 호 */}</td>
               <td rowSpan={3}>의료기관</td>
               <td>명칭</td>
-              <td>{/* 의료기관 명칭 */}</td>
+              <td colSpan={2}>{/* 의료기관 명칭 */}</td>
             </tr>
             <tr>
               <td rowSpan={2}>환자</td>
               <td>성명</td>
               <td>{patientOne.patName || 'N/A'}</td>
               <td>전화</td>
-              <td>{patientOne.phone || 'N/A'}</td>
+              <td colSpan={2}>{patientOne.phone || 'N/A'}</td>
             </tr>
             <tr>
               <td>주민등록번호</td>
               <td>{patientOne.citizenNum || 'N/A'}</td>
               <td>email</td>
-              <td>{patientOne.email || 'N/A'}</td>
+              <td colSpan={2}>{patientOne.email || 'N/A'}</td>
             </tr>
             <tr>
               <td rowSpan={2}>질병코드</td>
@@ -83,11 +83,12 @@ const PrintForm3 = ({ patNum }) => {
             <tr>
               <td>{patientOne.diseaseCode || 'N/A'}</td>
               <td>서명 또는 날인</td>
+              <td></td>
               <td>면허번호</td>
               <td>{doctorOne.licenseNumber || 'N/A'}</td>
             </tr>
             <tr>
-              <td colSpan={6}><h4>*환자의 요구가 있는 때에는 질병분류기호를 기재하지 아니합니다.</h4></td>
+              <td colSpan={7}><h4>*환자의 요구가 있는 때에는 질병분류기호를 기재하지 아니합니다.</h4></td>
             </tr>
             <tr>
               <td colSpan={2}>처방 의약품의 명칭</td>
@@ -100,10 +101,10 @@ const PrintForm3 = ({ patNum }) => {
             <tr>
               <td>사용기간</td>
               <td colSpan={2}>교부일로부터 3일간</td>
-              <td colSpan={4}>*사용기간내에 약국에 제출하여야 합니다</td>
+              <td colSpan={5}>*사용기간내에 약국에 제출하여야 합니다</td>
             </tr>
             <tr>
-              <td colSpan={6}>의약품 조재 내역</td>
+              <td colSpan={7}>의약품 조재 내역</td>
             </tr>
             <tr>
               <td rowSpan={4}>조제내역</td>

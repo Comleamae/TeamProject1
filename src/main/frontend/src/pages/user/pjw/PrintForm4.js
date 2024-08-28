@@ -170,7 +170,7 @@ const PrintForm4 = ({ patNum }) => {
               <td></td>
               <td></td>
               <td></td>
-              <td colSpan={3} rowSpan={4}></td>
+              <td colSpan={3} rowSpan={4}>발행일:{new Date().toLocaleDateString()}</td>
             </tr>
             <tr>
               <td rowSpan={2}>선택항목</td>

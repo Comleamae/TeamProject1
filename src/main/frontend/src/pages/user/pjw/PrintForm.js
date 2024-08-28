@@ -1,27 +1,28 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import { generatePDF } from './utils/pdfUtils'
 
 const PrintForm = () => {
-  const navigate = useNavigate()
+ 
   const [patientOne, setPatientOne] = useState({})
+  //pdf 생성을 시작하는 지 여부를 담당하는 변수
   const [isGenerating, setIsGenerating] = useState(false)
   const printRef = useRef(null)
 
   // 환자 정보 가져오기
   const patNum = JSON.parse(window.sessionStorage.getItem('recoData')).patNum
 
-  useEffect(() => {
+  useEffect(()=>{
     axios
-      .post(`/patient/getOne`, { patNum })
-      .then((res) => {
-        setPatientOne(res.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [patNum])
+    .post(`/patient/getOne`, patNum)
+    .then((res)=>{
+      console.log(res)
+      setPatientOne(res.data)
+    })
+    .catch((error)=>{
+      console.log('환자정보 가져오는 중에 실패', error)
+    })
+  }, [patientOne])
 
   // PDF 생성 및 다운로드
   const handlePrint = () => {
@@ -38,9 +39,6 @@ const PrintForm = () => {
     }
   }
 
-  // 환자 정보 렌더링
-  const { patName, gender, age, citizenNum, address, disease } = patientOne
-
   return (
     <div className='result'>
       <div ref={printRef}>
@@ -51,23 +49,23 @@ const PrintForm = () => {
             </tr>
             <tr>
               <td>성명</td>
-              <td>{patName || 'N/A'}</td>
+              <td>{patientOne.patName || 'N/A'}</td>
               <td>성별</td>
-              <td>{gender || 'N/A'}</td>
+              <td>{patientOne.gender || 'N/A'}</td>
               <td>연령</td>
-              <td>{age || 'N/A'}</td>
+              <td>{patientOne.age || 'N/A'}</td>
             </tr>
             <tr>
               <td>주민등록번호</td>
-              <td colSpan={5}>{citizenNum || 'N/A'}</td>
+              <td colSpan={5}>{patientOne.citizenNum || 'N/A'}</td>
             </tr>
             <tr>
               <td>주소</td>
-              <td colSpan={5}>{address || 'N/A'}</td>
+              <td colSpan={5}>{patientOne.address || 'N/A'}</td>
             </tr>
             <tr>
               <td>병명</td>
-              <td colSpan={3}>{disease || 'N/A'}</td>
+              <td colSpan={5}>{patientOne.disease || 'N/A'}</td>
             </tr>
           </thead>
           <tbody>
@@ -78,17 +76,17 @@ const PrintForm = () => {
                     <tbody>
                       <tr>
                         <td rowSpan={2}>입 원</td>
-                        <td colSpan={5}>{patientOne?.dateVO?.inHopi || 'N/A'}부터</td>
+                        <td colSpan={5}>{'N/A'} 부터</td>
                       </tr>
                       <tr>
-                        <td colSpan={5}>{patientOne?.dateVO?.outHopi || 'N/A'}까지(일간)</td>
+                        <td colSpan={5}>{'N/A'} 까지(일간)</td>
                       </tr>
                       <tr>
                         <td rowSpan={3}>통 원</td>
-                        <td colSpan={5}>년 월 일부터( 일간)</td>
+                        <td colSpan={5}>{'N/A'} 부터</td>
                       </tr>
                       <tr>
-                        <td colSpan={5}>년 월 일까지( 일간)</td>
+                        <td colSpan={5}>{'N/A'} 까지( 일간)</td>
                       </tr>
                       <tr>
                         <td>총 일간</td>
@@ -118,7 +116,7 @@ const PrintForm = () => {
                     </tr>
                     <tr>
                       <td>요양기관명:</td>
-                      <td></td>
+                      <td>그린 대학 병원</td>
                     </tr>
                     <tr>
                       <td>주소:</td>
