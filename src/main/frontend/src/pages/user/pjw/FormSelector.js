@@ -11,10 +11,10 @@ const FormSelector = () => {
       <div onClick={(e)=>{navigate('/user/clinicPrint/printForm2')}}>
         수술확인서
       </div>
-      <div>
-        입퇴원확인서
+      <div onClick={(e)=>{navigate('/user/clinicPrint/printForm3')}}>
+        처방전
       </div>
-      <div>
+      <div onClick={(e)=>{navigate('/user/clinicPrint/printForm4')}}>
         영수증
       </div>
     </div>

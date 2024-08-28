@@ -8,13 +8,13 @@ import Reserv from './pages/admin/ksh/Reserv';
 import PatientInfo from './pages/admin/ksh/PatientInfo';
 import MedicalHistory from './pages/admin/ksh/MedicalHistory';
 import Presc from './pages/admin/ksh/Presc';
-import PayMoney from './pages/user/cyh/PayMoney';
 import MoneyIn from './pages/user/cyh/MoneyIn';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
-
+import PrintForm3 from './pages/user/pjw/PrintForm3';
+import PrintForm4 from './pages/user/pjw/PrintForm4';
 
 function App() {
 
@@ -34,26 +34,21 @@ function App() {
       
       <div className='layout-div'>
         <Routes>
-          {/* 유저 페이지 */}
-          <Route path='/user' element={<UserLayout/>}>
-            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
-              <Route path='printForm' element={<PrintForm/>}/>
-              <Route path='printForm2' element={<PrintForm2/>}/>
-            </Route>
-
-            {/* 진료비 수납내용 */}
-            <Route path='moneyln' element={<MoneyIn />}>
-              
-            </Route>
-            {/* 진료비 결제창 */}
-            <Route path='payMoney' element={<PayMoney />} />
-
+        {/* 유저 페이지 */}
+        <Route path='/user' element={<UserLayout/>}>
+          <Route path='clinicPrint' element={<ClinicPrint/>}>
+            <Route path='printForm' element={<PrintForm/>}/>
+            <Route path='printForm2' element={<PrintForm2/>}/>
+            <Route path='printForm3' element={<PrintForm3/>}/>
+            <Route path='printForm4' element={<PrintForm4/>}/>
           </Route>
-    
-          {/* 관리자 페이지 */}
-          <Route path='/admin' element={<AdminLayout/>}>
-            <Route path='clinicList' element={<ClinicList/>}/>
-          </Route>
+        </Route>
+  
+        {/* 관리자 페이지 */}
+        <Route path='/admin' element={<AdminLayout/>}>
+          <Route path='clinicList' element={<ClinicList/>}/>
+          <Route path='moneyln' element={<MoneyIn/>}/>
+        </Route>
         </Routes>
       </div>
     
@@ -67,9 +62,8 @@ function App() {
         <div onClick={(e)=>{navigate('/admin/cliniList')}}>
           <span>의사</span>
         </div>
-        {/* 로그인 정보에 따라서 계산하는 사이트가 달라져야한다 */}
-        <div onClick={(e)=>{navigate(`/${isLogin.memRole}/moneyln`)}}>
-          데스크
+        <div onClick={(e)=>{navigate(`/admin/moneyln`)}}>
+                      데스크
         </div>
       </div>
 
