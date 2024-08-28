@@ -11,8 +11,9 @@ import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
 import MoneyIn from './pages/user/cyh/MoneyIn';
-import Login from './Login';
-import Join from './pages/Join';
+import Join from './kth/Join';
+import Login from './kth/Login';
+
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path='/join' element={<Join />} />
           <Route path='/login' element={<Login />} />
+
           {/* 유저 페이지 */}
           <Route path='/user' element={<UserLayout />}>
             <Route path='clinicPrint' element={<ClinicPrint />}>

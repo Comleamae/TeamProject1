@@ -4,7 +4,6 @@ import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom'
 import { joinValidate } from './joinValidate';
 import axios from 'axios';
-import { Modal } from 'bootstrap';
 const Join = () => {
 
   const navigate = useNavigate()
@@ -14,7 +13,6 @@ const Join = () => {
 
   //주소 검색창 닫힐 때
   function handleComplete(data) {
-
     //검색 내용 input태그에 입력
     setJoinData({
       ...joinData,
@@ -29,40 +27,6 @@ const Join = () => {
   function handleClick() {
     open({ onComplete: handleComplete });
   }
-
-  // 회원가입 성공 여부 state변수
-
-
-  // 모달창이 띄워질 여부 state 변수(초기값 false)
-  const [isShow, setIsShow] = useState(false)
-
-  //회원가입 결과 값을 담을 state변수
-  const [chkJoin, setChkJoin] = useState(false)
-
-  // 모달창의 내용을 설정할 함수
-  function setModalContent() {
-    {
-      //중복 확인 버튼 눌렀을 때 되고 / 말고
-      //회원가입 눌렀을 때 유효성 / 중복 버튼 여부 / 완료 시
-
-      //이러한 조건을 만들기 위한 변수를 따로 지정해야한다. 혹은 case문을 사용한다.
-      return (
-        <div>
-          {
-          isCheckId
-          ?
-            <div>사용 가능한ID</div>
-            :
-            <div>ID를 확인하세요</div>
-          }
-        </div>
-      )
-    }
-  }
-
-  // 모달창 닫혔을 때 실행할 함수
-  // func
-
 
   //id 중복 체크 여부를 저장할 변수
   const [isCheckId, setIsCheckId] = useState(false);
@@ -119,10 +83,12 @@ const Join = () => {
       newValue = e.target.value
     }
 
+    //데이터 바꾸기
     const newData = {
       ...joinData,
       [e.target.name]: newValue
     }
+    //유효성 검사 실행
     const result = joinValidate(newData, valid_tag, e.target.name);
     setValidResult(result);
 
@@ -136,32 +102,39 @@ const Join = () => {
   function idEnable() {
     axios.get(`/api_member/checkId/${joinData.memId}`)
       .then((res) => {
-        if (res.data) {
+        // 사용 가능 아이디
+        if(res.data) {
           setIsCheckId(true)
+          alert('사용 가능한 ID입니다.')
         }
+        //중복된 아이디
         else {
+          setIsCheckId(false)
+          alert('중복된 ID입니다.')
         }
       })
       .catch((error) => {
         console.log(error)
+        alert('아이디를 입력하세요.')
       })
   }
 
   //회원 가입 버튼 누를 시
   function join() {
-    // setIsShow(true)
-    console.log(joinData)
+    //유효성 검사 불통과시
     if (!validResult) {
-      alert('입력 데이터 확인하세요')
+      alert('입력한 데이터를 확인해주세요.')
       return;
     }
+    //아이디 중복확인 안했을 시
     if (!isCheckId) {
-      alert('ID 중복 체크 하세요')
+      alert('아이디 중복 확인은 필수입니다.')
       return;
     }
-    axios.post('api_member/join', joinData)
+    //회원가입 완료 시
+    axios.post('/api_member/join', joinData)
       .then((res) => {
-        alert('회원가입 완료')
+        alert('회원가입이 완료되었습니다.')
         navigate('/')
       })
       .catch((error) => {
@@ -172,9 +145,11 @@ const Join = () => {
   // 가입 취소
   function joinCancel() {
     const cancelChk = window.confirm('가입을 취소하겠습니까?')
+    //가입 취소버튼 누를 시 로그인 화면으로
     if (cancelChk) {
       navigate('/loginForm')
     }
+    //아니라면 그대로(공백)
   }
 
   return (
@@ -255,17 +230,6 @@ const Join = () => {
         <button type='button' name='join' className='btn-div' onClick={(e) => { join() }}>회원가입</button>
         <button type='button' name='join-cancel' className='btn-div' onClick={(e) => { joinCancel() }}>취소</button>
       </div>
-
-
-      {
-        isShow
-          ?
-          <Modal setIsShow={setIsShow}
-            setModalContent={setModalContent}
-          />
-          :
-          null
-      }
     </div>
   )
 }

@@ -2,24 +2,10 @@ import React, { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { Modal } from 'bootstrap'
 
 const Login = () => {
 
   const navigate = useNavigate()
-
-  // //모달창 띄워지는 여부
-  // const [isShow, setIsShow] = useState(false)
-
-  // //모달창 내용
-  // function setModalContent() {
-  //   <div>환영합니다.</div>
-  // }
-
-  // //모달창 닫으면 실행할 내용
-  // function clickCloseBtn() {
-  //   navigate('/')
-  // }
 
   //로그인 시 입력한 정보
   const [loginData, setLoginData] = useState({
@@ -41,10 +27,8 @@ const Login = () => {
     axios.post('/api_member/login', loginData)
       .then((res) => {
         // 로그인 가능 시
-        if (res.data != '') {
-          // setIsShow(true)
-          
-          alert('로그인 성공')
+        if (res.data != '') { 
+          alert('환영합니다.')
           const loginInfo = {
             memId: res.data.memId,
             memPw: res.data.memPw
@@ -71,17 +55,6 @@ const Login = () => {
         </div>
         <button type='button' className='btn-div' onClick={(e) => { login() }}> 로그인</button>
       </div>
-      {/* 모달창  */}
-      {/* {
-        isShow ?
-          <Modal
-            setIsShow={setIsShow}
-            content={setModalContent}
-            clickCloseBtn={clickCloseBtn}
-          />
-          :
-          null
-      } */}
     </div>
   )
 }

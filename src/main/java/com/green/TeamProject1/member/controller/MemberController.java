@@ -11,17 +11,22 @@ public class MemberController {
     @Resource(name = "memberService")
     private MemberService memberService;
 
+    //아이디 중복 확인
     @GetMapping("/checkId/{memId}")
     public boolean checkId(@PathVariable("memId") String memId){
+        //결과값이 null이라면 return true 가입 가능
+        //결과값이 null이 아니라면 return false 가입 불가능
         boolean result = memberService.checkId(memId);
         return result;
     }
 
+    // 회원가입
     @PostMapping("/join")
     public void join(@RequestBody MemberVO memberVO){
         memberService.join(memberVO);
     }
 
+    // 로그인
     @PostMapping("/login")
     public MemberVO login(@RequestBody MemberVO memberVO){
         /*selectOne의 결과로 null이 나온다면 로그인 불가*/
