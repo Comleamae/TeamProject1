@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("doctorService")
 public class DoctorServiceImpl implements DoctorService{
     @Autowired
@@ -12,5 +14,10 @@ public class DoctorServiceImpl implements DoctorService{
     @Override
     public DoctorVO getOneDoc(DoctorVO doctorVO) {
         return sqlSession.selectOne("doctorMapper.getOneDoc", doctorVO);
+    }
+
+    @Override
+    public List<DoctorVO> getAllDoc() {
+        return sqlSession.selectList("doctorMapper.getAllDoc");
     }
 }

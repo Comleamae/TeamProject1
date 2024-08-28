@@ -1,18 +1,23 @@
 import './App.css';
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import './reset.css'
-import UserLayout from './pages/user/UserLayout'
-import AdminLayout from './pages/admin/AdminLayout'
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import AdminLayout from '../src/pages/admin/AdminLayout'
+import UserLayout from '../src/pages/user/UserLayout'
+import Reserv from './pages/admin/ksh/Reserv';
+import PatientInfo from './pages/admin/ksh/PatientInfo';
+import MedicalHistory from './pages/admin/ksh/MedicalHistory';
+import Presc from './pages/admin/ksh/Presc';
+import MoneyIn from './pages/user/cyh/MoneyIn';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
-import { useState } from 'react';
 import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
 import MoneyIn from './pages/user/cyh/MoneyIn';
-import Login from './Login';
-import Join from './pages/Join';
+import Join from './kth/Join';
+import Login from './kth/Login';
 
 function App() {
 
@@ -33,6 +38,7 @@ function App() {
         <Routes>
           <Route path='/join' element={<Join />} />
           <Route path='/login' element={<Login />} />
+
           {/* 유저 페이지 */}
           <Route path='/user' element={<UserLayout />}>
             
@@ -51,12 +57,35 @@ function App() {
           </Route>
 
           {/* 관리자 페이지 */}
-          <Route path='/admin' element={<AdminLayout />}>
+          <Route path='/admin' element={<AdminLayout />} >
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
           </Route>
         </Routes>
       </div>
+
+
+      <Routes>
+        {/* 유저 페이지 */}
+        <Route path='/user' element={<UserLayout />}>
+          {/* <Route path='' element={}/> */}
+        </Route>
+
+        {/* 관리자 페이지 */}
+        <Route path='/admin' element={<AdminLayout />} />
+        {/* 예약 조회 */}
+        <Route path='/admin/reserv' element={<Reserv />} />
+        {/* 환자 정보 */}
+        <Route path='/admin/patientInfo' element={<PatientInfo />} />
+        {/* 환자 정보 수정 */}
+
+        {/* 진료 이력 */}
+        <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
+        {/* 처 방 전 */}
+        <Route path='/admin/Presc' element={<Presc />} />
+        <Route>
+        </Route>
+      </Routes>
 
 
       <div className='work-selector'>
@@ -66,7 +95,7 @@ function App() {
         <div onClick={(e) => { navigate('/user/clinicPrint') }}>
           <span>진료</span>
         </div>
-        <div onClick={(e) => { navigate('/admin/cliniList') }}>
+        <div onClick={(e) => { navigate('/admin/clinicList') }}>
           <span>의사</span>
         </div>
         <div onClick={(e) => { navigate(`/admin/moneyln`) }}>

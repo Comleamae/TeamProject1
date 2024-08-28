@@ -17,7 +17,7 @@ public class MailController {
     public void sendEmail(@RequestBody Map<String, String> emailData){
         //System.out.println(toSendM.replace("%40", "@"));=>보내온 파일의 특수문자가 깨지므로 replace 함수를 사용해서 1번 매개변수를 2번 매개변수로 바꾼다
         /*sendMail(인증번호를 받을 사람의 이메일)*/
-        recoNum = mailService.sendMail(emailData.get("email"));
+        recoNum = mailService.sendMail(emailData.get("patEmail"));
     }
 
     //인증번호 체크

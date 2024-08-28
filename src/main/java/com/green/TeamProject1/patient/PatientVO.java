@@ -2,6 +2,8 @@ package com.green.TeamProject1.patient;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class PatientVO {
     private int patNum;
@@ -20,4 +22,5 @@ public class PatientVO {
     private String medicine;
     private DateVO dateVO;
     private MedicineVO medicineVO;
+    private List<TreatVO> treatList;
 }

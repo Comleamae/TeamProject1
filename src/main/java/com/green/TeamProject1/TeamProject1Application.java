@@ -10,5 +10,4 @@ public class TeamProject1Application {
 		SpringApplication.run(TeamProject1Application.class, args);
 
 	}
-
 }

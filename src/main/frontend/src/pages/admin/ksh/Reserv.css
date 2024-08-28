@@ -1,0 +1,11 @@
+.reserv-main-div{
+  border: 1px solid black;
+  width: 500px;
+  margin: 0 auto;
+  /* height: 700px; */
+}
+
+.reserv-main-div > div {
+  display: flex;
+  flex-direction: column;
+}

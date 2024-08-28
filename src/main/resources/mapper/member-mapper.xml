@@ -11,7 +11,7 @@
         <result column="MEM_NAME" property="memName"/>
         <result column="MEM_TEL" property="memTel"/>
         <result column="CITIZEN_NUM" property="citizenNum"/>
-        <result column="MEM_ADDR" property="memAddr"/>
+        <result column="MEM_ADDER" property="memAddr"/>
         <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEM_EMAIL" property="memEmail"/>
         <result column="POST" property="post"/>

@@ -1,0 +1,49 @@
+.presc-main-div {
+  width: 1000px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+/* 테이블 전체에 테두리 적용 */
+.presc-main-div table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.presc-main-div td, .presc-main-div th {
+  border: 1px solid black; 
+  text-align: center; 
+  vertical-align: middle; 
+  padding: 8px; 
+}
+
+
+
+
+
+table > tbody > tr:nth-child(1) > td:nth-child(1){
+  text-align: center;
+  vertical-align: middle;
+}
+
+table > tbody > tr:nth-child(1) > td:nth-child(4){
+  text-align: center;
+  vertical-align: middle;
+}
+
+table > tbody > tr:nth-child(4) > td:nth-child(1){
+  text-align: center;
+  vertical-align: middle;
+}
+
+table > tbody > tr:nth-child(8) > td:nth-child(3){
+  text-align: center;
+  vertical-align: middle;
+}
+
+table > tbody > tr:nth-child(10) > td:nth-child(3){
+  text-align: center;
+  vertical-align: middle;
+}

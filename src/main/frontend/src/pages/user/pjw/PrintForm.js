@@ -3,26 +3,27 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //진료확인서
 
-const PrintForm = (patientData) => {
+const PrintForm = () => {
   
   const navigate = useNavigate()
   //불러온 환자 정보를 저장할 변수
   const[patientOne, setPatientOne] = useState({})
 
   //불러온 의사 정보를 저장할 변수
-  const[doctorOne, setDoctorOne] = useState({})
+  const[doctorOne, setDoctorOne] = useState([])
 
   useEffect(()=>{
     axios
-    .post(`/patient/getOne`, patientData)
+    .post(`/patient/getOne`, )
     .then((res)=>{
       setPatientOne(res.data)
     })
     .catch((error)=>{
-      console.log(error)
+      console.log('환자정보 받아오는데서 에러', error)
     })
   }, [])
 
+  
   return (
     <div className='result'>
       <table className='print-table'> 
@@ -32,7 +33,7 @@ const PrintForm = (patientData) => {
             </tr>
             <tr>
               <td>성명</td>
-              <td>{patientOne.patName||'N/A'}</td>
+              <td>{patientOne.patName}</td>
               <td>성별</td>
               <td>{patientOne.gender}</td>
               <td>연령</td>
@@ -94,7 +95,7 @@ const PrintForm = (patientData) => {
                     </tr>
                     <tr>
                       <td></td>
-                      <td>발행일:{}</td>
+                      <td>발행일: {new Date().toLocaleDateString()}</td>
                     </tr>
                     <tr>
                       <td>요양기관명:</td>
@@ -106,7 +107,7 @@ const PrintForm = (patientData) => {
                     </tr>
                     <tr>
                       <td>의사 면허번호:</td>
-                      <td></td>
+                      <td>{}</td>
                     </tr>
                     <tr>
                       <td>원 장:</td>
