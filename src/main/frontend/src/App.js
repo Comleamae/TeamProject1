@@ -1,14 +1,14 @@
 import './App.css';
+import './reset.css'
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './reset.css'
-
 
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 import Reserv from './pages/admin/Reserv';
 import PatientInfo from './pages/admin/PatientInfo';
 import MedicalHistory from './pages/admin/MedicalHistory';
+import Presc from './pages/admin/ksh/Presc';
 import MoneyIn from './pages/user/cyh/MoneyIn';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
@@ -16,21 +16,21 @@ import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
-import Presc from './pages/admin/ksh/Presc';
+
 
 function App() {
 
   const navigate = useNavigate()
 
   //로그인 정보를 받아올 state변수
-  const[isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
 
 
   return (
     <div className="App">
       <h1>그린 대학 병원</h1>
       <div className='intro-div'>
-        
+
       </div>
 
       
@@ -58,13 +58,13 @@ function App() {
         <div>
           로그인
         </div>
-        <div onClick={(e)=>{navigate('/user/clinicPrint')}}>
+        <div onClick={(e) => { navigate('/user/clinicPrint') }}>
           <span>진료</span>
         </div>
-        <div onClick={(e)=>{navigate('/admin/cliniList')}}>
+        <div onClick={(e) => { navigate('/admin/cliniList') }}>
           <span>의사</span>
         </div>
-        <div onClick={(e)=>{navigate(`/admin/moneyln`)}}>
+        <div onClick={(e) => { navigate(`/admin/moneyln`) }}>
           데스크
         </div>
       </div>

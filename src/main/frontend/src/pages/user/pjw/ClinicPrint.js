@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ClinicPrint.css';
 import { Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,22 +8,53 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
   const navigate = useNavigate();
   const [inputNum, setInputNum] = useState('');
   const [isConfirm, setIsConfirm] = useState(false);
-  const [inputMailAddress, setInputMailAddress] = useState('');
+  //const [inputMailAddress, setInputMailAddress] = useState('');
   const [inputStatus, setInputStatus] = useState(false);
-  const [recoData, setRecoData] = useState({ recoNum: 0, patNum: 0 });
+  const [inputCitizenNum, setInputCitiznenNum] = useState(0);
+  
 
-  const handleMailAddressChange = (e) => {
-    setInputMailAddress(e.target.value);
-  };
+  //객체 이메일 주민번호
+  const [inputData, setInputData] = useState({
+    patEmail:''
+    , citizenNum:''
+  })
+
+  // 주민번호 정보
+  const citizenNum_1 = useRef()
+  const citizenNum_2 = useRef()
+
 
   const handleInputNumChange = (e) => {
     setInputNum(e.target.value);
   };
 
+  
+  const handleInputData = (e)=>{
+    const newData = {
+      ...inputData,
+      [e.target.name]:e.target.name!='citizenNum'
+                                      ? e.target.value
+                                      : citizenNum_1.current.value+citizenNum_2.current.value
+    }
+    console.log(newData)
+    setInputData(newData)
+  }
+  //환자 전체리스트 중 해당 주민번호를 가진 환자가 있는지 받아올 axios
+  useEffect(()=>{
+    axios
+    .post(`/patient/`, inputData.citizenNum)
+    .then((res)=>{})
+    .catch((error)=>{})
+  }, [])
+
   const sendEmail = (email) => {
     if (!email) {
       alert('이메일을 입력하세요');
       return;
+    }
+    if(!inputData.citizenNum){
+      alert('주민번호를 입력하세요')
+      return
     }
     axios.post('/mail/sendMail', { email })
       .then(() => {
@@ -42,14 +73,11 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
     }
     axios.post('/mail/checkNum', { num })
       .then((res) => {
-        if (res.data === true) {
+        if (res.data == true) {
           alert('인증번호가 일치하지 않습니다');
           setIsConfirm(false);
         } else {
           alert('인증되었습니다');
-          const data = { recoNum: num, patNum:1 };
-          window.sessionStorage.setItem('recoData', JSON.stringify(data));
-          setRecoData(data);
           setIsConfirm(true);
         }
       })
@@ -57,18 +85,6 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
         console.error('인증번호 확인 중 오류 발생:', error);
       });
   };
-
-  useEffect(() => {
-    if (inputMailAddress) {
-      axios.post('/patient/getList', { patEmail: inputMailAddress })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.error('환자 정보 조회 중 오류 발생:', error);
-        });
-    }
-  }, [inputMailAddress]);
 
   return (
     <div className='app-content-div'>
@@ -99,17 +115,31 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
       ) : (
         <div className='selfDefWhenLogin'>
           <h2>비회원 발급</h2>
+          <button type='button' onClick={(e)=>{setInputStatus(!inputStatus)}}>이메일 인증 상태 변경</button>
+          <button type='button' onClick={(e)=>{setIsConfirm(!isConfirm)}}>번호 인증 상태 변경</button>
           {!inputStatus ? (
             <div>
+              주민번호:
+              <input 
+                type='text' 
+                name='citizenNum'
+                onChange={handleInputData}
+                ref={citizenNum_1}/>
+              -
+              <input 
+                type='password'
+                name='citizenNum'
+                onChange={handleInputData}
+                ref={citizenNum_2}/>
               이메일 입력:
               <input
                 type='text'
-                name='toSendM'
-                onChange={handleMailAddressChange}
+                name='patEmail'
+                onChange={handleInputData}
               />
               <button
                 type='button'
-                onClick={() => sendEmail(inputMailAddress)}>
+                onClick={() => sendEmail(inputData.patEmail)}>
                 인증번호 얻기
               </button>
             </div>
