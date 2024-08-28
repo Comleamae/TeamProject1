@@ -4,7 +4,7 @@ import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom'
 import { joinValidate } from './joinValidate';
 import axios from 'axios';
-import { Modal } from 'bootstrap';
+//import { Modal } from 'bootstrap';
 const Join = () => {
 
   const navigate = useNavigate()
@@ -257,7 +257,7 @@ const Join = () => {
       </div>
 
 
-      {
+      {/* {
         isShow
           ?
           <Modal setIsShow={setIsShow}
@@ -265,7 +265,7 @@ const Join = () => {
           />
           :
           null
-      }
+      } */}
     </div>
   )
 }

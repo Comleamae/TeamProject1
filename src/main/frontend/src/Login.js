@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { Modal } from 'bootstrap'
+//import { Modal } from 'bootstrap'
 
 const Login = () => {
 

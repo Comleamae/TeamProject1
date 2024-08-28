@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //진료확인서
 
-const PrintForm = (patientData) => {
+const PrintForm = () => {
   
   const navigate = useNavigate()
   //불러온 환자 정보를 저장할 변수
@@ -14,7 +14,7 @@ const PrintForm = (patientData) => {
 
   useEffect(()=>{
     axios
-    .post(`/patient/getOne`, patientData)
+    .post(`/patient/getOne`, )
     .then((res)=>{
       setPatientOne(res.data)
     })
@@ -23,17 +23,7 @@ const PrintForm = (patientData) => {
     })
   }, [])
 
-  useEffect(()=>{
-    axios
-    .post(`/doctor/getOne`, patientData.docLinum)
-    .then((res)=>{
-      console.log(res)
-      setDoctorOne(res.data)
-    })
-    .catch((error)=>{
-      console.log('의사정보 받아오는데서 에러', error)
-    })
-  },[])
+  
   return (
     <div className='result'>
       <table className='print-table'> 
@@ -43,7 +33,7 @@ const PrintForm = (patientData) => {
             </tr>
             <tr>
               <td>성명</td>
-              <td>{patientOne.patName||'N/A'}</td>
+              <td>{patientOne.patName}</td>
               <td>성별</td>
               <td>{patientOne.gender}</td>
               <td>연령</td>
