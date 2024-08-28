@@ -1,4 +1,4 @@
-package com.green.TeamProject1.member;
+package com.green.TeamProject1.member.vo;
 
 import lombok.Data;
 

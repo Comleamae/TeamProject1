@@ -1,44 +1,60 @@
 .App {
-  display: flex;
-  flex-direction: column;
   text-align: center;
-  margin-top: 20px;
 }
 
-.app-content-div{
+.header{
+  width: 1950px;
   margin: 0 auto;
 }
 
-.work-selector{
-  display: grid;
-  background-color: chartreuse;
+.header-index {
+  width: 1200px;
+  height: 100px;
   margin: 0 auto;
-  width: 100vh;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  font-size: 50px;
-  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
 }
-.work-selector>div:nth-child(1){
-  background-color: red;
-  height: 100%;
-}
-.work-selector>div:nth-child(2){
-  background-color: blue;
-}
-.work-selector>div:nth-child(3){
-  background-color: blueviolet;
-}
-.work-selector>div:nth-child(4){
-  background-color: green;
-}
-.work-selector>div:nth-child(5){
-  background-color: aqua;
-  height: 100%;
-}
-.work-selector span{
+
+a {
+  text-decoration: none;
   cursor: pointer;
 }
+.logo-img {
+  width: 50px;
+
+}
+.logo{
+  width: 250px;
+  font-size: 28px;
+  font-weight: bold;
+  color:navy;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-box {
+  width: 16%;
+  height: 40px;
+  position: absolute;
+  right: 2%;
+  display: flex;
+  align-items: center;
+  top: 30px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.login-box li:hover{
+  font-weight: bold;
+}
+
+
 .layout-div{
   margin-top: 20px;
+  margin-right: 20px;
 }
