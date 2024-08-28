@@ -14,7 +14,7 @@ public class PatientController {
 
     /*환자 전체 중에 해당 이메일 가진 사람이 있는가*/
     @PostMapping("/getList")
-    List<PatientVO> getPatientList(@RequestBody Map<String, PatientVO> emailData){
+    List<PatientVO> getPatientList(@RequestBody Map<String, String> emailData){
         return patientService.getPatListWhereEmail(emailData.get("patEmail"));
     }
 
