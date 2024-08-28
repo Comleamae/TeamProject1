@@ -36,15 +36,26 @@ const Join = () => {
   // 모달창이 띄워질 여부 state 변수(초기값 false)
   const [isShow, setIsShow] = useState(false)
 
+  //회원가입 결과 값을 담을 state변수
+  const [chkJoin, setChkJoin] = useState(false)
+
   // 모달창의 내용을 설정할 함수
   function setModalContent() {
     {
       //중복 확인 버튼 눌렀을 때 되고 / 말고
       //회원가입 눌렀을 때 유효성 / 중복 버튼 여부 / 완료 시
+
       //이러한 조건을 만들기 위한 변수를 따로 지정해야한다. 혹은 case문을 사용한다.
-      
       return (
-        <div></div>
+        <div>
+          {
+          isCheckId
+          ?
+            <div>사용 가능한ID</div>
+            :
+            <div>ID를 확인하세요</div>
+          }
+        </div>
       )
     }
   }
@@ -107,8 +118,6 @@ const Join = () => {
     } else {
       newValue = e.target.value
     }
-
-
 
     const newData = {
       ...joinData,
@@ -250,12 +259,12 @@ const Join = () => {
 
       {
         isShow
-        ?
-        <Modal setIsShow={setIsShow}
-        setModalContent={setModalContent}
-        />
-        :
-        null
+          ?
+          <Modal setIsShow={setIsShow}
+            setModalContent={setModalContent}
+          />
+          :
+          null
       }
     </div>
   )
