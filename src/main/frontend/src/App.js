@@ -11,6 +11,7 @@ import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
 import MoneyIn from './pages/user/cyh/MoneyIn';
+import PayMoney from './pages/user/cyh/PayMoney';
 
 function App() {
 
