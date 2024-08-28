@@ -4,16 +4,16 @@ import { useState } from 'react';
 import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
-import Reserv from './pages/admin/Reserv';
-import PatientInfo from './pages/admin/PatientInfo';
-import MedicalHistory from './pages/admin/MedicalHistory';
+import Reserv from './pages/admin/ksh/Reserv';
+import PatientInfo from './pages/admin/ksh/PatientInfo';
+import MedicalHistory from './pages/admin/ksh/MedicalHistory';
+import Presc from './pages/admin/ksh/Presc';
 import PayMoney from './pages/user/cyh/PayMoney';
 import MoneyIn from './pages/user/cyh/MoneyIn';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
-import Presc from './pages/admin/ksh/Presc';
 
 
 function App() {
@@ -42,32 +42,19 @@ function App() {
             </Route>
 
             {/* 진료비 수납내용 */}
-            <Route path='moneyln' element={<MoneyIn />}/>
+            <Route path='moneyln' element={<MoneyIn />}>
               
-            
+            </Route>
             {/* 진료비 결제창 */}
             <Route path='payMoney' element={<PayMoney />} />
+
           </Route>
-
-        
-  
-        {/* 관리자 페이지 */}
-        <Route path='/admin' element={<AdminLayout/>}>
-          <Route path='clinicList' element={<ClinicList/>}/>
-          
-          {/* 예약 조회 */}
-          <Route path='/admin/reserv' element={<Reserv/>}/>
-          {/* 환자 정보 */}
-          <Route path='/admin/patientInfo' element={<PatientInfo/>}/>
-          {/* 환자 정보 수정 */}
-
-          {/* 진료 이력 */}
-          <Route path='/admin/MedicalHistory' element={<MedicalHistory/>}/>
-          {/* 처 방 전 */}
-          <Route path='/admin/Presc' element={<Presc/>}/>
-
-        </Route>
-       </Routes>
+    
+          {/* 관리자 페이지 */}
+          <Route path='/admin' element={<AdminLayout/>}>
+            <Route path='clinicList' element={<ClinicList/>}/>
+          </Route>
+        </Routes>
       </div>
     
       <div className='work-selector'>
@@ -85,7 +72,6 @@ function App() {
           데스크
         </div>
       </div>
-
 
     <Routes>
       {/* 유저 페이지 */}
@@ -111,7 +97,6 @@ function App() {
 
       </Route>
     </Routes>
-
     </div>
   );
 }
