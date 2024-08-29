@@ -23,8 +23,8 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
 
   //인증된 정보를 저장할 객체 
   const[recoData, setRecoData] = useState({
-    patNum:1
-    //, patNam:''
+    patNum:0
+    , patName:''
   })
 
   // 주민번호 정보
@@ -53,11 +53,15 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
     .post(`/patient/getListCN`, inputData)
     .then((res)=>{
       if(res.data.length==0){
-        console.log('데이터없음')
+        console.log('notData')
       }
       else{
-        console.log('일치하는 데이터 있음')
-        setPatientList(res.data)
+        console.log('isData')
+        setRecoData({
+          ...recoData,
+          patNum:res.data[0].patNum
+          //, patName:res.data[0].patName
+        })
       }
     })
     .catch((error)=>{

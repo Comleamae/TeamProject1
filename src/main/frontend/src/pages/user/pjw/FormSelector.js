@@ -4,7 +4,22 @@ import { Outlet, useNavigate } from 'react-router-dom'
 
 const FormSelector = ({recoData, setRecoData}) => {
   //환자의 진료 기록을 받아서 저장할 변수
-  const[treList, setTreList]= useState([])
+  const[treList, setTreList]=useState([])
+
+  //선택한 날짜를 담을 변수
+  const[selectData, setSelectData]=useState({
+    patNum:1
+    , treDate:''
+  })
+
+  //선택된 날짜를 변경할 함수
+  function handleChangeData(e){
+    setSelectData({
+      ...selectData,
+      treDate:e.target.value
+    })
+    console.log(selectData)
+  }
 
 
   const navigate = useNavigate()
@@ -13,7 +28,7 @@ const FormSelector = ({recoData, setRecoData}) => {
     axios
     .post(`/patient/treList`, recoData)
     .then((res)=>{
-      console.log(res.data)
+      console.log(res)
       setTreList(res.data)
     })
     .catch((error)=>{
@@ -24,7 +39,7 @@ const FormSelector = ({recoData, setRecoData}) => {
   return (
     <>
       <div className='form-selector'>
-        <div onClick={(e)=>{navigate('/user/clinicPrint/printForm')}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm/${selectData.patNum}/${selectData.treDate}`)}}>
           진료확인서
         </div>
         <div onClick={(e)=>{navigate('/user/clinicPrint/printForm2')}}>
@@ -40,16 +55,17 @@ const FormSelector = ({recoData, setRecoData}) => {
       <div className='date-selector'>
         {/* 반복돌려서 하나씩 진료 날짜를 넣어줄 것*/}
         <p>출력을 원하는 진료 날짜</p>
-        <select name='treDate'>
+        {/* 선택된 날짜의 데이터를 변수에 넣어서 outlet으로 보내자*/}
+        <select name='treDate' onChange={(e)=>{handleChangeData(e)}}>
           {
             treList.map((treOne,i)=>{
               return(
-                <option key={i}>{}</option>
+                <option key={i}>{treOne.treatList[0].treDate}</option>
               )
             })
           }
         </select>
-        <Outlet/>
+        <Outlet selectData={selectData}/>
       </div>
     </>
   )
