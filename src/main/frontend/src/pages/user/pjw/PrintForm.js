@@ -1,19 +1,20 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { utils } from 'react-bootstrap'
 import { GiSouthAfrica } from 'react-icons/gi'
 import { useNavigate, useParams } from 'react-router-dom'
 //진료확인서
 
 const PrintForm = () => {
 
-  const {patNum} = useParams()
+  const {patNum, treDate} = useParams()
   
   const navigate = useNavigate()
   //불러온 환자 정보를 저장할 리스트 변수
   const[patientOne, setPatientOne] = useState([])
 
   //불러온 의사 정보를 저장할 변수
-  const[doctorOne, setDoctorOne] = useState([])
+  const[doctorOne, setDoctorOne] = useState({})
 
   //
   const[isShow, setIsShow] = useState(false)
@@ -21,18 +22,30 @@ const PrintForm = () => {
   //불러온 한 환자의 전체 정보
   useEffect(()=>{
     axios
-    .get(`/patient/getOne/${patNum}`)
+    .get(`/patient/getOne/${patNum}/${treDate}`)
     .then((res)=>{
       console.log(res)
       setPatientOne(res.data)
       setIsShow(true)
+      const docLinum = res.data[0].treatList[0].docLinum
+      if(docLinum){
+        axios
+        .get(`/doctor/getOne/${docLinum}`)
+        .then((docRes)=>{
+          console.log(docRes)
+          setDoctorOne(docRes.data)
+        })
+        .catch((error)=>{
+          console.log('의사 정보 받기 에러', error)
+        })
+      }
     })
     .catch((error)=>{
       console.log('환자정보 받아오는데서 에러', error)
       console.log(patNum)
     })
-  }, [])
-
+  }, [treDate])
+  
   
   return (
     isShow==false
@@ -63,7 +76,7 @@ const PrintForm = () => {
             </tr>
             <tr>
               <td>병명</td>
-              <td colSpan={3}>{patientOne[0].treatList[0].disease}</td>
+              <td colSpan={6}>{patientOne[0].treatList[0].disease}</td>
             </tr>
          </thead>
         <tbody>
@@ -84,7 +97,6 @@ const PrintForm = () => {
                         <td colSpan={5}>{patientOne[0].treatList[0].treDate||'N/A'}</td>
                       </tr>
                       <tr>
-                        <td colSpan={5}>( 일간)</td>
                       </tr>
                       <tr>
                         <td>총 일간</td>
@@ -112,8 +124,8 @@ const PrintForm = () => {
                       <td>발행일: {new Date().toLocaleDateString()}</td>
                     </tr>
                     <tr>
-                      <td>요양기관명:그린 대학 병원</td>
-                      <td></td>
+                      <td>요양기관명:</td>
+                      <td>그린 대학 병원</td>
                     </tr>
                     <tr>
                       <td>주소:</td>
@@ -121,11 +133,11 @@ const PrintForm = () => {
                     </tr>
                     <tr>
                       <td>의사 면허번호:</td>
-                      <td>{}</td>
+                      <td>{doctorOne.docLinum}</td>
                     </tr>
                     <tr>
-                      <td>원 장:</td>
-                      <td></td>
+                      <td>발행인:</td>
+                      <td>{doctorOne.docName}</td>
                     </tr>
                     <tr>
                       <td>전화번호:</td>
@@ -143,7 +155,7 @@ const PrintForm = () => {
 
         </table>
         <div className='btn-div'>
-          <button type='button' className='btn' onClick={(e)=>{navigate('')}}>출력</button>
+          <button type='button' className='btn' onClick={(e)=>{}}>출력</button>
         </div>
     </div>
   )

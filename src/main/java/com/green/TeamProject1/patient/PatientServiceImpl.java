@@ -4,7 +4,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("patientService")
 public class PatientServiceImpl implements PatientService{
@@ -18,8 +20,11 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public List<PatientVO> getPatListAll(int patNum) {
-        return sqlSession.selectList("patientMapper.getPatListAll", patNum);
+    public List<PatientVO> getPatListAll(int patNum, String treDate) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("patNum", patNum);
+        params.put("treDate", treDate);
+        return sqlSession.selectList("patientMapper.getPatListAll", params);
     }
 
     @Override

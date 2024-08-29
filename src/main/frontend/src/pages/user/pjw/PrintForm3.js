@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 const PrintForm3 = () => {
 
-  const {patNum} = useParams()
+  const {patNum, treDate} = useParams()
 
   const navigate = useNavigate()
   const [patientOne, setPatientOne] = useState([])
@@ -16,17 +16,29 @@ const PrintForm3 = () => {
   //불러온 한 환자의 전체 정보
   useEffect(()=>{
     axios
-    .get(`/patient/getOne/${patNum}`)
+    .get(`/patient/getOne/${patNum}/${treDate}`)
     .then((res)=>{
       console.log(res)
       setPatientOne(res.data)
       setIsShow(true)
+      const docLinum = res.data[0].treatList[0].docLinum
+      if(docLinum){
+        axios
+        .get(`/doctor/getOne/${docLinum}`)
+        .then((docRes)=>{
+          console.log(docRes)
+          setDoctorOne(docRes.data)
+        })
+        .catch((error)=>{
+          console.log('의사 정보 받기 에러', error)
+        })
+      }
     })
     .catch((error)=>{
       console.log('환자정보 받아오는데서 에러', error)
       console.log(patNum)
     })
-  }, [])
+  }, [treDate])
 
 
   return (
@@ -42,7 +54,7 @@ const PrintForm3 = () => {
             </tr>
             <tr>
               <td>발행일/발행번호</td>
-              <td>{new Date().toLocaleDateString()} / N/A</td>
+              <td>{new Date().toLocaleDateString()} / {}</td>
               <td>제 {/* 제 호 */}</td>
               <td rowSpan={3}>의료기관</td>
               <td>명칭</td>
@@ -57,13 +69,11 @@ const PrintForm3 = () => {
             </tr>
             <tr>
               <td>주민등록번호</td>
-              <td></td>
-              <td>email</td>
-              <td colSpan={2}></td>
+              <td colSpan={1}>{patientOne[0].citizenNum}</td>
             </tr>
             <tr>
               <td rowSpan={2}>질병명</td>
-              <td></td>
+              <td>{patientOne[0].treatList[0].disease}</td>
               <td rowSpan={2}>처방의료인 성명</td>
               <td></td>
               <td></td>

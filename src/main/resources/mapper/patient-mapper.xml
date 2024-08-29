@@ -54,13 +54,14 @@
     </select>
 
     <!--환자 한명의 내용-->
-    <select id="getPatListAll" resultMap="patient">
+    <select id="getPatListAll" parameterType="map" resultMap="patient">
         SELECT *
         FROM PATIENT, INFO_DATE, INFO_MEDICINE, INFO_TREAT
         WHERE PATIENT.PAT_NUM = INFO_DATE.PAT_NUM
         AND PATIENT.PAT_NUM = INFO_MEDICINE.PAT_NUM
         AND PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
         AND PATIENT.PAT_NUM = #{patNum}
+        AND INFO_TREAT.TRE_DATE = #{treDate}
     </select>
 
     <!--한 환자에 대한 진료기록-->

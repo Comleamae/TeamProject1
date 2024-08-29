@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-//import { generatePDF } from './utils/pdfUtils' // PDF 유틸리티 함수 가져오기
+
 
 const PrintForm2 = () => {
   const navigate = useNavigate()
   const [patientOne, setPatientOne] = useState([])
   const [doctorOne, setDoctorOne] = useState({})
-  const {patNum} = useParams()
+  const {patNum, treDate} = useParams()
   const printRef = useRef(null)
 
  //
@@ -16,28 +16,29 @@ const PrintForm2 = () => {
  //불러온 한 환자의 전체 정보
  useEffect(()=>{
   axios
-  .get(`/patient/getOne/${patNum}`)
+  .get(`/patient/getOne/${patNum}/${treDate}`)
   .then((res)=>{
     console.log(res)
     setPatientOne(res.data)
     setIsShow(true)
+    const docLinum = res.data[0].treatList[0].docLinum
+      if(docLinum){
+        axios
+        .get(`/doctor/getOne/${docLinum}`)
+        .then((docRes)=>{
+          console.log(docRes)
+          setDoctorOne(docRes.data)
+        })
+        .catch((error)=>{
+          console.log('의사 정보 받기 에러', error)
+        })
+      }
   })
   .catch((error)=>{
     console.log('환자정보 받아오는데서 에러', error)
     console.log(patNum)
   })
-}, [])
-
-  // 의사 정보 가져오기
-  useEffect(()=>{
-    axios
-    .get(`doctor/getOne/${docLinum}`)
-    .then((res)=>{})
-    .catch((error)=>{
-      console.log('의사에러', error)
-    })
-  }, [])
- 
+}, [treDate])
 
   return (
     isShow==false
@@ -53,27 +54,27 @@ const PrintForm2 = () => {
             </tr>
             <tr>
               <td>진료과</td>
-              <td colSpan={2}>{'N/A'}</td>
+              <td colSpan={2}>{doctorOne.dept}</td>
               <td>작성자</td>
-              <td>{'N/A'}</td>
+              <td>{doctorOne.docName}</td>
               <td>작성일자</td>
-              <td colSpan={2}></td>
+              <td colSpan={2}>{patientOne[0].treatList[0].treDate}</td>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td colSpan={5}>병록번호</td>
-              <td colSpan={3}></td>
+              <td colSpan={3}>{patientOne[0].treatList[0].treNum}</td>
             </tr>
             <tr>
               <td>일련번호</td>
               <td></td>
               <td>주민번호</td>
-              <td colSpan={6}>{patientOne[0].citizenNum|| 'N/A'}</td>
+              <td colSpan={6}>{patientOne[0].citizenNum}</td>
             </tr>
             <tr>
               <td>입원과</td>
-              <td>{ 'N/A'}</td>
+              <td>{doctorOne.dept}</td>
               <td>{patientOne[0].dateList[0].roomNum}호실</td>
               <td>입원날짜</td>
               <td colSpan={4}>
@@ -83,7 +84,7 @@ const PrintForm2 = () => {
             </tr>
             <tr>
               <td>환자성명</td>
-              <td>{patientOne[0].patName|| 'N/A'}</td>
+              <td>{patientOne[0].patName}</td>
               <td>성별</td>
               <td>{patientOne[0].gender}</td>
               <td>연령</td>

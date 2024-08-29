@@ -12,8 +12,8 @@ public class DoctorServiceImpl implements DoctorService{
     private SqlSessionTemplate sqlSession;
 
     @Override
-    public DoctorVO getOneDoc(DoctorVO doctorVO) {
-        return sqlSession.selectOne("doctorMapper.getOneDoc", doctorVO);
+    public DoctorVO getOneDoc(int docLinum) {
+        return sqlSession.selectOne("doctorMapper.getOneDoc", docLinum);
     }
 
     @Override

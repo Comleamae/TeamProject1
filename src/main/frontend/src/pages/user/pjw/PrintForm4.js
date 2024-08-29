@@ -8,7 +8,7 @@ const PrintForm4 = () => {
   const [doctorOne, setDoctorOne] = useState({})
   const navigate = useNavigate()
   
-  const {patNum} = useParams()
+  const {patNum, treDate} = useParams()
 
   //
   const[isShow, setIsShow] = useState(false)
@@ -16,17 +16,29 @@ const PrintForm4 = () => {
   //불러온 한 환자의 전체 정보
   useEffect(()=>{
     axios
-    .get(`/patient/getOne/${patNum}`)
+    .get(`/patient/getOne/${patNum}/${treDate}`)
     .then((res)=>{
       console.log(res)
       setPatientOne(res.data)
       setIsShow(true)
+      const docLinum = res.data[0].treatList[0].docLinum
+      if(docLinum){
+        axios
+        .get(`/doctor/getOne/${docLinum}`)
+        .then((docRes)=>{
+          console.log(docRes)
+          setDoctorOne(docRes.data)
+        })
+        .catch((error)=>{
+          console.log('의사 정보 받기 에러', error)
+        })
+      }
     })
     .catch((error)=>{
       console.log('환자정보 받아오는데서 에러', error)
       console.log(patNum)
     })
-  }, [])
+  }, [treDate])
 
 
   return (
