@@ -11,8 +11,8 @@
         <result column="GENDER" property="gender"/>
         <result column="CITIZEN_NUM" property="citizenNum"/>
         <result column="ADDRESS" property="address"/>
-        <collection property="dateList" resultMap="infoMedicine"/>
-        <collection property="medicineList" resultMap="infoDate"/>
+        <collection property="dateList" resultMap="infoDate"/>
+        <collection property="medicineList" resultMap="infoMedicine"/>
         <collection property="treatList" resultMap="infoTreat"/>
     </resultMap>
 
@@ -54,7 +54,7 @@
     </select>
 
     <!--환자 한명의 내용-->
-    <select id="getPatientOne" resultMap="patient">
+    <select id="getPatListAll" resultMap="patient">
         SELECT *
         FROM PATIENT, INFO_DATE, INFO_MEDICINE, INFO_TREAT
         WHERE PATIENT.PAT_NUM = INFO_DATE.PAT_NUM

@@ -1,43 +1,41 @@
 import axios from 'axios'
-import React, { useEffect, useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { generatePDF } from './utils/pdfUtils' // PDF 유틸리티 함수 가져오기
+import React, { useEffect, useState} from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
-const PrintForm4 = ({ patNum }) => {
-  const [patientOne, setPatientOne] = useState({})
+
+const PrintForm4 = () => {
+  const [patientOne, setPatientOne] = useState([])
   const [doctorOne, setDoctorOne] = useState({})
   const navigate = useNavigate()
-  const printRef = useRef(null)
+  
+  const {patNum} = useParams()
 
-  useEffect(() => {
+  //
+  const[isShow, setIsShow] = useState(false)
+
+  //불러온 한 환자의 전체 정보
+  useEffect(()=>{
     axios
-      .get(`/patient/getOne/${patNum}`)
-      .then((res) => {
-        setPatientOne(res.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [patNum])
+    .get(`/patient/getOne/${patNum}`)
+    .then((res)=>{
+      console.log(res)
+      setPatientOne(res.data)
+      setIsShow(true)
+    })
+    .catch((error)=>{
+      console.log('환자정보 받아오는데서 에러', error)
+      console.log(patNum)
+    })
+  }, [])
 
-  const handlePrint = () => {
-    if (printRef.current) {
-      generatePDF(printRef.current, '진료비_영수증.pdf')
-        .then(() => {
-          console.log('PDF 생성 완료')
-        })
-        .catch((error) => {
-          console.error('PDF 생성 중 오류 발생:', error)
-        })
-    }
-  }
-
-  const { patName, patDate } = patientOne
-  const { dept } = doctorOne
 
   return (
+    isShow==false
+    ?
+    null
+    :
     <div className='result'>
-      <div ref={printRef}>
+      
         <table className='print-table'> 
           <thead>
             <tr>
@@ -45,15 +43,15 @@ const PrintForm4 = ({ patNum }) => {
             </tr>
             <tr>
               <td>성명</td>
-              <td colSpan={2}>{patName || 'N/A'}</td>
+              <td colSpan={2}>{patientOne[0].patName}</td>
               <td>진료기간</td>
-              <td colSpan={3}>{patDate || 'N/A'}</td>
+              <td colSpan={3}></td>
               <td>야간/주말진료</td>
               <td colSpan={3}></td>
             </tr>
             <tr>
               <td>진료과목</td>
-              <td>{dept || 'N/A'}</td>
+              <td></td>
               <td colSpan={3}>병실</td>
               <td>호</td>
               <td>환자구분</td>
@@ -224,9 +222,8 @@ const PrintForm4 = ({ patNum }) => {
             </tr>
           </thead>
         </table>
-      </div>
       <div className='btn-div'>
-        <button type='button' className='btn' onClick={handlePrint}>출력</button>
+        <button type='button' className='btn' onClick={(e)=>{}}>출력</button>
       </div>
     </div>
   )

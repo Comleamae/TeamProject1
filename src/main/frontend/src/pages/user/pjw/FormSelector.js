@@ -39,16 +39,16 @@ const FormSelector = ({recoData, setRecoData}) => {
   return (
     <>
       <div className='form-selector'>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm/${selectData.patNum}/${selectData.treDate}`)}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm/${selectData.patNum}`)}}>
           진료확인서
         </div>
-        <div onClick={(e)=>{navigate('/user/clinicPrint/printForm2')}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm2/${selectData.patNum}`)}}>
           수술확인서
         </div>
-        <div onClick={(e)=>{navigate('/user/clinicPrint/printForm3')}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm3/${selectData.patNum}`)}}>
           처방전
         </div>
-        <div onClick={(e)=>{navigate('/user/clinicPrint/printForm4')}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm4/${selectData.patNum}`)}}>
           영수증
         </div>
       </div>
@@ -60,12 +60,12 @@ const FormSelector = ({recoData, setRecoData}) => {
           {
             treList.map((treOne,i)=>{
               return(
-                <option key={i}>{treOne.treatList[0].treDate}</option>
+                <option key={i} value={1}>{treOne.treatList[0].treDate}</option>
               )
             })
           }
         </select>
-        <Outlet selectData={selectData}/>
+        <Outlet/>
       </div>
     </>
   )

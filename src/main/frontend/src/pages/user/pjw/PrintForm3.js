@@ -1,50 +1,40 @@
 import axios from 'axios'
 import React, { useEffect, useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { generatePDF } from './utils/pdfUtils' // 유틸리티 함수 import
+import { useNavigate, useParams } from 'react-router-dom'
 
-const PrintForm3 = ({ patNum }) => {
+const PrintForm3 = () => {
+
+  const {patNum} = useParams()
+
   const navigate = useNavigate()
-  const printRef = useRef(null) // printRef를 사용하여 PDF를 생성할 요소를 참조
-  const [patientOne, setPatientOne] = useState({})
+  const [patientOne, setPatientOne] = useState([])
   const [doctorOne, setDoctorOne] = useState({})
 
-  useEffect(() => {
-    axios
-      .get(`/patient/getOne/${patNum}`)
-      .then((res) => {
-        setPatientOne(res.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [patNum])
+  //
+  const[isShow, setIsShow] = useState(false)
 
-  useEffect(() => {
+  //불러온 한 환자의 전체 정보
+  useEffect(()=>{
     axios
-      .get(`/doctor/getOne`)
-      .then((res) => {
-        setDoctorOne(res.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    .get(`/patient/getOne/${patNum}`)
+    .then((res)=>{
+      console.log(res)
+      setPatientOne(res.data)
+      setIsShow(true)
+    })
+    .catch((error)=>{
+      console.log('환자정보 받아오는데서 에러', error)
+      console.log(patNum)
+    })
   }, [])
 
-  // PDF 생성 함수
-  const handlePrint = async () => {
-    if (printRef.current) {
-      try {
-        await generatePDF(printRef.current, '처방전.pdf')
-      } catch (error) {
-        console.error('PDF 생성 중 오류 발생:', error)
-      }
-    }
-  }
 
   return (
+    isShow==false
+    ?
+    null
+    :
     <div className='result'>
-      <div ref={printRef}>
         <table className='print-table'> 
           <tbody>
             <tr>
@@ -61,31 +51,31 @@ const PrintForm3 = ({ patNum }) => {
             <tr>
               <td rowSpan={2}>환자</td>
               <td>성명</td>
-              <td>{patientOne.patName || 'N/A'}</td>
+              <td>{patientOne[0].patName}</td>
               <td>전화</td>
-              <td colSpan={2}>{patientOne.phone || 'N/A'}</td>
+              <td colSpan={2}></td>
             </tr>
             <tr>
               <td>주민등록번호</td>
-              <td>{patientOne.citizenNum || 'N/A'}</td>
+              <td></td>
               <td>email</td>
-              <td colSpan={2}>{patientOne.email || 'N/A'}</td>
+              <td colSpan={2}></td>
             </tr>
             <tr>
-              <td rowSpan={2}>질병코드</td>
-              <td>{patientOne.diseaseCode || 'N/A'}</td>
+              <td rowSpan={2}>질병명</td>
+              <td></td>
               <td rowSpan={2}>처방의료인 성명</td>
-              <td>의사 이름</td>
-              <td>{doctorOne.name || 'N/A'}</td>
+              <td></td>
+              <td></td>
               <td>면허종별</td>
-              <td>{doctorOne.licenseType || 'N/A'}</td>
+              <td></td>
             </tr>
             <tr>
-              <td>{patientOne.diseaseCode || 'N/A'}</td>
+              <td></td>
               <td>서명 또는 날인</td>
               <td></td>
               <td>면허번호</td>
-              <td>{doctorOne.licenseNumber || 'N/A'}</td>
+              <td></td>
             </tr>
             <tr>
               <td colSpan={7}><h4>*환자의 요구가 있는 때에는 질병분류기호를 기재하지 아니합니다.</h4></td>
@@ -97,7 +87,7 @@ const PrintForm3 = ({ patNum }) => {
               <td>투약일수</td>
               <td colSpan={2}>용별</td>
             </tr>
-            {/* 반복문으로 약 정보를 가져와서 넣어줘 */}
+            
             <tr>
               <td>사용기간</td>
               <td colSpan={2}>교부일로부터 3일간</td>
@@ -127,9 +117,9 @@ const PrintForm3 = ({ patNum }) => {
             </tr>
           </tbody>
         </table>
-      </div>
+      
       <div className='btn-div'>
-        <button type='button' className='btn' onClick={handlePrint}>출력</button>
+        <button type='button' className='btn' onClick={(e)=>{}}>출력</button>
       </div>
     </div>
   )
