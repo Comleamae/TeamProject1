@@ -7,15 +7,19 @@ import FormSelector from './FormSelector';
 const ClinicPrint = ({ isLogin, setIsLogin }) => {
   const navigate = useNavigate();
 
+  //인증번호 저장할state 변수
   const [inputNum, setInputNum] = useState('');
-  const [isConfirm, setIsConfirm] = useState(false);
-  const [inputStatus, setInputStatus] = useState(false);
 
+  //인증번호 확인여부 state변수
+  const [isConfirm, setIsConfirm] = useState(false);
+  
   //환자 전체 리스트
   const [patientList, setPatientList] = useState([])
   
+  //인증에 필요한 정보 입력 한 여부 => 이메일과 주민번호 받은 지 확인할 state변수
+  const [inputStatus, setInputStatus] = useState(false);
 
-  //입력받은 이메일 주민번호를 담을 객체
+  //입력받은 이메일과 주민번호를 담을 객체
   const [inputData, setInputData] = useState({
     patEmail:''
     , citizenNum:''
@@ -32,11 +36,12 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
   const citizenNum_2 = useRef()
 
 
+  //인증번호 입력 시마다 state변수에 저장
   const handleInputNumChange = (e) => {
     setInputNum(e.target.value);
   };
 
-  
+  // 인증받을 이메일과 주민 번호 입력 시마다 state변수에 저장
   const handleInputData = (e)=>{
     const newData = {
       ...inputData,
@@ -64,11 +69,15 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
     })
   }, [inputData])
 
+  
   const sendEmail = (mail) => {
+
+    //이메일 미 입력시
     if(inputData.patEmail==''){
       alert('이메일 입력바람')
       return
     }
+    //이메일 발송
     axios.post('/mail/sendMail', mail)
       .then(() => {
           alert('이메일을 발송했습니다');
@@ -105,6 +114,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
   };
 
   return (
+    // 로그인 상태에서 발급 받기
     <div className='app-content-div'>
       {isLogin ? (
         <div className='selfDefWhenLogin'>
@@ -130,11 +140,15 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
           </button>
           {isConfirm && <FormSelector />}
         </div>
-      ) : (
+      ) : 
+      // 비로그인 상태에서 발급받기
+      (
         <div className='selfDefWhenLogin'>
           <h2>비회원 발급</h2>
           <button type='button' onClick={(e)=>{setInputStatus(!inputStatus)}}>이메일 인증 상태 변경</button>
           <button type='button' onClick={(e)=>{setIsConfirm(!isConfirm)}}>번호 인증 상태 변경</button>
+
+          {/* 인증 단계별 화면 구현 /  주민번호와 이메일 입력 화면 : 인증번호 입력 화면  */}
           {!inputStatus ? (
             <div className='recoP1'>
               <div>
@@ -173,7 +187,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
               <input
                 type='number'
                 name='inputNum'
-                onChange={handleInputNumChange}
+                onChange={(e)=>{handleInputNumChange(e)}}
               />
               <button
                 type='button'

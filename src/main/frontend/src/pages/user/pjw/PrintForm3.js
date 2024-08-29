@@ -6,23 +6,30 @@ import { generatePDF } from './utils/pdfUtils' // 유틸리티 함수 import
 const PrintForm3 = ({ patNum }) => {
   const navigate = useNavigate()
   const printRef = useRef(null) // printRef를 사용하여 PDF를 생성할 요소를 참조
+
+  //조회한 환자를 저장할 state 변수
   const [patientOne, setPatientOne] = useState({})
+  //담당 의사를 저장할 state 변수
   const [doctorOne, setDoctorOne] = useState({})
 
+
   useEffect(() => {
+    //환자의 정보, 입원 정보, 처방전 정보 조회
     axios
-      .get(`/patient/getOne/${patNum}`)
+      .post('/patient/getOne', patNum)
       .then((res) => {
         setPatientOne(res.data)
       })
       .catch((error) => {
         console.error(error)
       })
-  }, [patNum])
+  }, [])
 
+  
   useEffect(() => {
+    //담당 의사의 정보 받아온다.
     axios
-      .get(`/doctor/getOne`)
+      .post('/doctor/getOne', )
       .then((res) => {
         setDoctorOne(res.data)
       })
