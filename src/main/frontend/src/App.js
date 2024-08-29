@@ -28,6 +28,16 @@ function App() {
   //로그인 정보를 받아올 state변수
   const[isLogin, setIsLogin] = useState(false)
 
+  // 메인화면 안보이게하기!! 
+  const location = useLocation(); // 현재 경로를 가져옵니다
+
+  // 현재 경로에 따라 Main 컴포넌트를 표시할지 결정합니다
+  const isMainVisible = !(
+    location.pathname.startsWith('/user/login') ||
+    location.pathname.startsWith('/user/join') ||
+    location.pathname.startsWith('/admin') ||
+    location.pathname.startsWith('/user/clinicPrint')
+  );
 
   return (
     <div className="App">
@@ -61,7 +71,7 @@ function App() {
         </div>
 
         {/* 메인화면 */}
-        {/* {isMainVisible && <Main/>} */}
+        {isMainVisible && <Main/>}
 
       </div>
 
@@ -92,33 +102,22 @@ function App() {
           <Route path='/admin' element={<AdminLayout />} >
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
+            <Route path='/admin/reserv' element={<Reserv />} />
+            {/* 환자 정보 */}
+            <Route path='/admin/patientInfo' element={<PatientInfo />} />
+            {/* 환자 정보 수정 */}
+
+            {/* 진료 이력 */}
+            <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
+            {/* 처 방 전 */}
+            <Route path='/admin/Presc' element={<Presc />} />            
+
           </Route>
         {/* </Route> */}
   
-        {/* 관리자 페이지 */}
-        <Route path='/admin' element={<AdminLayout/>}>
-          <Route path='clinicList' element={<ClinicList/>}/>
-          <Route path='moneyln' element={<MoneyIn/>}/>
-        </Route>
+        
         </Routes>
-
-
-        <Routes>
-          {/* 관리자 페이지 */}
-          <Route path='/admin' element={<AdminLayout />} />
-          {/* 예약 조회 */}
-          <Route path='/admin/reserv' element={<Reserv />} />
-          {/* 환자 정보 */}
-          <Route path='/admin/patientInfo' element={<PatientInfo />} />
-          {/* 환자 정보 수정 */}
-
-          {/* 진료 이력 */}
-          <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
-          {/* 처 방 전 */}
-          <Route path='/admin/Presc' element={<Presc />} />
-          <Route>
-          </Route>
-        </Routes>
+        
 
 
         <div className='work-selector'>

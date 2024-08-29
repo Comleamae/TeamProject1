@@ -26,4 +26,9 @@ public class PatientServiceImpl implements PatientService{
     public List<TreatVO> getTreatListWhenPatOne(int patNum) {
         return sqlSession.selectList("patientMapper.getOneTreList", patNum);
     }
+
+    @Override
+    public List<PatientVO> getWaitPatientList() {
+        return sqlSession.selectList("patientMapper.getWaitPatientList");
+    }
 }

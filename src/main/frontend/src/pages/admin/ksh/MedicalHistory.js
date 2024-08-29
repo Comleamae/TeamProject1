@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './MedicalHistory.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const MedicalHistory = () => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const {patient, phoneNum, addr, visitRoute, visitReason} = location.state || {};
+
+  console.log("데이터:", patient, phoneNum, addr, visitRoute, visitReason )
 
   return (
     <div className="medical-info">
@@ -13,16 +18,15 @@ const MedicalHistory = () => {
           <div className='m-key-info'>
             <span>회원번호</span>
             <span>이름</span>
-            <span className='mt-size'>내원이유</span>
+            <span>내원이유</span>
+            <span>진단내역</span>
           </div>
 
           <div className='m-value-info'>
-            <span>1234-12</span>
-            <span>김세훈</span>
-            <span className='mt-size'>
-              <textarea onChange={()=>{}} rows={5} cols={40}></textarea>
-              {/* <input type='text' className='m-input-tag'/> */}
-              </span>
+            <span>{patient?.patNum}</span>
+            <span>{patient?.patName}</span>
+            <span>{visitReason?.visitReason}</span>
+            <span><input type='text' placeholder='진단내역'/></span>
           </div>
         </div>
         <div className='m-insert-btn'>

@@ -1,9 +1,31 @@
-.reserv-main-div{
-  border: 1px solid black;
+.reserv-list-name-div {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  /* border-bottom: 2px solid #ccc; */
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+
+.real-reserv-list-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.reserv-item-div {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  padding: 10px;
   width: 500px;
   margin: 0 auto;
 }
 
-.reserv-list-div{
-  display: flex;
+.number-div, .name-div, .age-div {
+  width: 40%;
+  text-align: center;
 }

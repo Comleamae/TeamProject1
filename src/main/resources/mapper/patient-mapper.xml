@@ -71,9 +71,8 @@
     </select>
 
 
-    <select id="waitPatientList">
-        SELECT PAT_NUM, PAT_NAME, AGE
-        FROM patient
+    <select id="getWaitPatientList" resultMap="patient">
+        SELECT * FROM patient
         ORDER BY PAT_DATE DESC;
     </select>
 </mapper>
