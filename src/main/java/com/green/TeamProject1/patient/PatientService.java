@@ -9,4 +9,7 @@ public interface PatientService {
     PatientVO getPatientOne(int patNum);
     /*전체 진료 기록 중 해당 환자 번호를 가진 진료기록 리스트*/
     List<TreatVO> getTreatListWhenPatOne(int patNum);
+
+    // 환자 대기자 목록 가져오기
+    // ㄴ 기능 작동하는지 확인 용
 }

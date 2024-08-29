@@ -69,6 +69,13 @@
         WHERE PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
         AND PATIENT.PAT_NUM = #{patNum}
     </select>
+
+
+    <select id="waitPatientList">
+        SELECT PAT_NUM, PAT_NAME, AGE
+        FROM patient
+        ORDER BY PAT_DATE DESC;
+    </select>
 </mapper>
 
 
