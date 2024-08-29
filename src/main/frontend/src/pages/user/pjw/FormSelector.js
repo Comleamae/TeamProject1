@@ -13,7 +13,7 @@ const FormSelector = ({recoData, setRecoData}) => {
     axios
     .post(`/patient/treList`, recoData)
     .then((res)=>{
-      console.log(res)
+      console.log(res.data)
       setTreList(res.data)
     })
     .catch((error)=>{
@@ -44,7 +44,7 @@ const FormSelector = ({recoData, setRecoData}) => {
           {
             treList.map((treOne,i)=>{
               return(
-                <option key={i}>{treOne.treatList[0].treDate}</option>
+                <option key={i}>{}</option>
               )
             })
           }

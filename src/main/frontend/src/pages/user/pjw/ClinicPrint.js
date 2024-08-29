@@ -56,6 +56,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
         console.log('데이터없음')
       }
       else{
+        console.log('일치하는 데이터 있음')
         setPatientList(res.data)
       }
     })
@@ -173,7 +174,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
               <input
                 type='number'
                 name='inputNum'
-                onChange={handleInputNumChange}
+                onChange={(e)=>{handleInputNumChange(e)}}
               />
               <button
                 type='button'
