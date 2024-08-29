@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { generatePDF } from './utils/pdfUtils'
 
 
 const PrintForm2 = () => {
@@ -8,7 +9,9 @@ const PrintForm2 = () => {
   const [patientOne, setPatientOne] = useState([])
   const [doctorOne, setDoctorOne] = useState({})
   const {patNum, treDate} = useParams()
-  const printRef = useRef(null)
+
+  // pdf 생성을 위해 참조
+  const printRef = useRef()
 
  //
  const[isShow, setIsShow] = useState(false)
@@ -39,6 +42,15 @@ const PrintForm2 = () => {
     console.log(patNum)
   })
 }, [treDate])
+
+  // PDF 생성 함수
+  const handlePrint = () => {
+    if (printRef.current) {
+      generatePDF(printRef.current, '수술확인서.pdf')
+        .then(() => console.log('PDF 생성 성공'))
+        .catch((error) => console.error('PDF 생성 오류:', error));
+    }
+  };
 
   return (
     isShow==false
@@ -115,11 +127,11 @@ const PrintForm2 = () => {
                       </tr>
                       <tr>
                         <td>의사성명</td>
-                        <td>{'aaa' || 'N/A'}</td>
+                        <td>{doctorOne.docName || 'N/A'}</td>
                       </tr>
                       <tr>
                         <td>면허번호</td>
-                        <td>{'aaa'|| 'N/A'}</td>
+                        <td>{doctorOne.docLinum|| 'N/A'}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -131,7 +143,7 @@ const PrintForm2 = () => {
         </table>
       </div>
       <div className='btn-div'>
-        <button type='button' className='btn' onClick={(e)=>{}}>출력</button>
+        <button type='button' className='btn' onClick={(e)=>{handlePrint()}}>출력</button>
       </div>
     </div>
   )
