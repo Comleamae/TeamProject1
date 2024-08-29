@@ -31,4 +31,10 @@ public class PatientController {
     List<TreatVO> getTreatList(@RequestBody Map<String,Integer> recoData){
         return patientService.getTreatListWhenPatOne(recoData.get("patNum"));
     }
+
+    // 대기자 목록에 올라간 환자 조회
+    @GetMapping("/waitList")
+    public List<PatientVO> getWaitPatientList(){
+        return patientService.getWaitPatientList();
+    }
 }

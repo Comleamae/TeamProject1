@@ -74,7 +74,7 @@ a {
   
 }
 
-/* 의사 관리 기능 */
+/* 의사 관리 기능
 .main-medical-div{
   border: 1px solid black;
   display: flex;
@@ -82,4 +82,4 @@ a {
   width: 500px;
   margin: 0 auto;
   margin-top: 50px;
-}
+} */

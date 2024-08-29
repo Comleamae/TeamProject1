@@ -2,6 +2,7 @@ import './App.css';
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './reset.css'
 import { useState } from 'react';
+import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 import Reserv from './pages/admin/ksh/Reserv';
@@ -25,7 +26,7 @@ function App() {
   const navigate = useNavigate()
 
   //로그인 정보를 받아올 state변수
-  const [isLogin, setIsLogin] = useState(false)
+  const[isLogin, setIsLogin] = useState(false)
 
   // 메인화면 안보이게하기!! 
   const location = useLocation(); // 현재 경로를 가져옵니다
@@ -37,7 +38,6 @@ function App() {
     location.pathname.startsWith('/admin') ||
     location.pathname.startsWith('/user/clinicPrint')
   );
-
 
   return (
     <div className="App">
@@ -75,12 +75,11 @@ function App() {
 
       </div>
 
+      
       <div className='layout-div'>
         <Routes>
-
           {/* 유저 페이지 */}
           <Route path='/user' element={<UserLayout />}>
-
             {/* 로그인 * 회원가입 페이지 */}
             <Route path='join' element={<Join />} />
             <Route path='login' element={<Login />} />
@@ -103,26 +102,22 @@ function App() {
           <Route path='/admin' element={<AdminLayout />} >
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
+            <Route path='/admin/reserv' element={<Reserv />} />
+            {/* 환자 정보 */}
+            <Route path='/admin/patientInfo' element={<PatientInfo />} />
+            {/* 환자 정보 수정 */}
+
+            {/* 진료 이력 */}
+            <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
+            {/* 처 방 전 */}
+            <Route path='/admin/Presc' element={<Presc />} />            
+
           </Route>
+        {/* </Route> */}
+  
+        
         </Routes>
-
-
-        <Routes>
-          {/* 관리자 페이지 */}
-          <Route path='/admin' element={<AdminLayout />} />
-          {/* 예약 조회 */}
-          <Route path='/admin/reserv' element={<Reserv />} />
-          {/* 환자 정보 */}
-          <Route path='/admin/patientInfo' element={<PatientInfo />} />
-          {/* 환자 정보 수정 */}
-
-          {/* 진료 이력 */}
-          <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
-          {/* 처 방 전 */}
-          <Route path='/admin/Presc' element={<Presc />} />
-          <Route>
-          </Route>
-        </Routes>
+        
 
 
         <div className='work-selector'>

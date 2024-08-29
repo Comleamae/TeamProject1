@@ -49,10 +49,12 @@ span{
 
 .p-input-tag{
   border: none;
+  text-align: center;
 }
 
 .p-select-tag{
   border: none;
+  text-align: center;
 }
 
 .p-insert-btn{
