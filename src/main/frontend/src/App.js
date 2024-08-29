@@ -71,7 +71,6 @@ function App() {
 
         {/* 메인화면 */}
         {/* {isMainVisible && <Main />} */}
-
       </div>
 
       <div className='layout-div'>
