@@ -18,6 +18,7 @@ import MoneyIn from './pages/user/cyh/MoneyIn';
 import PayMoney from './pages/user/cyh/PayMoney';
 import Join from './pages/user/kth/Join';
 import Login from './pages/user/kth/Login';
+import Main from './pages/Main';
 
 function App() {
 
@@ -70,7 +71,8 @@ function App() {
         </div>
 
         {/* 메인화면 */}
-        {/* {isMainVisible && <Main />} */}
+        {isMainVisible && <Main/>}
+
       </div>
 
       <div className='layout-div'>
