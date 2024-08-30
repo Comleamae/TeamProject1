@@ -4,7 +4,6 @@ import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
-import Reserv from './pages/admin/ksh/Reserv';
 import PatientInfo from './pages/admin/ksh/PatientInfo';
 import MedicalHistory from './pages/admin/ksh/MedicalHistory';
 import Presc from './pages/admin/ksh/Presc';
@@ -20,6 +19,9 @@ import Join from './pages/user/kth/Join';
 import Login from './pages/user/kth/Login';
 import Main from './pages/Main';
 import { MdMenu } from "react-icons/md"; //메뉴 아이콘
+import ReservReg from './pages/user/ksh/ReservReg';
+import NewVisit from './pages/user/ksh/NewVisit';
+import ReVisit from './pages/user/ksh/ReVisit';
 
 
 function App() {
@@ -56,7 +58,8 @@ function App() {
     location.pathname.startsWith('/user/login') ||
     location.pathname.startsWith('/user/join') ||
     location.pathname.startsWith('/admin') ||
-    location.pathname.startsWith('/user/clinicPrint')
+    location.pathname.startsWith('/user/clinicPrint') ||
+    location.pathname.startsWith('/user/reservReg') 
   );
 
   return (
@@ -109,7 +112,7 @@ function App() {
                   </li>
                   <li>
                     <Link to='/admin/clinicList' className='admin-login'>
-                      직원적용
+                      직원전용
                     </Link>
                   </li>
                   <li>
@@ -143,7 +146,13 @@ function App() {
               <Route path='printForm3/:patNum/:treDate' element={<PrintForm3 />} />
               <Route path='printForm4/:patNum/:treDate' element={<PrintForm4 />} />
             </Route>
-        
+
+            {/* 예약 등록 */}
+            <Route path='reservReg' element={<ReservReg/>}>
+              <Route path='newVisit' element={<NewVisit/>}/>
+              <Route path='reVisit' element={<ReVisit/>}/>
+            </Route>
+            
 
             {/* 진료비 수납내용 */}
             <Route path='moneyln' element={<MoneyIn />} />
@@ -158,7 +167,6 @@ function App() {
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
 
-            <Route path='/admin/reserv' element={<Reserv />} />
 
             {/* 환자 정보 */}
             <Route path='patientInfo' element={<PatientInfo />} />

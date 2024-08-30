@@ -45,11 +45,13 @@ const Main = () => {
           <p>진료</p>
           <span>진료볼수있는곳</span>
         </div>
-        <div className='sub-idex-box' onClick={(e) => { navigate('/user/clinicPrint') }}>
+
+        <div className='sub-idex-box' onClick={(e) => { navigate('/user/reservReg') }}>
           <LuCalendarClock className='icon' />
           <p>온라인<br />진료예약</p>
           <span>편하게 온라인으로 진료예약 하러가기</span>
         </div>
+        
         <div className='sub-idex-box' onClick={(e) => { navigate(`/admin/moneyln`) }}>
           <FaUserDoctor className='icon' />
           <p>의료진/<br /> 의료과 찾기</p>
