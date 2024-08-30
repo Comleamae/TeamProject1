@@ -141,10 +141,9 @@ function App() {
             
 
             {/* 진료비 수납내용 */}
-            <Route path='moneyln' element={<MoneyIn />} />
+            <Route path='moneyin' element={<MoneyIn />} />
             {/* 진료비 결제창 */}
             <Route path='payMoney' element={<PayMoney />} />
-
           </Route>
 
           {/* 관리자 페이지 */}
