@@ -43,6 +43,7 @@ const Join = () => {
     post: '',
     memAddr: '',
     addrDetail: '',
+    memRole : 'user'
   })
 
   // 태그 참조
@@ -75,11 +76,13 @@ const Join = () => {
 
     //삼항연산자 사용을 위한 변수
     let newValue;
+    
     if (e.target.name == 'citizenNum') {
       newValue = citizenNum_1.current.value + citizenNum_2.current.value;
     } else if (e.target.name == 'memEmail') {
       newValue = email_1.current.value + email_2.current.value;
-    } else {
+    } 
+    else {
       newValue = e.target.value
     }
 
@@ -91,7 +94,7 @@ const Join = () => {
     //유효성 검사 실행
     const result = joinValidate(newData, valid_tag, e.target.name);
     setValidResult(result);
-
+    
     // //유효성 검사 끝난 데이터를 joinData에 저장
     setJoinData(newData);
 
@@ -135,7 +138,7 @@ const Join = () => {
     axios.post('/api_member/join', joinData)
       .then((res) => {
         alert('회원가입이 완료되었습니다.')
-        navigate('/')
+        navigate('/user/login')
       })
       .catch((error) => {
         console.log(error)
@@ -147,7 +150,7 @@ const Join = () => {
     const cancelChk = window.confirm('가입을 취소하겠습니까?')
     //가입 취소버튼 누를 시 로그인 화면으로
     if (cancelChk) {
-      navigate('/loginForm')
+      navigate('/user/login')
     }
     //아니라면 그대로(공백)
   }

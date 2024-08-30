@@ -46,6 +46,7 @@
         <result column="MED_NUM" property="medNum"/>
     </resultMap>
 
+    <!--처방전 작성 및 조회를 위한 정보 select-->
     <!--환자 전체 리스트 중 해당 주민번호를 가진 사람이 있나?-->
     <select id="getPatientList" resultMap="patient">
         SELECT PAT_NUM, PAT_NAME
@@ -68,6 +69,14 @@
         FROM PATIENT, INFO_TREAT
         WHERE PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
         AND PATIENT.PAT_NUM = #{patNum}
+    </select>
+
+    <!--처방전 작성을 위한 정보 조회-->
+    <select id="" resultMap="patient">
+        SELECT PATIENT.PAT_NUM, PAT_NAME, PAT_EMAIL, AGE, GENDER, CITIZEN_NUM, ADDRESS, TRE_NUM, DISEASE,
+        DOC_LINUM, AOBUT_PAT, TRE_DATE, DATE_NUM, MED_NUM
+        FROM patient, info_treat
+        WHERE patient.PAT_NUM = info_treat.PAT_NUM;
     </select>
 </mapper>
 
