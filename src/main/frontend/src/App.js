@@ -121,14 +121,12 @@ function App() {
                 </ul>
               </div>
           }
-
         </div>
 
         {/* 메인화면 */}
         {isMainVisible && <Main />}
 
       </div>
-
 
       <div className='layout-div'>
         <Routes>
@@ -145,6 +143,7 @@ function App() {
               <Route path='printForm3/:patNum/:treDate' element={<PrintForm3 />} />
               <Route path='printForm4/:patNum/:treDate' element={<PrintForm4 />} />
             </Route>
+        
 
             {/* 진료비 수납내용 */}
             <Route path='moneyln' element={<MoneyIn />} />
@@ -158,9 +157,9 @@ function App() {
           
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
-            
-            {/* 예약 조회 */}
-            <Route path='reserv' element={<Reserv />} />
+
+            <Route path='/admin/reserv' element={<Reserv />} />
+
             {/* 환자 정보 */}
             <Route path='patientInfo' element={<PatientInfo />} />
             {/* 환자 정보 수정 */}
@@ -168,15 +167,13 @@ function App() {
             {/* 진료 이력 */}
             <Route path='MedicalHistory' element={<MedicalHistory />} />
             {/* 처 방 전 */}
-            <Route path='Presc' element={<Presc />} />
-            
+
+            <Route path='/admin/Presc' element={<Presc />} />    
+
           </Route>
         </Routes>
-
       </div>
-
     </div >
-
   );
 }
 
