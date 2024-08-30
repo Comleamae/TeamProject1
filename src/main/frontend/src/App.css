@@ -171,9 +171,11 @@ a {
 
 /* 메인 css 끝  */
 
+
+
 .layout-div{
-  margin-top: 20px;
-  margin-right: 20px;
+  width: 100%;
+
 }
 
 
@@ -192,12 +194,8 @@ a {
   
 }
 
-/* 의사 관리 기능
-.main-medical-div{
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-around;
-  width: 500px;
-  margin: 0 auto;
-  margin-top: 50px;
-} */
+
+.newVisit{
+  background-color: black;
+  color: white;
+}
