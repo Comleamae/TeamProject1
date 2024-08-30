@@ -59,7 +59,7 @@ function App() {
 
           <div id='btn-top-menus'>
             <button type='button' className='menu' id='main-menu'>
-            <MdMenu className='menu-icon'/>
+              <MdMenu className='menu-icon' />
             </button>
             {/* 
             <div>
@@ -69,31 +69,31 @@ function App() {
             </div> 
             */}
           </div>
-          
+
           <Link to="/" className='logo'>
             <img className='logo-img' src='http://localhost:8080/images/logo.png' />
             그린대학교병원
           </Link>
           {
             Object.keys(loginInfo).length != 0 ?
-            //로그인 하였다면
-            // 회원 이름 + 로그아웃 버튼
-            <div>
-              {loginInfo.memName}님 안녕하세요. 
-              {/* Logout 글자에 손대면 cursor pointer 해주세요 */}
+              //로그인 하였다면
+              // 회원 이름 + 로그아웃 버튼
+              <div>
+                {loginInfo.memName}님 안녕하세요.
+                {/* Logout 글자에 손대면 cursor pointer 해주세요 */}
 
-              {/* 클릭 시 로그아웃 */}
-              <span onClick={(e) => {
-                window.sessionStorage.removeItem('loginInfo')
-                setLoginInfo({});
-                navigate('/')
-              }}>Logout</span>
+                {/* 클릭 시 로그아웃 */}
+                <span onClick={(e) => {
+                  window.sessionStorage.removeItem('loginInfo')
+                  setLoginInfo({});
+                  navigate('/')
+                }}>Logout</span>
 
-            </div>
-            :
+              </div>
+              :
               //비로그인 상태라면
-                //로그인 + 회원가입 + 관리자전용
-                <div>
+              //로그인 + 회원가입 + 관리자전용
+              <div>
                 <ul className='login-box'>
                   <li>
                     <Link to='/user/login' className='user-login'>로그인</Link>
@@ -127,18 +127,20 @@ function App() {
             <Route path='join' element={<Join />} />
             <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
 
-            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
-              <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
+            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin} />}>
+              <Route path='printForm/:patNum/:treNum' element={<PrintForm />} />
               <Route path='printForm2/:patNum/:treDate' element={<PrintForm2 />} />
               <Route path='printForm3/:patNum/:treDate' element={<PrintForm3 />} />
               <Route path='printForm4/:patNum/:treDate' element={<PrintForm4 />} />
             </Route>
 
             {/* 예약 등록 */}
+
             <Route path='reservReg' element={<ReservReg/>}/>         
             <Route path='newVisit' element={<NewVisit/>}/>
               <Route path='reVisit' element={<ReVisit/>}/>
             
+
 
             {/* 진료비 수납내용 */}
             <Route path='moneyin' element={<MoneyIn />} />
@@ -160,7 +162,7 @@ function App() {
             <Route path='MedicalHistory' element={<MedicalHistory />} />
 
             {/* 처 방 전 */}
-            <Route path='Presc' element={<Presc />} />    
+            <Route path='Presc' element={<Presc />} />
 
           </Route>
         </Routes>
