@@ -57,7 +57,7 @@ function App() {
               </li>
               <li>
                 <Link to='/admin/clinicList' className='admin-login'>
-                  직원적용
+                  직원전용
                 </Link>
               </li>
               <li>
@@ -90,6 +90,7 @@ function App() {
               <Route path='printForm3' element={<PrintForm3 />} />
               <Route path='printForm4' element={<PrintForm4 />} />
             </Route>
+          
 
             {/* 진료비 수납내용 */}
             <Route path='moneyln' element={<MoneyIn />} />
@@ -98,10 +99,13 @@ function App() {
 
           </Route>
 
+
           {/* 관리자 페이지 */}
           <Route path='/admin' element={<AdminLayout />} >
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
+
+
             <Route path='/admin/reserv' element={<Reserv />} />
             {/* 환자 정보 */}
             <Route path='/admin/patientInfo' element={<PatientInfo />} />
@@ -110,7 +114,8 @@ function App() {
             {/* 진료 이력 */}
             <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
             {/* 처 방 전 */}
-            <Route path='/admin/Presc' element={<Presc />} />            
+            <Route path='/admin/Presc' element={<Presc />} />    
+
 
           </Route>
         {/* </Route> */}
