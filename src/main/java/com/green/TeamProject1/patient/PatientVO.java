@@ -14,14 +14,7 @@ public class PatientVO {
     private String gender;
     private String address;
     private String citizenNum;
-    private String disease;
-    private int docLinum;
-    private String aboutPat;
-    private int patPrice;
-    private String patDate;
-    private String inHopi;
-    private String medicine;
-    private DateVO dateVO;
-    private MedicineVO medicineVO;
-    private List<TreatVO> treatList;
+    private List<DateVO> dateList; // 입원정보를 하나씩
+    private List<MedicineVO> medicineList; // 처방정보를 하나씩
+    private List<TreatVO> treatList; // 진료정보를 하나씩
 }

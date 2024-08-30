@@ -11,9 +11,9 @@
         <result column="GENDER" property="gender"/>
         <result column="CITIZEN_NUM" property="citizenNum"/>
         <result column="ADDRESS" property="address"/>
-       <!-- <association property="dateVO" resultMap="infoMedicine"/>
-        <association property="medicineVO" resultMap="infoDate"/>
-        <collection property="treatList" resultMap="infoTreat"/>-->
+        <collection property="dateList" resultMap="infoDate"/>
+        <collection property="medicineList" resultMap="infoMedicine"/>
+        <collection property="treatList" resultMap="infoTreat"/>
     </resultMap>
 
     <!--환자에 대한 약 정보-->
@@ -55,12 +55,14 @@
     </select>
 
     <!--환자 한명의 내용-->
-    <select id="getPatientOne" resultMap="patient">
+    <select id="getPatListAll" parameterType="map" resultMap="patient">
         SELECT *
-        FROM PATIENT, INFO_DATE, INFO_MEDICINE
+        FROM PATIENT, INFO_DATE, INFO_MEDICINE, INFO_TREAT
         WHERE PATIENT.PAT_NUM = INFO_DATE.PAT_NUM
         AND PATIENT.PAT_NUM = INFO_MEDICINE.PAT_NUM
+        AND PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
         AND PATIENT.PAT_NUM = #{patNum}
+        AND INFO_TREAT.TRE_DATE = #{treDate}
     </select>
 
     <!--한 환자에 대한 진료기록-->

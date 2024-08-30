@@ -84,11 +84,11 @@ function App() {
             <Route path='join' element={<Join />} />
             <Route path='login' element={<Login />} />
 
-            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin} />}>
-              <Route path='printForm' element={<PrintForm />} />
-              <Route path='printForm2' element={<PrintForm2 />} />
-              <Route path='printForm3' element={<PrintForm3 />} />
-              <Route path='printForm4' element={<PrintForm4 />} />
+            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
+              <Route path='printForm/:patNum/:treDate' element={<PrintForm />} />
+              <Route path='printForm2/:patNum/:treDate' element={<PrintForm2 />} />
+              <Route path='printForm3/:patNum/:treDate' element={<PrintForm3 />} />
+              <Route path='printForm4/:patNum/:treDate' element={<PrintForm4 />} />
             </Route>
 
             {/* 진료비 수납내용 */}
@@ -117,8 +117,6 @@ function App() {
   
         
         </Routes>
-        
-
 
         <div className='work-selector'>
           <div>

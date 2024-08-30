@@ -1,59 +1,62 @@
 import axios from 'axios'
 import React, { useEffect, useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { generatePDF } from './utils/pdfUtils' // PDF 유틸리티 함수 가져오기
+import { useNavigate, useParams } from 'react-router-dom'
+import { generatePDF } from './utils/pdfUtils'
+
 
 const PrintForm2 = () => {
   const navigate = useNavigate()
-  const [patientOne, setPatientOne] = useState({})
+  const [patientOne, setPatientOne] = useState([])
   const [doctorOne, setDoctorOne] = useState({})
-  const printRef = useRef(null)
+  const {patNum, treDate} = useParams()
 
-  // 환자 정보 가져오기
-  const patNum = JSON.parse(window.sessionStorage.getItem('recoData')).patNum
+  // pdf 생성을 위해 참조
+  const printRef = useRef()
 
-  useEffect(() => {
-    axios
-      .post('/patient/getOne', { patNum })
-      .then((res) => {
-        setPatientOne(res.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [patNum])
+ //
+ const[isShow, setIsShow] = useState(false)
 
-  // 의사 정보 가져오기
-  useEffect(() => {
-    if (patientOne.docLinum) {
-      axios
-        .post('/doctor/getOne', { docLinum: patientOne.docLinum })
-        .then((res) => {
-          setDoctorOne(res.data)
+ //불러온 한 환자의 전체 정보
+ useEffect(()=>{
+  axios
+  .get(`/patient/getOne/${patNum}/${treDate}`)
+  .then((res)=>{
+    console.log(res)
+    setPatientOne(res.data)
+    setIsShow(true)
+    const docLinum = res.data[0].treatList[0].docLinum
+      if(docLinum){
+        axios
+        .get(`/doctor/getOne/${docLinum}`)
+        .then((docRes)=>{
+          console.log(docRes)
+          setDoctorOne(docRes.data)
         })
-        .catch((error) => {
-          console.error(error)
+        .catch((error)=>{
+          console.log('의사 정보 받기 에러', error)
         })
-    }
-  }, [patientOne])
+      }
+  })
+  .catch((error)=>{
+    console.log('환자정보 받아오는데서 에러', error)
+    console.log(patNum)
+  })
+}, [treDate])
 
   // PDF 생성 함수
   const handlePrint = () => {
     if (printRef.current) {
       generatePDF(printRef.current, '수술확인서.pdf')
-        .then(() => {
-          console.log('PDF 생성 완료')
-        })
-        .catch((error) => {
-          console.error('PDF 생성 중 오류 발생:', error)
-        })
+        .then(() => console.log('PDF 생성 성공'))
+        .catch((error) => console.error('PDF 생성 오류:', error));
     }
-  }
-
-  const { patName, gender, age, citizenNum, addr, disease } = patientOne
-  const { dept, docName } = doctorOne
+  };
 
   return (
+    isShow==false
+    ?
+    null
+    :
     <div className='result'>
       <div ref={printRef}>
         <table className='print-table'> 
@@ -63,48 +66,49 @@ const PrintForm2 = () => {
             </tr>
             <tr>
               <td>진료과</td>
-              <td colSpan={2}>{dept || 'N/A'}</td>
+              <td colSpan={2}>{doctorOne.dept}</td>
               <td>작성자</td>
-              <td>{docName || 'N/A'}</td>
-              <td>일자</td>
-              <td colSpan={2}></td>
+              <td>{doctorOne.docName}</td>
+              <td>작성일자</td>
+              <td colSpan={2}>{patientOne[0].treatList[0].treDate}</td>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td colSpan={5}>병록번호</td>
-              <td colSpan={3}></td>
+              <td colSpan={3}>{patientOne[0].treatList[0].treNum}</td>
             </tr>
             <tr>
               <td>일련번호</td>
               <td></td>
               <td>주민번호</td>
-              <td colSpan={6}>{citizenNum || 'N/A'}</td>
+              <td colSpan={6}>{patientOne[0].citizenNum}</td>
             </tr>
             <tr>
               <td>입원과</td>
-              <td>{dept || 'N/A'}</td>
-              <td>{patName || 'N/A'}호실</td>
+              <td>{doctorOne.dept}</td>
+              <td>{patientOne[0].dateList[0].roomNum}호실</td>
               <td>입원날짜</td>
-              <td colSpan={4}></td>
+              <td colSpan={4}>
+                {patientOne[0].dateList[0].inHopi}부터
+                {patientOne[0].dateList[0].outHopi}까지
+              </td>
             </tr>
             <tr>
               <td>환자성명</td>
-              <td>{patName || 'N/A'}</td>
+              <td>{patientOne[0].patName}</td>
               <td>성별</td>
-              <td>{gender || 'N/A'}</td>
-              <td>생년월일</td>
-              <td>{citizenNum || 'N/A'}</td>
+              <td>{patientOne[0].gender}</td>
               <td>연령</td>
-              <td>{age || 'N/A'}</td>
+              <td colSpan={3}>{patientOne[0].age}</td>
             </tr>
             <tr>
               <td>환자주소</td>
-              <td colSpan={7}>{addr || 'N/A'}</td>
+              <td colSpan={7}>{patientOne[0].address}</td>
             </tr>
             <tr>
               <td>진단명</td>
-              <td colSpan={7}>{disease || 'N/A'}</td>
+              <td colSpan={7}>{patientOne[0].treatList[0].disease}</td>
             </tr>
           </tbody>
         </table>
@@ -113,9 +117,8 @@ const PrintForm2 = () => {
             <tr>
               <td colSpan={8}>
                 <div className='footer'>
-                  <p>위 환자는 뇌졸증으로 인해 부터 까지 수술을 시행하였음을 확인함</p>
-                  <p>수술명:</p>
-                  <p>수술일자:</p>
+                  <p>위 환자는 {patientOne[0].treatList[0].disease}으로 인해 부터 까지 수술을 시행하였음을 확인함</p>
+                  <p>수술일자:{patientOne[0].dateList[0].operDate}</p>
                   <table className='footer-table'>
                     <tbody>
                       <tr>
@@ -124,11 +127,11 @@ const PrintForm2 = () => {
                       </tr>
                       <tr>
                         <td>의사성명</td>
-                        <td>{docName || 'N/A'}</td>
+                        <td>{doctorOne.docName || 'N/A'}</td>
                       </tr>
                       <tr>
                         <td>면허번호</td>
-                        <td>{doctorOne.licenseNum || 'N/A'}</td>
+                        <td>{doctorOne.docLinum|| 'N/A'}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -140,7 +143,7 @@ const PrintForm2 = () => {
         </table>
       </div>
       <div className='btn-div'>
-        <button type='button' className='btn' onClick={handlePrint}>출력</button>
+        <button type='button' className='btn' onClick={(e)=>{handlePrint()}}>출력</button>
       </div>
     </div>
   )

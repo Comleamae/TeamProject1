@@ -21,7 +21,9 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
   //인증에 필요한 정보 입력 한 여부 => 이메일과 주민번호 받은 지 확인할 state변수
   const [inputStatus, setInputStatus] = useState(false);
 
-  //입력받은 이메일과 주민번호를 담을 객체
+  //버튼의 상태를 저장할 변수
+  const[buttonStatus, setButtonStatus] = useState(false)
+  //입력받은 이메일 주민번호를 담을 객체
   const [inputData, setInputData] = useState({
     patEmail:''
     , citizenNum:''
@@ -29,8 +31,8 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
 
   //인증된 정보를 저장할 객체 
   const[recoData, setRecoData] = useState({
-    patNum:1
-    //, patNam:''
+    patNum:0
+    , patName:''
   })
 
   // 주민번호 정보
@@ -60,16 +62,23 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
     .post(`/patient/getListCN`, inputData)
     .then((res)=>{
       if(res.data.length==0){
-        console.log('데이터없음')
+        console.log('notData')
+        setButtonStatus(true)
       }
       else{
-        setPatientList(res.data)
+        console.log('isData')
+        setRecoData({
+          ...recoData,
+          patNum:res.data[0].patNum
+          //, patName:res.data[0].patName
+        })
+        setButtonStatus(false)
       }
     })
     .catch((error)=>{
       console.log('환자 전체리스트 불러오기 실패', error)
     })
-  }, [inputData])
+  }, [inputData, buttonStatus])
 
   
   const sendEmail = (mail) => {
@@ -178,6 +187,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
               <div className='btn-div'>
                 <button
                   type='button'
+                  disabled={buttonStatus}
                   onClick={() => sendEmail(inputData)}>
                   인증번호 얻기
                 </button>
