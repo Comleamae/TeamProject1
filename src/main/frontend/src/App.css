@@ -72,7 +72,6 @@ a {
   font-weight: bold;
 }
 
-<<<<<<< HEAD
 /* 메인 css */
 
 .intro-div {
@@ -193,4 +192,10 @@ a {
 .admin-btn > button{
   padding: 10px;
   
+}
+
+
+.newVisit{
+  background-color: black;
+  color: white;
 }

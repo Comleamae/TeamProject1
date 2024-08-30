@@ -135,10 +135,9 @@ function App() {
             </Route>
 
             {/* 예약 등록 */}
-            <Route path='reservReg' element={<ReservReg/>}>
-              <Route path='newVisit' element={<NewVisit/>}/>
+            <Route path='reservReg' element={<ReservReg/>}/>         
+            <Route path='newVisit' element={<NewVisit/>}/>
               <Route path='reVisit' element={<ReVisit/>}/>
-            </Route>
             
 
             {/* 진료비 수납내용 */}
