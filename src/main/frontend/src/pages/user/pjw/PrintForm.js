@@ -125,7 +125,7 @@ const PrintForm = () => {
                     </tr>
                     <tr>
                       <td>주소:</td>
-                      <td></td>
+                      <td>울산광역시 남구 삼산동 000 000</td>
                     </tr>
                     <tr>
                       <td>의사 면허번호:</td>
@@ -137,7 +137,7 @@ const PrintForm = () => {
                     </tr>
                     <tr>
                       <td>전화번호:</td>
-                      <td></td>
+                      <td>052-532-1231</td>
                     </tr>
                     <tr>
                       <td colSpan={2}>
