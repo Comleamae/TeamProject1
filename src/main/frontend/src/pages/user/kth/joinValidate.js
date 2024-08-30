@@ -1,3 +1,4 @@
+
 //유효성 검사 결과
 const resultArr = [
   false, //아이디
@@ -28,8 +29,6 @@ export const joinValidate = (newData, valid_tag, tagName) => {
 
   switch (tagName) {
     case 'memId':
-      erase()
-
 
       //id가 영문만 포함하는지 검사하는 정규식
       const regex_memId = /^[a-z|A-Z]{4,12}$/;
@@ -50,14 +49,13 @@ export const joinValidate = (newData, valid_tag, tagName) => {
         //div 태그 안에 글자 변경 : 사용 가능한 아이디
         // memId_valid_tag.current.textContent = '아이디는 영문이며 4~12자여야 합니다';
 
-        sendFeedbackMsg(valid_tag[0], '아이디는 영문이며 4~12자여야 합니다', 'error');
+        sendFeedbackMsg(valid_tag[0], '아이디는 영문이며 4~12자여야 합니다.', 'error');
         resultArr[0] = false;
       }
       break;
 
     case 'memPw':
     case 'confirmPw':
-
 
       //비밀번호 검사 정규식
       const regex_memPw = /^[a-z0-9](?=.*[a-z])(?=.*[0-9]).{3,12}$/g;
@@ -67,7 +65,7 @@ export const joinValidate = (newData, valid_tag, tagName) => {
         result_pw1 = true;
       }
       else {
-        sendFeedbackMsg(valid_tag[1], '비밀번호는 4~12자 영문,숫자로 이루어져야합니다..', 'error');
+        sendFeedbackMsg(valid_tag[1], '비밀번호는 4~12자 영문,숫자로 이루어져야 합니다.', 'error');
         result_pw1 = false;
       }
 
@@ -84,7 +82,7 @@ export const joinValidate = (newData, valid_tag, tagName) => {
       break;
 
     case 'memName':
-      // erase();
+
       //이름 검사 정규식
       const regex_memName = /^[ㄱ-ㅎ|가-힣]{2,10}$/;
 

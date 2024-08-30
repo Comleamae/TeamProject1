@@ -3,7 +3,7 @@ import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({setLoginInfo}) => {
 
   const navigate = useNavigate()
 

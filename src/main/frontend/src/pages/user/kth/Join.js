@@ -4,6 +4,13 @@ import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom'
 import { joinValidate } from './joinValidate';
 import axios from 'axios';
+<<<<<<< HEAD
+=======
+
+
+//import { Modal } from 'bootstrap';
+
+>>>>>>> cyh
 const Join = () => {
 
   const navigate = useNavigate()
@@ -175,29 +182,29 @@ const Join = () => {
                       setIsCheckId(false);
                     }} />
                   <button type='button' className='btn-div' onClick={(e) => { idEnable() }}>중복 확인</button></div>
-                <div className='feedback' ref={memId_valid_tag}></div>
+                <div className='feedback' ref={memId_valid_tag}>아이디는 영문이며 4~12자여야 합니다.</div>
               </td>
             </tr>
             <tr>
               <td>비밀번호</td>
-              <td><input type='password' name='memPw' placeholder='비밀번호' onChange={(e) => { changeJoinData(e) }} /></td>
-              <div className='feedback' ref={memPw_valid_tag}></div>
+              <input type='password' name='memPw' placeholder='비밀번호' onChange={(e) => { changeJoinData(e) }} />
+              <div className='feedback' ref={memPw_valid_tag}>비밀번호는 4~12자 영문,숫자로 이루어져야 합니다.</div>
             </tr>
             <tr>
               <td>비밀번호 확인</td>
-              <td><input type='password' name='confirmPw' placeholder='비밀번호 확인' onChange={(e) => { changeJoinData(e) }} /></td>
-              <div className='feedback' ref={confirmPw_valid_tag}></div>
+              <input type='password' name='confirmPw' placeholder='비밀번호 확인' onChange={(e) => { changeJoinData(e) }} />
+              <div className='feedback' ref={confirmPw_valid_tag}>비밀번호가 일치하지 않습니다.</div>
             </tr>
             <tr>
               <td>이름</td>
-              <td><input type='text' name='memName' placeholder='이름' onChange={(e) => { changeJoinData(e) }} /></td>
-              <div className='feedback' ref={memName_valid_tag}></div>
+              <input type='text' name='memName' placeholder='이름' onChange={(e) => { changeJoinData(e) }} />
+              <div className='feedback' ref={memName_valid_tag}>이름은 한글이며 2~10자여야 합니다.</div>
             </tr>
             <tr>
               <td>전화번호</td>
               <td>
-                <input type='text' name='memTel' placeholder='전화번호는 - 없이 입력하세요' onChange={(e) => { changeJoinData(e) }} />
-                <div className='feedback' ref={memTel_valid_tag}></div>
+                <input type='text' name='memTel' placeholder='ex)010-0000-1111' onChange={(e) => { changeJoinData(e) }} />
+                <div className='feedback' ref={memTel_valid_tag}>연락처를 확인하세요.</div>
               </td>
             </tr>
             <tr>
@@ -216,7 +223,7 @@ const Join = () => {
               <td>
                 <input type='text' name='citizenNum' placeholder='주민번호 앞자리' ref={citizenNum_1} onChange={(e) => { changeJoinData(e) }} /> -
                 <input type='password' name='citizenNum' placeholder='주민번호 뒷자리' ref={citizenNum_2} onChange={(e) => { changeJoinData(e) }} />
-                <div className='feedback' ref={citizenNum_valid_tag}></div>
+                <div className='feedback' ref={citizenNum_valid_tag}>잘못된 주민번호입니다.</div>
               </td>
             </tr>
             <tr>
