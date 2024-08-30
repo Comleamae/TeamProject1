@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-const Login = () => {
+
+const Login = ({setLoginInfo}) => {
 
   const navigate = useNavigate()
 
@@ -46,8 +47,10 @@ const Login = () => {
             memRole : res.data.memRole
           }
           const json_loginInfo = JSON.stringify(loginInfo);
+
           window.sessionStorage.setItem('loginInfo', json_loginInfo);
           navigate('/')
+          setLoginInfo(loginInfo)
         }
         else {
           alert('ID 혹은 PW를 확인하세요.')

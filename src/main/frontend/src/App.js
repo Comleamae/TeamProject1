@@ -1,7 +1,7 @@
 import './App.css';
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './reset.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
@@ -25,8 +25,27 @@ function App() {
 
   const navigate = useNavigate()
 
-  //로그인 정보를 받아올 state변수
-  const[isLogin, setIsLogin] = useState(false)
+  //로그인 여부 정보를 받아올 state변수
+  const [isLogin, setIsLogin] = useState(false)
+
+  //로그인한 회원의 정보를 받아올 state변수
+  const [loginInfo, setLoginInfo] = useState({})
+
+  //로그인한 회원의 정보로 로그인 배너 생성
+  useEffect(() => {
+
+    //로그인하면서 sessionStorage에 저장한 정보 가져오기
+    const sessionLoginInfo = window.sessionStorage.getItem('loginInfo')
+
+    //로그인 하였다면
+    if (sessionLoginInfo != null) {
+      //로그인 정보를 객체로 변환
+      const obj_loginInfo = JSON.parse(sessionLoginInfo);
+
+      //state변수에 로그인한 회원 정보 저장
+      setLoginInfo(obj_loginInfo)
+    }
+  }, [])
 
   // 메인화면 안보이게하기!! 
   const location = useLocation(); // 현재 경로를 가져옵니다
@@ -48,43 +67,65 @@ function App() {
             <img className='logo-img' src='http://localhost:8080/images/logo.png' />
             그린대학교병원
           </Link>
+          {
+            Object.keys(loginInfo).length != 0 ?
+            //로그인 하였다면
+            // 회원 이름 + 로그아웃 버튼
+            <div>
 
-          <div>
-            {/* 로그인 + 회원가입 + 관리자전용 */}
-            <ul className='login-box'>
-              <li>
-                <Link to='/user/login' className='user-login'>로그인</Link>
-              </li>
-              <li>
-                <Link to='/admin/clinicList' className='admin-login'>
-                  직원적용
-                </Link>
-              </li>
-              <li>
-                <select>
-                  <option>KOR</option>
-                  <option>ENG</option>
-                </select>
-              </li>
-            </ul>
-          </div>
+              {loginInfo.memName}님 안녕하세요. 
+
+
+              {/* Logout 글자에 손대면 cursor pointer 해주세요 */}
+
+              {/* 클릭 시 로그아웃 */}
+              <span onClick={(e) => {
+                window.sessionStorage.removeItem('loginInfo')
+                setLoginInfo({});
+                navigate('/')
+              }}>Logout</span>
+
+            </div>
+            :
+              //비로그인 상태라면
+                //로그인 + 회원가입 + 관리자전용
+                <div>
+                <ul className='login-box'>
+                  <li>
+                    <Link to='/user/login' className='user-login'>로그인</Link>
+                  </li>
+                  <li>
+                    <Link to='/admin/clinicList' className='admin-login'>
+                      직원적용
+                    </Link>
+                  </li>
+                  <li>
+                    <select>
+                      <option>KOR</option>
+                      <option>ENG</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+          }
+
         </div>
 
         {/* 메인화면 */}
-        {isMainVisible && <Main/>}
+        {isMainVisible && <Main />}
 
       </div>
 
-      
+
       <div className='layout-div'>
         <Routes>
           {/* 유저 페이지 */}
           <Route path='/user' element={<UserLayout />}>
             {/* 로그인 * 회원가입 페이지 */}
             <Route path='join' element={<Join />} />
-            <Route path='login' element={<Login />} />
+            <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
 
-            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
+            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin} />}>
               <Route path='printForm/:patNum/:treDate' element={<PrintForm />} />
               <Route path='printForm2/:patNum/:treDate' element={<PrintForm2 />} />
               <Route path='printForm3/:patNum/:treDate' element={<PrintForm3 />} />
@@ -110,12 +151,12 @@ function App() {
             {/* 진료 이력 */}
             <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
             {/* 처 방 전 */}
-            <Route path='/admin/Presc' element={<Presc />} />            
+            <Route path='/admin/Presc' element={<Presc />} />
 
           </Route>
-        {/* </Route> */}
-  
-        
+          {/* </Route> */}
+
+
         </Routes>
 
         <div className='work-selector'>
@@ -133,7 +174,7 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
 
   );
 }
