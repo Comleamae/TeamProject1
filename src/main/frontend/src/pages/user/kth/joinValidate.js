@@ -1,3 +1,4 @@
+
 //유효성 검사 결과
 const resultArr = [
   false, //아이디

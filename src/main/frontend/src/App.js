@@ -1,8 +1,7 @@
 import './App.css';
+import './reset.css'
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import './reset.css'
 import { useEffect, useState } from 'react';
-import './reset.css'
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 import Reserv from './pages/admin/ksh/Reserv';
@@ -20,6 +19,8 @@ import PayMoney from './pages/user/cyh/PayMoney';
 import Join from './pages/user/kth/Join';
 import Login from './pages/user/kth/Login';
 import Main from './pages/Main';
+import { MdMenu } from "react-icons/md"; //메뉴 아이콘
+
 
 function App() {
 
@@ -63,6 +64,18 @@ function App() {
 
       <div className='header'>
         <div className='header-index'>
+
+          <div id='btn-top-menus'>
+            <button type='button' className='menu' id='main-menu'>
+            <MdMenu className='menu-icon'/>
+            </button>
+            {/* <div>
+              <ul>
+                <li>목록목록</li>
+              </ul>
+            </div> */}
+          </div>
+          
           <Link to="/" className='logo'>
             <img className='logo-img' src='http://localhost:8080/images/logo.png' />
             그린대학교병원
@@ -125,6 +138,7 @@ function App() {
             <Route path='join' element={<Join />} />
             <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
 
+            {/* 환자 진료 */}
             <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin} />}>
               <Route path='printForm/:patNum/:treDate' element={<PrintForm />} />
               <Route path='printForm2/:patNum/:treDate' element={<PrintForm2 />} />
@@ -141,39 +155,26 @@ function App() {
 
           {/* 관리자 페이지 */}
           <Route path='/admin' element={<AdminLayout />} >
+          
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
-            <Route path='/admin/reserv' element={<Reserv />} />
+            
+            {/* 예약 조회 */}
+            <Route path='reserv' element={<Reserv />} />
             {/* 환자 정보 */}
-            <Route path='/admin/patientInfo' element={<PatientInfo />} />
+            <Route path='patientInfo' element={<PatientInfo />} />
             {/* 환자 정보 수정 */}
 
             {/* 진료 이력 */}
-            <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
+            <Route path='MedicalHistory' element={<MedicalHistory />} />
             {/* 처 방 전 */}
-            <Route path='/admin/Presc' element={<Presc />} />
-
+            <Route path='Presc' element={<Presc />} />
+            
           </Route>
-          {/* </Route> */}
-
-
         </Routes>
 
-        <div className='work-selector'>
-          <div>
-            로그인
-          </div>
-          <div onClick={(e) => { navigate('/user/clinicPrint') }}>
-            <span>진료</span>
-          </div>
-          <div onClick={(e) => { navigate('/admin/clinicList') }}>
-            <span>의사</span>
-          </div>
-          <div onClick={(e) => { navigate(`/admin/moneyln`) }}>
-            데스크
-          </div>
-        </div>
       </div>
+
     </div >
 
   );

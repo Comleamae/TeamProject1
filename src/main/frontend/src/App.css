@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -8,11 +10,10 @@
 }
 
 .header-index {
-  width: 1200px;
+  width: 1300px;
   height: 100px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   position: relative;
 
@@ -20,27 +21,46 @@
 
 a {
   text-decoration: none;
+  color: black;
   cursor: pointer;
 }
+
+.menu {
+  width: 100px;
+  height: 100px;
+  background: #3C32A2;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+}
+
+.menu-icon {
+  color: #fff;
+  font-size: 35px;
+}
+
 .logo-img {
   width: 50px;
-
 }
+
 .logo{
-  width: 250px;
-  font-size: 28px;
+  width: 245px;
+  text-align: left;
+  font-size: 35px;
   font-weight: bold;
-  color:navy;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  font-family: 'Freesentation-9Black';
+  color: black;
+  margin-left: 10px;
 }
 
 .login-box {
-  width: 16%;
+  width: 14%;
   height: 40px;
   position: absolute;
-  right: 2%;
+  right: 1%;
   display: flex;
   align-items: center;
   top: 30px;
@@ -52,6 +72,9 @@ a {
 .login-box li:hover{
   font-weight: bold;
 }
+
+
+
 
 
 .layout-div{

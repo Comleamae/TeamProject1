@@ -1,0 +1,182 @@
+/* slick-carousel의 스타일을 import합니다 */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+
+.cntr {
+  position:relative;
+  width:100%;
+  top: 0px;
+  background:#f4f8fb; 
+  text-align:center; 
+  padding-bottom:40px; 
+  /* border-top:1px solid #dddcdc; 
+  border-bottom:1px solid #dddcdc; */
+}
+
+.cntr h4 {
+  width: 100%;
+  padding: 40px 0 30px 0;
+  color: #8d8d8d;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+
+}
+
+.cntr h4 strong {
+  display: block; 
+  color: #363636; 
+  font-size: 32px; 
+  font-weight: 600; 
+
+}
+
+.cntr .slick_wrapper {
+  position:relative; 
+  width:100%; 
+  max-width:1440px; 
+  margin:0 auto;
+}
+
+.cntr .slick-arrow {
+  width:50px; 
+  height:50px; 
+  background-color:#9eb6d0; 
+  background-repeat:no-repeat; 
+  background-position:center center; 
+  background-size:auto 15px; 
+  text-indent:-9999px; 
+  cursor:pointer; 
+  border:0;}
+
+.cntr .slickNext{
+  right:-80px; 
+  /* background-image:url(/front/images/introduce/btn_rit.png); */
+}
+
+
+.cntr .slickPrev{
+  left:-80px;  
+  /* background-image:url(/front/images/introduce/btn_lft.png); */
+}
+
+.cntr .slide-item{
+  position:relative; 
+  display: flex !important;
+  justify-content: center; 
+  align-items: center;
+  text-align: center; 
+  height: 130px;
+}
+
+.cntr .slide-item:before{
+  position:absolute; 
+  top:50%; 
+  left:0; 
+  transform:translateY(-50%); 
+  display:block; 
+  width:1px; 
+  height:calc(100% - 50px); 
+  background:#d3dae4; 
+  content:""; 
+}
+
+.cntr .slide-item:after{
+  position:absolute; 
+  bottom:0; 
+  left:50%; 
+  transform:translateX(-50%); 
+  display: block;
+  width:calc(100% - 50px); height:1px; 
+  background:#d3dae4;
+  content:""; 
+}
+
+
+.cntr .slick-slide > div:nth-child(2) .slide-item:after{
+  display:none;
+}
+
+.cntr .slide-item > a{
+  position:relative; 
+  display:block; 
+  width:100%; 
+  height:100%; 
+  text-align:left; 
+  box-sizing:border-box; 
+  padding:24px 30px;
+}
+
+.cntr .cntr_ttl{
+  display:block; 
+  font-size:21px; 
+  font-weight:600; 
+  color:#3d3d3d; 
+  line-height:1; 
+  letter-spacing:-1px;
+}
+
+.cntr .cntr_link{
+  display:inline-block;
+  margin-top:14px;
+  padding:0 30px 0 0; 
+  font-size:15px; 
+  font-weight:400; 
+  color:#606060; 
+  line-height:16px;
+}
+
+.cntr .slide-item img {
+  position:absolute; 
+  display:block; 
+  bottom:24px; 
+  right:30px; 
+  height:52px; 
+  width:auto; 
+}
+
+.cntr .slide-item:hover:before,.cntr .slide-item:hover:after{display:none;}
+.cntr .slide-item:hover a{background:#3C32A2;}
+.cntr .slide-item:hover img{-webkit-filter:brightness(0) invert(1);  filter:brightness(0) invert(1);}
+
+.cntr .slide-item:hover .cntr_ttl{color:#fff;}
+
+.cntr .slide-item:hover .cntr_link{
+  color:#fff;
+/* background:url(/front/images/main/ico_link_w.png) no-repeat right center; */
+}
+
+
+/* 메인 > 특성화센터 > controller */
+
+.cntr .controller_form {
+  margin-top:20px;
+}
+
+.cntr .controller_form .slick-dots{
+  display:inline-block; 
+  vertical-align:-1px;
+}
+
+.cntr .controller_form .slick-dots button{
+  display:inline-block; width:16px; height:16px; border-radius:16px; text-indent:-9999px; border:0; background:#fff; border:1px solid #5a85d8; cursor:pointer; border: 1px solid red
+}
+.cntr .controller_form .slick-dots .slick-active button{display:inline-block; width:16px; height:16px; border-radius:16px; text-indent:-9999px; border:0; background:#5a85d8; border:1px solid #5a85d8; cursor:pointer;}
+.cntr .controller_form a {display: inline-block; width: 16px; height: 16px; border: 2px solid #ddd; background: #fff; text-align: center; vertical-align: middle; border-radius: 16px; line-height: 16px; } 
+.cntr .controller_form a img { margin-top: -3px; width:auto; height:6px;} 
+.cntr .controller_form.play .play { border-color: #5a85d8; } 
+.cntr .controller_form.stop .stop { border-color: #5a85d8; }          
+.cntr .slide-item.f1_bd:before{display:none !important;}              
+
+
+@media(max-width:1660px){
+	/* 1660 : 메인 > 특성화센터 */
+	.cntr .slick_wrapper{width:calc(100% - 160px); }
+}
+
+@media(max-width:1024px){
+	/* 1024 : 메인 > 특성화센터 */
+	.cntr{display:none;}
+} 
