@@ -1,6 +1,6 @@
 import React from 'react'
 import './ReservReg.css';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const ReservReg = () => {
 
