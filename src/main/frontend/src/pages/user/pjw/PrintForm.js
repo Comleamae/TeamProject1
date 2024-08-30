@@ -38,7 +38,7 @@ const PrintForm = () => {
       .catch((error) => {
         console.log('환자정보 받아오는데서 에러', error);
       });
-  }, [treDate]);
+  }, [treNum]);
 
   // PDF 생성 함수
   const handlePrint = () => {
