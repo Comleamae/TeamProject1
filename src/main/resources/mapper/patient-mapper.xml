@@ -21,7 +21,6 @@
         <result column="OUT_HOPI" property="outHopi"/>
         <result column="ROOM_NUM" property="roomNum"/>
         <result column="OPER_DATE" property="operDate"/>
-        <result column="TRE_NUM" property="treNum"/>
     </resultMap>
 
     <!--처방전에 대한 정보-->
@@ -65,12 +64,14 @@
         <!--환자 한명의 내용-->
         <select id="getPatListAll" parameterType="map" resultMap="patient">
             SELECT *
-            FROM PATIENT, INFO_DATE, INFO_RECIPE, INFO_TREAT
-            WHERE PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
-            AND INFO_RECIPE.TRE_NUM = INFO_TREAT.TRE_NUM
-            AND INFO_TREAT.TRE_NUM = INFO_DATE.TRE_NUM
+            FROM PATIENT LEFT OUTER JOIN INFO_TREAT
+            ON PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
+            LEFT OUTER JOIN INFO_RECIPE
+            ON INFO_RECIPE.TRE_NUM = INFO_TREAT.TRE_NUM
+            LEFT OUTER JOIN INFO_DATE
+            ON INFO_TREAT.TRE_NUM = INFO_DATE.TRE_NUM
+            WHERE INFO_TREAT.TRE_NUM = #{treNum}
             AND PATIENT.PAT_NUM = #{patNum}
-            AND INFO_TREAT.TRE_NUM = #{treNum}
         </select>
 
 
