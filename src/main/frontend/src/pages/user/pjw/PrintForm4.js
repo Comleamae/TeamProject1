@@ -25,7 +25,7 @@ const PrintForm4 = () => {
       console.log(res)
       setPatientOne(res.data)
       setIsShow(true)
-      const docLinum = res.data[0].treatList[0].docLinum
+      const docLinum = res.data[0].treatVO.docLinum
       if(docLinum){
         axios
         .get(`/doctor/getOne/${docLinum}`)
@@ -77,11 +77,11 @@ const PrintForm4 = () => {
                 <td>진료과</td>
                 <td>{doctorOne.dept}</td>
                 <td colSpan={3}>병실</td>
-                <td>{patientOne[0].dateList[0].roomNum}호</td>
+                <td>{patientOne[0].dateVO.roomNum}호</td>
                 <td>환자구분</td>
                 <td colSpan={4}>
                   {
-                    patientOne[0].dateList!=null
+                    patientOne[0].dateVO!=null
                     ?
                     '입원'
                     :

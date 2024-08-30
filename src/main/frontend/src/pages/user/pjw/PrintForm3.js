@@ -17,32 +17,7 @@ const[isShow, setIsShow] = useState(false)
 // PDF 생성을 위해 참조할 요소
 const printRef = useRef();
 
-
-
-  useEffect(() => {
-    //환자의 정보, 입원 정보, 처방전 정보 조회
-    axios
-      .post('/patient/getOne', patNum)
-      .then((res) => {
-        setPatientOne(res.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [])
-
   
-  useEffect(() => {
-    //담당 의사의 정보 받아온다.
-    axios
-      .post('/doctor/getOne', )
-      .then((res) => {
-        setDoctorOne(res.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [])
 
   //불러온 한 환자의 전체 정보
   useEffect(()=>{
@@ -52,7 +27,7 @@ const printRef = useRef();
       console.log(res)
       setPatientOne(res.data)
       setIsShow(true)
-      const docLinum = res.data[0].treatList[0].docLinum
+      const docLinum = res.data[0].treatVO.docLinum
       if(docLinum){
         axios
         .get(`/doctor/getOne/${docLinum}`)
@@ -113,7 +88,7 @@ const printRef = useRef();
               </tr>
               <tr>
                 <td rowSpan={2}>질병명</td>
-                <td rowSpan={2}>{patientOne[0].treatList[0].disease}</td>
+                <td rowSpan={2}>{patientOne[0].treatVO.disease}</td>
                 <td rowSpan={2}>처방의</td>
                 <td colSpan={2}>{doctorOne.docName}</td>
                 <td>면허종별</td>
@@ -133,8 +108,8 @@ const printRef = useRef();
                 <td colSpan={6}>섭취 방법</td>
               </tr>
               <tr>
-                <td colSpan={2}>{patientOne[0].treatList[0].recipeVO.mediName}</td>
-                <td colSpan={6}>{patientOne[0].treatList[0].recipeVO.eatCnt}</td>
+                <td colSpan={2}>{patientOne[0].treatVO.recipeVO.mediName}</td>
+                <td colSpan={6}>{patientOne[0].treatVO.recipeVO.eatCnt}</td>
               </tr>
               <tr>
                 <td>사용기간</td>

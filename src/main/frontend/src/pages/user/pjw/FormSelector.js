@@ -3,22 +3,24 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 const FormSelector = ({recoData, setRecoData}) => {
-  //환자의 진료 기록을 받아서 저장할 변수
-  const[treList, setTreList]=useState([])
+
+  //환자의 진료 기록 날짜를 저장 받을 변수
+  const[treDateList, setTreDateList] = useState([])
 
   //선택한 날짜를 담을 변수
   const[selectData, setSelectData]=useState({
     patNum:recoData.patNum
-    , treDate:''
+    , treNum:0
   })
 
+  
   const[isShow, setIsShow] = useState(false)
 
   //선택된 날짜를 변경할 함수
   function handleChangeData(e){
     setSelectData({
       ...selectData,
-      treDate:e.target.value
+      treNum:e.target.value
     })
     console.log(selectData)
   }
@@ -26,19 +28,10 @@ const FormSelector = ({recoData, setRecoData}) => {
   const navigate = useNavigate()
   //해당 환자가 받았던 진료 기록의 리스트를 받아올것
   useEffect(()=>{
-    // axios.post('/patient/treDay', selectData)
-    // .then(
-    //   //날짜 데이터 받아온거
-
-    // )
-    // .catch(
-
-    // )
     axios
-    .post(`/patient/treList`, recoData)
+    .post(`/patient/treDateList`, recoData)
     .then((res)=>{
-      console.log(res)
-      setTreList(res.data)
+      setTreDateList(res.data)
       setIsShow(true)
     })
     .catch((error)=>{
@@ -47,14 +40,14 @@ const FormSelector = ({recoData, setRecoData}) => {
   },[])
 
   useEffect(() => {
-    if (treList.length > 0) {
+    if (treDateList.length > 0) {
       // treList가 업데이트된 후에 selectData의 treDate를 설정
       setSelectData(prevState => ({
         ...prevState,
-        treDate: treList[0].treatList[0].treDate
+        treDate: treDateList[0].treDate
       }));
     }
-  }, [treList]);
+  }, [treDateList]);
 
   return (
     <>
@@ -83,15 +76,15 @@ const FormSelector = ({recoData, setRecoData}) => {
             {/* 선택된 날짜의 데이터를 변수에 넣어서 outlet으로 보내자*/}
             <select name='treDate' value={selectData.treDate} onChange={(e)=>{handleChangeData(e)}}>
               {
-                treList.length > 0 
-                ? 
-                (
-                  treList.map((treOne, i) => (
-                    <option key={i} value={treOne.treatList[0].treDate}>
-                      {treOne.treatList[0].treDate}
+                treDateList.length > 0 
+                ?
+                treDateList.map((dateOne, i)=>{
+                  return(
+                    <option key={i}>
+                      {dateOne.treDate}
                     </option>
-                  ))
-                ) 
+                  )
+                })
                 : 
                 (
                   <option disabled>진료 기록이 없습니다</option>

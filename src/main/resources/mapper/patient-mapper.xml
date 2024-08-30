@@ -11,7 +11,7 @@
         <result column="GENDER" property="gender"/>
         <result column="CITIZEN_NUM" property="citizenNum"/>
         <result column="ADDRESS" property="address"/>
-        <collection property="treatList" resultMap="infoTreat"/>
+        <association property="treatVO" resultMap="infoTreat"/>
     </resultMap>
 
     <!--환자에 대한 입원 정보-->
@@ -21,7 +21,7 @@
         <result column="OUT_HOPI" property="outHopi"/>
         <result column="ROOM_NUM" property="roomNum"/>
         <result column="OPER_DATE" property="operDate"/>
-        <result column="PAT_NUM" property="patNum"/>
+        <result column="TRE_NUM" property="treNum"/>
     </resultMap>
 
     <!--처방전에 대한 정보-->
@@ -54,6 +54,14 @@
             WHERE CITIZEN_NUM = #{citizenNum}
         </select>
 
+        <!--환자 한명의 진료 기록 날짜-->
+        <select id="getOneTreDate" resultMap="infoTreat">
+            SELECT PATIENT.PAT_NUM, TRE_DATE, TRE_NUM
+            FROM PATIENT, INFO_TREAT
+            WHERE PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
+            AND PATIENT.PAT_NUM = #{patNum}
+        </select>
+
         <!--환자 한명의 내용-->
         <select id="getPatListAll" parameterType="map" resultMap="patient">
             SELECT *
@@ -62,16 +70,9 @@
             AND INFO_RECIPE.TRE_NUM = INFO_TREAT.TRE_NUM
             AND INFO_TREAT.TRE_NUM = INFO_DATE.TRE_NUM
             AND PATIENT.PAT_NUM = #{patNum}
-            AND INFO_TREAT.TRE_DATE = #{treDate}
+            AND INFO_TREAT.TRE_NUM = #{treNum}
         </select>
 
-        <!--한 환자에 대한 진료기록-->
-        <select id="getOneTreList" resultMap="patient">
-            SELECT TRE_DATE
-            FROM PATIENT, INFO_TREAT
-            WHERE PATIENT.PAT_NUM = INFO_TREAT.PAT_NUM
-            AND PATIENT.PAT_NUM = #{patNum}
-        </select>
 
         <!--예약 환자 리스트-->
         <select id="getWaitPatientList" resultMap="patient">

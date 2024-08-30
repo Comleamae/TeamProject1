@@ -19,17 +19,16 @@ public class PatientController {
     }
 
     /*환자 한명에 대한 정보를 얻는 기능 환자번호와 진료날짜를 받아서*/
-    @GetMapping("/getOne/{patNum}/{treDate}")
-    List<PatientVO> getPatientOne(@PathVariable(name = "patNum") int patNum, @PathVariable(name = "treDate") String treDate){
-        return patientService.getPatListAll(patNum, treDate);
+    @GetMapping("/getOne/{patNum}/{treNum}")
+    List<PatientVO> getPatientOne(@PathVariable(name = "patNum") int patNum, @PathVariable(name = "treNum") int treNum){
+        return patientService.getPatListAll(patNum, treNum);
     }
 
     /*환자 한명의 진료 기록 리스트*/
-    @PostMapping("/treList")
-    List<TreatVO> getTreatList(@RequestBody Map<String,Integer> recoData){
-        return patientService.getTreatListWhenPatOne(recoData.get("patNum"));
+    @PostMapping("/treDateList")
+    List<TreatVO> getOneTreDate(@RequestBody Map<String, Integer> recoData){
+        return patientService.getOneTreDate(recoData.get("patNum"));
     }
-
     // 대기자 목록에 올라간 환자 조회
     @GetMapping("/waitList")
     public List<PatientVO> getWaitPatientList(){

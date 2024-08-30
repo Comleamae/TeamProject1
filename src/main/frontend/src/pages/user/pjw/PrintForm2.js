@@ -24,7 +24,7 @@ const PrintForm2 = () => {
     console.log(res)
     setPatientOne(res.data)
     setIsShow(true)
-    const docLinum = res.data[0].treatList[0].docLinum
+    const docLinum = res.data[0].treatVO.docLinum
       if(docLinum){
         axios
         .get(`/doctor/getOne/${docLinum}`)
@@ -70,13 +70,13 @@ const PrintForm2 = () => {
               <td>작성자</td>
               <td>{doctorOne.docName}</td>
               <td>작성일자</td>
-              <td colSpan={2}>{patientOne[0].treatList[0].treDate}</td>
+              <td colSpan={2}>{patientOne[0].treatVO.treDate}</td>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td colSpan={5}>병록번호</td>
-              <td colSpan={3}>{patientOne[0].treatList[0].treNum}</td>
+              <td colSpan={3}>{patientOne[0].treatVO.treNum}</td>
             </tr>
             <tr>
               <td>일련번호</td>
@@ -108,7 +108,7 @@ const PrintForm2 = () => {
             </tr>
             <tr>
               <td>진단명</td>
-              <td colSpan={7}>{patientOne[0].treatList[0].disease}</td>
+              <td colSpan={7}>{patientOne[0].treatVO.disease}</td>
             </tr>
           </tbody>
         </table>
