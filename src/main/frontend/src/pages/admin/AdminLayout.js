@@ -18,6 +18,7 @@ const AdminLayout = () => {
         <button type='button' onClick={()=>{navigate('patientInfo')}}>환자정보</button>
         <button type='button' onClick={()=>{navigate('MedicalHistory')}}>진료이력</button>
         <button type='button' onClick={()=>{navigate('Presc')}}>처 방 전</button>
+        <button type='button' onClick={()=>{navigate('text')}}>테 스 트</button>
         </div>
     </>
   )

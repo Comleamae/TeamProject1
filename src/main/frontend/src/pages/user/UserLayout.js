@@ -9,7 +9,7 @@ const UserLayout = () => {
     <div>
       유저페이지 레이아웃
       <Outlet />
-    </div>
+    </div>    
   )
 }
 
