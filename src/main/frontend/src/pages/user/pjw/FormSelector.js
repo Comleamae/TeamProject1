@@ -26,6 +26,14 @@ const FormSelector = ({recoData, setRecoData}) => {
   const navigate = useNavigate()
   //해당 환자가 받았던 진료 기록의 리스트를 받아올것
   useEffect(()=>{
+    // axios.post('/patient/treDay', selectData)
+    // .then(
+    //   //날짜 데이터 받아온거
+
+    // )
+    // .catch(
+
+    // )
     axios
     .post(`/patient/treList`, recoData)
     .then((res)=>{

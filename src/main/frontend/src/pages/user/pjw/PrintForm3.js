@@ -94,18 +94,18 @@ const printRef = useRef();
               </tr>
               <tr>
                 <td>발행일/발행번호</td>
-                <td>{new Date().toLocaleDateString()} / {}</td>
+                <td>{new Date().toLocaleDateString()}</td>
                 <td>제 {/* 제 호 */}</td>
                 <td rowSpan={3}>의료기관</td>
-                <td>명칭</td>
-                <td colSpan={2}>{/* 의료기관 명칭 */}</td>
+                <td>기관명</td>
+                <td colSpan={2}>그린대학병원</td>
               </tr>
               <tr>
                 <td rowSpan={2}>환자</td>
                 <td>성명</td>
                 <td>{patientOne[0].patName}</td>
-                <td>전화</td>
-                <td colSpan={2}></td>
+                <td rowSpan={2}>전화</td>
+                <td colSpan={2} rowSpan={2}>052-111-2222</td>
               </tr>
               <tr>
                 <td>주민등록번호</td>
@@ -113,15 +113,13 @@ const printRef = useRef();
               </tr>
               <tr>
                 <td rowSpan={2}>질병명</td>
-                <td>{patientOne[0].treatList[0].disease}</td>
+                <td rowSpan={2}>{patientOne[0].treatList[0].disease}</td>
                 <td rowSpan={2}>처방의</td>
-                <td></td>
-                <td>{doctorOne.docName}</td>
+                <td colSpan={2}>{doctorOne.docName}</td>
                 <td>면허종별</td>
                 <td>{doctorOne.dept}</td>
               </tr>
               <tr>
-                <td></td>
                 <td>서명 또는 날인</td>
                 <td></td>
                 <td>면허번호</td>
@@ -132,12 +130,12 @@ const printRef = useRef();
               </tr>
               <tr>
                 <td colSpan={2}>처방 의약품의 명칭</td>
-                <td>1회 투여량</td>
-                <td>1회 투여횟수</td>
-                <td>투약일수</td>
-                <td colSpan={2}>용별</td>
+                <td colSpan={6}>섭취 방법</td>
               </tr>
-              
+              <tr>
+                <td colSpan={2}>{patientOne[0].treatList[0].recipeVO.mediName}</td>
+                <td colSpan={6}>{patientOne[0].treatList[0].recipeVO.eatCnt}</td>
+              </tr>
               <tr>
                 <td>사용기간</td>
                 <td colSpan={2}>교부일로부터 3일간</td>

@@ -69,7 +69,7 @@ const PrintForm4 = () => {
                 <td>성명</td>
                 <td colSpan={2}>{patientOne[0].patName}</td>
                 <td>입원기간</td>
-                <td colSpan={3}>{patientOne[0].dateList[0].inHopi}~{patientOne[0].dateList[0].outHopi}</td>
+                <td colSpan={3}>{patientOne[0].pat}</td>
                 <td>진료기간</td>
                 <td colSpan={3}>~</td>
               </tr>

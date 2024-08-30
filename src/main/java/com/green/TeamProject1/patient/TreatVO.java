@@ -12,5 +12,6 @@ public class TreatVO {
     private String treDate;
     private int dateNum;
     private int medNum;
-    //약 정보
+    private RecipeVO recipeVO;//처방전 정보
+    private DateVO dateVO;//입원 정보
 }

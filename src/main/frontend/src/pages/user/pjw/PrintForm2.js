@@ -87,11 +87,11 @@ const PrintForm2 = () => {
             <tr>
               <td>입원과</td>
               <td>{doctorOne.dept}</td>
-              <td>{patientOne[0].dateList[0].roomNum}호실</td>
+              <td>{patientOne[0]}호실</td>
               <td>입원날짜</td>
               <td colSpan={4}>
-                {patientOne[0].dateList[0].inHopi}부터
-                {patientOne[0].dateList[0].outHopi}까지
+                {patientOne[0].treatVO.dateVO.inHopi}부터
+                {patientOne[0].treatVO.dateVO.outHopi}까지
               </td>
             </tr>
             <tr>
@@ -118,7 +118,7 @@ const PrintForm2 = () => {
               <td colSpan={8}>
                 <div className='footer'>
                   <p>위 환자는 {patientOne[0].treatList[0].disease}으로 인해 부터 까지 수술을 시행하였음을 확인함</p>
-                  <p>수술일자:{patientOne[0].dateList[0].operDate}</p>
+                  <p>수술일자:{patientOne[0].treatVO.operDate}</p>
                   <table className='footer-table'>
                     <tbody>
                       <tr>

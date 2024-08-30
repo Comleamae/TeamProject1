@@ -14,7 +14,5 @@ public class PatientVO {
     private String gender;
     private String address;
     private String citizenNum;
-    private List<DateVO> dateList; // 입원정보를 하나씩
-    private List<MedicineVO> medicineList; // 처방정보를 하나씩
-    private List<TreatVO> treatList; // 진료정보를 하나씩
+    private List<TreatVO> treatList; // 진료정보를 전부
 }

@@ -90,10 +90,10 @@ const PrintForm = () => {
                       <table className='in-date-table'>
                         <tr>
                           <td rowSpan={2}>입 원</td>
-                          <td colSpan={5}>{patientOne[0].dateList[0].inHopi || 'N/A'}부터</td>
+                          <td colSpan={5}>{'N/A'}부터</td>
                         </tr>
                         <tr>
-                          <td colSpan={5}>{patientOne[0].dateList[0].outHopi || 'N/A'}까지(일간)</td>
+                          <td colSpan={5}>{'N/A'}까지(일간)</td>
                         </tr>
                         <tr>
                           <td rowSpan={3}>통 원</td>

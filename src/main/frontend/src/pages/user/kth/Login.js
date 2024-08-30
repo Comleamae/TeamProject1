@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+
 const Login = () => {
 
   const navigate = useNavigate()
@@ -11,10 +12,6 @@ const Login = () => {
     memId: '',
     memPw: ''
   });
-
-  //로그인하여 조회된 회원정보 저장할 state변수
-  
-
 
   //입력한 정보로 바꾸기
   function changeLoginData(e) {
@@ -30,24 +27,13 @@ const Login = () => {
     axios.post('/api_member/login', loginData)
       .then((res) => {
         // 로그인 가능 시
-        if (res.data != '') {  
+        if (res.data != '') { 
           alert('환영합니다.')
-          //sessionStorage에 로그인한 회원의 개인정보 저장
           const loginInfo = {
-            memId : res.data.memId,
-            memPW : res.data.memPw,
-            memName : res.data.memName,
-            memTel : res.data.memTel,
-            citizenNum : res.data.citizenNum,
-            memAddr : res.data.memAddr,
-            addrDetail : res.data.addrDetail,
-            memEmail : res.data.memEmail,
-            post : res.data.post,
-            memRole : res.data.memRole
+            memId: res.data.memId,
+            memPw: res.data.memPw
           }
-          const json_loginInfo = JSON.stringify(loginInfo);
-          window.sessionStorage.setItem('loginInfo', json_loginInfo);
-          navigate('/')
+          window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
         }
         else {
           alert('ID 혹은 PW를 확인하세요.')
@@ -65,7 +51,7 @@ const Login = () => {
         <div className='login-div'>
           <div><input type='text' name='memId' placeholder='아이디' onChange={(e) => { changeLoginData(e) }}></input></div>
           <div><input type='password' name='memPw' placeholder='비밀번호' onChange={(e) => { changeLoginData(e) }}></input></div>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/user/join') }}>회원가입</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/join') }}>회원가입</button>
         </div>
         <button type='button' className='btn-div' onClick={(e) => { login() }}> 로그인</button>
       </div>
