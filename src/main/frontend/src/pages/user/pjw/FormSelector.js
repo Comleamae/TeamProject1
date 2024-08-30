@@ -20,7 +20,7 @@ const FormSelector = ({recoData, setRecoData}) => {
   function handleChangeData(e){
     setSelectData({
       ...selectData,
-      treNum:e.target.value
+      treNum:parseInt(e.target.value, 10)
     })
     console.log(selectData)
   }
@@ -44,24 +44,25 @@ const FormSelector = ({recoData, setRecoData}) => {
       // treList가 업데이트된 후에 selectData의 treDate를 설정
       setSelectData(prevState => ({
         ...prevState,
-        treDate: treDateList[0].treDate
+        treNum: treDateList[0].treNum
       }));
+      console.log(selectData)
     }
   }, [treDateList]);
 
   return (
     <>
       <div className='form-selector'>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm/${selectData.patNum}/${selectData.treDate}`)}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm/${selectData.patNum}/${selectData.treNum}`)}}>
           진료확인서
         </div>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm2/${selectData.patNum}/${selectData.treDate}`)}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm2/${selectData.patNum}/${selectData.treNum}`)}}>
           수술확인서
         </div>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm3/${selectData.patNum}/${selectData.treDate}`)}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm3/${selectData.patNum}/${selectData.treNum}`)}}>
           처방전
         </div>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm4/${selectData.patNum}/${selectData.treDate}`)}}>
+        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm4/${selectData.patNum}/${selectData.treNum}`)}}>
           영수증
         </div>
       </div>
@@ -80,7 +81,7 @@ const FormSelector = ({recoData, setRecoData}) => {
                 ?
                 treDateList.map((dateOne, i)=>{
                   return(
-                    <option key={i}>
+                    <option key={i} value={dateOne.treNum}>
                       {dateOne.treDate}
                     </option>
                   )

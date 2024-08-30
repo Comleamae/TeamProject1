@@ -22,18 +22,18 @@ const PrintForm = () => {
         console.log(res);
         setPatientOne(res.data);
         setIsShow(true);
-        const docLinum = res.data[0].treatVO.docLinum;
-        if (docLinum) {
-          axios
-            .get(`/doctor/getOne/${docLinum}`)
-            .then((docRes) => {
-              console.log(docRes);
-              setDoctorOne(docRes.data);
-            })
-            .catch((error) => {
-              console.log('의사 정보 받기 에러', error);
-            });
-        }
+        // const docLinum = res.data[0].treatVO.docLinum;
+        // if (docLinum) {
+        //   axios
+        //     .get(`/doctor/getOne/${docLinum}`)
+        //     .then((docRes) => {
+        //       console.log(docRes);
+        //       setDoctorOne(docRes.data);
+        //     })
+        //     .catch((error) => {
+        //       console.log('의사 정보 받기 에러', error);
+        //     });
+        // }
       })
       .catch((error) => {
         console.log('환자정보 받아오는데서 에러', error);
@@ -89,14 +89,14 @@ const PrintForm = () => {
                       <table className='in-date-table'>
                         <tr>
                           <td rowSpan={2}>입 원</td>
-                          <td colSpan={5}>{'N/A'}부터</td>
+                          <td colSpan={5}>{patientOne[0].treatVO.dateVO==null?'N/A':patientOne[0].treatVO.dateVO.inHopi}부터</td>
                         </tr>
                         <tr>
-                          <td colSpan={5}>{'N/A'}까지(일간)</td>
+                          <td colSpan={5}>{patientOne[0].treatVO.dateVO==null?'N/A':patientOne[0].treatVO.dateVO.outHopi}까지(일간)</td>
                         </tr>
                         <tr>
-                          <td rowSpan={3}>통 원</td>
-                          <td colSpan={5}>{patientOne[0].treatVO.treDate || 'N/A'}</td>
+                          <td rowSpan={3}>마지막 통 원 일자</td>
+                          <td colSpan={5}>{patientOne[0].treatVO.dateVO==null?patientOne[0].treatVO.treDate:'입원환자'}</td>
                         </tr>
                         <tr>
                           <td>총 일간</td>
@@ -136,7 +136,7 @@ const PrintForm = () => {
                     </tr>
                     <tr>
                       <td>전화번호:</td>
-                      <td>052-532-1231</td>
+                      <td>052-111-2222</td>
                     </tr>
                     <tr>
                       <td colSpan={2}>

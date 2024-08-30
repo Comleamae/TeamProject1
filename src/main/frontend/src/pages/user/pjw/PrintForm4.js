@@ -9,7 +9,7 @@ const PrintForm4 = () => {
   const [doctorOne, setDoctorOne] = useState({})
   const navigate = useNavigate()
   
-  const {patNum, treDate} = useParams()
+  const {patNum, treNum} = useParams()
 
   //
   const[isShow, setIsShow] = useState(false)
@@ -20,7 +20,7 @@ const PrintForm4 = () => {
   //불러온 한 환자의 전체 정보
   useEffect(()=>{
     axios
-    .get(`/patient/getOne/${patNum}/${treDate}`)
+    .get(`/patient/getOne/${patNum}/${treNum}`)
     .then((res)=>{
       console.log(res)
       setPatientOne(res.data)
@@ -42,7 +42,7 @@ const PrintForm4 = () => {
       console.log('환자정보 받아오는데서 에러', error)
       console.log(patNum)
     })
-  }, [treDate])
+  }, [treNum])
 
   // PDF 생성 함수
   const handlePrint = () => {
