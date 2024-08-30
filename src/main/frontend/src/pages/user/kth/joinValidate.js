@@ -16,7 +16,6 @@ let citizenNum2 = false;
 
 export const joinValidate = (newData, valid_tag, tagName) => {
 
-
   //글자 지우기
   const erase = () => {
     console.log(valid_tag)

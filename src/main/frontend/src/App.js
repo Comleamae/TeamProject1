@@ -1,6 +1,6 @@
 import './App.css';
 import './reset.css'
-import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
@@ -18,8 +18,8 @@ import MoneyIn from './pages/user/cyh/MoneyIn';
 import PayMoney from './pages/user/cyh/PayMoney';
 import Join from './pages/user/kth/Join';
 import Login from './pages/user/kth/Login';
-import Main from './pages/Main';
 import { MdMenu } from "react-icons/md"; //메뉴 아이콘
+import Main from './pages/Main';
 
 
 function App() {
@@ -34,7 +34,6 @@ function App() {
 
   //로그인한 회원의 정보로 로그인 배너 생성
   useEffect(() => {
-
     //로그인하면서 sessionStorage에 저장한 정보 가져오기
     const sessionLoginInfo = window.sessionStorage.getItem('loginInfo')
 
@@ -48,17 +47,6 @@ function App() {
     }
   }, [])
 
-  // 메인화면 안보이게하기!! 
-  const location = useLocation(); // 현재 경로를 가져옵니다
-
-  // 현재 경로에 따라 Main 컴포넌트를 표시할지 결정합니다
-  const isMainVisible = !(
-    location.pathname.startsWith('/user/login') ||
-    location.pathname.startsWith('/user/join') ||
-    location.pathname.startsWith('/admin') ||
-    location.pathname.startsWith('/user/clinicPrint')
-  );
-
   return (
     <div className="App">
 
@@ -69,11 +57,13 @@ function App() {
             <button type='button' className='menu' id='main-menu'>
             <MdMenu className='menu-icon'/>
             </button>
-            {/* <div>
+            {/* 
+            <div>
               <ul>
                 <li>목록목록</li>
               </ul>
-            </div> */}
+            </div> 
+            */}
           </div>
           
           <Link to="/" className='logo'>
@@ -85,10 +75,7 @@ function App() {
             //로그인 하였다면
             // 회원 이름 + 로그아웃 버튼
             <div>
-
               {loginInfo.memName}님 안녕하세요. 
-
-
               {/* Logout 글자에 손대면 cursor pointer 해주세요 */}
 
               {/* 클릭 시 로그아웃 */}
@@ -122,14 +109,14 @@ function App() {
               </div>
           }
         </div>
-
-        {/* 메인화면 */}
-        {isMainVisible && <Main />}
-
       </div>
 
       <div className='layout-div'>
         <Routes>
+
+          {/* 메인화면 */}
+          <Route path="/" element={<Main />} />
+
           {/* 유저 페이지 */}
           <Route path='/user' element={<UserLayout />}>
             {/* 로그인 * 회원가입 페이지 */}
@@ -153,21 +140,22 @@ function App() {
 
           {/* 관리자 페이지 */}
           <Route path='/admin' element={<AdminLayout />} >
-          
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
 
-            <Route path='/admin/reserv' element={<Reserv />} />
+            {/* 예약 조회 */}
+            <Route path='reserv' element={<Reserv />} />
 
             {/* 환자 정보 */}
             <Route path='patientInfo' element={<PatientInfo />} />
+
             {/* 환자 정보 수정 */}
 
             {/* 진료 이력 */}
             <Route path='MedicalHistory' element={<MedicalHistory />} />
-            {/* 처 방 전 */}
 
-            <Route path='/admin/Presc' element={<Presc />} />    
+            {/* 처 방 전 */}
+            <Route path='Presc' element={<Presc />} />    
 
           </Route>
         </Routes>

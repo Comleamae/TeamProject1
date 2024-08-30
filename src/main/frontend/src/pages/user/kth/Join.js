@@ -4,6 +4,12 @@ import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom'
 import { joinValidate } from './joinValidate';
 import axios from 'axios';
+<<<<<<< HEAD
+=======
+//import { Modal } from 'bootstrap';
+
+
+>>>>>>> cyh
 const Join = () => {
 
   const navigate = useNavigate()
