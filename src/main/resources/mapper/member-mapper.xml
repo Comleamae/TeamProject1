@@ -10,7 +10,7 @@
         <result column="MEM_NAME" property="memName"/>
         <result column="MEM_TEL" property="memTel"/>
         <result column="CITIZEN_NUM" property="citizenNum"/>
-        <result column="MEM_ADDER" property="memAddr"/>
+        <result column="MEM_ADDR" property="memAddr"/>
         <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEM_EMAIL" property="memEmail"/>
         <result column="POST" property="post"/>
@@ -21,13 +21,13 @@
     <!--id 중복 체크-->
     <select id="checkId" resultType="String">
         SELECT MEM_ID
-        FROM TAK_MEMBER
+        FROM MEMBER
         WHERE MEM_ID = #{memId};
     </select>
 
     <!--회원가입 쿼리-->
     <insert id="join">
-        INSERT INTO tak_member(
+        INSERT INTO MEMBER(
         MEM_ID
         , MEM_PW
         , MEM_NAME
@@ -50,8 +50,8 @@
 
     <!--로그인 쿼리-->
     <select id="login" resultMap="member">
-        SELECT MEM_ID, MEM_PW
-        FROM TAK_MEMBER
+        SELECT *
+            FROM MEMBER
         WHERE MEM_ID = #{memId}
         AND MEM_PW = #{memPw}
     </select>

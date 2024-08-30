@@ -30,7 +30,8 @@ public class MemberController {
     @PostMapping("/login")
     public MemberVO login(@RequestBody MemberVO memberVO){
         /*selectOne의 결과로 null이 나온다면 로그인 불가*/
-        /*selectOne의 결과로 null이 아니라면 로그인 가능*/
+        /*selectOne의 결과로 null이 아니라면 => 회원 정보가 나온다면 로그인 가능*/
+        System.out.println(memberService.login(memberVO));
         return memberService.login(memberVO);
     }
 }

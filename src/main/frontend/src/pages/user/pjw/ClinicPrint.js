@@ -4,6 +4,8 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FormSelector from './FormSelector';
 
+
+// 매개변수로 로그인 여부 가져온다. (setIsLogin 제외 / 추가로 로그인 정보도 필요함.)
 const ClinicPrint = ({ isLogin, setIsLogin }) => {
   const navigate = useNavigate();
 
