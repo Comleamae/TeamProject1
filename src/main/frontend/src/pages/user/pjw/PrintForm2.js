@@ -24,7 +24,7 @@ const PrintForm2 = () => {
     console.log(res)
     setPatientOne(res.data)
     setIsShow(true)
-    const docLinum = res.data[0].treatVO.docLinum
+    const docLinum = res.data[0].treatVO.docLinum;
       if(docLinum){
         axios
         .get(`/doctor/getOne/${docLinum}`)
@@ -39,7 +39,6 @@ const PrintForm2 = () => {
   })
   .catch((error)=>{
     console.log('환자정보 받아오는데서 에러', error)
-    console.log(patNum)
   })
 }, [treNum])
 
@@ -87,7 +86,7 @@ const PrintForm2 = () => {
             <tr>
               <td>입원과</td>
               <td>{doctorOne.dept}</td>
-              <td>{patientOne[0]}호실</td>
+              <td>{patientOne[0].treatVO.dateVO.roomNum}호실</td>
               <td>입원날짜</td>
               <td colSpan={4}>
                 {patientOne[0].treatVO.dateVO.inHopi}부터
@@ -117,8 +116,8 @@ const PrintForm2 = () => {
             <tr>
               <td colSpan={8}>
                 <div className='footer'>
-                  <p>위 환자는 {patientOne[0].treatList[0].disease}으로 인해 부터 까지 수술을 시행하였음을 확인함</p>
-                  <p>수술일자:{patientOne[0].treatVO.operDate}</p>
+                  <p>위 환자는 {patientOne[0].treatVO.disease}으로 인해 부터 까지 수술을 시행하였음을 확인함</p>
+                  <p>수술일자:{patientOne[0].treatVO.dateVO.operDate}</p>
                   <table className='footer-table'>
                     <tbody>
                       <tr>

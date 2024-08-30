@@ -22,18 +22,18 @@ const PrintForm = () => {
         console.log(res);
         setPatientOne(res.data);
         setIsShow(true);
-        // const docLinum = res.data[0].treatVO.docLinum;
-        // if (docLinum) {
-        //   axios
-        //     .get(`/doctor/getOne/${docLinum}`)
-        //     .then((docRes) => {
-        //       console.log(docRes);
-        //       setDoctorOne(docRes.data);
-        //     })
-        //     .catch((error) => {
-        //       console.log('의사 정보 받기 에러', error);
-        //     });
-        // }
+        const docLinum = res.data[0].treatVO.docLinum;
+        if (docLinum) {
+          axios
+            .get(`/doctor/getOne/${docLinum}`)
+            .then((docRes) => {
+              console.log(docRes);
+              setDoctorOne(docRes.data);
+            })
+            .catch((error) => {
+              console.log('의사 정보 받기 에러', error);
+            });
+        }
       })
       .catch((error) => {
         console.log('환자정보 받아오는데서 에러', error);

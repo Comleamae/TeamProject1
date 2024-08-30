@@ -125,9 +125,9 @@ function App() {
 
             <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
               <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
-              <Route path='printForm2/:patNum/:treDate' element={<PrintForm2 />} />
-              <Route path='printForm3/:patNum/:treDate' element={<PrintForm3 />} />
-              <Route path='printForm4/:patNum/:treDate' element={<PrintForm4 />} />
+              <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
+              <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
+              <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
             </Route>
         
 
