@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../reset.css';
 import '../cyh/MoneyIn.css'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 const MoneyIn = () => {
 
@@ -186,8 +186,9 @@ const MoneyIn = () => {
         </div>
   
         <button className='pay-btn' type='button' onClick={()=>{navigate('/')}}>취소하기</button>
-        <button className='pay-btn' type='button' onClick={()=>{navigate('/user/payMoney')}}>결제하기</button>
+        <button className='pay-btn' type='button' onClick={()=>{navigate(`/user/payMoney`)}}>결제하기</button>
       </div>
+      <Outlet />
     </div>
   )
 }
