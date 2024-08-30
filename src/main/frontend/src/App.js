@@ -1,10 +1,6 @@
 import './App.css';
-<<<<<<< HEAD
-=======
-import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
->>>>>>> cyh
 import './reset.css'
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
@@ -12,7 +8,6 @@ import Reserv from './pages/admin/ksh/Reserv';
 import PatientInfo from './pages/admin/ksh/PatientInfo';
 import MedicalHistory from './pages/admin/ksh/MedicalHistory';
 import Presc from './pages/admin/ksh/Presc';
-import MoneyIn from './pages/user/cyh/MoneyIn';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
@@ -20,16 +15,13 @@ import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
 import MoneyIn from './pages/user/cyh/MoneyIn';
-<<<<<<< HEAD
-import Join from './kth/Join';
-import Login from './kth/Login';
-=======
+import Join from './pages/user/kth/Join';
+import Login from './pages/user/kth/Login';
 import PayMoney from './pages/user/cyh/PayMoney';
-import Login from './Login';
-import Join from './pages/Join';
 import Main from './pages/Main';
+import { MdMenu } from "react-icons/md"; //메뉴 아이콘
 
->>>>>>> cyh
+
 
 function App() {
 
@@ -55,6 +47,18 @@ function App() {
 
       <div className='header'>
         <div className='header-index'>
+
+          <div id='btn-top-menus'>
+            <button type='button' className='menu' id='main-menu'>
+            <MdMenu className='menu-icon'/>
+            </button>
+            {/* <div>
+              <ul>
+                <li>목록목록</li>
+              </ul>
+            </div> */}
+          </div>
+          
           <Link to="/" className='logo'>
           <img className='logo-img' src='http://localhost:8080/images/logo.png' />
             그린대학교병원
@@ -114,52 +118,21 @@ function App() {
           <Route path='/admin' element={<AdminLayout />} >
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
+            {/* 예약 조회 */}
+            <Route path='/admin/reserv' element={<Reserv />} />
+            {/* 환자 정보 */}
+            <Route path='/admin/patientInfo' element={<PatientInfo />} />
+            {/* 환자 정보 수정 */}
+
+            {/* 진료 이력 */}
+            <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
+            {/* 처 방 전 */}
+            <Route path='/admin/Presc' element={<Presc />} />
           </Route>
         </Routes>
       </div>
-
-<<<<<<< HEAD
-
-      <Routes>
-        {/* 유저 페이지 */}
-        <Route path='/user' element={<UserLayout />}>
-          {/* <Route path='' element={}/> */}
-        </Route>
-
-        {/* 관리자 페이지 */}
-        <Route path='/admin' element={<AdminLayout />} />
-        {/* 예약 조회 */}
-        <Route path='/admin/reserv' element={<Reserv />} />
-        {/* 환자 정보 */}
-        <Route path='/admin/patientInfo' element={<PatientInfo />} />
-        {/* 환자 정보 수정 */}
-
-        {/* 진료 이력 */}
-        <Route path='/admin/MedicalHistory' element={<MedicalHistory />} />
-        {/* 처 방 전 */}
-        <Route path='/admin/Presc' element={<Presc />} />
-        <Route>
-        </Route>
-      </Routes>
-
-
-      <div className='work-selector'>
-        <div>
-          로그인
-        </div>
-        <div onClick={(e) => { navigate('/user/clinicPrint') }}>
-          <span>진료</span>
-        </div>
-        <div onClick={(e) => { navigate('/admin/clinicList') }}>
-          <span>의사</span>
-        </div>
-        <div onClick={(e) => { navigate(`/admin/moneyln`) }}>
-          데스크
-        </div>
-      </div>
-=======
->>>>>>> cyh
-    </div>
+    
+</div>
   );
 }
 
