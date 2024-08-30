@@ -138,9 +138,8 @@ function App() {
             <Route path='join' element={<Join />} />
             <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
 
-            {/* 환자 진료 */}
-            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin} />}>
-              <Route path='printForm/:patNum/:treDate' element={<PrintForm />} />
+            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin}/>}>
+              <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
               <Route path='printForm2/:patNum/:treDate' element={<PrintForm2 />} />
               <Route path='printForm3/:patNum/:treDate' element={<PrintForm3 />} />
               <Route path='printForm4/:patNum/:treDate' element={<PrintForm4 />} />

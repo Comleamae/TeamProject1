@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { generatePDF } from './utils/pdfUtils'; // 유틸리티 파일을 
 
 const PrintForm = () => {
-  const { patNum, treDate } = useParams();
+  const { patNum, treNum } = useParams();
   const navigate = useNavigate();
 
   const [patientOne, setPatientOne] = useState([]);
@@ -17,12 +17,12 @@ const PrintForm = () => {
   // 환자 정보 불러오기
   useEffect(() => {
     axios
-      .get(`/patient/getOne/${patNum}/${treDate}`)
+      .get(`/patient/getOne/${patNum}/${treNum}`)
       .then((res) => {
         console.log(res);
         setPatientOne(res.data);
         setIsShow(true);
-        const docLinum = res.data[0].treatList[0].docLinum;
+        const docLinum = res.data[0].treatVO.docLinum;
         if (docLinum) {
           axios
             .get(`/doctor/getOne/${docLinum}`)
@@ -37,7 +37,6 @@ const PrintForm = () => {
       })
       .catch((error) => {
         console.log('환자정보 받아오는데서 에러', error);
-        console.log(patNum);
       });
   }, [treDate]);
 
@@ -79,7 +78,7 @@ const PrintForm = () => {
               </tr>
               <tr>
                 <td>병명</td>
-                <td colSpan={6}>{patientOne[0].treatList[0].disease}</td>
+                <td colSpan={6}>{patientOne[0].treatVO.disease}</td>
               </tr>
             </thead>
             <tbody>
@@ -90,14 +89,14 @@ const PrintForm = () => {
                       <table className='in-date-table'>
                         <tr>
                           <td rowSpan={2}>입 원</td>
-                          <td colSpan={5}>{patientOne[0].dateList[0].inHopi || 'N/A'}부터</td>
+                          <td colSpan={5}>{'N/A'}부터</td>
                         </tr>
                         <tr>
-                          <td colSpan={5}>{patientOne[0].dateList[0].outHopi || 'N/A'}까지(일간)</td>
+                          <td colSpan={5}>{'N/A'}까지(일간)</td>
                         </tr>
                         <tr>
                           <td rowSpan={3}>통 원</td>
-                          <td colSpan={5}>{patientOne[0].treatList[0].treDate || 'N/A'}</td>
+                          <td colSpan={5}>{patientOne[0].treatVO.treDate || 'N/A'}</td>
                         </tr>
                         <tr>
                           <td>총 일간</td>

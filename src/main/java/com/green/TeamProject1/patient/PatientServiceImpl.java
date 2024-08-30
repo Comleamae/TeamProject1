@@ -20,17 +20,19 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public List<PatientVO> getPatListAll(int patNum, String treDate) {
+    public List<PatientVO> getPatListAll(int patNum, int treNum) {
         Map<String, Object> params = new HashMap<>();
         params.put("patNum", patNum);
-        params.put("treDate", treDate);
+        params.put("treNum", treNum);
         return sqlSession.selectList("patientMapper.getPatListAll", params);
     }
 
     @Override
-    public List<TreatVO> getTreatListWhenPatOne(int patNum) {
-        return sqlSession.selectList("patientMapper.getOneTreList", patNum);
+    public List<TreatVO> getOneTreDate(int patNum) {
+        return sqlSession.selectList("patientMapper.getOneTreDate", patNum);
     }
+
+
 
     @Override
     public List<PatientVO> getWaitPatientList() {

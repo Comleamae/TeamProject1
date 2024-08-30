@@ -10,5 +10,5 @@ public class DateVO {
     private String outHopi;
     private int roomNum;
     private String operDate;
-    private int patNum;
+    private int treNum;
 }

@@ -51,12 +51,12 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
       ...inputData,
       [e.target.name]:e.target.name!='citizenNum'
                                       ? e.target.value
-                                      : citizenNum_1.current.value+citizenNum_2.current.value
+                                      : citizenNum_1.current.value+'-'+citizenNum_2.current.value
     }
     setInputData(newData)
   }
   //환자 전체리스트 중 해당 주민번호를 가진 환자가 있는지 받아올 axios
-  //*현재 데이터베이스에 있는 올바른 값을 넣을 경우 500번 에러로 데이터를 받아오지 못함 
+  
   useEffect(()=>{
     axios
     .post(`/patient/getListCN`, inputData)
@@ -156,9 +156,6 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
       (
         <div className='selfDefWhenLogin'>
           <h2>비회원 발급</h2>
-          <button type='button' onClick={(e)=>{setInputStatus(!inputStatus)}}>이메일 인증 상태 변경</button>
-          <button type='button' onClick={(e)=>{setIsConfirm(!isConfirm)}}>번호 인증 상태 변경</button>
-
           {/* 인증 단계별 화면 구현 /  주민번호와 이메일 입력 화면 : 인증번호 입력 화면  */}
           {!inputStatus ? (
             <div className='recoP1'>
