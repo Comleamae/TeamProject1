@@ -127,7 +127,8 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
     .catch((error)=>{
       console.log('로그인한 회원 정보 불러오기 실패', error)
     })
-  },[inputData])
+  },[inputData.citizenNum])
+
  
   const sendEmail = (mail) => {
     //이메일 미 입력시
@@ -164,6 +165,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
         } else {
           alert('인증되었습니다');
           setIsConfirm(true);
+          console.log(recoData)
         }
       })
       .catch((error) => {
