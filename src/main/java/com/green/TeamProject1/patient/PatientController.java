@@ -29,9 +29,29 @@ public class PatientController {
     List<TreatVO> getOneTreDate(@RequestBody Map<String, Integer> recoData){
         return patientService.getOneTreDate(recoData.get("patNum"));
     }
-    // 대기자 목록에 올라간 환자 조회
-    @GetMapping("/waitList")
-    public List<PatientVO> getWaitPatientList(){
-        return patientService.getWaitPatientList();
+
+
+    // 신규 방문자 예약 등록
+    @PostMapping("/regInsert")
+    public void regInsert(@RequestBody PatientVO patientVO){
+        //생성되는 환자번호
+        int  patNum = patientService.getNextPatNum();
+        patientVO.setPatNum(patNum);
+        patientService.regInsert(patientVO);
+        patientService.recepInsert(patientVO);
     }
+
+    // 신규 방문자 접수 등록
+    @PostMapping("/recepInsert")
+    public void recepInsert(@RequestBody PatientVO patientVO){
+        patientService.recepInsert(patientVO);
+    }
+
+    // 재방문 조회
+    @PostMapping("/regCheck")
+    public void regCheck(){
+        patientService.regCheck();
+    }
+    // 재방문 접수
+
 }

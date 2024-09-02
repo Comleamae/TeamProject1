@@ -73,12 +73,63 @@
             AND INFO_TREAT.TRE_NUM = #{treNum}
         </select>
 
-
-        <!--예약 환자 리스트-->
-        <select id="getWaitPatientList" resultMap="patient">
-            SELECT * FROM patient
-            ORDER BY PAT_DATE DESC;
+        <!--신규 등록하는 환자번호를 생성-->
+        <select id="getNextPatNum" resultType="int">
+            SELECT IFNULL(MAX(PAT_NUM), 0)+ 1
+            FROM patient
         </select>
+
+        <!-- 신규 방문자 정보 등록 -->
+        <insert id="regInsert">
+            INSERT INTO patient (
+                PAT_NUM
+                , PAT_NAME
+                , PAT_EMAIL
+                , AGE
+                , GENDER
+                , CITIZEN_NUM
+                , ADDRESS
+            )
+            VALUES (
+                #{patNum}
+                , #{patName}
+                , #{patEmail}
+                , #{age}
+                , #{gender}
+                , #{citizenNum}
+                , #{address}
+            )
+        </insert>
+
+        <!-- 신규 방문자 접수 등록함과 동시에 접수 정보 등록 -->
+        <insert id="recepInsert">
+            INSERT INTO recep_info (
+                pat_num
+                , recep_status
+            ) values (
+                #{patNum}
+            , '대기중'
+            )
+        </insert>
+
+        <!-- 재방문자 기존에 방문한적 있는지 조회하기 -->
+            <select id="regCheck"  resultType="int">
+                SELECT PAT_NUM
+                FROM patient
+                WHERE PAT_NAME = #{patName}
+                AND CITIZEN_NUM = #{citizenNum}
+            </select>
+
+        <!--재방문한적 있는 환자인 경우 접수하기 -->
+            <insert id="reRecepInsert">
+                INSERT INTO recep_info (
+                    pat_num
+                  , recep_status
+                ) values (
+                    #{patNum}
+                  , '대기중'
+        )
+    </insert>
 </mapper>
 
 

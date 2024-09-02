@@ -22,6 +22,7 @@ import Main from './pages/Main';
 import ReservReg from './pages/user/ksh/ReservReg';
 import NewVisit from './pages/user/ksh/NewVisit';
 import ReVisit from './pages/user/ksh/ReVisit';
+import ReservInquiry from './pages/user/ksh/ReservInquiry';
 
 
 
@@ -137,9 +138,9 @@ function App() {
             {/* 예약 등록 */}
             <Route path='reservReg' element={<ReservReg/>}/>         
             <Route path='newVisit' element={<NewVisit/>}/>
-              <Route path='reVisit' element={<ReVisit/>}/>
-            
-
+            <Route path='reVisit' element={<ReVisit/>}/>
+            <Route path='reservInquiry' element={<ReservInquiry/>}/>
+          
             {/* 진료비 수납내용 */}
             <Route path='moneyln' element={<MoneyIn />} />
             {/* 진료비 결제창 */}

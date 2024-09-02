@@ -32,10 +32,36 @@ public class PatientServiceImpl implements PatientService{
         return sqlSession.selectList("patientMapper.getOneTreDate", patNum);
     }
 
-
-
     @Override
-    public List<PatientVO> getWaitPatientList() {
-        return sqlSession.selectList("patientMapper.getWaitPatientList");
+    public int getNextPatNum() {
+        return sqlSession.selectOne("patientMapper.getNextPatNum");
     }
+
+    // 신규 예약 등록
+    @Override
+    public void regInsert(PatientVO patientVO) {
+        sqlSession.insert("patientMapper.regInsert", patientVO);
+    }
+
+    // 신규 예약 등록 + 접수 정보 등록
+    @Override
+    public void recepInsert(PatientVO patientVO) {
+        sqlSession.insert("patientMapper.recepInsert", patientVO);
+
+    }
+
+    // 재방문 조회
+    @Override
+    public void regCheck(PatientVO patientVO) {
+        sqlSession.selectOne("patientMapper.regCheck", patientVO);
+    }
+
+
+    // 재방문 접수
+    @Override
+    public void reRecepInsert(PatientVO patientVO) {
+        sqlSession.insert("patientMapper.reRecepInsesrt", patientVO);
+    }
+
+
 }

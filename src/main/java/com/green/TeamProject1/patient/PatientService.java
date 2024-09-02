@@ -1,5 +1,6 @@
 package com.green.TeamProject1.patient;
 
+import javax.swing.*;
 import java.util.List;
 
 public interface PatientService {
@@ -9,7 +10,21 @@ public interface PatientService {
     List<PatientVO> getPatListAll(int patNum, int treNum);
     /*환자 한명의 진료 기록 날짜 리스트*/
     List<TreatVO> getOneTreDate(int patNum);
-    // 전체 환자 중 대기자 목록 가져오기
-    // ㄴ 기능 작동하는지 확인용
-    List<PatientVO> getWaitPatientList();
+
+    //다음에 들어가는 환자 번호 조회
+    int getNextPatNum();
+
+    // 신규방문자가 예약 등록할 때
+    void regInsert(PatientVO patientVO);
+
+    // 신규방문자 예약 등록 + 접수 등록
+    void recepInsert(PatientVO patientVO);
+
+
+    // 재방문자 기록 조회하기 ( 방문한적 있는지 없는지 )
+    void regCheck(PatientVO patientVO);
+
+    // 재방문자 접수하기
+    void reRecepInsert(PatientVO patientVO);
+
 }
