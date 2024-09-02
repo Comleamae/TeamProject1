@@ -1,70 +1,86 @@
 import React from 'react'
+import '../reset.css'
 import './SideList.css'
-import Slider from 'react-slick'
-import { Link } from 'react-router-dom'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/bundle';
+import { Link } from 'react-router-dom';
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
 
-
-const SliderItem = ({ imageSrc, title, description, link }) => (
-  <div className="unit slick-slide">
-    <Link to={link} title="바로가기" target="_self">
-      <span className="img">
-        <img src={imageSrc} alt={title} />
-      </span>
-      <strong className="tit">
-        <span style={{ fontSize: '0.9em' }}>{title}</span>
-      </strong>
-      <p className="txt">
-        {description}
-      </p>
-    </Link>
-  </div>
-);
+// Swiper 모듈 사용
+// SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 
 const SideList = () => {
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false, // 기본 화살표를 숨기고, 사용자 정의 버튼을 사용
-  };
-  
   return (
     <div>
-      <div className="mVisual">
-        <Slider {...settings}>
-          <SliderItem
-            imageSrc="http://localhost:8080/images/banner-1.png"
-            title="국내 최초 영상기반 림프조영술 상용화"
-            description={`- 유방암 수술 후 팔 퉁퉁 붓는 림프부종 새로운 치료법 제시\n- 림프부종학회, 13일 부산대병원서 워크숍 개최해 치료 시연`}
-            link="/pnuh/hospital/forum/hospital-news.do?mode=view&amp;articleNo=69870"
-          />
-          <SliderItem
-            imageSrc="http://localhost:8080/images/banner-1.png"
-            title='의료질 평가 최상위 등급 "1-가" 획득.. 비수도권 병원에선 유일'
-            description={`- 6년 연속 전 부문 1등급으로 부산·울산·경남에선 최초\n- 병원 비전인 'Top Brand PNUH' 실현`}
-            link="/"
-          />
-          <SliderItem
-            imageSrc="http://localhost:8080/images/banner-1.png"
-            title='의료질 평가 최상위 등급 "1-가" 획득.. 비수도권 병원에선 유일'
-            description={`- 6년 연속 전 부문 1등급으로 부산·울산·경남에선 최초\n- 병원 비전인 'Top Brand PNUH' 실현`}
-            link="/"
-          />
-          <SliderItem
-            imageSrc="http://localhost:8080/images/banner-1.png"
-            title='의료질 평가 최상위 등급 "1-가" 획득.. 비수도권 병원에선 유일'
-            description={`- 6년 연속 전 부문 1등급으로 부산·울산·경남에선 최초\n- 병원 비전인 'Top Brand PNUH' 실현`}
-            link="/"
-          />
-          {/* 다른 슬라이드 항목도 추가 가능합니다 */}
-        </Slider>
+    <div className="slider-container">
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 300,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        className="mySwiper"
+      >
+          <SwiperSlide>
+            <div className='slider-div'>
+              <div className='side-left'>
+                <strong className='side-tit'>
+                  의료질 평가 최상위 등급<br />"1-가" 획득..<br />비수도권 병원에선 유일
+                </strong>
+                <p className='side-txt'>
+                  - 6년 연속 전 부문 1등급으로 부산·울산·경남에선 최초
+                  <br /> - 병원 비전인 'Top Brand PNUH' 실현
+                </p>
+              </div>
+              <div className='side-right'>
+                <img src='http://localhost:8080/images/banner-1.png' alt='Banner 1' />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className='slider-div'>
+              <div className='side-left'>
+                <strong className='side-tit'>
+                  의료질 평가 최상위 등급<br />"1-가" 획득..<br />비수도권 병원에선 유일
+                </strong>
+                <p className='side-txt'>
+                  - 6년 연속 전 부문 1등급으로 부산·울산·경남에선 최초
+                  <br /> - 병원 비전인 'Top Brand PNUH' 실현
+                </p>
+              </div>
+              <div className='side-right'>
+                <img src='http://localhost:8080/images/banner-2.png' alt='Banner 2' />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className='slider-div'>
+              <div className='side-left'>
+                <strong className='side-tit'>
+                  의료질 평가 최상위 등급<br />"1-가" 획득..<br />비수도권 병원에선 유일
+                </strong>
+                <p className='side-txt'>
+                  - 6년 연속 전 부문 1등급으로 부산·울산·경남에선 최초
+                  <br /> - 병원 비전인 'Top Brand PNUH' 실현
+                </p>
+              </div>
+              <div className='side-right'>
+                <img src='http://localhost:8080/images/banner-3.png' alt='Banner 3' />
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
+
+
       {/* 병원소식 뉴스 */}
       <div className='mNews'>
         <h2 className='mtit'>병원소식</h2>

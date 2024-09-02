@@ -125,57 +125,60 @@ const MedicalCenter = () => {
               <img src="http://localhost:8080/images/ico_d_07.png" alt="척추센터" />
             </Link>
           </div>
+
           <div className="slide-item f1_bd">
             <Link href="#" title="새창으로 열기" className="btn_link">
-              <span className="cntr_ttl">척추센터</span>
+              <span className="cntr_ttl">소화기센터</span>
               <span className="cntr_link">바로가기</span>
-              <img src="http://localhost:8080/images/ico_d_07.png" alt="척추센터" />
-            </Link>
-          </div>
-          <div className="slide-item f1_bd">
-            <Link href="#" title="새창으로 열기" className="btn_link">
-              <span className="cntr_ttl">척추센터</span>
-              <span className="cntr_link">바로가기</span>
-              <img src="http://localhost:8080/images/ico_d_07.png" alt="척추센터" />
-            </Link>
-          </div>
-          <div className="slide-item f1_bd">
-            <Link href="#" title="새창으로 열기" className="btn_link">
-              <span className="cntr_ttl">척추센터</span>
-              <span className="cntr_link">바로가기</span>
-              <img src="http://localhost:8080/images/ico_d_07.png" alt="척추센터" />
+              <img src="http://localhost:8080/images/ico_d_08.png" alt="소화기센터" />
             </Link>
           </div>
 
           <div className="slide-item f1_bd">
             <Link href="#" title="새창으로 열기" className="btn_link">
-              <span className="cntr_ttl">척추센터</span>
+              <span className="cntr_ttl">통증센터</span>
               <span className="cntr_link">바로가기</span>
-              <img src="http://localhost:8080/images/ico_d_07.png" alt="척추센터" />
+              <img src="http://localhost:8080/images/ico_d_10.png" alt="통증센터" />
             </Link>
           </div>
 
           <div className="slide-item f1_bd">
             <Link href="#" title="새창으로 열기" className="btn_link">
-              <span className="cntr_ttl">척추센터</span>
+              <span className="cntr_ttl">어지럼증센터</span>
               <span className="cntr_link">바로가기</span>
-              <img src="http://localhost:8080/images/ico_d_07.png" alt="척추센터" />
+              <img src="http://localhost:8080/images/ico_d_11.png" alt="어지럼증센터" />
             </Link>
           </div>
 
           <div className="slide-item f1_bd">
             <Link href="#" title="새창으로 열기" className="btn_link">
-              <span className="cntr_ttl">척추센터</span>
+              <span className="cntr_ttl">소아수술센터</span>
               <span className="cntr_link">바로가기</span>
-              <img src="http://localhost:8080/images/ico_d_07.png" alt="척추센터" />
+              <img src="http://localhost:8080/images/ico_d_12.png" alt="소아수술센터" />
             </Link>
           </div>
 
           <div className="slide-item f1_bd">
             <Link href="#" title="새창으로 열기" className="btn_link">
-              <span className="cntr_ttl">척추센터</span>
+              <span className="cntr_ttl">산모·신생아<br/>통합치료센터</span>
               <span className="cntr_link">바로가기</span>
-              <img src="http://localhost:8080/images/ico_d_07.png" alt="척추센터" />
+              <img src="http://localhost:8080/images/ico_d_689.png" alt="산모 신생아 통찹치료 센터" />
+            </Link>
+          </div>
+
+          <div className="slide-item f1_bd">
+            <Link href="#" title="새창으로 열기" className="btn_link">
+              <span className="cntr_ttl">희귀질환센터</span>
+              <span className="cntr_link">바로가기</span>
+              <img src="http://localhost:8080/images/ico_d_700.png" alt="희귀질환센터" />
+            </Link>
+          </div>
+
+          <div className="slide-item f1_bd">
+            <Link href="#" title="새창으로 열기" className="btn_link">
+              <span className="cntr_ttl">어린이공공전문<br/>진료센터</span>
+              <span className="cntr_link">바로가기</span>
+              <img src="http://localhost:8080/images/ico_d_701.png" alt="어린이센터" />
             </Link>
           </div>
 
@@ -183,12 +186,12 @@ const MedicalCenter = () => {
       </div>
 
       <div className="controller_form">
-        <button className={`stop ${!isPlaying ? 'active' : ''}`} onClick={handlePause}>
+        {/* <button className={`stop ${!isPlaying ? 'active' : ''}`} onClick={handlePause}>
           <img src="https://www.snubh.org/front/images/main/btn_stop.png" alt="센터 배너 정지" />
         </button>
         <button className={`play ${isPlaying ? 'active' : ''}`} onClick={handlePlay}>
           <img src="https://www.snubh.org/front/images/main/btn_play.png" alt="센터 배너 시작" />
-        </button>
+        </button> */}
       </div>
 
 
