@@ -122,7 +122,7 @@ export const joinValidate = (newData, valid_tag, tagName) => {
       }
       break;
     case 'citizenNum':
-      const regex_citizenNum = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))[1-8][0-9]{6}$/;
+      const regex_citizenNum = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))-[1-8][0-9]{6}$/;
 
       // 주민번호 유효성 검사
       if (regex_citizenNum.test(newData.citizenNum) ) {

@@ -6,8 +6,14 @@ import FormSelector from './FormSelector';
 
 
 // 매개변수로 로그인 여부 가져온다. (setIsLogin 제외 / 추가로 로그인 정보도 필요함.)
-const ClinicPrint = ({ isLogin, setIsLogin }) => {
+const ClinicPrint = ({isLogin, setIsLogin}) => {
   const navigate = useNavigate();
+
+  //선택한 날짜를 담을 변수
+  const [selectData, setSelectData] = useState(
+    { patNum:0
+      , treNum:0}
+  )
 
   //인증번호 저장할state 변수
   const [inputNum, setInputNum] = useState('');
@@ -32,13 +38,14 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
   //인증된 정보를 저장할 객체 
   const[recoData, setRecoData] = useState({
     patNum:0
-    , patName:''
   })
 
   // 주민번호 정보
   const citizenNum_1 = useRef()
   const citizenNum_2 = useRef()
 
+  // 세션에 저장된 정보
+ 
 
   //인증번호 입력 시마다 state변수에 저장
   const handleInputNumChange = (e) => {
@@ -56,13 +63,12 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
     setInputData(newData)
   }
   //환자 전체리스트 중 해당 주민번호를 가진 환자가 있는지 받아올 axios
-  
+  //비회원
   useEffect(()=>{
     axios
     .post(`/patient/getListCN`, inputData)
     .then((res)=>{
-      if(res.data.length==0){
-        console.log('notData')
+      if(res.data.length==0&inputData.length!=14){
         setButtonStatus(true)
       }
       else{
@@ -70,22 +76,63 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
         setRecoData({
           ...recoData,
           patNum:res.data[0].patNum
-          //, patName:res.data[0].patName
         })
         setButtonStatus(false)
       }
     })
     .catch((error)=>{
-      console.log('환자 전체리스트 불러오기 실패', error)
+      console.log('비회원 환자 전체리스트 불러오기 실패', error)
     })
   }, [inputData, buttonStatus])
 
-  
+  //회원 전체리스트 중 해당 주민번호를 가진 환자가 있는지 받아올 axios
+  //회원
+  useEffect(()=>{
+    axios
+    .post(`/api_member/isCitizen`, inputData)
+    .then((res)=>{
+      console.log(res)
+      if(res.data[0].citizenNum==isLogin.citizenNum){
+        console.log('1차성공')
+        const newData = ({
+          citizenNum:res.data[0].citizenNum
+        })
+        axios
+        .post('/patient/getListCN', newData)
+        .then((dres)=>{
+          console.log(dres)
+          if(dres.length!=0){
+            setRecoData({
+              ...recoData,
+              patNum:dres.data[0].patNum
+            })
+            setInputData(
+              {
+                ...inputData,
+                patEmail:isLogin.memEmail
+              }
+            )
+          }
+          else{
+            console.log(dres)
+            alert('해당하는 환자가 없습니다')
+          }
+        })
+        .catch((error)=>{
+          console.log('2차 결과 에러', error)
+        })
+        
+      }
+    })
+    .catch((error)=>{
+      console.log('로그인한 회원 정보 불러오기 실패', error)
+    })
+  },[inputData])
+ 
   const sendEmail = (mail) => {
-
     //이메일 미 입력시
     if(inputData.patEmail==''){
-      alert('이메일 입력바람')
+      alert('이메일 확인부탁드립니다')
       return
     }
     //이메일 발송
@@ -110,10 +157,10 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
         if (res.data == true) {
           alert('인증번호가 일치하지 않습니다');
           setIsConfirm(false);
-          setRecoData({
-            ...recoData,
-            patNum:patientList[0].patNum
-          })
+          // setRecoData({
+          //   ...recoData,
+          //   patNum:patientList[0].patNum
+          // })
         } else {
           alert('인증되었습니다');
           setIsConfirm(true);
@@ -127,15 +174,32 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
   return (
     // 로그인 상태에서 발급 받기
     <div className='app-content-div'>
-      {isLogin ? (
+      {sessionStorage.length!=0
+        ? (
         <div className='selfDefWhenLogin'>
-          <div>
             <h2>회원 발급</h2>
-            <button
-              type='button'
-              onClick={() => sendEmail('회원의 이메일')}>
-              인증번호 얻기
-            </button>
+            <div className='btn-div'>
+              <div>
+                <h4>주민번호:</h4>
+                <input 
+                  type='text' 
+                  name='citizenNum'
+                  onChange={(e)=>{handleInputData(e)}}
+                  ref={citizenNum_1}/>
+                -
+                <input 
+                  type='password'
+                  name='citizenNum'
+                  onChange={(e)=>{handleInputData(e)}}
+                  ref={citizenNum_2}/>
+              </div>
+              <button
+                type='button'
+                className='btn'
+                onClick={(e) => sendEmail(inputData)}>
+                인증번호 얻기
+              </button>
+            </div>
             <p>인증번호:
               <input
                 type='number'
@@ -143,12 +207,14 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
                 onChange={(e)=>{handleInputNumChange(e)}}
               />
             </p>
-          </div>
-          <button
-            type='button'
-            onClick={() => checkNum(inputNum)}>
-            인증하기
-          </button>
+         <div className='btn-div'>
+            <button
+              type='button'
+              className='btn'
+              onClick={(e) => checkNum(inputNum)}>
+              인증하기
+            </button>
+         </div>
           {isConfirm && <FormSelector />}
         </div>
       ) : 
@@ -160,7 +226,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
           {!inputStatus ? (
             <div className='recoP1'>
               <div>
-                주민번호:
+                <h4>주민번호:</h4>
                 <input 
                   type='text' 
                   name='citizenNum'
@@ -174,7 +240,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
                   ref={citizenNum_2}/>
               </div>
               <div>
-                이메일 입력:
+                <h4>이메일 입력:</h4>
                 <input
                   type='text'
                   name='patEmail'
@@ -184,6 +250,7 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
               <div className='btn-div'>
                 <button
                   type='button'
+                  className='btn'
                   disabled={buttonStatus}
                   onClick={() => sendEmail(inputData)}>
                   인증번호 얻기
@@ -192,20 +259,23 @@ const ClinicPrint = ({ isLogin, setIsLogin }) => {
             </div>
           ) : (
             <div>
-              인증번호:
+              <h4>인증번호:</h4>
               <input
                 type='number'
                 name='inputNum'
                 onChange={(e)=>{handleInputNumChange(e)}}
               />
-              <button
-                type='button'
-                onClick={() => checkNum(inputNum)}>
-                인증하기
-              </button>
+             <div className='btn-div'>
+                <button
+                  type='button'
+                  className='btn'
+                  onClick={() => checkNum(inputNum)}>
+                  인증하기
+                </button>
+             </div>
             </div>
           )}
-          {isConfirm && <FormSelector recoData={recoData} setRecoData={setRecoData}/>}
+          {isConfirm && <FormSelector recoData={recoData} setRecoData={setRecoData} selectData={selectData} setSelectData={setSelectData}/>}
         </div>
       )}
       

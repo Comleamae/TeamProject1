@@ -56,5 +56,11 @@
         AND MEM_PW = #{memPw}
     </select>
 
+    <!--멤버 정보에 같은 주민번호가 있는지 확인하는 쿼리-->
+    <select id="isCitizen" resultMap="member">
+        SELECT MEM_NUM, MEM_NAME, CITIZEN_NUM
+            FROM MEMBER
+        WHERE CITIZEN_NUM = #{citizenNum}
+    </select>
 </mapper>
 

@@ -31,6 +31,16 @@
         <result column="EAT_CNT" property="eatCnt"/>
     </resultMap>
 
+    <!--처방 요금에 대한 정보-->
+    <resultMap id="infoPrice" type="com.green.TeamProject1.patient.PriceVO">
+        <id column="PRI_NUM" property="priNum"/>
+        <result column="TRE_PRICE" property="trePrice"/>
+        <result column="DATE_PRICE" property="datePrice"/>
+        <result column="EAT_PRICE" property="eatPrice"/>
+        <result column="SHOT_PRICE" property="shotPrice"/>
+        <result column="TRE_NUM" property="treNum"/>
+    </resultMap>
+
     <!--진료 정보 리스트-->
     <resultMap id="infoTreat" type="com.green.TeamProject1.patient.TreatVO">
         <id column="TRE_NUM" property="treNum"/>
@@ -43,6 +53,7 @@
         <result column="MED_NUM" property="medNum"/>
         <association property="recipeVO" resultMap="infoRecipe"/>
         <association property="dateVO" resultMap="infoDate"/>
+        <association property="priceVO" resultMap="infoPrice"/>
     </resultMap>
 
     <!--처방전 작성 및 조회를 위한 정보 select-->
@@ -70,6 +81,8 @@
             ON INFO_RECIPE.TRE_NUM = INFO_TREAT.TRE_NUM
             LEFT OUTER JOIN INFO_DATE
             ON INFO_TREAT.TRE_NUM = INFO_DATE.TRE_NUM
+            LEFT OUTER JOIN INFO_PRICE
+            ON INFO_TREAT.TRE_NUM = INFO_PRICE.TRE_NUM
             WHERE INFO_TREAT.TRE_NUM = #{treNum}
             AND PATIENT.PAT_NUM = #{patNum}
         </select>

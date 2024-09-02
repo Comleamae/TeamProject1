@@ -8,16 +8,16 @@ const PrintForm3 = () => {
   const {patNum, treNum} = useParams()
 
   const navigate = useNavigate()
-const [patientOne, setPatientOne] = useState([])
-const [doctorOne, setDoctorOne] = useState({})
+  const [patientOne, setPatientOne] = useState([])
+  const [doctorOne, setDoctorOne] = useState({})
 
-//
+//useEffect의 실행 순서로 인해 발생하는 에러를 막기위한 상태변수
 const[isShow, setIsShow] = useState(false)
+// 처방전 없음 상태 추가
+const [noRecipe, setNoRecipe] = useState(false) 
 
 // PDF 생성을 위해 참조할 요소
 const printRef = useRef();
-
-  
 
   //불러온 한 환자의 전체 정보
   useEffect(()=>{
@@ -39,6 +39,10 @@ const printRef = useRef();
           console.log('의사 정보 받기 에러', error)
         })
       }
+       // 처방전 정보가 없는 경우 상태 업데이트
+       if (!res.data[0].treatVO.recipeVO.mediName) {
+        setNoRecipe(true)
+      }
     })
     .catch((error)=>{
       console.log('환자정보 받아오는데서 에러', error)
@@ -50,8 +54,12 @@ const printRef = useRef();
   const handlePrint = () => {
     if (printRef.current) {
       generatePDF(printRef.current, '처방전.pdf')
-        .then(() => console.log('PDF 생성 성공'))
-        .catch((error) => console.error('PDF 생성 오류:', error));
+        .then(() => {
+          console.log('PDF 생성 성공')        
+        })
+        .catch((error) => {
+          console.error('PDF 생성 오류:', error)
+        });
     }
   };
 
@@ -61,7 +69,12 @@ const printRef = useRef();
     null
     :
     <div className='result'>
-    <div ref={printRef}>
+      {noRecipe
+      ?
+      (<div>진료기록에 처방전이 없습니다</div>)
+      :
+      (<>
+        <div className='printW' ref={printRef}>
           <table className='print-table'> 
             <tbody>
               <tr>
@@ -140,11 +153,13 @@ const printRef = useRef();
               </tr>
             </tbody>
           </table>
-        
-        <div className='btn-div'>
-          <button type='button' className='btn' onClick={(e)=>{handlePrint(e)}}>출력</button>
-        </div>
-      </div>
+          </div>
+
+          <div className='btn-div'>
+            <button type='button' className='btn' onClick={handlePrint}>출력</button>            
+          </div>
+        </>
+      )}
     </div>
   )
 }

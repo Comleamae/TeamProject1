@@ -5,6 +5,9 @@ import com.green.TeamProject1.member.vo.MemberVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api_member")
 public class MemberController {
@@ -33,5 +36,11 @@ public class MemberController {
         /*selectOne의 결과로 null이 아니라면 => 회원 정보가 나온다면 로그인 가능*/
         System.out.println(memberService.login(memberVO));
         return memberService.login(memberVO);
+    }
+
+    // 같은 회원번호를 가진 회원이 있는가
+    @PostMapping("/isCitizen")
+    List<MemberVO> isCitizen(@RequestBody Map<String, String> inputData){
+        return memberService.isCitizens(inputData.get("citizenNum"));
     }
 }

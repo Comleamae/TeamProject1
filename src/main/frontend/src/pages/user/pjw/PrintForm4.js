@@ -77,10 +77,14 @@ const PrintForm4 = () => {
                       :
                       patientOne[0].treatVO.dateVO.inHopi+'~'+patientOne[0].treatVO.dateVO.outHopi
                     }
-                    
+                 
                 </td>
-                <td>진료기간</td>
-                <td colSpan={3}>{}</td>
+                <td>진료날짜</td>
+                <td colSpan={3}>
+                  {
+                    patientOne[0].treatVO.treDate
+                  }
+                </td>
               </tr>
               <tr>
                 <td>진료과</td>
@@ -139,7 +143,7 @@ const PrintForm4 = () => {
               <tr>
                 <td rowSpan={9}>기본항목</td>
                 <td colSpan={2}>진찰료</td>
-                <td></td>
+                <td>{patientOne[0].treatVO.priceVO.trePrice}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -149,7 +153,7 @@ const PrintForm4 = () => {
               </tr>
               <tr>
                 <td colSpan={2}>입원료</td>
-                <td></td>
+                <td>{patientOne[0].treatVO.priceVO.datePrice}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -159,7 +163,7 @@ const PrintForm4 = () => {
               </tr>
               <tr>
                 <td colSpan={2}>식대</td>
-                <td></td>
+                <td>{patientOne[0].treatVO.priceVO.eatPrice}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -189,7 +193,7 @@ const PrintForm4 = () => {
               <tr>
                 <td rowSpan={2}>주사료</td>
                 <td>행위료</td>
-                <td></td>
+                <td>{patientOne[0].treatVO.priceVO.shotPrice}</td>
                 <td></td>
                 <td></td>
                 <td></td>

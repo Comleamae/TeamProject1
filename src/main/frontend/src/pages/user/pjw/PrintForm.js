@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { generatePDF } from './utils/pdfUtils'; // 유틸리티 파일을 
 
 const PrintForm = () => {
-  const { patNum, treNum } = useParams();
+  const { patNum, treNum, selectData } = useParams();
   const navigate = useNavigate();
 
   const [patientOne, setPatientOne] = useState([]);
@@ -38,7 +38,7 @@ const PrintForm = () => {
       .catch((error) => {
         console.log('환자정보 받아오는데서 에러', error);
       });
-  }, [treNum]);
+  }, [treNum, selectData]);
 
   // PDF 생성 함수
   const handlePrint = () => {

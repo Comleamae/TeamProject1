@@ -2,17 +2,18 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
-const FormSelector = ({recoData, setRecoData}) => {
+
+const FormSelector = ({recoData, setRecoData, selectData, setSelectData}) => {
 
   //환자의 진료 기록 날짜를 저장 받을 변수
   const[treDateList, setTreDateList] = useState([])
 
-  //선택한 날짜를 담을 변수
-  const[selectData, setSelectData]=useState({
-    patNum:recoData.patNum
-    , treNum:0
-  })
-
+  useEffect(()=>{
+    setSelectData({
+      patNum:recoData.patNum
+      , treNum:0
+    })
+  }, [])
   
   const[isShow, setIsShow] = useState(false)
 
@@ -51,7 +52,7 @@ const FormSelector = ({recoData, setRecoData}) => {
   }, [treDateList]);
 
   return (
-    <>
+    <div className='contaniner'>
       <div className='form-selector'>
         <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm/${selectData.patNum}/${selectData.treNum}`)}}>
           진료확인서
@@ -96,7 +97,7 @@ const FormSelector = ({recoData, setRecoData}) => {
         }
         <Outlet/>
       
-    </>
+    </div>
   )
 }
 

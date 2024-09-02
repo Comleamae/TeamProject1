@@ -14,4 +14,5 @@ public class TreatVO {
     private int medNum;
     private RecipeVO recipeVO;//처방전 정보
     private DateVO dateVO;//입원 정보
+    private PriceVO priceVO;//진료비 정보
 }
