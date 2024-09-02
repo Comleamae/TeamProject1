@@ -1,25 +1,105 @@
+
+
 .login-container{
-  font-size: 50px;
+  width: 1250px;
+  margin: 0 auto;
+  color: #1C1C1C;
+}
+
+.user-div {
+  height: 100px;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.user-login-txt {
+  width: 1250px;
+  height: 100px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  text-align: left;
+  padding-top: 20px;
+  border-top:1px solid lightgray ;
+
+}
+
+.user-login-txt > h2 > strong {
+  color: #3C32A2;
 }
 
 .login-form-div{
-  background-color: rgb(202, 202, 202);
-  border: 1px solid black;
-  width: 800px;
-  height: 600px;
-  margin:  auto;
+  width: 1250px;
+  height: 250px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F5F5F5;
+  border: 0.5px solid lightgray;
+}
+
+.login-form{
+  width: 75%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
+} 
+
+.login-form > img {
+  width: 20%;
+  margin-right: 0px;
 }
 
-input{
-  font-size: 15px;
-  background-color: rgb(163, 163, 163);
+.login-div {
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.user-input {
+  width: 500px;
+  height: 40px;
+  border: 0.5px solid lightgray;
   border-radius: 5px;
+  margin: 5px;
+  padding-left: 10px;
 }
 
-input{
-  background-color: white;
+.login-div > button{
+  width: 150px;
+  height: 100px;
+  background: #3C32A2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
 }
 
+.user-btn{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-btn > div {
+  width: 30%;
+  height: 70px;
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin-top : 10px;
+
+}
+
+.user-btn > div > button {
+  width: 250px;
+  height: 35px;
+  margin: 10px;
+}

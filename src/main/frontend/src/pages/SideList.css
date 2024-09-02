@@ -1,15 +1,48 @@
-/* slick-carousel의 스타일을 import합니다 */
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
-
 
 /* 병원 슬라이드 */
 
-.mVisual {
-  position: relative;
-  overflow: hidden;
+.slider-container {
+  width: 80%;
   height: 530px;
+  margin: 20px auto;
 }
+
+.slider-div {
+  width: 100%;
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.side-left {
+  width: 50%;
+  flex: 1;
+  text-align: left;
+  padding: 20px;
+}
+
+.side-tit {
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+}
+
+.side-txt {
+  font-size: 20px;
+  color: #333;
+}
+
+
+.side-right {
+  width: 50%;
+  flex: 1;
+}
+
+.side-right > img {
+  width: 100%;
+  height: auto;
+}
+
+
 
 /*  병원소식 css  */
 

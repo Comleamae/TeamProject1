@@ -106,7 +106,7 @@ const Main = () => {
           <span>88</span>
         </div>
 
-        <div className='sub-idex-box' onClick={(e) => { navigate('/admin/moneyln') }}>
+        <div className='sub-idex-box' onClick={(e) => { navigate('/user/clinicPrint') }}>
           <IoNewspaperOutline className='icon' />
           <p>증명서 발급</p>
           <span>제증명 발급에 대한 안내</span>
@@ -120,11 +120,11 @@ const Main = () => {
       </div>
       <div className='background-div'></div>
 
-      {/* 사이드 */}
-      <SideList />
-      
       {/* 메디컬 센터 */}
       <MedicalCenter />
+
+      {/* 사이드 */}
+      <SideList />
 
       
     </div>

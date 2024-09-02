@@ -59,15 +59,52 @@ const Login = ({ setLoginInfo }) => {
   }
   return (
     <div className='login-container'>
-      <div><h3>로그인</h3></div>
+      <div className='user-div'>
+        <h1>로그인</h1>
+        <p>로그인을 하시면 그린대학교병원 홈페이지에서 제공하는 다양한 온라인 서비스를 이용 하실 수 있습니다.</p>
+      </div>
+      <div className='user-login-txt'>
+        <h2>
+          <strong>그린대학교병원 홈페이지 서비스를 이용하시려면</strong><br />
+          로그인이 필요합니다.
+        </h2>
+      </div>
+
       <div className='login-form-div'>
-        <div className='login-div'>
-          <div><input type='text' name='memId' placeholder='아이디' onChange={(e) => { changeLoginData(e) }}></input></div>
-          <div><input type='password' name='memPw' placeholder='비밀번호' onChange={(e) => { changeLoginData(e) }}></input></div>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/user/join') }}>회원가입</button>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/join') }}>회원가입</button>
+        <div className='login-form'>
+          <img src='http://localhost:8080/images/logo.png'/>
+          <div className='login-div'>
+            <div>
+              <div>
+                <input className='user-input' type='text' name='memId' placeholder='아이디를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
+              </div>
+              <div>
+                <input className='user-input' type='password' name='memPw' placeholder='비밀번호를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
+              </div>
+            </div>
+            <button type='button' onClick={(e) => { login() }}> 로그인</button>
+          </div>
         </div>
-        <button type='button' className='btn-div' onClick={(e) => { login() }}> 로그인</button>
+      </div>
+      <div className='user-btn'>
+        <div>
+          <p>
+            그린대학교병원의 회원이 아니십니까?
+          </p>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/user/join') }}>회원가입</button>
+        </div>
+        <div>
+          <p>
+            그린대학교병원의 회원이 아니십니까?
+          </p>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/user/join') }}>회원가입</button>
+        </div>
+        <div>
+          <p>
+            그린대학교병원의 회원이 아니십니까?
+          </p>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/user/join') }}>회원가입</button>
+        </div>
       </div>
     </div>
   )
