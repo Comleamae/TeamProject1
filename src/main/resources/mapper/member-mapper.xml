@@ -56,27 +56,11 @@
         AND MEM_PW = #{memPw}
     </select>
 
-    <!--이중 인서트 실험-->
-    <insert id="insertOne">
-        INSERT INTO INSERT_ONE(
-        MEM_ID
-        , MEM_PW
-        , MEM_NAME
-        , MEM_TEL
-        , MEM_EMAIL
-        , CITIZEN_NUM
-        , POST
-        , MEM_ADDR
-        , ADDR_DETAIL) VALUES(
-        #{memId}
-        , #{memPw}
-        , #{memName}
-        , #{memTel}
-        , #{memEmail}
-        , #{citizenNum}
-        , #{post}
-        , #{memAddr}
-        , #{addrDetail});
-    </insert>
+    <!--멤버 정보에 같은 주민번호가 있는지 확인하는 쿼리-->
+    <select id="isCitizen" resultMap="member">
+        SELECT MEM_NUM, MEM_NAME, CITIZEN_NUM
+            FROM MEMBER
+        WHERE CITIZEN_NUM = #{citizenNum}
+    </select>
 </mapper>
 

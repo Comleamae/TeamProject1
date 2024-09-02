@@ -112,7 +112,7 @@ const Main = () => {
           <span>제증명 발급에 대한 안내</span>
         </div>
 
-        <div className='sub-idex-box' onClick={(e) => { navigate('/user/clinicPrint') }}>
+        <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
           <p>10</p>
           <span>00</span>
         </div>

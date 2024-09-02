@@ -79,7 +79,7 @@ const Join = () => {
     let newValue;
     
     if (e.target.name == 'citizenNum') {
-      newValue = citizenNum_1.current.value + citizenNum_2.current.value;
+      newValue = citizenNum_1.current.value + '-' +citizenNum_2.current.value;
     } else if (e.target.name == 'memEmail') {
       newValue = email_1.current.value + email_2.current.value;
     }

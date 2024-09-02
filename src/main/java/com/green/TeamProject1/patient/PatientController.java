@@ -50,7 +50,7 @@ public class PatientController {
     // 재방문 조회
     @PostMapping("/regCheck")
     public void regCheck(){
-        patientService.regCheck();
+        patientService.regCheck( );
     }
     // 재방문 접수
 

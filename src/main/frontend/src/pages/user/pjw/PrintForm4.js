@@ -69,23 +69,42 @@ const PrintForm4 = () => {
                 <td>성명</td>
                 <td colSpan={2}>{patientOne[0].patName}</td>
                 <td>입원기간</td>
-                <td colSpan={3}>{patientOne[0].pat}</td>
-                <td>진료기간</td>
-                <td colSpan={3}>~</td>
+                <td colSpan={3}>
+                    {
+                      patientOne[0].treatVO.dateVO==null
+                      ?
+                      '통원환자'
+                      :
+                      patientOne[0].treatVO.dateVO.inHopi+'~'+patientOne[0].treatVO.dateVO.outHopi
+                    }
+                 
+                </td>
+                <td>진료날짜</td>
+                <td colSpan={3}>
+                  {
+                    patientOne[0].treatVO.treDate
+                  }
+                </td>
               </tr>
               <tr>
                 <td>진료과</td>
                 <td>{doctorOne.dept}</td>
                 <td colSpan={3}>병실</td>
-                <td>{patientOne[0].dateVO.roomNum}호</td>
+                <td>{
+                      patientOne[0].treatVO.dateVO==null
+                      ?
+                      '통원환자'
+                      :
+                      patientOne[0].treatVO.dateVO.roomNum+'호'
+                    }</td>
                 <td>환자구분</td>
                 <td colSpan={4}>
                   {
-                    patientOne[0].dateVO!=null
+                    patientOne[0].treatVO.dateVO==null
                     ?
-                    '입원'
-                    :
                     '통원'
+                    :
+                    '입원'
                   }
                 </td>
               </tr>
@@ -95,7 +114,11 @@ const PrintForm4 = () => {
                 <td>처방여부</td>
                 <td colSpan={5}>
                   {
-
+                    patientOne[0].treatVO.recipeVO==null
+                    ?
+                    '처방된 약 없음'
+                    :
+                    '처방된 약 있음'
                   }
                 </td>
               </tr>
@@ -120,7 +143,7 @@ const PrintForm4 = () => {
               <tr>
                 <td rowSpan={9}>기본항목</td>
                 <td colSpan={2}>진찰료</td>
-                <td></td>
+                <td>{patientOne[0].treatVO.priceVO.trePrice}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -130,7 +153,7 @@ const PrintForm4 = () => {
               </tr>
               <tr>
                 <td colSpan={2}>입원료</td>
-                <td></td>
+                <td>{patientOne[0].treatVO.priceVO.datePrice}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -140,7 +163,7 @@ const PrintForm4 = () => {
               </tr>
               <tr>
                 <td colSpan={2}>식대</td>
-                <td></td>
+                <td>{patientOne[0].treatVO.priceVO.eatPrice}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -170,7 +193,7 @@ const PrintForm4 = () => {
               <tr>
                 <td rowSpan={2}>주사료</td>
                 <td>행위료</td>
-                <td></td>
+                <td>{patientOne[0].treatVO.priceVO.shotPrice}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -238,15 +261,15 @@ const PrintForm4 = () => {
                 <td>사업자등록번호</td>
                 <td colSpan={2}></td>
                 <td>상호</td>
-                <td colSpan={3}></td>
+                <td colSpan={3}>그린 대학 병원</td>
                 <td>전화번호</td>
-                <td colSpan={3}></td>
+                <td colSpan={3}>052-111-2222</td>
               </tr>
               <tr>
                 <td>사업장 소재지</td>
-                <td colSpan={6}></td>
+                <td colSpan={6}>울산광역시 남구 삼산동 000-000</td>
                 <td>대표자</td>
-                <td colSpan={3}></td>
+                <td colSpan={3}>JOHN DOE</td>
               </tr>
               <tr>
                 <td colSpan={5}>항목별 설명</td>

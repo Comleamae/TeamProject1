@@ -23,6 +23,7 @@ import ReservReg from './pages/user/ksh/ReservReg';
 import NewVisit from './pages/user/ksh/NewVisit';
 import ReVisit from './pages/user/ksh/ReVisit';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
+import { BsPatchExclamationFill } from 'react-icons/bs';
 
 
 
@@ -31,7 +32,7 @@ function App() {
   const navigate = useNavigate()
 
   //로그인 여부 정보를 받아올 state변수
-  const [isLogin, setIsLogin] = useState(false)
+  // const [isLogin, setIsLogin] = useState(false)
 
   //로그인한 회원의 정보를 받아올 state변수
   const [loginInfo, setLoginInfo] = useState({})
@@ -128,11 +129,11 @@ function App() {
             <Route path='join' element={<Join />} />
             <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
 
-            <Route path='clinicPrint' element={<ClinicPrint isLogin={isLogin} setIsLogin={setIsLogin} />}>
-              <Route path='printForm/:patNum/:treNum' element={<PrintForm />} />
-              <Route path='printForm2/:patNum/:treDate' element={<PrintForm2 />} />
-              <Route path='printForm3/:patNum/:treDate' element={<PrintForm3 />} />
-              <Route path='printForm4/:patNum/:treDate' element={<PrintForm4 />} />
+            <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
+              <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
+              <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
+              <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
+              <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
             </Route>
 
             {/* 예약 등록 */}

@@ -5,6 +5,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
     @Autowired
@@ -27,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void insertOne(MemberVO memberVO) {
-        sqlSession.insert("memberMapper.insertOne", memberVO);
+    public List<MemberVO> isCitizens(String citizenNum) {
+        return sqlSession.selectList("memberMapper.isCitizen", citizenNum);
     }
 }

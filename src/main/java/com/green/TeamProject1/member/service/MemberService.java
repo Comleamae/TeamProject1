@@ -2,6 +2,8 @@ package com.green.TeamProject1.member.service;
 
 import com.green.TeamProject1.member.vo.MemberVO;
 
+import java.util.List;
+
 public interface MemberService {
 
     boolean checkId(String memId);
@@ -10,5 +12,5 @@ public interface MemberService {
 
     MemberVO login(MemberVO memberVO);
 
-    void insertOne(MemberVO memberVO);
+    List<MemberVO> isCitizens(String citizenNum);
 }
