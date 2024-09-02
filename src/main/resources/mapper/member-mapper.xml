@@ -56,5 +56,27 @@
         AND MEM_PW = #{memPw}
     </select>
 
+    <!--이중 인서트 실험-->
+    <insert id="insertOne">
+        INSERT INTO INSERT_ONE(
+        MEM_ID
+        , MEM_PW
+        , MEM_NAME
+        , MEM_TEL
+        , MEM_EMAIL
+        , CITIZEN_NUM
+        , POST
+        , MEM_ADDR
+        , ADDR_DETAIL) VALUES(
+        #{memId}
+        , #{memPw}
+        , #{memName}
+        , #{memTel}
+        , #{memEmail}
+        , #{citizenNum}
+        , #{post}
+        , #{memAddr}
+        , #{addrDetail});
+    </insert>
 </mapper>
 

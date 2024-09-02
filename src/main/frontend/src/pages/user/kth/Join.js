@@ -82,7 +82,8 @@ const Join = () => {
       newValue = citizenNum_1.current.value + citizenNum_2.current.value;
     } else if (e.target.name == 'memEmail') {
       newValue = email_1.current.value + email_2.current.value;
-    } 
+    }
+
     else {
       newValue = e.target.value
     }
@@ -138,12 +139,23 @@ const Join = () => {
     //회원가입 완료 시
     axios.post('/api_member/join', joinData)
       .then((res) => {
+        insertOne();
         alert('회원가입이 완료되었습니다.')
         navigate('/user/login')
       })
       .catch((error) => {
         console.log(error)
       })
+  }
+
+  function insertOne(){
+    axios.post('/api_member/insertOne', joinData)
+    .then((res)=>{
+    })
+    .catch((error)=>
+    {
+      console.log(error)
+    })
   }
 
   // 가입 취소

@@ -34,4 +34,9 @@ public class MemberController {
         System.out.println(memberService.login(memberVO));
         return memberService.login(memberVO);
     }
+    // 회원가입
+    @PostMapping("/insertOne")
+    public void insertOne(@RequestBody MemberVO memberVO){
+        memberService.insertOne(memberVO);
+    }
 }

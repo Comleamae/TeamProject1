@@ -35,19 +35,10 @@ export const joinValidate = (newData, valid_tag, tagName) => {
 
       //test() : 매개변수로 들어온 데이터가 조건에 부합하면 리턴 true
       if (regex_memId.test(newData.memId)) {
-        //div에 error 클래스 추가
-        // memId_valid_tag.current.className = 'feedback good';
-        //div 태그 안에 글자 변경
-        // memId_valid_tag.current.textContent = '사용 가능한 아이디입니다.';
         sendFeedbackMsg(valid_tag[0], '사용 가능한 아이디입니다.', 'good');
         resultArr[0] = true;
       }
       else {
-        //div에 good 클래스 추가
-        // memId_valid_tag.current.className = 'feedback error';
-        //div 태그 안에 글자 변경 : 사용 가능한 아이디
-        // memId_valid_tag.current.textContent = '아이디는 영문이며 4~12자여야 합니다';
-
         sendFeedbackMsg(valid_tag[0], '아이디는 영문이며 4~12자여야 합니다.', 'error');
         resultArr[0] = false;
       }
@@ -57,7 +48,7 @@ export const joinValidate = (newData, valid_tag, tagName) => {
     case 'confirmPw':
 
       //비밀번호 검사 정규식
-      const regex_memPw = /^[a-z0-9](?=.*[a-z])(?=.*[0-9]).{3,12}$/g;
+      const regex_memPw =  /^[A-Za-z0-9]{4,12}$/;
 
       if (regex_memPw.test(newData.memPw)) {
         sendFeedbackMsg(valid_tag[1], '사용 가능한 비밀번호입니다.', 'good');
@@ -142,9 +133,6 @@ export const joinValidate = (newData, valid_tag, tagName) => {
     feedbackTag.current.textContent = msg;
   }
 
-  //배열의 매개변수로 전달된 데이터가 존재 한다면 리턴 true;
-  // return !resultArr.includes(false);
-
   console.log(resultArr)
   //resultArr의 모든 데이터가 true일 때만 리턴 true
   for (const e of resultArr) {
@@ -153,6 +141,4 @@ export const joinValidate = (newData, valid_tag, tagName) => {
     }
   }
   return true;
-
-
 }
