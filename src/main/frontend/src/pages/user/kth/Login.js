@@ -65,7 +65,6 @@ const Login = ({ setLoginInfo }) => {
           <div><input type='text' name='memId' placeholder='아이디' onChange={(e) => { changeLoginData(e) }}></input></div>
           <div><input type='password' name='memPw' placeholder='비밀번호' onChange={(e) => { changeLoginData(e) }}></input></div>
           <button type='button' className='btn-div' onClick={(e) => { navigate('/user/join') }}>회원가입</button>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/join') }}>회원가입</button>
         </div>
         <button type='button' className='btn-div' onClick={(e) => { login() }}> 로그인</button>
       </div>
