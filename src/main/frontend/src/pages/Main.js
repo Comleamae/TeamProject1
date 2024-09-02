@@ -120,11 +120,13 @@ const Main = () => {
       </div>
       <div className='background-div'></div>
 
+      {/* 사이드 */}
+      <SideList />
+
       {/* 메디컬 센터 */}
       <MedicalCenter />
 
-      {/* 사이드 */}
-      <SideList />
+
 
       
     </div>
