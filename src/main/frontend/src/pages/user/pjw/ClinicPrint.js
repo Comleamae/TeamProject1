@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ClinicPrint.css';
-import { Outlet, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FormSelector from './FormSelector';
 
@@ -11,8 +11,8 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
 
   //선택한 날짜를 담을 변수
   const [selectData, setSelectData] = useState(
-    { patNum:0
-      , treNum:0}
+    {patNum:0
+    , treNum:0}
   )
 
   //인증번호 저장할state 변수
@@ -44,13 +44,23 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   const citizenNum_1 = useRef()
   const citizenNum_2 = useRef()
 
-  // 세션에 저장된 정보
+  // 세션에 저장된 정보는 받아온 isLogin
  
 
   //인증번호 입력 시마다 state변수에 저장
   const handleInputNumChange = (e) => {
     setInputNum(e.target.value);
   };
+
+
+  // 비동기 해결을 위한 useEffect 
+  // *useEffect는 화면을 다시 그린다 그렇기에 다른 내용을 넣지 않아도 
+  // 화면 전체를 다시 그리는 기능을 수행한다
+  useEffect(()=>{
+    if(inputData.patEmail != ''){
+      sendEmail(inputData) 
+    }
+  },[inputData.patEmail])
 
   // 인증받을 이메일과 주민 번호 입력 시마다 state변수에 저장
   const handleInputData = (e)=>{
@@ -64,15 +74,19 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   }
   //환자 전체리스트 중 해당 주민번호를 가진 환자가 있는지 받아올 axios
   //비회원
-  useEffect(()=>{
+  function unLoginAxios(){
+    if(inputData.citizenNum.length!=14){
+      alert('주민번호를 확인해주세요')
+      return
+    }
     axios
     .post(`/patient/getListCN`, inputData)
     .then((res)=>{
-      if(res.data.length==0&inputData.length!=14){
+      if(res.data.length==0){
+        alert('해당하는 주민번호의 환자가 없습니다')
         setButtonStatus(true)
       }
       else{
-        console.log('isData')
         setRecoData({
           ...recoData,
           patNum:res.data[0].patNum
@@ -83,11 +97,19 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
     .catch((error)=>{
       console.log('비회원 환자 전체리스트 불러오기 실패', error)
     })
-  }, [inputData, buttonStatus])
+  }
 
   //회원 전체리스트 중 해당 주민번호를 가진 환자가 있는지 받아올 axios
   //회원
-  useEffect(()=>{
+  
+
+  function onLoginAxios(){
+
+   if(inputData.citizenNum.length!=14){
+      alert('주민번호를 확인해주세요')
+      return
+    }
+
     axios
     .post(`/api_member/isCitizen`, inputData)
     .then((res)=>{
@@ -110,8 +132,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
               {
                 ...inputData,
                 patEmail:isLogin.memEmail
-              }
-            )
+              })       
           }
           else{
             console.log(dres)
@@ -127,12 +148,11 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
     .catch((error)=>{
       console.log('로그인한 회원 정보 불러오기 실패', error)
     })
-  },[inputData.citizenNum])
+  }
 
- 
   const sendEmail = (mail) => {
     //이메일 미 입력시
-    if(inputData.patEmail==''){
+    if(!inputData.patEmail){
       alert('이메일 확인부탁드립니다')
       return
     }
@@ -158,10 +178,6 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
         if (res.data == true) {
           alert('인증번호가 일치하지 않습니다');
           setIsConfirm(false);
-          // setRecoData({
-          //   ...recoData,
-          //   patNum:patientList[0].patNum
-          // })
         } else {
           alert('인증되었습니다');
           setIsConfirm(true);
@@ -180,9 +196,11 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
         ? (
         <div className='selfDefWhenLogin'>
             <h2>회원 발급</h2>
-            <div className='btn-div'>
-              <div>
-                <h4>주민번호:</h4>
+            {/* 인증 단계별 화면 구현/ 주민번호 입력 확인 화면: 인증번호 입력 화면 */}
+            {!inputStatus ?(
+              <div className='recoP1'>
+              <div className='numPress'>
+                <h4>주민번호</h4>
                 <input 
                   type='text' 
                   name='citizenNum'
@@ -195,29 +213,39 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                   onChange={(e)=>{handleInputData(e)}}
                   ref={citizenNum_2}/>
               </div>
-              <button
-                type='button'
-                className='btn'
-                onClick={(e) => sendEmail(inputData)}>
-                인증번호 얻기
-              </button>
+              <div className='btn-div'>
+                <button
+                  type='button'
+                  className='btn'
+                  onClick={(e) => {
+                    onLoginAxios()}}>
+                  인증번호 얻기
+                </button>
+              </div>
             </div>
-            <p>인증번호:
-              <input
-                type='number'
-                name='input'
-                onChange={(e)=>{handleInputNumChange(e)}}
-              />
-            </p>
-         <div className='btn-div'>
-            <button
-              type='button'
-              className='btn'
-              onClick={(e) => checkNum(inputNum)}>
-              인증하기
-            </button>
-         </div>
-          {isConfirm && <FormSelector />}
+              ):
+            (
+             <>
+                <p>인증번호
+                  <input
+                    type='number'
+                    name='input'
+                    onChange={(e)=>{handleInputNumChange(e)}}
+                  />
+                </p>
+              <div className='btn-div'>
+                <button
+                  type='button'
+                  className='btn'
+                  onClick={(e) => {checkNum(inputNum)}}>
+                  인증하기
+                </button>
+              </div>
+             </>
+          )
+          }
+            
+          {isConfirm && <FormSelector  recoData={recoData} setRecoData={setRecoData} selectData={selectData} setSelectData={setSelectData}/>}
         </div>
       ) : 
       // 비로그인 상태에서 발급받기
@@ -227,46 +255,52 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
           {/* 인증 단계별 화면 구현 /  주민번호와 이메일 입력 화면 : 인증번호 입력 화면  */}
           {!inputStatus ? (
             <div className='recoP1'>
-              <div>
-                <h4>주민번호:</h4>
-                <input 
-                  type='text' 
-                  name='citizenNum'
-                  onChange={(e)=>{handleInputData(e)}}
-                  ref={citizenNum_1}/>
-                -
-                <input 
-                  type='password'
-                  name='citizenNum'
-                  onChange={(e)=>{handleInputData(e)}}
-                  ref={citizenNum_2}/>
-              </div>
-              <div>
-                <h4>이메일 입력:</h4>
-                <input
-                  type='text'
-                  name='patEmail'
-                  onChange={(e)=>{handleInputData(e)}}
-                />
+              <div className='numPress'>
+                <div>
+                  <h4>주민번호</h4>
+                  <input 
+                    type='text' 
+                    name='citizenNum'
+                    onChange={(e)=>{handleInputData(e)}}
+                    ref={citizenNum_1}/>
+                  -
+                  <input 
+                    type='password'
+                    name='citizenNum'
+                    onChange={(e)=>{handleInputData(e)}}
+                    ref={citizenNum_2}/>
+                </div>
+                <div>
+                  <h4>이메일 입력</h4>
+                  <input
+                    type='text'
+                    name='patEmail'
+                    onChange={(e)=>{handleInputData(e)}}
+                  />
+                </div>
               </div>
               <div className='btn-div'>
                 <button
                   type='button'
                   className='btn'
                   disabled={buttonStatus}
-                  onClick={() => sendEmail(inputData)}>
+                  onClick={() => {
+                    unLoginAxios()
+                    }}>
                   인증번호 얻기
                 </button>
               </div>
             </div>
           ) : (
             <div>
-              <h4>인증번호:</h4>
-              <input
-                type='number'
-                name='inputNum'
-                onChange={(e)=>{handleInputNumChange(e)}}
-              />
+              <div className='numPress'>
+                <h4>인증번호</h4>
+                <input
+                  type='number'
+                  name='inputNum'
+                  onChange={(e)=>{handleInputNumChange(e)}}
+                />
+              </div>
              <div className='btn-div'>
                 <button
                   type='button'

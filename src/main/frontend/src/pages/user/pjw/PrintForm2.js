@@ -53,7 +53,7 @@ const PrintForm2 = () => {
   // PDF 생성 함수
   const handlePrint = () => {
     if (printRef.current) {
-      generatePDF(printRef.current, '수술확인서.pdf')
+      generatePDF(printRef.current, `${patientOne[0].treatVO.treDate}${patientOne[0].patName} 수술확인서.pdf`)
         .then(() => {
           console.log('PDF 생성 성공')
         })

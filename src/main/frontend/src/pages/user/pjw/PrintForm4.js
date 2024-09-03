@@ -47,7 +47,7 @@ const PrintForm4 = () => {
   // PDF 생성 함수
   const handlePrint = () => {
     if (printRef.current) {
-      generatePDF(printRef.current, '진료비 영수증.pdf')
+      generatePDF(printRef.current, `${patientOne[0].treatVO.treDate}${patientOne[0].patName} 0진료비 영수증.pdf`)
         .then(() => console.log('PDF 생성 성공'))
         .catch((error) => console.error('PDF 생성 오류:', error));
     }
