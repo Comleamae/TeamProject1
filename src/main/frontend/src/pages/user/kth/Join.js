@@ -170,81 +170,111 @@ const Join = () => {
 
   return (
     <div className='join-div'>
-      <div><h3>회원가입 페이지</h3></div>
-      <div>
+      <div className='user-div'>
+        <h1>통합회원가입</h1>
+        <p>그린대학교병원 통합회원가입을 환영합니다🎉🎉</p>
+      </div>
+      <div className='user-login-txt'>
+        <h2>
+          <strong>그린대학교병원 통합회원가입을 환영합니다.</strong><br />
+          한 번의 통합회원 가입으로 모든 사이트 이용이 가능합니다.
+        </h2>
+      </div>
+      <div className='join-box'>
+        <div className='join-checklist'>
+          <div><p>약관동의 및 본인인증</p> <span>01</span></div>
+          <div className='join-checklist-div'><p>회원정보입력</p> <span>02</span></div>
+          <div><p>회원가입완료</p> <span>03</span></div>
+        </div>
+        <div className='join-imgdiv'>
+          <img src='http://localhost:8080/images/bg_bar.gif' />
+          <h5>통합회원기본 정보</h5>
+        </div>
         <table className='join-table'>
-          {/* <colgroup>
-            <col width='5%'></col>
-            <col width='95%'></col>
-          </colgroup> */}
           <tbody>
             <tr>
-              <td>아이디</td>
-              <td>
+              <td style={{textAlign: 'left'}}>아이디</td>
+              <td style={{paddingBottom: '30px'}}>
                 <div>
-                  <input type='text' name='memId' placeholder='아이디'
+                  <input className='input-txt' type='text' name='memId' placeholder='아이디'
                     onChange={(e) => {
                       changeJoinData(e);
                       setIsCheckId(false);
                     }} />
-                  <button type='button' className='btn-div' onClick={(e) => { idEnable() }}>중복 확인</button></div>
+                  <button type='button' className='btn-div' onClick={(e) => { idEnable() }}>중복 확인</button>
+                </div>
                 <div className='feedback' ref={memId_valid_tag}>아이디는 영문이며 4~12자여야 합니다.</div>
               </td>
             </tr>
             <tr>
               <td>비밀번호</td>
-              <input type='password' name='memPw' placeholder='비밀번호' onChange={(e) => { changeJoinData(e) }} />
-              <div className='feedback' ref={memPw_valid_tag}>비밀번호는 4~12자 영문,숫자로 이루어져야 합니다.</div>
+              <td>
+                <input className='input-txt' type='password' name='memPw' placeholder='비밀번호' onChange={(e) => { changeJoinData(e) }} />
+                <div className='feedback' ref={memPw_valid_tag}>비밀번호는 4~12자 영문,숫자로 이루어져야 합니다.</div>
+              </td>
             </tr>
             <tr>
               <td>비밀번호 확인</td>
-              <input type='password' name='confirmPw' placeholder='비밀번호 확인' onChange={(e) => { changeJoinData(e) }} />
-              <div className='feedback' ref={confirmPw_valid_tag}>비밀번호가 일치하지 않습니다.</div>
+              <td>
+                <input className='input-txt' type='password' name='confirmPw' placeholder='비밀번호 확인' onChange={(e) => { changeJoinData(e) }} />
+                <div className='feedback' ref={confirmPw_valid_tag}>비밀번호가 일치하지 않습니다.</div>
+              </td>
             </tr>
             <tr>
-              <td>이름</td>
-              <input type='text' name='memName' placeholder='이름' onChange={(e) => { changeJoinData(e) }} />
-              <div className='feedback' ref={memName_valid_tag}>이름은 한글이며 2~10자여야 합니다.</div>
+              <td style={{textAlign: 'left'}}>이름</td>
+              <td>
+                <input className='input-txt' type='text' name='memName' placeholder='이름' onChange={(e) => { changeJoinData(e) }} />
+                <div className='feedback' ref={memName_valid_tag}>이름은 한글이며 2~10자여야 합니다.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>주민번호</td>
+              <td>
+                <input className='input-txt2' type='text' name='citizenNum' placeholder='주민번호 앞자리' ref={citizenNum_1} onChange={(e) => { changeJoinData(e) }} /> - 
+                <input className='input-txt2'  type='password' name='citizenNum' placeholder='주민번호 뒷자리' ref={citizenNum_2} onChange={(e) => { changeJoinData(e) }} />
+                <div className='feedback' ref={citizenNum_valid_tag}>잘못된 주민번호입니다.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>우편번호</td>
+              <td style={{paddingBottom: '30px'}}><input className='input-txt2' type='text' name='post' placeholder='우편번호' value={joinData.post} onClick={(e) => { handleClick() }} readOnly onChange={(e) => { changeJoinData(e) }} /><button className='btn-div' type='button' onClick={(e) => { handleClick() }} >주소 검색</button>
+              </td>
+            </tr>
+            <tr>
+              <td>주소</td>
+              <td><input className='input-txt' type='text' name='memAddr' placeholder='주소' value={joinData.memAddr} onClick={(e) => { handleClick() }} readOnly onChange={(e) => { changeJoinData(e) }} /></td>
+            </tr>
+            <tr>
+              <td>상세주소</td>
+              <td><input className='input-txt' type='text' name='addrDetail' placeholder='상세주소' onChange={(e) => { changeJoinData(e) }} /></td>
             </tr>
             <tr>
               <td>전화번호</td>
               <td>
-                <input type='text' name='memTel' placeholder='ex)010-0000-1111' onChange={(e) => { changeJoinData(e) }} />
+                <input className='input-txt' type='text' name='memTel' placeholder='010-0000-1111' onChange={(e) => { changeJoinData(e) }} />
                 <div className='feedback' ref={memTel_valid_tag}>연락처를 확인하세요.</div>
               </td>
             </tr>
             <tr>
               <td>이메일</td>
               <td>
-                <input type='text' name='memEmail' placeholder='ex)abc123@naver.com' ref={email_1} onChange={(e) => { changeJoinData(e) }} />@
-                <select name='memEmail' ref={email_2} defaultValue={'@naver.com'} onChange={(e) => { changeJoinData(e) }} >
+                <input className='input-txt2' type='text' name='memEmail' placeholder='abc123@naver.com' ref={email_1} onChange={(e) => { changeJoinData(e) }} />@
+                <select className='email-box' name='memEmail' ref={email_2} defaultValue={'@naver.com'} onChange={(e) => { changeJoinData(e) }} >
                   <option value={'@naver.com'}>naver.com</option>
                   <option value={'@kakao.com'}>kakao.com</option>
                   <option value={'@gmail.com'}>gmail.com</option>
                 </select>
               </td>
             </tr>
-            <tr>
-              <td>주민번호</td>
-              <td>
-                <input type='text' name='citizenNum' placeholder='주민번호 앞자리' ref={citizenNum_1} onChange={(e) => { changeJoinData(e) }} /> -
-                <input type='password' name='citizenNum' placeholder='주민번호 뒷자리' ref={citizenNum_2} onChange={(e) => { changeJoinData(e) }} />
-                <div className='feedback' ref={citizenNum_valid_tag}>잘못된 주민번호입니다.</div>
-              </td>
-            </tr>
-            <tr>
-              <td>주소</td>
-              <td>
-                <div><input type='text' name='post' placeholder='우편번호' value={joinData.post} onClick={(e) => { handleClick() }} readOnly onChange={(e) => { changeJoinData(e) }} /><button type='button' onClick={(e) => { handleClick() }} >주소 검색</button></div>
-                <div><input type='text' name='memAddr' placeholder='주소' value={joinData.memAddr} onClick={(e) => { handleClick() }} readOnly onChange={(e) => { changeJoinData(e) }} /></div>
-                <div><input type='text' name='addrDetail' placeholder='상세주소' onChange={(e) => { changeJoinData(e) }} /></div>
-              </td>
-            </tr>
           </tbody>
         </table>
 
-        <button type='button' name='join' className='btn-div' onClick={(e) => { join() }}>회원가입</button>
-        <button type='button' name='join-cancel' className='btn-div' onClick={(e) => { joinCancel() }}>취소</button>
+        <div className='join-btn-div'>
+          <button type='button' name='join' className='btn-div' onClick={(e) => { join() }}>
+            회원가입
+          </button>
+          <button type='button' name='join-cancel' className='btn-div1' onClick={(e) => { joinCancel() }}>취소</button>
+        </div>
       </div>
     </div>
   )

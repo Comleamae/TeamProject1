@@ -21,8 +21,9 @@ import ReservReg from './pages/user/ksh/ReservReg';
 import NewVisit from './pages/user/ksh/NewVisit';
 import ReVisit from './pages/user/ksh/ReVisit';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
-import { BsPatchExclamationFill } from 'react-icons/bs';
 import DetailInfo from './pages/admin/ksh/DetailInfo';
+import Footer from './pages/Footer';
+
 
 
 
@@ -159,7 +160,9 @@ function App() {
 
           </Route>
         </Routes>
+        <Footer />
       </div>
+
     </div >
   );
 }

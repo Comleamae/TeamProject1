@@ -98,15 +98,15 @@ const Login = ({ setLoginInfo }) => {
         </div>
         <div>
           <p>
-            그린대학교병원의 회원이 아니십니까?
+            아이디를 잊으셨습니까?
           </p>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/user/join') }}>회원가입</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/') }}>아이디 찾기</button>
         </div>
         <div>
           <p>
-            그린대학교병원의 회원이 아니십니까?
+            비밀번호를 잊으셨습니까?
           </p>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/user/join') }}>회원가입</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/') }}>비밀번호 찾기</button>
         </div>
       </div>      
     </div>
