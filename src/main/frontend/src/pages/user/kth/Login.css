@@ -12,8 +12,12 @@
   padding-top: 30px;
 }
 
+.user-div > p {
+  margin-top: 10px;
+}
+
 .user-login-txt {
-  width: 1250px;
+  width: 1200px;
   height: 100px;
   display: flex;
   margin: 0 auto;
@@ -29,8 +33,9 @@
 }
 
 .login-form-div{
-  width: 1250px;
+  width: 1200px;
   height: 250px;
+  margin: 0 auto;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -84,22 +89,34 @@
 }
 
 .user-btn{
-  width: 100%;
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 30px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
 .user-btn > div {
   width: 30%;
-  height: 70px;
+  height: 100px;
   border: 1px solid lightgray;
   padding: 10px;
   margin-top : 10px;
+  padding-top: 30px;
+}
 
+.user-btn > div > p {
+  color: #1C1C1C;
+  font-weight: bold;
 }
 
 .user-btn > div > button {
-  width: 250px;
-  height: 35px;
+  width: 200px;
+  height: 40px;
   margin: 10px;
+  color: #3C32A2;
+  font-weight: bold;
+  border: 1px solid #3C32A2;
+  background: #fff;
 }
