@@ -199,8 +199,8 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
             {/* 인증 단계별 화면 구현/ 주민번호 입력 확인 화면: 인증번호 입력 화면 */}
             {!inputStatus ?(
               <div className='recoP1'>
-              <div>
-                <h4>주민번호:</h4>
+              <div className='numPress'>
+                <h4>주민번호</h4>
                 <input 
                   type='text' 
                   name='citizenNum'
@@ -226,7 +226,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
               ):
             (
              <>
-                <p>인증번호:
+                <p>인증번호
                   <input
                     type='number'
                     name='input'
@@ -255,27 +255,29 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
           {/* 인증 단계별 화면 구현 /  주민번호와 이메일 입력 화면 : 인증번호 입력 화면  */}
           {!inputStatus ? (
             <div className='recoP1'>
-              <div>
-                <h4>주민번호:</h4>
-                <input 
-                  type='text' 
-                  name='citizenNum'
-                  onChange={(e)=>{handleInputData(e)}}
-                  ref={citizenNum_1}/>
-                -
-                <input 
-                  type='password'
-                  name='citizenNum'
-                  onChange={(e)=>{handleInputData(e)}}
-                  ref={citizenNum_2}/>
-              </div>
-              <div>
-                <h4>이메일 입력:</h4>
-                <input
-                  type='text'
-                  name='patEmail'
-                  onChange={(e)=>{handleInputData(e)}}
-                />
+              <div className='numPress'>
+                <div>
+                  <h4>주민번호</h4>
+                  <input 
+                    type='text' 
+                    name='citizenNum'
+                    onChange={(e)=>{handleInputData(e)}}
+                    ref={citizenNum_1}/>
+                  -
+                  <input 
+                    type='password'
+                    name='citizenNum'
+                    onChange={(e)=>{handleInputData(e)}}
+                    ref={citizenNum_2}/>
+                </div>
+                <div>
+                  <h4>이메일 입력</h4>
+                  <input
+                    type='text'
+                    name='patEmail'
+                    onChange={(e)=>{handleInputData(e)}}
+                  />
+                </div>
               </div>
               <div className='btn-div'>
                 <button
@@ -291,12 +293,14 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
             </div>
           ) : (
             <div>
-              <h4>인증번호:</h4>
-              <input
-                type='number'
-                name='inputNum'
-                onChange={(e)=>{handleInputNumChange(e)}}
-              />
+              <div className='numPress'>
+                <h4>인증번호</h4>
+                <input
+                  type='number'
+                  name='inputNum'
+                  onChange={(e)=>{handleInputNumChange(e)}}
+                />
+              </div>
              <div className='btn-div'>
                 <button
                   type='button'
