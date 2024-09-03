@@ -12,6 +12,7 @@
         <result column="CITIZEN_NUM" property="citizenNum"/>
         <result column="ADDRESS" property="address"/>
         <association property="treatVO" resultMap="infoTreat"/>
+        <association property="recepVO" resultMap="recep"/>
     </resultMap>
 
     <!--환자에 대한 입원 정보-->
@@ -39,6 +40,14 @@
         <result column="EAT_PRICE" property="eatPrice"/>
         <result column="SHOT_PRICE" property="shotPrice"/>
         <result column="TRE_NUM" property="treNum"/>
+    </resultMap>
+
+    <!-- 접수 정보에 대한 정보-->
+    <resultMap id="recep" type="com.green.TeamProject1.patient.RecepVO">
+        <id column="RECEP_NUM" property="recepNum" />
+        <result column="PAT_NUM" property="patNum" />
+        <result column="RECEP_DATE" property="recepDate" />
+        <result column="RECEP_STATUS" property="recepStatus" />
     </resultMap>
 
     <!--진료 정보 리스트-->
@@ -122,28 +131,25 @@
                 , recep_status
             ) values (
                 #{patNum}
-            , '대기중'
+                , '대기중'
             )
         </insert>
 
         <!-- 재방문자 기존에 방문한적 있는지 조회하기 -->
-            <select id="regCheck"  resultType="int">
-                SELECT PAT_NUM
+            <insert id="regCheckInsert">
+                INSERT INTO recep_info (pat_num, recep_status)
+                SELECT PAT_NUM, '대기중'
                 FROM patient
-                WHERE PAT_NAME = #{patName}
-                AND CITIZEN_NUM = #{citizenNum}
-            </select>
+                WHERE PAT_NAME = #{patName} AND CITIZEN_NUM = #{citizenNum};
+            </insert>
 
-        <!--재방문한적 있는 환자인 경우 접수하기 -->
-            <insert id="reRecepInsert">
-                INSERT INTO recep_info (
-                    pat_num
-                  , recep_status
-                ) values (
-                    #{patNum}
-                  , '대기중'
-        )
-    </insert>
+
+        <!-- 예약 접수 현황 조회 -->
+        <select id="checkList" resultMap="patient">
+            SELECT r.recep_num, p.pat_name, p.age, r.recep_status
+            FROM patient p, recep_info r
+            WHERE r.pat_num = p.pat_num;
+        </select>
 </mapper>
 
 

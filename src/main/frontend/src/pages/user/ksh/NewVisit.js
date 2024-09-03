@@ -15,7 +15,8 @@ const NewVisit = () => {
     gender : '',
     citizenNum : '',
     patEmail : '',
-    address : ''
+    address : '',
+    dept : ''
   });
 
   // 입력한거 바뀌면 실행될 내용
@@ -33,21 +34,22 @@ const NewVisit = () => {
       console.log(res.data)
       setInfo(res.data)
       navigate('/user/reservReg')
+      
     })
     .catch((error)=>{
       console.log(error)
     })
   }  
- 
 
   return (
-
     <div className='new-main-div'>
       <h1>예약 등록</h1>
       <div>
         <div>접수를 위한 정보를 입력해주세요.</div>
         <div>
           <table>
+            <thead></thead>
+            <tbody>
             <tr> 
               <td>이 름</td>
               <td><input className='newInput' placeholder='이름을 입력해주세요.' type='text'
@@ -82,6 +84,7 @@ const NewVisit = () => {
               <td><input className='newInput' placeholder='주소를 입력해주세요.' type='text'
               name='address' value={info.address} onChange={(e)=>{changeInfo(e)}}/></td>
             </tr>
+            </tbody>
           </table>
           <div><button type='button' onClick={()=>{regInsert()}}>접수</button></div>
         </div> 

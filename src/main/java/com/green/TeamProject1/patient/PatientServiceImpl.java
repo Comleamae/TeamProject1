@@ -50,17 +50,17 @@ public class PatientServiceImpl implements PatientService{
 
     }
 
-    // 재방문 조회
+    // 재방문 - 기존 방문자 기록 조회 + 접수 등록
     @Override
-    public void regCheck(PatientVO patientVO) {
-        sqlSession.selectOne("patientMapper.regCheck", patientVO);
+    public void regCheckInsert(PatientVO patientVO) {
+        sqlSession.insert("patientMapper.regCheckInsert", patientVO);
     }
 
 
-    // 재방문 접수
+    // 예약 등록자 조회하기(전체)
     @Override
-    public void reRecepInsert(PatientVO patientVO) {
-        sqlSession.insert("patientMapper.reRecepInsesrt", patientVO);
+    public List<PatientVO> checkList() {
+        return sqlSession.selectList("patientMapper.checkList");
     }
 
 

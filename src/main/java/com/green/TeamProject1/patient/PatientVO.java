@@ -15,4 +15,5 @@ public class PatientVO {
     private String address;
     private String citizenNum;
     private TreatVO treatVO; // 진료정보 하나
+    private RecepVO recepVO;
 }

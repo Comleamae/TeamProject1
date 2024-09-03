@@ -8,15 +8,18 @@
         <result column="DOC_NAME" property="docName"/>
         <result column="DEPT" property="dept"/>
     </resultMap>
+    
     <!--의사 한명의 정보를 받아옴-->
     <select id="getOneDoc" resultMap="doctor">
         SELECT *
         FROM DOCTOR
         WHERE DOC_LINUM = #{docLinum}
     </select>
+
     <!--의사 전체 리스트를 받아옴-->
     <select id="getAllDoc" resultMap="doctor">
         SELECT *
         FROM DOCTOR
     </select>
+
 </mapper>

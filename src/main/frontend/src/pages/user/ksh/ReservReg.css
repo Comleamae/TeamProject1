@@ -9,11 +9,11 @@
   display: flex;
   justify-content: space-around; 
   align-items: center;
-  gap: 100px;
+  gap: 40px;
 }
 
 .sub-div > div {
-  width: 400px;
+  width: 430px;
   height: 400px; 
   background-color: lightgray; 
   display: flex;

@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 import PatientInfo from './pages/admin/ksh/PatientInfo';
-import MedicalHistory from './pages/admin/ksh/MedicalHistory';
-import Presc from './pages/admin/ksh/Presc';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
@@ -24,6 +22,7 @@ import NewVisit from './pages/user/ksh/NewVisit';
 import ReVisit from './pages/user/ksh/ReVisit';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import { BsPatchExclamationFill } from 'react-icons/bs';
+import DetailInfo from './pages/admin/ksh/DetailInfo';
 
 
 
@@ -51,7 +50,6 @@ function App() {
       setLoginInfo(obj_loginInfo)
     }
   }, [])
-
 
   return (
     <div className="App">
@@ -137,7 +135,6 @@ function App() {
             </Route>
 
             {/* 예약 등록 */}
-
             <Route path='reservReg' element={<ReservReg/>}/>         
             <Route path='newVisit' element={<NewVisit/>}/>
             <Route path='reVisit' element={<ReVisit/>}/>
@@ -154,16 +151,11 @@ function App() {
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
 
-            {/* 환자 정보 */}
-            <Route path='patientInfo' element={<PatientInfo />} />
+            {/* 환자 진료 관리 */}
+            <Route path='patientInfo' element={<PatientInfo />}>
+              <Route path='detailInfo' element={<DetailInfo/>}/>
+            </Route>
 
-            {/* 환자 정보 수정 */}
-
-            {/* 진료 이력 */}
-            <Route path='MedicalHistory' element={<MedicalHistory />} />
-
-            {/* 처 방 전 */}
-            <Route path='Presc' element={<Presc />} />
 
           </Route>
         </Routes>

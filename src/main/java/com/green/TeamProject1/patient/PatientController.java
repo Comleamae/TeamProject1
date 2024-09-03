@@ -47,11 +47,16 @@ public class PatientController {
         patientService.recepInsert(patientVO);
     }
 
-    // 재방문 조회
-    @PostMapping("/regCheck")
-    public void regCheck(){
-        patientService.regCheck( );
+    // 재방문 - 기존 방문자 기록 조회 및 접수
+    @PostMapping("/regCheckInsert")
+    public void regCheckInsert(@RequestBody PatientVO patientVO){
+        patientService.regCheckInsert(patientVO);
     }
-    // 재방문 접수
+
+    // 예약자 조회(전체)
+    @GetMapping("/checkList")
+    public List<PatientVO> checkList(){
+        return patientService.checkList();
+    }
 
 }
