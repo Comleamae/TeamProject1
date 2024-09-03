@@ -8,13 +8,19 @@ const FormSelector = ({recoData, setRecoData, selectData, setSelectData}) => {
   //환자의 진료 기록 날짜를 저장 받을 변수
   const[treDateList, setTreDateList] = useState([])
 
+  //진료 기록이 없는 환자의 경우
+  const[noClinic, setNoClinic] = useState(false)
+  
+  //넘어온 데이터를 넘어온 데이터로 세팅하는 훅
   useEffect(()=>{
     setSelectData({
+      ...selectData,
       patNum:recoData.patNum
       , treNum:0
-    })
+    })  
   }, [])
   
+  //비동기 순서 해결을 위한 상태 변수
   const[isShow, setIsShow] = useState(false)
 
   //선택된 날짜를 변경할 함수
@@ -48,13 +54,29 @@ const FormSelector = ({recoData, setRecoData, selectData, setSelectData}) => {
         treNum: treDateList[0].treNum
       }));
       console.log(selectData)
+      setNoClinic(true)
+    }
+    else{
+      setNoClinic(false)
     }
   }, [treDateList]);
 
   return (
+    noClinic==false
+    ?
+    <div className='contaniner'>
+      해당 환자의 진료기록이 없습니다
+      <div className='btn-div'>
+        <button type='button' className='btn' onClick={()=>{navigate('/')}}>뒤로가기</button>
+      </div>
+    </div>
+    :
     <div className='contaniner'>
       <div className='form-selector'>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm/${selectData.patNum}/${selectData.treNum}`)}}>
+        <div onClick={(e)=>{
+          console.log('@@@'+selectData.treNum)
+          navigate(`/user/clinicPrint/printForm/${selectData.patNum}/${selectData.treNum}`)
+          }}>
           진료확인서
         </div>
         <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm2/${selectData.patNum}/${selectData.treNum}`)}}>
