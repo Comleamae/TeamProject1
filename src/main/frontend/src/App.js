@@ -30,6 +30,9 @@ const App = () => {
   //로그인한 회원의 정보를 받아올 state변수
   const [loginInfo, setLoginInfo] = useState({})
 
+  //내가 관리자인가?
+  const [isAdmin, setIsAdmin] = useState(false)
+
   //로그인한 회원의 정보로 로그인 배너 생성
   useEffect(() => {
     //로그인하면서 sessionStorage에 저장한 정보 가져오기
@@ -47,115 +50,128 @@ const App = () => {
 
   return (
     <div className="App">
-
-      <div className='header'>
-        <div className='header-index'>
-
-          <div id='btn-top-menus'>
-            <button type='button' className='menu' id='main-menu'>
-              <MdMenu className='menu-icon' />
-            </button>
-            {/* 
-            <div>
-              <ul>
-                <li>목록목록</li>
-              </ul>
-            </div> 
-            */}
-          </div>
-
-          <Link to="/" className='logo'>
-            <img className='logo-img' src='http://localhost:8080/images/logo.png' />
-            그린대학교병원
-          </Link>
-          {
-            Object.keys(loginInfo).length != 0 ?
-              //로그인 하였다면
-              // 회원 이름 + 로그아웃 버튼
+      {
+        isAdmin==false
+        ?
+        <>
+        <div className='header'>
+          <div className='header-index'>
+  
+            <div id='btn-top-menus'>
+              <button type='button' className='menu' id='main-menu'>
+                <MdMenu className='menu-icon' />
+              </button>
+              {/* 
               <div>
-                {loginInfo.memName}님 안녕하세요.
-                {/* Logout 글자에 손대면 cursor pointer 해주세요 */}
-
-                {/* 클릭 시 로그아웃 */}
-                <span onClick={(e) => {
-                  window.sessionStorage.removeItem('loginInfo')
-                  setLoginInfo({});
-                  navigate('/')
-                }}>Logout</span>
-
-              </div>
-              :
-              //비로그인 상태라면
-              //로그인 + 회원가입 + 관리자전용
-              <div>
-                <ul className='login-box'>
-                  <li>
-                    <Link to='/user/login' className='user-login'>로그인</Link>
-                  </li>
-                  <li>
-                    <Link to='/admin/clinicList' className='admin-login'>
-                      직원전용
-                    </Link>
-                  </li>
-                  <li>
-                    <select>
-                      <option>KOR</option>
-                      <option>ENG</option>
-                    </select>
-                  </li>
+                <ul>
+                  <li>목록목록</li>
                 </ul>
-              </div>
-          }
+              </div> 
+              */}
+            </div>
+  
+            <Link to="/" className='logo'>
+              <img className='logo-img' src='http://localhost:8080/images/logo.png' />
+              그린대학교병원
+            </Link>
+            {
+              Object.keys(loginInfo).length != 0 ?
+                //로그인 하였다면
+                // 회원 이름 + 로그아웃 버튼
+                <div>
+                  {loginInfo.memName}님 안녕하세요.
+                  {/* Logout 글자에 손대면 cursor pointer 해주세요 */}
+  
+                  {/* 클릭 시 로그아웃 */}
+                  <span onClick={(e) => {
+                    window.sessionStorage.removeItem('loginInfo')
+                    setLoginInfo({});
+                    navigate('/')
+                  }}>Logout</span>
+  
+                </div>
+                :
+                //비로그인 상태라면
+                //로그인 + 회원가입 + 관리자전용
+                <div>
+                  <ul className='login-box'>
+                    <li>
+                      <Link to='/user/login' className='user-login'>로그인</Link>
+                    </li>
+                    <li>
+                      <Link onClick={(e)=>{setIsAdmin(true)}} to='/admin/clinicList' className='admin-login'>
+                        직원전용
+                      </Link>
+                    </li>
+                    <li>
+                      <select>
+                        <option>KOR</option>
+                        <option>ENG</option>
+                      </select>
+                    </li>
+                  </ul>
+                </div>
+            }
+          </div>
         </div>
-      </div>
-
-      <div className='layout-div'>
-        <Routes>
-
-          {/* 메인화면 */}
-          <Route path="/" element={<Main />} />
-
-          {/* 유저 페이지 */}
-          <Route path='/user' element={<UserLayout />}>
-            {/* 로그인 * 회원가입 페이지 */}
-            <Route path='join' element={<Join />} />
-            <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
-
-            <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
-              <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
-              <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
-              <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
-              <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
+  
+        <div className='layout-div'>
+          <Routes>
+  
+            {/* 메인화면 */}
+            <Route path="/" element={<Main />} />
+  
+            {/* 유저 페이지 */}
+            <Route path='/user' element={<UserLayout />}>
+              {/* 로그인 * 회원가입 페이지 */}
+              <Route path='join' element={<Join />} />
+              <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
+  
+              <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
+                <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
+                <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
+                <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
+                <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
+              </Route>
+  
+              {/* 예약 등록 */}
+              <Route path='reservReg' element={<ReservReg/>}/>         
+              <Route path='newVisit' element={<NewVisit/>}/>
+              <Route path='reVisit' element={<ReVisit/>}/>
+              <Route path='reservInquiry' element={<ReservInquiry/>}/>
+            
+              {/* 진료비 수납내용 */}
+              <Route path='moneyin' element={<MoneyIn />} />
+              {/* 진료비 결제창 */}
+              <Route path='payMoney' element={<PayMoney />} />
             </Route>
-
-            {/* 예약 등록 */}
-            <Route path='reservReg' element={<ReservReg/>}/>         
-            <Route path='newVisit' element={<NewVisit/>}/>
-            <Route path='reVisit' element={<ReVisit/>}/>
-            <Route path='reservInquiry' element={<ReservInquiry/>}/>
-          
-            {/* 진료비 수납내용 */}
-            <Route path='moneyin' element={<MoneyIn />} />
-            {/* 진료비 결제창 */}
-            <Route path='payMoney' element={<PayMoney />} />
-          </Route>
-
-          {/* 관리자 페이지 */}
-          <Route path='/admin' element={<AdminLayout />} >
-            <Route path='clinicList' element={<ClinicList />} />
-            <Route path='moneyln' element={<MoneyIn />} />
-
-            {/* 환자 진료 관리 */}
-            <Route path='patientInfo' element={<PatientInfo />}>
-              {/* <Route path='detailInfo' element={<DetailInfo/>}/> */}
+  
+            {/* 관리자 페이지 */}
+            <Route path='/admin' element={<AdminLayout />} >
+              <Route path='clinicList' element={<ClinicList />} />
+              <Route path='moneyln' element={<MoneyIn />} />
+  
+              {/* 환자 진료 관리 */}
+              <Route path='patientInfo' element={<PatientInfo />}>
+                {/* <Route path='detailInfo' element={<DetailInfo/>}/> */}
+              </Route>
+  
+  
             </Route>
-
-
-          </Route>
-        </Routes>
-        <Footer />
-      </div>
-
+          </Routes>
+          <Footer />
+        </div>          
+     </>
+        :
+        <>
+          <div>
+            여긴 관리자 구역이다
+          </div>
+        </>
+      }
+      
+      
+     
     </div >
   );
 }
