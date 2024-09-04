@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import Slider from 'react-slick';
 import './MedicalCenter.css'
 import { Link } from 'react-router-dom'
+import { IoIosArrowForward } from "react-icons/io"; // 오른쪽 화살표
 
 
 const MedicalCenter = () => {
@@ -181,7 +182,6 @@ const MedicalCenter = () => {
               <img src="http://localhost:8080/images/ico_d_701.png" alt="어린이센터" />
             </Link>
           </div>
-
         </Slider>
       </div>
 

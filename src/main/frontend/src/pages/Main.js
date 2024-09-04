@@ -37,98 +37,82 @@ const Main = () => {
         <p>우리가 국내 TOP</p>
       </div>
 
-      {/* 진료/수납결제/의료진 박스 */}
-      <div className='self-box'>
+      <div className='main-list-div'>
+        {/* 진료/수납결제/의료진 박스 */}
+        <div className='self-box'>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
+            <div className='sub-inbox'>
+              <FaHandHoldingMedical className='icon' />
+              <p>첫 방문 상담</p>
+              <span>그린대학교병원이<br />처음이신가요?</span>
+            </div>
+          </div>
 
-        {/*  첫번째 줄 */}
-        <div className='sub-idex-box' onClick={(e) => { navigate('/user/clinicPrint') }}>
-          <FaHandHoldingMedical className='icon' />
-          <p>진료</p>
-          <span>진료볼수있는곳</span>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/user/reservReg') }}>
+          <div className='sub-inbox'>
+            <LuCalendarClock className='icon' />
+            <p>온라인 진료예약</p>
+            <span>편하게 온라인으로<br />진료예약 하러가기</span>
+            </div>
+          </div>
+  
+          <div className='sub-idex-box' onClick={(e) => { navigate(`/`) }}>
+          <div className='sub-inbox'>
+            <FaUserDoctor className='icon' />
+            <p>의료진/<br /> 의료과 찾기</p>
+            <button type='button' className='btn'>찾기</button>
+            </div>
+          </div>
+
+          
+  
+          <div className='sub-idex-box' onClick={(e) => { navigate('/user/moneyIn') }}>
+          <div className='sub-inbox'>
+            <IoCardOutline className='icon' />
+            <p>진료비 결제</p>
+            <span>
+              기다림 NO!
+              온라인으로 진료비 결제하세요!
+            </span>
+            </div>
+          </div>
+  
+          <div className='sub-idex-box' onClick={(e) => { navigate('/user/clinicPrint') }}>
+            <div className='sub-inbox'>
+              <IoNewspaperOutline className='icon' />
+              <p>증명서 발급</p>
+              <span>증명서/제증명 발급</span>
+            </div>
+          </div>
+
+          <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
+            <div className='sub-inbox'>
+              <GrMapLocation className='icon' />
+              <p className='main-p'>찾아오시는 길</p>
+              <span className='main-span'>그린대학교병원으로<br />오시는 길</span>
+            </div>
+          </div>
+
         </div>
-
-
-
-        <div className='sub-idex-box' onClick={(e) => { navigate('/user/reservReg') }}>
-
-          <LuCalendarClock className='icon' />
-          <p>온라인<br />진료예약</p>
-          <span>편하게 온라인으로 진료예약 하러가기</span>
-        </div>
-
-
-        <div className='sub-idex-box' onClick={(e) => { navigate(`/`) }}>
-
         
+        {/*  두번째 줄 */}
+        {/* <div className='bottom-box'>
+          
+        </div> */}
 
-          <FaUserDoctor className='icon' />
-          <p>의료진/<br /> 의료과 찾기</p>
-          <button type='button' className='btn'>찾기</button>
-        </div>
-
-        <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
-          <p>빈방</p>
-          <span>빈곳</span>
-        </div>
-
-        <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
-          <p>빈방1</p>
-          <span>빈곳1</span>
-        </div> 
-
-      </div>
-      
-      {/*  두번째 줄 */}
-      <div className='bottom-box'>
-        
-        <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
-          <GrMapLocation className='icon' />
-          <p>찾아오시는 길</p>
-          <span>병원에 찾아오는 길입니당</span>
-        </div>
-
-        <div className='sub-idex-box' onClick={(e) => { navigate('/user/moneyIn') }}>
-          <IoCardOutline className='icon' />
-          <p>진료비 결제</p>
-          <span>
-            이제 기다리지말고<br />
-            온라인으로 진료비 결제하세요!
-          </span>
-        </div>
-
-        <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
-          <p>99</p>
-          <span>99</span>
-        </div>
-
-        <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
-          <p>88</p>
-          <span>88</span>
-        </div>
-
-        <div className='sub-idex-box' onClick={(e) => { navigate('/user/clinicPrint') }}>
-          <IoNewspaperOutline className='icon' />
-          <p>증명서 발급</p>
-          <span>제증명 발급에 대한 안내</span>
-        </div>
-
-        <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
-          <p>10</p>
-          <span>00</span>
-        </div>
 
       </div>
       <div className='background-div'></div>
 
-      {/* 사이드 */}
-      <SideList />
-
       {/* 메디컬 센터 */}
       <MedicalCenter />
 
+      {/* 사이드 */}
+      <SideList />
 
 
-      
+
+
     </div>
     
   )
