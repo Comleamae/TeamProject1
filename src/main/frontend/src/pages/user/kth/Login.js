@@ -84,6 +84,7 @@ const Login = ({ setLoginInfo }) => {
               </div>
             </div>
             <button type='button' onClick={(e) => { login() }}> 로그인</button>
+            
           </div>
         </div>
       </div>

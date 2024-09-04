@@ -25,15 +25,9 @@ import Footer from './pages/Footer';
 import '../src/pages/Footer.css'
 import { BiSolidPhoneCall } from "react-icons/bi"; //대표전화 아이콘
 
-
-
-
-function App() {
+const App = () => {
 
   const navigate = useNavigate()
-
-  //로그인 여부 정보를 받아올 state변수
-  // const [isLogin, setIsLogin] = useState(false)
 
   //로그인한 회원의 정보를 받아올 state변수
   const [loginInfo, setLoginInfo] = useState({})
@@ -59,15 +53,12 @@ function App() {
   return (
     <div className="App">
       {
-      isAdmin==true
-      ?
-      <>
-      <div>여긴관리자</div>
-      </>
-      :
-     <>
+        isAdmin==false
+        ?
+        <>
         <div className='header'>
           <div className='header-index'>
+  
             <div id='btn-top-menus'>
               <button type='button' className='menu' id='main-menu'>
                 <MdMenu className='menu-icon' />
@@ -110,7 +101,7 @@ function App() {
                       <Link to='/user/login' className='user-login'>로그인</Link>
                     </li>
                     <li>
-                      <Link onClick={(e)=>{setIsAdmin(false)}} to='/admin1' className='admin-login'>
+                      <Link onClick={(e)=>{setIsAdmin(true)}} to='/admin/clinicList' className='admin-login'>
                         직원전용
                       </Link>
                     </li>
@@ -126,92 +117,63 @@ function App() {
           </div>
         </div>
   
-        <div className='main'>
-          <div className='layout-div'>
-            <Routes>
-              {/* 메인화면 */}
-              <Route path="/" element={<Main />} />
+        <div className='layout-div'>
+          <Routes>
   
-              {/* 관리자 페이지 */}
-              <Route path="/admin1" element={<AdminLayout />} />
-    
-              {/* 유저 페이지 */}
-              <Route path='/user' element={<UserLayout />}>
-                {/* 로그인 * 회원가입 페이지 */}
-                <Route path='join' element={<Join />} />
-                <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
-    
-                <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
-                  <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
-                  <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
-                  <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
-                  <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
-                </Route>
-    
-                {/* 예약 등록 */}
-                <Route path='reservReg' element={<ReservReg/>}/>         
-                <Route path='newVisit' element={<NewVisit/>}/>
-                <Route path='reVisit' element={<ReVisit/>}/>
-                <Route path='reservInquiry' element={<ReservInquiry/>}/>
-              
-                {/* 진료비 수납내용 */}
-                <Route path='moneyin' element={<MoneyIn />} />
-                {/* 진료비 결제창 */}
-                <Route path='payMoney' element={<PayMoney />} />
+            {/* 메인화면 */}
+            <Route path="/" element={<Main />} />
+  
+            {/* 유저 페이지 */}
+            <Route path='/user' element={<UserLayout />}>
+              {/* 로그인 * 회원가입 페이지 */}
+              <Route path='join' element={<Join />} />
+              <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
+  
+              <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
+                <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
+                <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
+                <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
+                <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
               </Route>
-    
-              {/* 관리자 페이지 */}
-              <Route path='/admin' element={<AdminLayout />} >
-                <Route path='clinicList' element={<ClinicList />} />
-                <Route path='moneyln' element={<MoneyIn />} />
-    
-                {/* 환자 진료 관리 */}
-                <Route path='patientInfo' element={<PatientInfo />}>
-                </Route>
-              </Route>
-            </Routes>
-          </div>
-        </div>
-      
-        {/* 하단영역 푸터 */}
-        <div id='footer' class="footer">
-          <div className='footer-content'>
-            <div className='call-div'>
-              <BiSolidPhoneCall className='icon-1'/>
-              <h1>대표전화 : 1588-1234</h1>
-            </div>
-            <ul class="f_mark">
-              <li><img src="http://localhost:8080/images/f_mark_isms.png" class="markImg" />
-              <span>인증범위 : 의료정보시스템 (OCS, EMR) 및 홈페이지 서비스 운영<br/>유효기간 : 2024.01.20 ~ 2027.01.19</span>
-              </li>
-              <li><img src="http://localhost:8080/images/f_mark_alio.png" alt="공공기관 채용정보 시스템" class="markImg"/><span>ALIO JOB-ALIO</span>
-              </li>
-              <li><img src="http://localhost:8080/images/f_mark_koiha.png" alt="HEALTHCARE QUALITY PATIENT SAFETY 보건복지부 인증 의료기관" class="markImg"/><span>보건복지부 의료기관 평가인증</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <ul class="f_menu">
-              <li><a class="point" href="/">개인정보처리방침</a></li>
-              <li><a href="/">영상정보처리기기 설치운영방침</a></li>
-              <li><a href="/pnuh/etc/refusal.do">이메일주소수집거부</a></li>
-              <li><a href="/pnuh/etc/right.do">환자권리장전</a></li>
-              <li><a href="/pnuh/etc/charter.do">고객헌장</a></li>
-              <li><a href="http://gw.pnuh.co.kr" target="_blank">그룹웨어</a></li>
-              <li><a href="https://gwo.pnuh.co.kr" target="_blank">그룹웨어(외부접속용)</a></li>
-            </ul>
+  
+              {/* 예약 등록 */}
+              <Route path='reservReg' element={<ReservReg/>}/>         
+              <Route path='newVisit' element={<NewVisit/>}/>
+              <Route path='reVisit' element={<ReVisit/>}/>
+              <Route path='reservInquiry' element={<ReservInquiry/>}/>
             
-            <address>
-              <span>(49241) 울산광역시 서구 구덕로 179 그린대학교병원</span>
-              <em>대표전화 : 052.240.7000</em>
-            </address>
-            <p class="copyright">
-              Copyright 2020 Pusan National University Hospital. All Rights Reserved.
-            </p>
-          </div>
-        </div>
+              {/* 진료비 수납내용 */}
+              <Route path='moneyin' element={<MoneyIn />} />
+              {/* 진료비 결제창 */}
+              <Route path='payMoney' element={<PayMoney />} />
+            </Route>
   
-     </>}
+            {/* 관리자 페이지 */}
+            <Route path='/admin' element={<AdminLayout />} >
+              <Route path='clinicList' element={<ClinicList />} />
+              <Route path='moneyln' element={<MoneyIn />} />
+  
+              {/* 환자 진료 관리 */}
+              <Route path='patientInfo' element={<PatientInfo />}>
+                {/* <Route path='detailInfo' element={<DetailInfo/>}/> */}
+              </Route>
+  
+  
+            </Route>
+          </Routes>
+          <Footer />
+        </div>          
+     </>
+        :
+        <>
+          <div>
+            여긴 관리자 구역이다
+          </div>
+        </>
+      }
+      
+      
+     
     </div >
   );
 }

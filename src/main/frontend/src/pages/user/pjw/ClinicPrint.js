@@ -101,8 +101,6 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
 
   //회원 전체리스트 중 해당 주민번호를 가진 환자가 있는지 받아올 axios
   //회원
-  
-
   function onLoginAxios(){
 
    if(inputData.citizenNum.length!=14){
@@ -113,7 +111,6 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
     axios
     .post(`/api_member/isCitizen`, inputData)
     .then((res)=>{
-      console.log(res)
       if(res.data[0].citizenNum==isLogin.citizenNum){
         console.log('1차성공')
         const newData = ({
@@ -199,29 +196,29 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
             {/* 인증 단계별 화면 구현/ 주민번호 입력 확인 화면: 인증번호 입력 화면 */}
             {!inputStatus ?(
               <div className='recoP1'>
-              <div className='numPress'>
-                <h4>주민번호</h4>
-                <input 
-                  type='text' 
-                  name='citizenNum'
-                  onChange={(e)=>{handleInputData(e)}}
-                  ref={citizenNum_1}/>
-                -
-                <input 
-                  type='password'
-                  name='citizenNum'
-                  onChange={(e)=>{handleInputData(e)}}
-                  ref={citizenNum_2}/>
-              </div>
-              <div className='btn-div'>
-                <button
-                  type='button'
-                  className='btn'
-                  onClick={(e) => {
-                    onLoginAxios()}}>
-                  인증번호 얻기
-                </button>
-              </div>
+                <div className='numPress'>
+                  <h4>주민번호</h4>
+                  <input 
+                    type='text' 
+                    name='citizenNum'
+                    onChange={(e)=>{handleInputData(e)}}
+                    ref={citizenNum_1}/>
+                  -
+                  <input 
+                    type='password'
+                    name='citizenNum'
+                    onChange={(e)=>{handleInputData(e)}}
+                    ref={citizenNum_2}/>
+                </div>
+                <div className='btn-div'>
+                  <button
+                    type='button'
+                    className='btn'
+                    onClick={(e) => {
+                      onLoginAxios()}}>
+                    인증번호 얻기
+                  </button>
+                </div>
             </div>
               ):
             (
