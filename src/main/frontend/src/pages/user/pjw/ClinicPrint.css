@@ -150,10 +150,9 @@ td{
 .btn-div{
   margin-top: 30px;
   margin-bottom: 30px;
+  margin-left: 45%;
 }
-.btn{
-  font-size: 1.5rem;
-}
+
 
 .date-selector{
   margin-top: 20px;

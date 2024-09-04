@@ -21,18 +21,11 @@ import ReservReg from './pages/user/ksh/ReservReg';
 import NewVisit from './pages/user/ksh/NewVisit';
 import ReVisit from './pages/user/ksh/ReVisit';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
-import DetailInfo from './pages/admin/ksh/DetailInfo';
 import Footer from './pages/Footer';
 
-
-
-
-function App() {
+const App = () => {
 
   const navigate = useNavigate()
-
-  //로그인 여부 정보를 받아올 state변수
-  // const [isLogin, setIsLogin] = useState(false)
 
   //로그인한 회원의 정보를 받아올 state변수
   const [loginInfo, setLoginInfo] = useState({})
@@ -154,7 +147,7 @@ function App() {
 
             {/* 환자 진료 관리 */}
             <Route path='patientInfo' element={<PatientInfo />}>
-              <Route path='detailInfo' element={<DetailInfo/>}/>
+              {/* <Route path='detailInfo' element={<DetailInfo/>}/> */}
             </Route>
 
 
