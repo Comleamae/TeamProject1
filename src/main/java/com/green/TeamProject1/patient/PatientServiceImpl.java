@@ -45,10 +45,11 @@ public class PatientServiceImpl implements PatientService{
 
     // 신규 예약 등록 + 접수 정보 등록
     @Override
-    public void recepInsert(PatientVO patientVO) {
-        sqlSession.insert("patientMapper.recepInsert", patientVO);
+    public void recepInsert(RecepVO recepVO) {
+        sqlSession.insert("patientMapper.recepInsert", recepVO);
 
     }
+
 
     // 재방문 - 기존 방문자 기록 조회 + 접수 등록
     @Override

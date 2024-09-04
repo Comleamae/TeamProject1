@@ -4,7 +4,6 @@ import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
-import PatientInfo from './pages/admin/ksh/PatientInfo';
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
@@ -22,7 +21,7 @@ import NewVisit from './pages/user/ksh/NewVisit';
 import ReVisit from './pages/user/ksh/ReVisit';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import { BsPatchExclamationFill } from 'react-icons/bs';
-import DetailInfo from './pages/admin/ksh/DetailInfo';
+import Visitant from './pages/admin/ksh/Visitant';
 
 
 
@@ -151,11 +150,9 @@ function App() {
             <Route path='clinicList' element={<ClinicList />} />
             <Route path='moneyln' element={<MoneyIn />} />
 
-            {/* 환자 진료 관리 */}
-            <Route path='patientInfo' element={<PatientInfo />}>
-              <Route path='detailInfo' element={<DetailInfo/>}/>
-            </Route>
-
+            {/* 데스크 기준 방문자 접수 */}
+            <Route path='visitant' element={<Visitant/>}/>
+            <Route path='newVisit' element={<NewVisit/>}/>
 
           </Route>
         </Routes>

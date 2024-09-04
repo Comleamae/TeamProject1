@@ -18,7 +18,7 @@ public interface PatientService {
     void regInsert(PatientVO patientVO);
 
     // 신규방문자 예약 등록 + 접수 등록
-    void recepInsert(PatientVO patientVO);
+    void recepInsert(RecepVO recepVO);
 
     // 재방문자 방문 기록 조회 및 접수
     void regCheckInsert(PatientVO patientVO);

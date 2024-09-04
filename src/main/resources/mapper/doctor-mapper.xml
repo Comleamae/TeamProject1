@@ -7,6 +7,7 @@
         <id column="DOC_LINUM" property="docLinum"/>
         <result column="DOC_NAME" property="docName"/>
         <result column="DEPT" property="dept"/>
+        <association property="recepVO" resultMap="patientMapper.recep"/>
     </resultMap>
     
     <!--의사 한명의 정보를 받아옴-->
