@@ -24,6 +24,7 @@ import Footer from './pages/Footer';
 import '../src/pages/Footer.css'
 import { BiSolidPhoneCall } from "react-icons/bi"; //대표전화 아이콘
 import AdminLogin from './pages/admin/pjw/AdminLogin';
+import Visitant from './pages/admin/ksh/Visitant';
 
 const App = () => {
 
@@ -156,24 +157,22 @@ const App = () => {
               <Route path='patientInfo' element={<PatientInfo />}>
                 <Route path='detailInfo' element={<DetailInfo/>}/>
               </Route>
-            </Route> */}
-          </Routes>
+            </Route> */}         
+        </Routes>
           
-          <Footer />
-        </div>          
+        <Footer />
+      </div>          
       </>
       :
       <>
-       
       </>
-      }
-      
-      <Routes>
-         <Route path='/admin' element={<AdminLayout/>}>
-          <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
-         </Route>
-       </Routes>
-     
+    }
+          <Routes>
+            <Route path='/admin' element={<AdminLayout/>}>
+            <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
+            <Route path='visitant' element={<Visitant/>}/>
+          </Route>
+          </Routes>
     </div >
   );
 }
