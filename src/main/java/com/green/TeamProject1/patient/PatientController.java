@@ -38,13 +38,16 @@ public class PatientController {
         int  patNum = patientService.getNextPatNum();
         patientVO.setPatNum(patNum);
         patientService.regInsert(patientVO);
+
+        RecepVO recepVO = new RecepVO();
+        recepVO.setPatNum(patientVO.getPatNum());
         patientService.recepInsert(patientVO);
     }
 
     // 신규 방문자 접수 등록
     @PostMapping("/recepInsert")
-    public void recepInsert(@RequestBody PatientVO patientVO){
-        patientService.recepInsert(patientVO);
+    public void recepInsert(@RequestBody RecepVO recepVO){
+        patientService.recepInsert(recepVO);
     }
 
 

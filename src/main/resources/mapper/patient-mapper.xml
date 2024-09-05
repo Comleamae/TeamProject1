@@ -46,6 +46,7 @@
     <resultMap id="recep" type="com.green.TeamProject1.patient.RecepVO">
         <id column="RECEP_NUM" property="recepNum" />
         <result column="PAT_NUM" property="patNum" />
+        <result column="DOC_LINUM" property="docLinum"/>
         <result column="RECEP_DATE" property="recepDate" />
         <result column="RECEP_STATUS" property="recepStatus" />
     </resultMap>
@@ -129,9 +130,11 @@
             INSERT INTO recep_info (
                 pat_num
                 , recep_status
+                , doc_linum
             ) values (
                 #{patNum}
                 , '대기중'
+                , #{docLinum}
             )
         </insert>
 
