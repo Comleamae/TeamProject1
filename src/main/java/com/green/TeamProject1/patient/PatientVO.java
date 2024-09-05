@@ -1,5 +1,6 @@
 package com.green.TeamProject1.patient;
 
+import com.green.TeamProject1.doctor.DoctorVO;
 import com.green.TeamProject1.member.vo.MemberVO;
 import lombok.Data;
 

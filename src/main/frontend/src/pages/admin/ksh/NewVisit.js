@@ -1,47 +1,6 @@
-import React, { useState } from 'react'
-import './NewVisit.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
 
 const NewVisit = () => {
-
-  const navigate = useNavigate();
-
-  // 입력한 값을 관리하기 위한 state 변수
-  const [info, setInfo] = useState({
-    patName : '',
-    age : '',
-    gender : '',
-    citizenNum : '',
-    patEmail : '',
-    address : '',
-    dept : '',
-    docLinum : ''
-  });
-
-  // 입력한거 바뀌면 실행될 내용
-  function changeInfo(e){
-    setInfo({
-      ...info,
-      [e.target.name] : e.target.value
-    })
-  }
-
-
-  // 접수 누르면 실행
-  function regInsert(){
-    axios.post('/patient/regInsert', info)
-    .then((res)=>{
-      console.log(res.data)
-      setInfo(res.data)
-      navigate('/user/reservReg')
-      
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }  
-
   return (
     <div className='new-main-div'>
       <h1>예약 등록</h1>
