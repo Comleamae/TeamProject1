@@ -86,17 +86,21 @@
   vertical-align: middle;
 }
 
-.join-table >tbody > tr > td:first-child {
+.join-table > tbody > tr > td:first-child {
   background: #f7f7f7;
 }
 
+.wh {
+  height: 100px;
+  border: 1px solid red;
+}
 
 .input-txt {
   width: 410px;
   height: 17px;
   border: 1px solid #d6d6d6;
   padding: 7px 8px;
-  margin: 5px 10px;
+  margin-right: 5px;
 }
 
 
@@ -105,7 +109,6 @@
   height: 17px;
   border: 1px solid #d6d6d6;
   padding: 7px 8px;
-  margin: 5px 10px;
 }
 
 
@@ -114,7 +117,6 @@
   font-size: 12px;
   color: #444;
   font-weight: 200;
-  margin-left: 10px;
 }
 
 .email-box {
@@ -125,26 +127,30 @@
 }
 
 
+.join-btn-div {
+  width: 18%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
 
-.btn-div {
+.btn-1 {
   background: #2c59b4;
   color: #fff;
   width: 100px;
   height: 33px;
   border: none;
-  margin-right: 20px;
   border-radius: 5px;
+  cursor: pointer;
+  margin-left: 5px;
 }
 
-.btn-div1 {
+.btn-2 {
   background: #444;
   color: #fff;
   width: 100px;
   height: 33px;
   border: none;
   border-radius: 5px;
-}
-
-.join-btn-div {
-  text-align: center;
+  cursor: pointer;
 }

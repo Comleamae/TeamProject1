@@ -31,6 +31,7 @@ public class PatientController {
     }
 
 
+
     // 신규 방문자 예약 등록
     @PostMapping("/regInsert")
     public void regInsert(@RequestBody PatientVO patientVO){
@@ -41,8 +42,11 @@ public class PatientController {
 
         RecepVO recepVO = new RecepVO();
         recepVO.setPatNum(patientVO.getPatNum());
+
 //        patientService.recepInsert(patientVO);
     }
+
+
 
 
     // 신규 방문자 접수 등록
