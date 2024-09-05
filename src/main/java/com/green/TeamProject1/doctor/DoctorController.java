@@ -21,4 +21,10 @@ public class DoctorController {
     List<DoctorVO> getAllDoc(){
         return doctorService.getAllDoc();
     }
+
+    // 진료과 정보 가져오기(모두)
+    @GetMapping("/getMediDept")
+    List<MediDeptVO> getMediDept() {
+        return doctorService.getMediDept();
+    }
 }

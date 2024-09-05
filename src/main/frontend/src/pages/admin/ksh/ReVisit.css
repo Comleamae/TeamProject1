@@ -1,0 +1,12 @@
+.re-main-div{
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.re-main-div > div > div:nth-child(1){
+  margin: 15px;
+}
+.re-main-div > div > div > div{
+  margin: 15px;
+}

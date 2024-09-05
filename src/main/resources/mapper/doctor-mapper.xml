@@ -23,4 +23,11 @@
         FROM DOCTOR
     </select>
 
+    <!-- 진료과 정보 받아오기 -->
+    <select id="getMediDept" resultMap="mediDept">
+        SELECT *
+        FROM MEDI_DEPT
+        ORDER BY DEPT_NUM;
+    </select>
+
 </mapper>

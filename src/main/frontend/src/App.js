@@ -18,8 +18,9 @@ import Login from './pages/user/kth/Login';
 import { MdMenu } from "react-icons/md"; //메뉴 아이콘
 import Main from './pages/Main';
 import ReservReg from './pages/user/ksh/ReservReg';
-import NewVisit from './pages/user/ksh/NewVisit';
-import ReVisit from './pages/user/ksh/ReVisit';
+import NewVisit from './pages/admin/ksh/NewVisit';
+import ReVisit from './pages/admin/ksh/ReVisit';
+import Visitant from './pages/admin/ksh/Visitant';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import Footer from './pages/Footer';
 // import '../src/pages/Footer.css'
@@ -99,6 +100,9 @@ const App = () => {
             <Route path='/admin' element={<AdminLayout/>}>
               <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
               <Route path='join' element={<AdminJoin/>}/>
+              <Route path='visitant' element={<Visitant/>}/>
+              <Route path='newVisit' element={<NewVisit/>}/>
+              {/* <Route path='reVisit' element={<ReVisit/>}/> */}
             </Route>
           </Routes>
 

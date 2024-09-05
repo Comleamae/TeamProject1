@@ -9,7 +9,7 @@ const Visitant = () => {
   return (
     <div className='visitant-main-div'>
       <div onClick={()=>{navigate('/admin/newVisit')}}>New</div>
-      <div>Re</div>
+      <div onClick={()=>{navigate('/admin/reVisit')}}>Re</div>
     </div>
   )
 }

@@ -7,4 +7,7 @@ public interface DoctorService {
     DoctorVO getOneDoc(int docLinum);
     /*의사 전체 리스트*/
     List<DoctorVO> getAllDoc();
+
+    // 모든 진료과 정보 받아오기
+    List<MediDeptVO> getMediDept();
 }

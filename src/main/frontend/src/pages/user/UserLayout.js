@@ -57,7 +57,7 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
                       <Link to='/login' className='user-login'>로그인</Link>
                     </li>
                     <li>
-                      <Link onClick={(e)=>{setIsAdmin(true)}} to='/admin/login' className='admin-login'>
+                      <Link to='/admin/login' className='admin-login'>
                         직원전용
                       </Link>
                     </li>

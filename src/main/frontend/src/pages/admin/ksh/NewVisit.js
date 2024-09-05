@@ -1,6 +1,40 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const NewVisit = () => {
+
+  // 입력 받은 모든 정보
+  const [info, setInfo] = useState({
+    patNum : '',
+    age : '',
+    gender : '',
+    citizenNum : '',
+    patEmail : '',
+    address : ''
+  });
+
+  // DB에서 그냥 받아와서 출력할 진료과 정보
+  const [mediDept, setMediDept] = useState([]);
+
+  // 진료과 정보 보이게 하기
+  useEffect(()=>{
+    axios.get('/doctor/getMediDept')
+    .then((res)=>{
+      console.log(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  })
+
+  function changeInfo() {
+
+  }
+  
+  function regInsert() {
+    
+  }
+
   return (
     <div className='new-main-div'>
       <h1>예약 등록</h1>
@@ -45,26 +79,25 @@ const NewVisit = () => {
               name='address' value={info.address} onChange={(e)=>{changeInfo(e)}}/></td>
             </tr>
             <tr>
+
               <td>진료과</td>
               <td>
-                <select name='dept' value={info.dept} onChange={(e)=>{changeInfo(e)}}>
-                  <option value={'외과'}>외과</option>
-                  <option value={'내과'}>내과</option>
-                  <option value={'신경과'}>신경과</option>
-                  <option value={'산부인과'}>산부인과</option>
+                <select>
+                  <option></option>
+                  <option>내과</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td>담당의</td>
               <td>
-                <select name='docLinum' value={info.docLinum} onChange={(e)=>{changeInfo(e)}}>
-                  <option value={1}>외과의사</option>
-                  <option value={2}>내과의사</option>
-                  <option value={3}>신경과의사</option>
-                  <option value={4}>산부인과의사</option>
+                <select>
+                  <option>외과의사</option>
+                  <option>내과의사</option>
                 </select>
               </td>
+
+
             </tr>
             </tbody>
           </table>
