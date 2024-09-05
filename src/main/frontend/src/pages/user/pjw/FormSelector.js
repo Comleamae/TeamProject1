@@ -66,7 +66,7 @@ const FormSelector = ({recoData, setRecoData, selectData, setSelectData}) => {
     ?
     <div className='contaniner'>
       해당 환자의 진료기록이 없습니다
-      <div className='btn-div'>
+      <div className='btn-div-in'>
         <button type='button' className='btn' onClick={()=>{navigate('/')}}>뒤로가기</button>
       </div>
     </div>
@@ -75,17 +75,17 @@ const FormSelector = ({recoData, setRecoData, selectData, setSelectData}) => {
       <div className='form-selector'>
         <div onClick={(e)=>{
           console.log('@@@'+selectData.treNum)
-          navigate(`/user/clinicPrint/printForm/${selectData.patNum}/${selectData.treNum}`)
+          navigate(`/clinicPrint/printForm/${selectData.patNum}/${selectData.treNum}`)
           }}>
           진료확인서
         </div>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm2/${selectData.patNum}/${selectData.treNum}`)}}>
+        <div onClick={(e)=>{navigate(`/clinicPrint/printForm2/${selectData.patNum}/${selectData.treNum}`)}}>
           수술확인서
         </div>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm3/${selectData.patNum}/${selectData.treNum}`)}}>
+        <div onClick={(e)=>{navigate(`/clinicPrint/printForm3/${selectData.patNum}/${selectData.treNum}`)}}>
           처방전
         </div>
-        <div onClick={(e)=>{navigate(`/user/clinicPrint/printForm4/${selectData.patNum}/${selectData.treNum}`)}}>
+        <div onClick={(e)=>{navigate(`/clinicPrint/printForm4/${selectData.patNum}/${selectData.treNum}`)}}>
           영수증
         </div>
       </div>

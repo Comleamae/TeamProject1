@@ -210,7 +210,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                     onChange={(e)=>{handleInputData(e)}}
                     ref={citizenNum_2}/>
                 </div>
-                <div className='btn-div'>
+                <div className='btn-div-in'>
                   <button
                     type='button'
                     className='btn'
@@ -230,7 +230,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                     onChange={(e)=>{handleInputNumChange(e)}}
                   />
                 </p>
-              <div className='btn-div'>
+              <div className='btn-div-in'>
                 <button
                   type='button'
                   className='btn'
@@ -276,7 +276,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                   />
                 </div>
               </div>
-              <div className='btn-div'>
+              <div className='btn-div-in'>
                 <button
                   type='button'
                   className='btn'
@@ -298,7 +298,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                   onChange={(e)=>{handleInputNumChange(e)}}
                 />
               </div>
-             <div className='btn-div'>
+             <div className='btn-div-in'>
                 <button
                   type='button'
                   className='btn'

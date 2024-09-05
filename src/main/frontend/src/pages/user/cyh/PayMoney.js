@@ -62,7 +62,7 @@ const PayMoney = () => {
 
       <div>
         <button className='pay-btn' type='button' onClick={()=>{
-          navigate('/user/moneyln')
+          navigate('/moneyln')
         }} >결제취소</button>
         <button className='pay-btn' type='button' onClick={()=>{}} >결제하기</button>
       </div>

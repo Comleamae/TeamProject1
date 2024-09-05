@@ -34,7 +34,7 @@ const NewVisit = () => {
     .then((res)=>{
       console.log(res.data)
       setInfo(res.data)
-      navigate('/user/reservReg')
+      navigate('/reservReg')
       
     })
     .catch((error)=>{

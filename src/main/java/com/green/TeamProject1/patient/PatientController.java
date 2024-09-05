@@ -44,6 +44,7 @@ public class PatientController {
 //        patientService.recepInsert(patientVO);
     }
 
+
     // 신규 방문자 접수 등록
     @PostMapping("/recepInsert")
     public void recepInsert(@RequestBody RecepVO recepVO){

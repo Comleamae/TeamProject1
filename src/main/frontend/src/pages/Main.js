@@ -48,7 +48,7 @@ const Main = () => {
             </div>
           </div>
 
-          <div className='sub-idex-box' onClick={(e) => { navigate('/user/reservReg') }}>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }}>
           <div className='sub-inbox'>
             <LuCalendarClock className='icon' />
             <p>온라인 진료예약</p>
@@ -66,7 +66,7 @@ const Main = () => {
 
           
   
-          <div className='sub-idex-box' onClick={(e) => { navigate('/user/moneyIn') }}>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/moneyIn') }}>
           <div className='sub-inbox'>
             <IoCardOutline className='icon' />
             <p>진료비 결제</p>
@@ -77,7 +77,7 @@ const Main = () => {
             </div>
           </div>
   
-          <div className='sub-idex-box' onClick={(e) => { navigate('/user/clinicPrint') }}>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/clinicPrint') }}>
             <div className='sub-inbox'>
               <IoNewspaperOutline className='icon' />
               <p>증명서 발급</p>

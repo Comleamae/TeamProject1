@@ -149,7 +149,7 @@ const PrintForm = () => {
             </tfoot>
           </table>
         </div>
-        <div className='btn-div'>
+        <div className='btn-div-in'>
           {/* PDF 출력 버튼 */}
           <button type='button' className='btn' onClick={(e)=>{handlePrint(e)}}>출력</button>
         </div>

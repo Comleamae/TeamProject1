@@ -155,7 +155,7 @@ const printRef = useRef();
           </table>
           </div>
 
-          <div className='btn-div'>
+          <div className='btn-div-in'>
             <button type='button' className='btn' onClick={handlePrint}>출력</button>            
           </div>
         </>
