@@ -193,17 +193,15 @@ const Join = () => {
         <table className='join-table'>
           <tbody>
             <tr>
-              <td style={{textAlign: 'left'}}>아이디</td>
-              <td style={{paddingBottom: '30px'}}>
-                <div>
-                  <input className='input-txt' type='text' name='memId' placeholder='아이디'
-                    onChange={(e) => {
-                      changeJoinData(e);
-                      setIsCheckId(false);
-                    }} />
-                  <button type='button' className='btn-div' onClick={(e) => { idEnable() }}>중복 확인</button>
-                </div>
-                <div className='feedback' ref={memId_valid_tag}>아이디는 영문이며 4~12자여야 합니다.</div>
+              <td>아이디</td>
+              <td>
+                <input className='input-txt' type='text' name='memId' placeholder='아이디'
+                  onChange={(e) => {
+                    changeJoinData(e);
+                    setIsCheckId(false);
+                  }} />
+                <button type='button' className='btn-1' onClick={(e) => { idEnable() }}> 중복 확인</button>
+                <div className='feedback' ref={memId_valid_tag}> 아이디는 영문이며 4~12자여야 합니다.</div>
               </td>
             </tr>
             <tr>
@@ -221,7 +219,7 @@ const Join = () => {
               </td>
             </tr>
             <tr>
-              <td style={{textAlign: 'left'}}>이름</td>
+              <td>이름</td>
               <td>
                 <input className='input-txt' type='text' name='memName' placeholder='이름' onChange={(e) => { changeJoinData(e) }} />
                 <div className='feedback' ref={memName_valid_tag}>이름은 한글이며 2~10자여야 합니다.</div>
@@ -230,14 +228,16 @@ const Join = () => {
             <tr>
               <td>주민번호</td>
               <td>
-                <input className='input-txt2' type='text' name='citizenNum' placeholder='주민번호 앞자리' ref={citizenNum_1} onChange={(e) => { changeJoinData(e) }} /> - 
+                <input className='input-txt2' type='text' name='citizenNum' placeholder='주민번호 앞자리' ref={citizenNum_1} onChange={(e) => { changeJoinData(e) }} /> -
                 <input className='input-txt2'  type='password' name='citizenNum' placeholder='주민번호 뒷자리' ref={citizenNum_2} onChange={(e) => { changeJoinData(e) }} />
                 <div className='feedback' ref={citizenNum_valid_tag}>잘못된 주민번호입니다.</div>
               </td>
             </tr>
             <tr>
               <td>우편번호</td>
-              <td style={{paddingBottom: '30px'}}><input className='input-txt2' type='text' name='post' placeholder='우편번호' value={joinData.post} onClick={(e) => { handleClick() }} readOnly onChange={(e) => { changeJoinData(e) }} /><button className='btn-div' type='button' onClick={(e) => { handleClick() }} >주소 검색</button>
+              <td>
+                <input className='input-txt2' type='text' name='post' placeholder='우편번호' value={joinData.post} onClick={(e) => { handleClick() }} readOnly onChange={(e) => { changeJoinData(e) }} />
+                <button className='btn-1' type='button' onClick={(e) => { handleClick() }} >주소 검색</button>
               </td>
             </tr>
             <tr>
@@ -252,13 +252,13 @@ const Join = () => {
               <td>전화번호</td>
               <td>
                 <input className='input-txt' type='text' name='memTel' placeholder='010-0000-1111' onChange={(e) => { changeJoinData(e) }} />
-                <div className='feedback' ref={memTel_valid_tag}>연락처를 확인하세요.</div>
+                <div className='feedback' ref={memTel_valid_tag}>연락처를 확인하세요</div>
               </td>
             </tr>
             <tr>
               <td>이메일</td>
               <td>
-                <input className='input-txt2' type='text' name='memEmail' placeholder='abc123@naver.com' ref={email_1} onChange={(e) => { changeJoinData(e) }} />@
+                <input className='input-txt2' type='text' name='memEmail' placeholder='abc123@naver.com' ref={email_1} onChange={(e) => { changeJoinData(e) }} /> @
                 <select className='email-box' name='memEmail' ref={email_2} defaultValue={'@naver.com'} onChange={(e) => { changeJoinData(e) }} >
                   <option value={'@naver.com'}>naver.com</option>
                   <option value={'@kakao.com'}>kakao.com</option>
@@ -270,10 +270,10 @@ const Join = () => {
         </table>
 
         <div className='join-btn-div'>
-          <button type='button' name='join' className='btn-div' onClick={(e) => { join() }}>
+          <button type='button' name='join' className='btn-1' onClick={(e) => { join() }}>
             회원가입
           </button>
-          <button type='button' name='join-cancel' className='btn-div1' onClick={(e) => { joinCancel() }}>취소</button>
+          <button type='button' name='join-cancel' className='btn-2' onClick={(e) => { joinCancel() }}>취소</button>
         </div>
       </div>
     </div>
