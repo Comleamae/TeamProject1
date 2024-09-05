@@ -29,8 +29,8 @@ const AdminLogin = ({setLoginInfo}) => {
       .then((res) => {
         // 로그인 가능 시
         if (res.data != ''&res.data.memRole=='ADMIN') {
-          alert('환영합니다.')
-          //sessionStorage에 로그인한 회원의 개인정보 저장
+          alert(`${res.data.name} 관리자님 환영합니다.`)
+          //sessionStorage에 로그인한 관리자의 개인정보 저장
           const loginInfo = {
             memId: res.data.memId,
             memPW: res.data.memPw,
@@ -77,6 +77,7 @@ const AdminLogin = ({setLoginInfo}) => {
         
       </div>
     </div>
+    <button type='button' onClick={(e)=>{navigate(`/admin/join`)}}>관리자 등록</button>
   </div>
 
   )
