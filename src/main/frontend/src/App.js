@@ -158,24 +158,26 @@ const App = () => {
                 <Route path='detailInfo' element={<DetailInfo/>}/>
               </Route>
             </Route> */}
+
           </Routes>
-          
+
+          {/* 하단영역 */}
           <Footer />
+
         </div>          
       </>
       :
       <>
-       
       </>
       }
       
-      {/* <Routes>
-         <Route path='/admin' element={<AdminLayout/>}>
+  {/* <Routes>
+        <Route path='/admin' element={<AdminLayout/>}>
           <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
-         </Route>
-       </Routes> */}
-     
-    </div >
+        </Route>
+      </Routes> 
+  */}
+  </div >
   );
 }
 
