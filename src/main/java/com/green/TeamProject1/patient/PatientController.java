@@ -41,7 +41,7 @@ public class PatientController {
 
         RecepVO recepVO = new RecepVO();
         recepVO.setPatNum(patientVO.getPatNum());
-        patientService.recepInsert(patientVO);
+//        patientService.recepInsert(patientVO);
     }
 
     // 신규 방문자 접수 등록
