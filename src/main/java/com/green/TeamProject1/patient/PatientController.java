@@ -30,53 +30,21 @@ public class PatientController {
         return patientService.getOneTreDate(recoData.get("patNum"));
     }
 
-
-
-//    // 신규 방문자 예약 등록
-//    @PostMapping("/regInsert")
-//    public void regInsert(@RequestBody PatientVO patientVO){
-//        //생성되는 환자번호
-//        int  patNum = patientService.getNextPatNum();
-//        patientVO.setPatNum(patNum);
-//        patientService.regInsert(patientVO);
-//
-//        RecepVO recepVO = new RecepVO();
-//        recepVO.setPatNum(patientVO.getPatNum());
-//        patientService.recepInsert(patientVO);
-//    }
-
-    // 신규 방문자 예약 등록
+    // 신규 방문자 진료 접수
     @PostMapping("/regInsert")
     public void regInsert(@RequestBody PatientVO patientVO){
+        System.out.println(patientVO);
+
         //생성되는 환자번호
         int  patNum = patientService.getNextPatNum();
         patientVO.setPatNum(patNum);
+
+        //신규 환자 정보에 등록
         patientService.regInsert(patientVO);
 
-        RecepVO recepVO = new RecepVO();
-        recepVO.setPatNum(patientVO.getPatNum());
-//        patientService.recepInsert(patientVO);
+        //진료 명단에 등록
+        patientService.recepInsert(patientVO);
     }
 
-
-    // 신규 방문자 접수 등록
-    @PostMapping("/recepInsert")
-    public void recepInsert(@RequestBody RecepVO recepVO){
-        patientService.recepInsert(recepVO);
-    }
-
-
-
-    // 재방문 - 기존 방문자 기록 조회 및 접수
-    @PostMapping("/regCheckInsert")
-    public void regCheckInsert(@RequestBody PatientVO patientVO){
-        patientService.regCheckInsert(patientVO);
-    }
-
-    // 예약자 조회(전체)
-    @GetMapping("/checkList")
-    public List<PatientVO> checkList(){
-        return patientService.checkList();
-    }
 
 }

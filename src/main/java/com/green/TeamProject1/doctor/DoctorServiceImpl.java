@@ -24,8 +24,13 @@ public class DoctorServiceImpl implements DoctorService{
 
     // 진료과 정보 얻어오기
     @Override
-    public List<MediDeptVO> getMediDept() {
-        return sqlSession.selectList("doctorService.getMediDept");
+    public List<MediDeptVO> getDeptList() {
+        return sqlSession.selectList("doctorMapper.getDeptList");
+    }
+
+    @Override
+    public List<DoctorVO> getDoctorList(int deptNum) {
+        return sqlSession.selectList("doctorMapper.getDoctorList", deptNum);
     }
 
 

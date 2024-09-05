@@ -71,12 +71,6 @@ const App = () => {
                 <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
                 <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
               </Route>
-  
-              {/* 예약 등록 */}
-              <Route path='reservReg' element={<ReservReg/>}/>         
-              <Route path='newVisit' element={<NewVisit/>}/>
-              <Route path='reVisit' element={<ReVisit/>}/>
-              <Route path='reservInquiry' element={<ReservInquiry/>}/>
             
               {/* 진료비 수납내용 */}
               <Route path='moneyin' element={<MoneyIn />} />
@@ -102,7 +96,7 @@ const App = () => {
               <Route path='join' element={<AdminJoin/>}/>
               <Route path='visitant' element={<Visitant/>}/>
               <Route path='newVisit' element={<NewVisit/>}/>
-              {/* <Route path='reVisit' element={<ReVisit/>}/> */}
+              <Route path='reVisit' element={<ReVisit/>}/>
             </Route>
           </Routes>
 

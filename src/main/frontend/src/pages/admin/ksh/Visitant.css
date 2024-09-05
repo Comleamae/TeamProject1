@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 200px;
   gap: 40px;
 }
 
@@ -36,4 +36,14 @@
 
 .visitant-main-div > div:nth-child(2):hover{
   background-color: rgba(100, 100, 255, 1);
+}
+
+.visitant-main-div > div:nth-child(3){
+  background-color: rgba(100, 210, 100, 0.7);
+  font-size: 4rem;
+  color: white;
+}
+
+.visitant-main-div > div:nth-child(3):hover{
+  background-color: rgba(100, 255, 100, 1);
 }

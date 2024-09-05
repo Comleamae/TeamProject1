@@ -6,10 +6,17 @@
     <resultMap id="doctor" type="com.green.TeamProject1.doctor.DoctorVO">
         <id column="DOC_LINUM" property="docLinum"/>
         <result column="DOC_NAME" property="docName"/>
-        <result column="DEPT" property="dept"/>
+        <result column="DEPT_NUM" property="deptNum"/>
         <association property="recepVO" resultMap="patientMapper.recep"/>
+        <association property="mediDeptVO" resultMap="mediDept"/>
     </resultMap>
-    
+
+    <!-- 의사에 연결할 진료과 정보 -->
+    <resultMap id="mediDept" type="com.green.TeamProject1.doctor.MediDeptVO">
+        <result column="DEPT_NUM" property="deptNum"/>
+        <result column="DEPT_NAME" property="deptName"/>
+    </resultMap>
+
     <!--의사 한명의 정보를 받아옴-->
     <select id="getOneDoc" resultMap="doctor">
         SELECT *
@@ -24,10 +31,17 @@
     </select>
 
     <!-- 진료과 정보 받아오기 -->
-    <select id="getMediDept" resultMap="mediDept">
+    <select id="getDeptList" resultMap="mediDept">
         SELECT *
         FROM MEDI_DEPT
         ORDER BY DEPT_NUM;
+    </select>
+
+    <!--선택한 진료과에 소속된 의사 목록 조회-->
+    <select id="getDoctorList" resultMap="doctor">
+        SELECT *
+        FROM DOCTOR
+        WHERE dept_NUM = #{deptNum}
     </select>
 
 </mapper>

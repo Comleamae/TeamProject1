@@ -11,8 +11,8 @@
         <result column="GENDER" property="gender"/>
         <result column="CITIZEN_NUM" property="citizenNum"/>
         <result column="ADDRESS" property="address"/>
-        <association property="treatVO" resultMap="infoTreat"/>
-        <association property="recepVO" resultMap="recep"/>
+<!--        <association property="treatVO" resultMap="infoTreat"/>-->
+<!--        <association property="recepVO" resultMap="recep"/>-->
     </resultMap>
 
     <!--환자에 대한 입원 정보-->
