@@ -54,7 +54,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {isAdmin === false ? (
+      {isAdmin ==false ? (
         <>
           <div className="header">
             <div className="header-index">
@@ -177,6 +177,7 @@ const App = () => {
                 {/* 데스크 기준 방문자 접수 */}
                 <Route path="visitant" element={<Visitant />} />
                 <Route path="newVisit" element={<NewVisit />} />
+                <Route path='reVisit' element={<ReVisit/>} />
               </Route>
             </Routes>
           </div>
