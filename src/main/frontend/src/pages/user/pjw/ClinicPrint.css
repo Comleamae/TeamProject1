@@ -27,8 +27,9 @@ h4{
   border: 1px solid black;
 }
 
-.footer{
+.footer-in{
   margin: 0 auto;
+  text-align: center;
 }
 .footer-table{
   margin: auto;
