@@ -186,7 +186,7 @@ const MoneyIn = () => {
         </div>
   
         <button className='pay-btn' type='button' onClick={()=>{navigate('/')}}>취소하기</button>
-        <button className='pay-btn' type='button' onClick={()=>{navigate(`/user/payMoney`)}}>결제하기</button>
+        <button className='pay-btn' type='button' onClick={()=>{navigate(`/payMoney`)}}>결제하기</button>
       </div>
       <Outlet />
     </div>
