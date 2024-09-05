@@ -54,8 +54,6 @@ const App = () => {
 
   return (
     <div className="App">
-    
-        
           <Routes>
             {/* 유저 페이지 */}
             <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin}/>}>
@@ -103,7 +101,7 @@ const App = () => {
               <Route path='join' element={<AdminJoin/>}/>
             </Route>
           </Routes>
-     
+
     </div >
   );
 }
