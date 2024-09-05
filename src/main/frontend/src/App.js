@@ -157,13 +157,11 @@ const App = () => {
               <Route path='patientInfo' element={<PatientInfo />}>
                 {/* <Route path='detailInfo' element={<DetailInfo/>}/> */}
               </Route>
-  
-  
             </Route>
           </Routes>
           <Footer />
         </div>          
-     </>
+    </>
         :
         <>
           <div>
@@ -173,7 +171,6 @@ const App = () => {
       }
       
       
-     
     </div >
   );
 }
