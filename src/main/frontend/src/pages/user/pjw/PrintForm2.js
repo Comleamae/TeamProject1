@@ -133,7 +133,7 @@ const PrintForm2 = () => {
               <tbody>
                 <tr>
                   <td colSpan={8}>
-                    <div className='footer'>
+                    <div className='footer-in'>
                       <p>위 환자는 {patientOne[0].treatVO.disease}으로 수술을 시행하였음을 확인함</p>
                       <p>수술일자:{patientOne[0].treatVO.dateVO.operDate}</p>
                       <table className='footer-table'>

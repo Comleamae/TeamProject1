@@ -149,7 +149,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
 
   const sendEmail = (mail) => {
     //이메일 미 입력시
-    if(!inputData.patEmail){
+    if(inputData.patEmail==''){
       alert('이메일 확인부탁드립니다')
       return
     }
