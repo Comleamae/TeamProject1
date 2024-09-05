@@ -24,6 +24,7 @@ import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import Footer from './pages/Footer';
 import '../src/pages/Footer.css'
 import { BiSolidPhoneCall } from "react-icons/bi"; //대표전화 아이콘
+import AdminLogin from './pages/admin/pjw/AdminLogin';
 
 const App = () => {
 
@@ -101,7 +102,7 @@ const App = () => {
                       <Link to='/user/login' className='user-login'>로그인</Link>
                     </li>
                     <li>
-                      <Link onClick={(e)=>{setIsAdmin(true)}} to='/admin/clinicList' className='admin-login'>
+                      <Link onClick={(e)=>{setIsAdmin(true)}} to='/admin/login' className='admin-login'>
                         직원전용
                       </Link>
                     </li>
@@ -119,7 +120,6 @@ const App = () => {
   
         <div className='layout-div'>
           <Routes>
-  
             {/* 메인화면 */}
             <Route path="/" element={<Main />} />
   
@@ -148,31 +148,32 @@ const App = () => {
               <Route path='payMoney' element={<PayMoney />} />
             </Route>
   
-            {/* 관리자 페이지 */}
+            {/* 관리자 페이지
             <Route path='/admin' element={<AdminLayout />} >
               <Route path='clinicList' element={<ClinicList />} />
               <Route path='moneyln' element={<MoneyIn />} />
   
-              {/* 환자 진료 관리 */}
+              환자 진료 관리
               <Route path='patientInfo' element={<PatientInfo />}>
-                {/* <Route path='detailInfo' element={<DetailInfo/>}/> */}
+                <Route path='detailInfo' element={<DetailInfo/>}/>
               </Route>
-  
-  
-            </Route>
+            </Route> */}
           </Routes>
+          
           <Footer />
         </div>          
-     </>
-        :
-        <>
-          <div>
-            여긴 관리자 구역이다
-          </div>
-        </>
+      </>
+      :
+      <>
+       
+      </>
       }
       
-      
+      {/* <Routes>
+         <Route path='/admin' element={<AdminLayout/>}>
+          <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
+         </Route>
+       </Routes> */}
      
     </div >
   );
