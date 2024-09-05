@@ -54,7 +54,7 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
                 <div>
                   <ul className='login-box'>
                     <li>
-                      <Link to='/user/login' className='user-login'>로그인</Link>
+                      <Link to='/login' className='user-login'>로그인</Link>
                     </li>
                     <li>
                       <Link onClick={(e)=>{setIsAdmin(true)}} to='/admin/login' className='admin-login'>

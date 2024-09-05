@@ -141,7 +141,7 @@ const Join = () => {
       .then((res) => {
         insertOne();
         alert('회원가입이 완료되었습니다.')
-        navigate('/user/login')
+        navigate('/login')
       })
       .catch((error) => {
         console.log(error)
@@ -163,7 +163,7 @@ const Join = () => {
     const cancelChk = window.confirm('가입을 취소하겠습니까?')
     //가입 취소버튼 누를 시 로그인 화면으로
     if (cancelChk) {
-      navigate('/user/login')
+      navigate('/login')
     }
     //아니라면 그대로(공백)
   }
