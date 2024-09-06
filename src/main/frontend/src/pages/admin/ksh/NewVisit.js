@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const NewVisit = () => {
   return (
     <div className='new-main-div'>

@@ -12,20 +12,13 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
 
   return (
     <div className='layout-div'>
- <div className='header'>
-          <div className='header-index'>
-  
-            <div id='btn-top-menus'>
-              <button type='button' className='menu' id='main-menu'>
-                <MdMenu className='menu-icon' />
-              </button>
-              {/* 
-              <div>
-                <ul>
-                  <li>목록목록</li>
-                </ul>
-              </div> 
-              */}
+      <div className='header'>
+        <div className='header-index'>
+          <div id='btn-top-menus'>
+            <button type='button' className='menu' id='main-menu'>
+              <MdMenu className='menu-icon' />
+            </button>
+            {/* 메뉴 목록들어갈 자리 */}
             </div>
   
             <Link to="/" className='logo'>
@@ -72,7 +65,7 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
             }
           </div>
         </div>
-
+        
       <Outlet />
 
       <Footer/>

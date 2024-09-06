@@ -4,7 +4,6 @@ import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
-
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
@@ -15,7 +14,6 @@ import MoneyIn from './pages/user/cyh/MoneyIn';
 import PayMoney from './pages/user/cyh/PayMoney';
 import Join from './pages/user/kth/Join';
 import Login from './pages/user/kth/Login';
-import { MdMenu } from "react-icons/md"; //메뉴 아이콘
 import Main from './pages/Main';
 import ReservReg from './pages/user/ksh/ReservReg';
 import NewVisit from './pages/user/ksh/NewVisit';
@@ -23,7 +21,6 @@ import ReVisit from './pages/user/ksh/ReVisit';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import Footer from './pages/Footer';
 // import '../src/pages/Footer.css'
-import { BiSolidPhoneCall } from "react-icons/bi"; //대표전화 아이콘
 import AdminLogin from './pages/admin/pjw/AdminLogin';
 import AdminJoin from './pages/admin/pjw/AdminJoin';
 
@@ -57,13 +54,15 @@ const App = () => {
           <Routes>
             {/* 유저 페이지 */}
             <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin}/>}>
-                {/* 메인화면 */}
-                <Route path="" element={<Main/>} />
+            
+              {/* 메인화면 */}
+              <Route path="" element={<Main/>} />
 
               {/* 로그인 * 회원가입 페이지 */}
               <Route path='join' element={<Join />} />
               <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
-  
+
+              {/* 진료관련 증명서 출력 */}
               <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
                 <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
                 <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
@@ -93,6 +92,7 @@ const App = () => {
                 <Route path='detailInfo' element={<DetailInfo/>}/>
               </Route>
             </Route> */}
+
           </Routes>
 
           <Routes>
