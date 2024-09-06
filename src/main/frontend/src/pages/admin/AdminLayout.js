@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Outlet, Route, useNavigate } from 'react-router-dom'
+import '../admin/AdminLayout.css'
 
 const AdminLayout = () => {
 
   const navigate = useNavigate();
 
+
+
   // navigate('/admin/ksh/chartWrite'
   return (
-    
     <div className='admin-div'>
-      관리자페이지 레이아웃
+      
       <Outlet/>
     </div>
   )

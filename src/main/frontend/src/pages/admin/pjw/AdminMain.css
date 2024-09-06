@@ -1,0 +1,9 @@
+.main{
+  border: 1px solid black;
+  width: 80%;
+  height: 500px;
+}
+
+.in-div{
+  border: 1px solid red;
+}

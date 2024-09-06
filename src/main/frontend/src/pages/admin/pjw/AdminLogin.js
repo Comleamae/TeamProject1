@@ -61,24 +61,38 @@ const AdminLogin = ({setLoginInfo}) => {
 
 
   return (
-  <div className='login-form-div'>
-    <div className='login-form'>
-      <img src='http://localhost:8080/images/logo.png'/>
-      <div className='login-div'>
-        <div>
-          <div>
-            <input className='user-input' type='text' name='memId' placeholder='아이디를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
-          </div>
-          <div>
-            <input className='user-input' type='password' name='memPw' placeholder='비밀번호를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
-          </div>
+  <>
+      <div className='admin-function-div'>
+          <ul className='in-function'>
+            <li>
+              <span onClick={(e)=>{navigate('/admin/join')}}>신규 관리자 등록</span>
+            </li>
+            <li>
+              <span>{
+                }</span>
+            </li>
+          </ul>
         </div>
-        <button type='button' onClick={(e) => { login() }}> 로그인</button>
-        
+    <div className='login-form-div'>
+      
+      <div className='login-form'>
+        <img src='http://localhost:8080/images/logo.png'/>
+        <div className='login-div'>
+          <div>
+            <div>
+              <input className='user-input' type='text' name='memId' placeholder='아이디를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
+            </div>
+            <div>
+              <input className='user-input' type='password' name='memPw' placeholder='비밀번호를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
+            </div>
+          </div>
+          <button type='button' onClick={(e) => { login() }}> 로그인</button>
+          
+        </div>
       </div>
+      {/* <button type='button' onClick={(e)=>{navigate(`/admin/join`)}}>관리자 등록</button> */}
     </div>
-    <button type='button' onClick={(e)=>{navigate(`/admin/join`)}}>관리자 등록</button>
-  </div>
+  </>
 
   )
 }

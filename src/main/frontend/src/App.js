@@ -26,6 +26,7 @@ import Footer from './pages/Footer';
 import { BiSolidPhoneCall } from "react-icons/bi"; //대표전화 아이콘
 import AdminLogin from './pages/admin/pjw/AdminLogin';
 import AdminJoin from './pages/admin/pjw/AdminJoin';
+import AdminMain from './pages/admin/pjw/AdminMain';
 
 const App = () => {
 
@@ -99,6 +100,7 @@ const App = () => {
             <Route path='/admin' element={<AdminLayout/>}>
               <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
               <Route path='join' element={<AdminJoin/>}/>
+              <Route path='' element={<AdminMain/>}/>
             </Route>
           </Routes>
 
