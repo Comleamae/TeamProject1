@@ -45,7 +45,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   const citizenNum_2 = useRef()
 
   // 세션에 저장된 정보는 받아온 isLogin
- 
+
 
   //인증번호 입력 시마다 state변수에 저장
   const handleInputNumChange = (e) => {
@@ -103,7 +103,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
   //회원
   function onLoginAxios(){
 
-   if(inputData.citizenNum.length!=14){
+  if(inputData.citizenNum.length!=14){
       alert('주민번호를 확인해주세요')
       return
     }
@@ -222,14 +222,14 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
             </div>
               ):
             (
-             <>
-                <p>인증번호
-                  <input
-                    type='number'
-                    name='input'
-                    onChange={(e)=>{handleInputNumChange(e)}}
-                  />
-                </p>
+            <>
+              <p>인증번호
+                <input
+                  type='number'
+                  name='input'
+                  onChange={(e)=>{handleInputNumChange(e)}}
+                />
+              </p>
               <div className='btn-div-in'>
                 <button
                   type='button'
@@ -238,7 +238,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                   인증하기
                 </button>
               </div>
-             </>
+            </>
           )
           }
             
@@ -248,7 +248,10 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
       // 비로그인 상태에서 발급받기
       (
         <div className='selfDefWhenLogin'>
-          <h2>비회원 발급</h2>
+          <div className='print-div'>
+            <h1>비회원 발급</h1>
+            <p>주민등륵번호와 이메일을 입력해주세요</p>
+          </div>
           {/* 인증 단계별 화면 구현 /  주민번호와 이메일 입력 화면 : 인증번호 입력 화면  */}
           {!inputStatus ? (
             <div className='recoP1'>

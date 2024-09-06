@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import './NewVisit.css';
 import { useNavigate } from 'react-router-dom';
 
+
 const NewVisit = () => {
 
   const navigate = useNavigate();
