@@ -1,10 +1,21 @@
-.main{
+.admin-main{
   border: 1px solid black;
   width: 80%;
   height: 500px;
   margin: 0 auto;
 }
 
-.in-div{
+.div-in{
   border: 1px solid red;
+}
+
+.div-function{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.div-function>div{
+  margin: 0 auto;
+  border: 1px solid green;
+  width: 50%;
 }
