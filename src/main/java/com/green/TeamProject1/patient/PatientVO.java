@@ -15,6 +15,12 @@ public class PatientVO {
     private String gender;
     private String address;
     private String citizenNum;
-    private TreatVO treatVO; // 진료정보 하나
-    private RecepVO recepVO;
+
+    //환자 등록에서 담당의 정보를 받기위한 변수
+    private int docLinum;
+
+    //private TreatVO treatVO; // 진료정보 하나
+    //private RecepVO recepVO;
+
+
 }

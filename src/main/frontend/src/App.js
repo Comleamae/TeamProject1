@@ -4,7 +4,6 @@ import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
-
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
 import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
@@ -15,15 +14,14 @@ import MoneyIn from './pages/user/cyh/MoneyIn';
 import PayMoney from './pages/user/cyh/PayMoney';
 import Join from './pages/user/kth/Join';
 import Login from './pages/user/kth/Login';
-import { MdMenu } from "react-icons/md"; //메뉴 아이콘
 import Main from './pages/Main';
 import ReservReg from './pages/user/ksh/ReservReg';
-import NewVisit from './pages/user/ksh/NewVisit';
-import ReVisit from './pages/user/ksh/ReVisit';
+import NewVisit from './pages/admin/ksh/NewVisit';
+import ReVisit from './pages/admin/ksh/ReVisit';
+import Visitant from './pages/admin/ksh/Visitant';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import Footer from './pages/Footer';
 // import '../src/pages/Footer.css'
-import { BiSolidPhoneCall } from "react-icons/bi"; //대표전화 아이콘
 import AdminLogin from './pages/admin/pjw/AdminLogin';
 import AdminJoin from './pages/admin/pjw/AdminJoin';
 import AdminMain from './pages/admin/pjw/AdminMain';
@@ -58,25 +56,21 @@ const App = () => {
           <Routes>
             {/* 유저 페이지 */}
             <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin}/>}>
-                {/* 메인화면 */}
-                <Route path="" element={<Main/>} />
+            
+              {/* 메인화면 */}
+              <Route path="" element={<Main/>} />
 
               {/* 로그인 * 회원가입 페이지 */}
               <Route path='join' element={<Join />} />
               <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
-  
+
+              {/* 진료관련 증명서 출력 */}
               <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
                 <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
                 <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
                 <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
                 <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
               </Route>
-  
-              {/* 예약 등록 */}
-              <Route path='reservReg' element={<ReservReg/>}/>         
-              <Route path='newVisit' element={<NewVisit/>}/>
-              <Route path='reVisit' element={<ReVisit/>}/>
-              <Route path='reservInquiry' element={<ReservInquiry/>}/>
             
               {/* 진료비 수납내용 */}
               <Route path='moneyin' element={<MoneyIn />} />
@@ -94,13 +88,17 @@ const App = () => {
                 <Route path='detailInfo' element={<DetailInfo/>}/>
               </Route>
             </Route> */}
+
           </Routes>
 
           <Routes>
             <Route path='/admin' element={<AdminLayout/>}>
+              <Route path='' element={<AdminMain/>}/>
               <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
               <Route path='join' element={<AdminJoin/>}/>
-              <Route path='' element={<AdminMain/>}/>
+              <Route path='visitant' element={<Visitant/>}/>
+              <Route path='newVisit' element={<NewVisit/>}/>
+              <Route path='reVisit' element={<ReVisit/>}/>
             </Route>
           </Routes>
 

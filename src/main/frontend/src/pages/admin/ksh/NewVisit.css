@@ -1,4 +1,4 @@
-.new-main-div{
+/* .new-main-div{
   width: 400px;
   margin: 0 auto;
   margin-top: 50px;
@@ -11,12 +11,20 @@
   margin: 15px;
 }
 
-table{
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.newInput{
+.ip-tag{
   border: none;
   text-align: center;
 }
+
+.new-btn{
+  width: 100px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  background-color: white;
+}
+
+.new-btn:hover{
+  cursor: pointer;
+} */

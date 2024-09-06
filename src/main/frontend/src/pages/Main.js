@@ -14,16 +14,6 @@ import { GrMapLocation } from "react-icons/gr"; //찾아오시는길 아이콘
 const Main = () => {
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const hideMainRoutes = ['/user','/admin']; // 이동할때 숨김
-  //목록있는지 확인
-  const shouldHideMain = hideMainRoutes.includes(location.pathname);
-  if(shouldHideMain){
-    return null; //main 숨기기 
-  }
-
-  console.log(location.pathname);
-
 
   return (
     
@@ -64,8 +54,6 @@ const Main = () => {
             </div>
           </div>
 
-          
-  
           <div className='sub-idex-box' onClick={(e) => { navigate('/moneyIn') }}>
           <div className='sub-inbox'>
             <IoCardOutline className='icon' />
