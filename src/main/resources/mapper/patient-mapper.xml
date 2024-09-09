@@ -138,21 +138,26 @@
             )
         </insert>
 
-        <!-- 재방문자 기존에 방문한적 있는지 조회하기 -->
-            <insert id="regCheckInsert">
-                INSERT INTO recep_info (pat_num, recep_status)
-                SELECT PAT_NUM, '대기중'
-                FROM patient
-                WHERE PAT_NAME = #{patName} AND CITIZEN_NUM = #{citizenNum};
-            </insert>
-
-
-        <!-- 예약 접수 현황 조회 -->
-        <select id="checkList" resultMap="patient">
-            SELECT r.recep_num, p.pat_name, p.age, r.recep_status
-            FROM patient p, recep_info r
-            WHERE r.pat_num = p.pat_num;
+        <!-- 재방문자인지 조회 -->
+        <select id="compareSelect" resultType="int">
+            SELECT pat_num
+            FROM patient
+            WHERE pat_name = #{patName} AND citizen_num = #{citizenNum};
         </select>
+
+        <!-- 조회후 재방문이면 접수 등록-->
+        <insert id="compareInsert">
+            INSERT INTO recep_info (
+                pat_num
+              , recep_status
+              , doc_linum)
+            VALUES (
+                #{patNum}
+             , '대기중'
+             , #{docLinum}
+                );
+        </insert>
+
 </mapper>
 
 

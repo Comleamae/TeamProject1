@@ -14,12 +14,17 @@ public interface PatientService {
     //다음에 들어가는 환자 번호 조회
     int getNextPatNum();
 
-    // 신규방문자가 예약 등록할 때
+    // 신규 환자 정보
     void regInsert(PatientVO patientVO);
 
-    // 신규방문자 예약 등록 + 접수 등록
+    // 신규 진료 명단
     void recepInsert(PatientVO patientVO);
 
+    // 재방문 환자(번호) 조회
+    int compareSelect(PatientVO patientVO);
+
+    // 재방문 환자 접수
+    void compareInsert(RecepVO recepVO);
 
 
 
