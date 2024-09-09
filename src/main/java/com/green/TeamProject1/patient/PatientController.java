@@ -1,6 +1,8 @@
 package com.green.TeamProject1.patient;
 
 import jakarta.annotation.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +38,7 @@ public class PatientController {
         System.out.println(patientVO);
 
         //생성되는 환자번호
-        int  patNum = patientService.getNextPatNum();
+        int patNum = patientService.getNextPatNum();
         patientVO.setPatNum(patNum);
 
         //신규 환자 정보에 등록
@@ -46,5 +48,12 @@ public class PatientController {
         patientService.recepInsert(patientVO);
     }
 
+    //재방문 환자(환자번호 리턴) 조회
+    @PostMapping("/compareSelect")
+    public int compareSelect(@RequestBody PatientVO patientVO){
+       return patientService.compareSelect(patientVO);
+    }
+
+    //재방문자
 
 }
