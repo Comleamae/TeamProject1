@@ -58,16 +58,7 @@ const ReVisit = () => {
       })
     }
 
-    //재방문자인지 조회
-    function compareSelect(compareInfo){
-      axios.post('/patient/compareSelect', compareInfo)
-      .then((res)=>{
-        console.log(res.data)
-      })
-      .catch((error)=>{
-        console.log(error)        
-      })
-    }
+
 
     // 재방문자 접수
       function compareInfoInsert(patNum){
@@ -139,7 +130,7 @@ const ReVisit = () => {
             </tr>
             </tbody>
           </table>
-            <div><button type='button' className='re-btn' onClick={()=>{compareSelect()}}>접수</button></div>
+            <div><button type='button' className='re-btn' onClick={()=>{compareInfoInsert()}}>접수</button></div>
 
         </div>
     </div>

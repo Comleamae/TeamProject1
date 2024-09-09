@@ -54,8 +54,8 @@ public class PatientServiceImpl implements PatientService{
 
     // 재방문 조회
     @Override
-    public int compareSelect(PatientVO patientVO) {
-        return sqlSession.selectOne("patientMapper.compareSelect");
+    public void compareSelect(PatientVO patientVO) {
+        sqlSession.selectOne("patientMapper.compareSelect", patientVO);
     }
 
     // 재방문 접수

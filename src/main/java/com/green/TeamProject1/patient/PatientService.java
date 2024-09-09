@@ -21,7 +21,7 @@ public interface PatientService {
     void recepInsert(PatientVO patientVO);
 
     // 재방문 환자(번호) 조회
-    int compareSelect(PatientVO patientVO);
+    void compareSelect(PatientVO patientVO);
 
     // 재방문 환자 접수
     void compareInsert(RecepVO recepVO);

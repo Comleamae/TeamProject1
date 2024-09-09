@@ -48,10 +48,11 @@ public class PatientController {
         patientService.recepInsert(patientVO);
     }
 
-    //재방문 환자(환자번호 리턴) 조회
+    //재방문자 조회
     @PostMapping("/compareSelect")
     public int compareSelect(@RequestBody PatientVO patientVO){
-       return patientService.compareSelect(patientVO);
+       patientService.compareSelect(patientVO);
+        return 0;
     }
 
     //재방문자
