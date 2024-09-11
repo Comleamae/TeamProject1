@@ -16,6 +16,10 @@ const MedicalCenter = () => {
     infinite: false,
     slidesToShow: 6,
     slidesToScroll: 6,
+    // infinite: true,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
     dots: true,
     appendDots: dots => (
       <div>
@@ -186,12 +190,8 @@ const MedicalCenter = () => {
       </div>
 
       <div className="controller_form">
-        {/* <button className={`stop ${!isPlaying ? 'active' : ''}`} onClick={handlePause}>
-          <img src="https://www.snubh.org/front/images/main/btn_stop.png" alt="센터 배너 정지" />
-        </button>
-        <button className={`play ${isPlaying ? 'active' : ''}`} onClick={handlePlay}>
-          <img src="https://www.snubh.org/front/images/main/btn_play.png" alt="센터 배너 시작" />
-        </button> */}
+        <div className={`stop ${!isPlaying ? 'active' : ''}`} onClick={handlePause}></div>
+        <div className={`play ${isPlaying ? 'active' : ''}`} onClick={handlePlay}></div>
       </div>
 
 

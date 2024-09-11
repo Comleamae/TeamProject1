@@ -79,13 +79,8 @@ const NewVisit = () => {
       <h1>접수 등록</h1>
       <div>
         <div>접수를 위한 정보를 입력해주세요.</div>
-<<<<<<< HEAD
         <div>
           <table className='new-table'>
-=======
-        <div className='NV-div'>
-          <table className='NV-table'>
->>>>>>> cyh
             <thead></thead>
             <tbody>
             <tr> 
