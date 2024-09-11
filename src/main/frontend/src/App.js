@@ -24,6 +24,8 @@ import Footer from './pages/Footer';
 // import '../src/pages/Footer.css'
 import AdminLogin from './pages/admin/pjw/AdminLogin';
 import AdminJoin from './pages/admin/pjw/AdminJoin';
+import Notice from './pages/user/kth/Notice';
+import AdminMain from './pages/user/kth/AdminMain';
 
 const App = () => {
 
@@ -63,6 +65,8 @@ const App = () => {
               <Route path='join' element={<Join />} />
               <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
 
+              <Route path='notice' element={<Notice/>} />              
+
               {/* 진료관련 증명서 출력 */}
               <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
                 <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
@@ -92,6 +96,7 @@ const App = () => {
 
           <Routes>
             <Route path='/admin' element={<AdminLayout/>}>
+              <Route path='' element={<AdminMain/>}/>
               <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
               <Route path='join' element={<AdminJoin/>}/>
               <Route path='visitant' element={<Visitant/>}/>

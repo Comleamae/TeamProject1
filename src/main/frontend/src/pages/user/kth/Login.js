@@ -45,7 +45,12 @@ const Login = ({ setLoginInfo }) => {
           const json_loginInfo = JSON.stringify(loginInfo);
 
           window.sessionStorage.setItem('loginInfo', json_loginInfo);
-          navigate('/')
+          if(res.data.memRole != 'admin'){
+            navigate('/')
+          }
+          else{
+            navigate('/admin')
+          }
           setLoginInfo(loginInfo)
           window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
         }
