@@ -9,6 +9,7 @@
         <result column="DEPT_NUM" property="deptNum"/>
         <association property="recepVO" resultMap="patientMapper.recep"/>
         <association property="mediDeptVO" resultMap="mediDept"/>
+        <collection property="patientVO" resultMap="patientMapper.patient"/>
     </resultMap>
 
     <!-- 의사에 연결할 진료과 정보 -->
@@ -16,6 +17,7 @@
         <result column="DEPT_NUM" property="deptNum"/>
         <result column="DEPT_NAME" property="deptName"/>
     </resultMap>
+
 
     <!--의사 한명의 정보를 받아옴-->
     <select id="getOneDoc" resultMap="doctor">
@@ -43,5 +45,23 @@
         FROM DOCTOR
         WHERE dept_NUM = #{deptNum}
     </select>
+
+    <!-- 대기자 목록에서 선택한 환자 진료 정보 삽입 -->
+    <insert id="insertTreatInfo">
+        INSERT INTO info_treat (
+            pat_num
+          , disease
+          , about_pat
+          , tre_date
+            , DOC_LINUM
+        )
+        VALUES (
+            #{patNum}
+          , #{disease}
+          , #{aboutPat}
+          , NOW()
+            , 1
+        );
+    </insert>
 
 </mapper>

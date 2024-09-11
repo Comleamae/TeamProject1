@@ -24,6 +24,7 @@ import Footer from './pages/Footer';
 // import '../src/pages/Footer.css'
 import AdminLogin from './pages/admin/pjw/AdminLogin';
 import AdminJoin from './pages/admin/pjw/AdminJoin';
+import TreChart from './pages/admin/ksh/TreChart';
 
 const App = () => {
 
@@ -99,6 +100,7 @@ const App = () => {
               <Route path='visitant' element={<Visitant/>}/>
               <Route path='newVisit' element={<NewVisit/>}/>
               <Route path='reVisit' element={<ReVisit/>}/>
+              <Route path='treChart' element={<TreChart/>}/>
             </Route>
           </Routes>
 
