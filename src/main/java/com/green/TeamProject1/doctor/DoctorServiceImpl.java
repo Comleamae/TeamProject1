@@ -1,5 +1,7 @@
 package com.green.TeamProject1.doctor;
 
+import com.green.TeamProject1.patient.PatientVO;
+import com.green.TeamProject1.patient.TreatVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +30,15 @@ public class DoctorServiceImpl implements DoctorService{
         return sqlSession.selectList("doctorMapper.getDeptList");
     }
 
+    // 진료과에 소속된 의사 정보 받아오기
     @Override
     public List<DoctorVO> getDoctorList(int deptNum) {
         return sqlSession.selectList("doctorMapper.getDoctorList", deptNum);
+    }
+
+    @Override
+    public void insertTreatInfo(TreatVO treatVO) {
+        sqlSession.insert("doctorMapper.insertTreatInfo", treatVO);
     }
 
 

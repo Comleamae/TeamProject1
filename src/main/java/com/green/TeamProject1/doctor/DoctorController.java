@@ -1,5 +1,7 @@
 package com.green.TeamProject1.doctor;
 
+import com.green.TeamProject1.patient.PatientVO;
+import com.green.TeamProject1.patient.TreatVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,4 +34,11 @@ public class DoctorController {
     List<DoctorVO> getDoctorList(@PathVariable("deptNum") int deptNum) {
         return doctorService.getDoctorList(deptNum);
     }
+
+    // 선택한 환자 진료정보 삽입
+    @PostMapping("/insertTreatInfo")
+    void insertTreatInfo(@RequestBody TreatVO treatVO) {
+        doctorService.insertTreatInfo(treatVO);
+    }
+
 }
