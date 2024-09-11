@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './AdminLogin.css'
 import { useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
@@ -8,7 +9,7 @@ const AdminLogin = ({setLoginInfo}) => {
   const navigate = useNavigate()
 
    //로그인 시 입력한 정보
-   const [loginData, setLoginData] = useState({
+  const [loginData, setLoginData] = useState({
     memId: '',
     memPw: ''
   });
@@ -61,20 +62,19 @@ const AdminLogin = ({setLoginInfo}) => {
 
 
   return (
-  <div className='login-form-div'>
-    <div className='login-form'>
-      <img src='http://localhost:8080/images/logo.png'/>
-      <div className='login-div'>
+  <div className='admin-login-form-div'>
+    <div className='admin-login-form'>
+      <img src='http://localhost:8080/images/logo-txt.png'/>
+      <div className='admin-login-div'>
         <div>
           <div>
-            <input className='user-input' type='text' name='memId' placeholder='아이디를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
+            <input className='admin-input' type='text' name='memId' placeholder='아이디를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
           </div>
           <div>
-            <input className='user-input' type='password' name='memPw' placeholder='비밀번호를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
+            <input className='admin-input' type='password' name='memPw' placeholder='비밀번호를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
           </div>
         </div>
         <button type='button' onClick={(e) => { login() }}> 로그인</button>
-        
       </div>
     </div>
     <button type='button' onClick={(e)=>{navigate(`/admin/join`)}}>관리자 등록</button>

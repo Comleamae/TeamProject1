@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import './Join.css'
+import  './Join.css';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom'
 import { joinValidate } from './joinValidate';
@@ -180,6 +180,7 @@ const Join = () => {
           한 번의 통합회원 가입으로 모든 사이트 이용이 가능합니다.
         </h2>
       </div>
+
       <div className='join-box'>
         <div className='join-checklist'>
           <div><p>약관동의 및 본인인증</p> <span>01</span></div>

@@ -53,6 +53,7 @@ const App = () => {
   return (
     <div className="App">
           <Routes>
+
             {/* 유저 페이지 */}
             <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin}/>}>
             
@@ -70,12 +71,13 @@ const App = () => {
                 <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
                 <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
               </Route>
-            
-              {/* 진료비 수납내용 */}
-              <Route path='moneyin' element={<MoneyIn />} />
-              {/* 진료비 결제창 */}
-              <Route path='payMoney' element={<PayMoney />} />
             </Route>
+
+            {/* 진료비 수납내용 */}
+            <Route path='moneyin' element={<MoneyIn />} />
+
+            {/* 진료비 결제창 */}
+            <Route path='payMoney' element={<PayMoney />} />
   
             {/* 관리자 페이지
             <Route path='/admin' element={<AdminLayout />} >

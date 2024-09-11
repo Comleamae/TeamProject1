@@ -9,7 +9,7 @@
   height: 70px;
   padding: 10px 0px;
   text-align: center;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
 }
 
 h4{
@@ -131,7 +131,10 @@ td{
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  border: 1px solid red;
+  background-color: #F5F5F5;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  margin-bottom: 40px;
 }
 
 /* .numPress{
@@ -145,9 +148,7 @@ td{
 .numPress{
   width: 100%;
   height: auto;
-  padding: 10px;
-  background-color: #F5F5F5;
-  border: 0.5px solid lightgray;
+  margin: 30px 0px;
 }
 
 
@@ -174,8 +175,8 @@ td{
 }
 
 .btn-div-in{
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 
 

@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
-import '../../../reset.css';
-import '../cyh/PayMoney.css'
+import './PayMoney.css'
 import { useNavigate } from 'react-router-dom';
 
 const PayMoney = () => {
   const navigate = useNavigate();
 
 
-
   function isShow(id){
     if (document.getElementById(id).style.display=="none") document.getElementById(id).style.display="block"; //표시하게 하기
-
     else document.getElementById(id).style.display="none"; //안보이게 하기
   }
 
