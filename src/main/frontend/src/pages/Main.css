@@ -12,16 +12,23 @@
   height: 600px;
   object-fit: cover;
   object-position: center;
-  filter: brightness(70%);
+  filter: brightness(60%);
 }
 
 .img-text {
   position: absolute;
-  top: 200px;
-  left: 20%;
-  text-align: left;
+  top: 240px;
+  left: 33%;
+  text-align: center;
+  color: #f1f1f1;
+  font-size: 25PX;
+  font-family: 'BookkMyungjo-Bd';
+}
+
+.img-text > h3 {
+  font-size: 30px;
   color: #fff;
-  font-size: 40PX;
+  
 }
 
 .main-list-div {
@@ -60,24 +67,23 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 2px solid lightgray;
+  border: 1px solid lightgray;
 }
 
-.sub-inbox > p {
-  font-size: 21px;
+.main-p {
+  font-size: 23px;
   font-weight: 600;
   color: black;
+  margin-bottom: 20px;
 }
 
 .sub-inbox {
-  margin-top: 20px;
   width: 160px;
   height: 160px;
-
 }
 
-.sub-inbox > span {
-  font-size: 13px;
+.main-span {
+  font-size: 14px;
   color: black;
 }
 
@@ -85,7 +91,7 @@
 .icon{
   font-size: 40px;
   color: #3C32A2;
-
+  margin-bottom: 20px;
 
 }
 

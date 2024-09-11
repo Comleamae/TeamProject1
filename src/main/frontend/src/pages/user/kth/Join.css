@@ -1,6 +1,7 @@
+
 .join-div{
-  width: 1200px;
-  height: 1500px;
+  width: 1300px;
+  height: 1250px;
   margin: 0 auto;
   text-align: left;
 }
@@ -72,14 +73,13 @@
   text-align: left;
   border-top: 2px solid #2c59b4;
   border-bottom: 2px solid #2c59b4;
-
+  color: #2d58b6;
+  font-weight: 600;
+  font-size: 13px;
+  vertical-align: middle;
 }
 
-.join-table > tbody > tr,td {
-  font-weight: 600;
-  color: #2d58b6;
-  font-size: 13px;
-  text-align: left;
+.join-table > tbody > tr td {
   padding: 10px 15px;
   border-top: 1px solid #c6ccd8;
   border-bottom: 1px solid #c6ccd8;
@@ -105,7 +105,7 @@
 
 
 .input-txt2 {
-  width: 200px;
+  width: 190px;
   height: 17px;
   border: 1px solid #d6d6d6;
   padding: 7px 8px;
@@ -120,7 +120,7 @@
 }
 
 .email-box {
-  width: 200px;
+  width: 190px;
   height: 32px;
   margin-left: 10px;
   border: 1px solid #d6d6d6;
@@ -153,4 +153,4 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
+} 

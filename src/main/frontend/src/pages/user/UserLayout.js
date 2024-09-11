@@ -19,7 +19,7 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
               <MdMenu className='menu-icon' />
             </button>
             {/* 메뉴 목록들어갈 자리 */}
-            </div>
+          </div>
   
             <Link to="/" className='logo'>
               <img className='logo-img' src='http://localhost:8080/images/logo.png' />
@@ -29,16 +29,16 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
               Object.keys(loginInfo).length != 0 ?
                 //로그인 하였다면
                 // 회원 이름 + 로그아웃 버튼
-                <div>
-                  {loginInfo.memName}님 안녕하세요.
+                <div className='loginout-div'>
+                  {loginInfo.memName}님 안녕하세요
                   {/* Logout 글자에 손대면 cursor pointer 해주세요 */}
   
                   {/* 클릭 시 로그아웃 */}
-                  <span onClick={(e) => {
+                  <span className='btn2 ' onClick={(e) => {
                     window.sessionStorage.removeItem('loginInfo')
                     setLoginInfo({});
                     navigate('/')
-                  }}>Logout</span>
+                  }}>로그아웃</span>
   
                 </div>
                 :

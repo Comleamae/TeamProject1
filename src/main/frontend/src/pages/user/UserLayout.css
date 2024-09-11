@@ -7,8 +7,9 @@
 
 
 .header{
-  width: 1950px;
+  width: 1900px;
   margin: 0 auto;
+
 }
 
 .header-index {
@@ -18,12 +19,32 @@
   display: flex;
   align-items: center;
   position: relative;
+
+}
+
+#btn-top-menus {
+  background: red;
 }
 
 a {
   text-decoration: none;
   color: black;
   cursor: pointer;
+}
+
+/* 로그아웃 */
+
+.loginout-div {
+  width: 300px;
+  position: absolute;
+  right: 10px;
+}
+
+.btn2 {
+  color: #444;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .menu {
@@ -68,7 +89,6 @@ a {
   flex-direction: row;
   justify-content: space-between;
 }
-
 
 .login-box li:hover{
   font-weight: bold;
