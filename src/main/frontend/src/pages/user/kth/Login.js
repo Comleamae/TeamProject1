@@ -45,8 +45,11 @@ const Login = ({ setLoginInfo }) => {
           const json_loginInfo = JSON.stringify(loginInfo);
 
           window.sessionStorage.setItem('loginInfo', json_loginInfo);
-          if(res.data.memRole != 'admin'){
+          if(res.data.memRole == 'user'){
             navigate('/')
+          }
+          else if(res.data.memRole == 'doctor'){
+            navigate('/doctor')
           }
           else{
             navigate('/admin')
@@ -106,13 +109,13 @@ const Login = ({ setLoginInfo }) => {
           <p>
             아이디를 잊으셨습니까?
           </p>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/') }}>아이디 찾기</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/findId') }}>아이디 찾기</button>
         </div>
         <div>
           <p>
             비밀번호를 잊으셨습니까?
           </p>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/') }}>비밀번호 찾기</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/findPw') }}>비밀번호 찾기</button>
         </div>
       </div>      
     </div>

@@ -5,12 +5,27 @@
 <mapper namespace="doctorMapper">
     <resultMap id="doctor" type="com.green.TeamProject1.doctor.DoctorVO">
         <id column="DOC_LINUM" property="docLinum"/>
+        <result column="DOC_PW" property="docPw"/>
         <result column="DOC_NAME" property="docName"/>
         <result column="DEPT_NUM" property="deptNum"/>
         <association property="recepVO" resultMap="patientMapper.recep"/>
         <association property="mediDeptVO" resultMap="mediDept"/>
         <collection property="patientVO" resultMap="patientMapper.patient"/>
     </resultMap>
+
+    <!-- 관리자 페이지를 통해 의사 등록 -->
+    <insert id="insertDoctor">
+        INSERT INTO DOCTOR(
+            DOC_LINUM
+            , DOC_PW
+            , DOC_NAME
+            , DEPT_NUM) VALUES (
+            #{docLinum}
+            ,#{docPw}
+            ,#{docName}
+            ,#{deptNum});
+    </insert>
+
 
     <!-- 의사에 연결할 진료과 정보 -->
     <resultMap id="mediDept" type="com.green.TeamProject1.doctor.MediDeptVO">

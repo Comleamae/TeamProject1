@@ -13,6 +13,12 @@ public class DoctorController {
     @Resource(name = "doctorService")
     private DoctorServiceImpl doctorService;
 
+    //관리자 페이지를 통한 의사 등록
+    @PostMapping("/insertDoctor")
+    void insertDoctor(@RequestBody DoctorVO doctorVO){
+        doctorService.insertDoctor(doctorVO);
+    }
+
     @GetMapping("/getOne/{docLinum}")
     DoctorVO getOneDoc(@PathVariable (name = "docLinum") int docLinum){
         return doctorService.getOneDoc(docLinum);

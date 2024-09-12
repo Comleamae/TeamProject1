@@ -22,11 +22,13 @@ import Visitant from './pages/admin/ksh/Visitant';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import Footer from './pages/Footer';
 // import '../src/pages/Footer.css'
-import AdminLogin from './pages/admin/pjw/AdminLogin';
-import AdminJoin from './pages/admin/pjw/AdminJoin';
+import AdminLogin from './pages/user/kth/AdminLogin';
 import TreChart from './pages/admin/ksh/TreChart';
-import Notice from './pages/user/kth/Notice';
 import AdminMain from './pages/user/kth/AdminMain';
+import AdminJoin from './pages/user/kth/AdminJoin';
+import FindId from './pages/user/kth/FindId';
+import FindPw from './pages/user/kth/FindPw';
+
 
 const App = () => {
 
@@ -66,8 +68,8 @@ const App = () => {
               {/* 로그인 * 회원가입 페이지 */}
               <Route path='join' element={<Join />} />
               <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
-
-              <Route path='notice' element={<Notice/>} />              
+              <Route path='findId' element={<FindId/>}/>
+              <Route path='findPw' element={<FindPw/>}/>
 
               {/* 진료관련 증명서 출력 */}
               <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
@@ -95,9 +97,7 @@ const App = () => {
               </Route>
             </Route> */}
 
-          </Routes>
 
-          <Routes>
             <Route path='/admin' element={<AdminLayout/>}>
               <Route path='' element={<AdminMain/>}/>
               <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>

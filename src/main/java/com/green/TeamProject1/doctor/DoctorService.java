@@ -6,6 +6,9 @@ import com.green.TeamProject1.patient.TreatVO;
 import java.util.List;
 
 public interface DoctorService {
+
+    void insertDoctor(DoctorVO doctorVO);
+
     /*의사 한명의 정보를 얻어와*/
     DoctorVO getOneDoc(int docLinum);
     /*의사 전체 리스트*/

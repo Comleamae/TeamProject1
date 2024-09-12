@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public class DoctorVO {
     private int docLinum;
+    private String docPw;
     private String docName;
     private String deptNum;
     private RecepVO recepVO;

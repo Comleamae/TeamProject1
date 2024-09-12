@@ -32,4 +32,13 @@ public class MemberServiceImpl implements MemberService{
     public List<MemberVO> isCitizens(String citizenNum) {
         return sqlSession.selectList("memberMapper.isCitizen", citizenNum);
     }
+
+    @Override
+    public String findId(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.findId", memberVO);
+    }
+    @Override
+    public String findPw(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.findPw", memberVO);
+    }
 }
