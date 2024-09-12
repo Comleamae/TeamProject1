@@ -35,9 +35,12 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
   
                   {/* 클릭 시 로그아웃 */}
                   <span className='btn2 ' onClick={(e) => {
-                    window.sessionStorage.removeItem('loginInfo')
+                    const logOut = window.confirm('로그아웃 하시겠습니까?')
+                    if(logOut){
+                      window.sessionStorage.removeItem('loginInfo')
                     setLoginInfo({});
                     navigate('/')
+                    }
                   }}>로그아웃</span>
   
                 </div>

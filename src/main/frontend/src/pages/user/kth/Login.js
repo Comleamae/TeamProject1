@@ -45,14 +45,16 @@ const Login = ({ setLoginInfo }) => {
           const json_loginInfo = JSON.stringify(loginInfo);
 
           window.sessionStorage.setItem('loginInfo', json_loginInfo);
-          if(res.data.memRole == 'user'){
-            navigate('/')
+          if(res.data.memRole == 'admin'){
+            navigate('/admin')
           }
+
+          //일단은 의사 및 관리자 로그인도 일반 로그인 화면에서 가능하게 만들었음.
           else if(res.data.memRole == 'doctor'){
             navigate('/doctor')
           }
           else{
-            navigate('/admin')
+            navigate('/')
           }
           setLoginInfo(loginInfo)
           window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
