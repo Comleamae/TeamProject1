@@ -1,72 +1,88 @@
-.chart-main-div{
-  margin: 0 auto;
-  width: 1600px;
-  border: 1px solid black;
+.main-title-div{
   margin-top: 50px;
-  /* padding: 50px 0px 0px 0px; */
 }
 
-.chart-sub-div{
+.chart-main-div{
+  width: 1400px;
+  height: 700px;
+  margin: 0 auto;
+  margin-top: 50px;
   display: flex;
 }
 
-.chart-sub-div > div:nth-child(1){
-  width: 70%;
-  border: 1px solid red;
-}
-
-.chart-sub-div > div:nth-child(2){
-  width: 30%;
-  border: 1px solid green;
-  height: 700px
-}
-
-.detail-info-div {
-  display: flex;
-  justify-content: center;
+.chart-sub1-div {
   width: 100%;
   height: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.detail-info-div > div:nth-child(1) {
-  flex: 0.3;
+.chart-sub2-div {
+  width: 100%;
+  height: 100%;
 }
 
-.detail-info-div > div:nth-child(2) {
-  flex: 0.3;
+/* 공통 적용 */
+
+td {
+  vertical-align: middle;
 }
 
-.pati-list-div {
-  overflow: hidden;
+.chart-input-tag {
+  border: none;
 }
 
-.pati-list-div > div{
-  border: 1px solid black;
-  border-radius: 10px;
-  margin: 10px;
+
+/* 1번째 div */
+.pati-pull-info{
 }
 
-.pati-detail-div {
-  display: flex;
+.pati-pull-info > table {
+  width: 100%;
 }
 
+/* 2번째 div */
+.tre-info-div > table{
+  width: 100%;
+}
+
+.textarea {
+  resize: none;
+  height: 80px; 
+  width: 300px;
+  border: none;
+  vertical-align: middle;
+}
+
+.textarea::placeholder {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+.chart-input-tag::placeholder{
+  color: black;
+}
+
+.insert-btn {
+  background-color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+/* 3번째 div */
 .status-info-div{
   display: flex;
+  border-radius: 30px;
 }
 
-.pati-detail-div > div {
-  flex: 0.25;
+.status-info-div > div{
+  flex: 0.3;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.status-info-div > div {
-  flex: 0.25;
-}
-
-
-.ta-text{
-  resize: none;
-  width: 200px;
-  height: 60px;
-}
