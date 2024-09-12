@@ -12,6 +12,14 @@
         <collection property="patientVO" resultMap="patientMapper.patient"/>
     </resultMap>
 
+    <!--처방전에 대한 정보-->
+    <resultMap id="infoRecipe" type="com.green.TeamProject1.patient.RecipeVO">
+        <id column="RECIPE_NUM" property="recipeNum"/>
+        <result column="TRE_NUM" property="treNum"/>
+        <result column="MEDI_NAME" property="mediName"/>
+        <result column="EAT_CNT" property="eatCnt"/>
+    </resultMap>
+
     <!-- 의사에 연결할 진료과 정보 -->
     <resultMap id="mediDept" type="com.green.TeamProject1.doctor.MediDeptVO">
         <result column="DEPT_NUM" property="deptNum"/>
@@ -46,22 +54,53 @@
         WHERE dept_NUM = #{deptNum}
     </select>
 
+    <!-- 진료 정보 번호? 생성해서 넘겨주기 -->
+    <select id="getNextTreNum" resultType="int">
+        SELECT IFNULL(MAX(TRE_NUM), 0)+ 1
+        FROM info_treat;
+    </select>
+
+
     <!-- 대기자 목록에서 선택한 환자 진료 정보 삽입 -->
+    <!-- 아래 코드에 의사번호는 임시로 삽입(현재 관리자로그인 기능 구현안되어있음)
+         관리자 기능 구현되면 의사번호 받아와서 실행되게 만들어야함.
+     -->
     <insert id="insertTreatInfo">
         INSERT INTO info_treat (
             pat_num
           , disease
           , about_pat
           , tre_date
-            , DOC_LINUM
+          , DOC_LINUM
         )
         VALUES (
-            #{patNum}
+           #{patNum}
           , #{disease}
           , #{aboutPat}
-          , NOW()
-            , 1
+          , #{treDate}
+          , 1
         );
     </insert>
+
+    <!-- 대기자 목록에서 선택한 환자 진료 정보에 처방전 정보 추가 삽입 -->
+    <insert id="insertRecipeInfo">
+        INSERT INTO info_recipe (
+            TRE_NUM
+          , MEDI_NAME
+          , EAT_CNT
+        )
+        VALUES (
+           #{treNum}
+         , #{mediName}
+         , #{eatCnt}
+        );
+    </insert>
+
+    <select id="treOneSelect" resultMap="patientMapper.infoTreat">
+        SELECT *
+        FROM info_treat
+        WHERE pat_num = #{patNum}
+        ORDER BY TRE_DATE DESC
+    </select>
 
 </mapper>

@@ -36,9 +36,28 @@ public class DoctorServiceImpl implements DoctorService{
         return sqlSession.selectList("doctorMapper.getDoctorList", deptNum);
     }
 
+    // 진료 정보 넘겨주기 위한 번호 생성
+    @Override
+    public int getNextTreNum() {
+        return sqlSession.selectOne("doctorMapper.getNextTreNum");
+    }
+
+    // 진료 정보 등록
     @Override
     public void insertTreatInfo(TreatVO treatVO) {
         sqlSession.insert("doctorMapper.insertTreatInfo", treatVO);
+    }
+
+    // 진료정보에 처방전 정보 추가 등
+    @Override
+    public void insertRecipeInfo(TreatVO treatVO) {
+        sqlSession.insert("doctorMapper.insertRecipeInfo", treatVO);
+    }
+
+    // 환자 한명의 진료정보 가져오기
+    @Override
+    public  List<TreatVO> treOneSelect(int patNum) {
+        return sqlSession.selectList("doctorMapper.treOneSelect", patNum);
     }
 
 
