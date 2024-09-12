@@ -24,12 +24,9 @@ import Footer from './pages/Footer';
 // import '../src/pages/Footer.css'
 import AdminLogin from './pages/admin/pjw/AdminLogin';
 import AdminJoin from './pages/admin/pjw/AdminJoin';
-<<<<<<< HEAD
 import TreChart from './pages/admin/ksh/TreChart';
-=======
 import Notice from './pages/user/kth/Notice';
 import AdminMain from './pages/user/kth/AdminMain';
->>>>>>> kth
 
 const App = () => {
 
