@@ -12,7 +12,9 @@ import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
 import MoneyIn from './pages/user/cyh/MoneyIn';
 import PayMoney from './pages/user/cyh/PayMoney';
-import Join from './pages/user/kth/Join';
+import JoinStep1 from './pages/user/kth/JoinStep1';
+import JoinStep2 from './pages/user/kth/JoinStep2';
+import JoinStep3 from './pages/user/kth/JoinStep3';
 import Login from './pages/user/kth/Login';
 import Main from './pages/Main';
 import ReservReg from './pages/user/ksh/ReservReg';
@@ -28,6 +30,7 @@ import AdminMain from './pages/user/kth/AdminMain';
 import AdminJoin from './pages/user/kth/AdminJoin';
 import FindId from './pages/user/kth/FindId';
 import FindPw from './pages/user/kth/FindPw';
+
 
 
 const App = () => {
@@ -66,7 +69,9 @@ const App = () => {
               <Route path="" element={<Main/>} />
 
               {/* 로그인 * 회원가입 페이지 */}
-              <Route path='join' element={<Join />} />
+              <Route path='joinStep1' element={<JoinStep1 />} />
+              <Route path='joinStep2' element={<JoinStep2 />} />
+              <Route path='joinStep3' element={<JoinStep3 />} />
               <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
               <Route path='findId' element={<FindId/>}/>
               <Route path='findPw' element={<FindPw/>}/>

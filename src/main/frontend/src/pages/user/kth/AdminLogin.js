@@ -24,32 +24,45 @@ const AdminLogin = ({setLoginInfo}) => {
     setLoginData(newData)
   }
 
+  //로그인 정보 저장
+  function saveLoginData(res){
+    //sessionStorage에 로그인한 관리자의 개인정보 저장
+    const loginInfo = {
+      memId: res.data.memId,
+      memPW: res.data.memPw,
+      memName: res.data.memName,
+      memTel: res.data.memTel,
+      citizenNum: res.data.citizenNum,
+      memAddr: res.data.memAddr,
+      addrDetail: res.data.addrDetail,
+      memEmail: res.data.memEmail,
+      post: res.data.post,
+      memRole: res.data.memRole
+    }
+    const json_loginInfo = JSON.stringify(loginInfo);
+
+    window.sessionStorage.setItem('loginInfo', json_loginInfo);
+    setLoginInfo(loginInfo)
+    window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
+  }
+
   //로그인 버튼 클릭시 실행
   function login() {
     axios.post('/api_member/login', loginData)
       .then((res) => {
-        // 로그인 가능 시
-        if (res.data != ''&res.data.memRole=='ADMIN') {
-          alert(`${res.data.name} 관리자님 환영합니다.`)
-          //sessionStorage에 로그인한 관리자의 개인정보 저장
-          const loginInfo = {
-            memId: res.data.memId,
-            memPW: res.data.memPw,
-            memName: res.data.memName,
-            memTel: res.data.memTel,
-            citizenNum: res.data.citizenNum,
-            memAddr: res.data.memAddr,
-            addrDetail: res.data.addrDetail,
-            memEmail: res.data.memEmail,
-            post: res.data.post,
-            memRole: res.data.memRole
-          }
-          const json_loginInfo = JSON.stringify(loginInfo);
-
-          window.sessionStorage.setItem('loginInfo', json_loginInfo);
-          navigate('/')
-          setLoginInfo(loginInfo)
-          window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
+        // 관리자 로그인 시
+        if (res.data.memRole=='admin') {
+          alert(`${res.data.memName} 관리자님 환영합니다.`)
+          //관리자 메인화면으로 이동
+          navigate('/admin')
+          saveLoginData(res)
+        }
+        // 의사 로그인 시
+        else if (res.data.memRole=='doctor') {
+          alert(`${res.data.memName} 의사님 환영합니다.`)
+          //의사 메인화면으로 이동
+          navigate('/doctor')
+          saveLoginData(res)
         }
         else {
           alert('ID 혹은 PW를 확인하세요.')

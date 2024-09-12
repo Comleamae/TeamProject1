@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react'
-import  './Join.css';
+import  './JoinStep2.css';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom'
 import { joinValidate } from './joinValidate';
 import axios from 'axios';
 
-const Join = () => {
+const JoinStep2 = () => {
 
   const navigate = useNavigate()
 
@@ -44,7 +44,7 @@ const Join = () => {
     post: '',
     memAddr: '',
     addrDetail: '',
-    memRole : 'user'
+    memRole: 'user'
   })
 
   // 태그 참조
@@ -77,7 +77,7 @@ const Join = () => {
 
     //삼항연산자 사용을 위한 변수
     let newValue;
-    
+
     if (e.target.name == 'citizenNum') {
       newValue = citizenNum_1.current.value + '-' + citizenNum_2.current.value;
     } else if (e.target.name == 'memEmail') {
@@ -96,7 +96,7 @@ const Join = () => {
     //유효성 검사 실행
     const result = joinValidate(newData, valid_tag, e.target.name);
     setValidResult(result);
-    
+
     // //유효성 검사 끝난 데이터를 joinData에 저장
     setJoinData(newData);
 
@@ -108,7 +108,7 @@ const Join = () => {
     axios.get(`/api_member/checkId/${joinData.memId}`)
       .then((res) => {
         // 사용 가능 아이디
-        if(res.data) {
+        if (res.data) {
           setIsCheckId(true)
           alert('사용 가능한 ID입니다.')
         }
@@ -142,21 +142,20 @@ const Join = () => {
         insertOne();
         alert('회원가입이 완료되었습니다.')
         console.log(joinData)
-        navigate('/login')
+        navigate('/joinStep3')
       })
       .catch((error) => {
         console.log(error)
       })
   }
 
-  function insertOne(){
+  function insertOne() {
     axios.post('/api_member/insertOne', joinData)
-    .then((res)=>{
-    })
-    .catch((error)=>
-    {
-      console.log(error)
-    })
+      .then((res) => {
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   // 가입 취소
@@ -231,7 +230,7 @@ const Join = () => {
               <td>주민번호</td>
               <td>
                 <input className='input-txt2' type='text' name='citizenNum' placeholder='주민번호 앞자리' ref={citizenNum_1} onChange={(e) => { changeJoinData(e) }} /> -
-                <input className='input-txt2'  type='password' name='citizenNum' placeholder='주민번호 뒷자리' ref={citizenNum_2} onChange={(e) => { changeJoinData(e) }} />
+                <input className='input-txt2' type='password' name='citizenNum' placeholder='주민번호 뒷자리' ref={citizenNum_2} onChange={(e) => { changeJoinData(e) }} />
                 <div className='feedback' ref={citizenNum_valid_tag}>잘못된 주민번호입니다.</div>
               </td>
             </tr>
@@ -282,4 +281,4 @@ const Join = () => {
   )
 }
 
-export default Join
+export default JoinStep2

@@ -14,7 +14,8 @@ const AdminJoin = () => {
     docLinum: 0,
     docPw: '',
     docName: '',
-    deptNum: 0
+    deptNum: 0,
+    memRole : 'doctor'
   })
 
 
@@ -31,7 +32,7 @@ const AdminJoin = () => {
   function adminJoin(){
     axios.post('/doctor/insertDoctor', adminJoinData)
     .then((res)=>{
-      alert('관리자 등록이 완료되었습니다.')
+      alert('의사 등록이 완료되었습니다.')
       navigate('/admin/login')
     })
     .catch((error)=>{
