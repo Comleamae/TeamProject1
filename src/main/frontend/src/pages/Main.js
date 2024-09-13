@@ -88,11 +88,27 @@ const Main = () => {
             </div>
           </div>
 
+<<<<<<< HEAD
           <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }} style={{backgroundColor:'#42D3D8'}}>
             <div className='sub-inbox' style={{color:'#fff'}}>
               <p className='main-p'  style={{color:'#fff'}}>진료예약</p>
               <span className='main-span' style={{color:'#fff'}}>진료예약 하러가기</span>
               <LuCalendarClock className='icon' style={{color:'#fff'}}/>
+=======
+          <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }}>
+            <div className='sub-inbox'>
+              <LuCalendarClock className='icon' />
+              <p className='main-p'>진료예약</p>
+              <span className='main-span'>진료예약 하러가기</span>
+            </div>
+          </div>
+  
+          <div className='sub-idex-box' onClick={(e) => { navigate(`searchStaff`) }}>
+          <div className='sub-inbox'>
+            <FaUserDoctor className='icon' />
+            <p className='main-p'>의료진/<br /> 의료과 찾기</p>
+            <button style={{marginTop:'-50px'}} type='button' className='btn'>찾기</button>
+>>>>>>> kth
             </div>
           </div>
 
