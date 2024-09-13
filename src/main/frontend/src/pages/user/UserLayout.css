@@ -1,15 +1,7 @@
-/* ul{
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
-} */
-
 
 .header{
   width: 1900px;
   margin: 0 auto;
-
 }
 
 .header-index {
@@ -19,12 +11,8 @@
   display: flex;
   align-items: center;
   position: relative;
-
 }
 
-#btn-top-menus {
-  background: red;
-}
 
 a {
   text-decoration: none;
@@ -32,19 +20,12 @@ a {
   cursor: pointer;
 }
 
-/* 로그아웃 */
-
-.loginout-div {
-  width: 300px;
-  position: absolute;
-  right: 10px;
-}
-
-.btn2 {
-  color: #444;
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 10px;
+/* 전체 메뉴 스타일 */
+#btn-top-menus {
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: relative;
 }
 
 .menu {
@@ -55,6 +36,12 @@ a {
   cursor: pointer;
   border: none;
   font-size: 16px;
+  z-index: 999;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .menu-icon {
@@ -62,6 +49,294 @@ a {
   font-size: 35px;
 }
 
+.total_navi_div:hover .sec_total_navi_ul{
+  display: block;
+}
+
+/* 첫번째 메뉴 스타일 */
+.total_navi_div .sec_total_navi_ul {
+  width: 200px;
+  height: 443px;
+  padding-top: 8px;
+  border: 1px solid #dedede;
+  background: #fff;
+  z-index: 20000;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  display: none;
+}
+
+.total_navi_div .sec_total_navi_ul > li {
+  margin-bottom: 0;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.total_navi_div .sec_total_navi_ul > li > a {
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 25px;
+  width: 160px;
+}
+
+/* 메뉴 항목 호버 스타일 */
+.total_navi_div .sec_total_navi_ul > li:hover {
+  background: #f0f5f9;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.total_navi_div .sec_total_navi_ul > li:hover > a {
+  color: #2d58b6;
+}
+
+/* 두번째 메뉴 스타일 */
+.total_navi_div .sec_total_navi_ul > li .total_navi_div2 {
+  position: absolute;
+  left: 200px;
+  top: -1px;
+  z-index: 12;
+  width: 250px;
+  height: 451px;
+  background: #fff;
+  border: 1px solid #ddd;
+  text-align: left;
+  display: none;
+}
+
+.total_navi_div .sec_total_navi_ul > li:hover .total_navi_div2 {
+  display: block;
+}
+
+.total_navi_div .total_navi_div2 > ul {
+  padding: 8px 0;
+}
+
+.total_navi_div .total_navi_div2 > ul > li {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.total_navi_div .total_navi_div2 > ul > li:hover {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: #f0f5f9;
+}
+
+.total_navi_div .total_navi_div2 > ul > li > a {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  background: none;
+  padding: 8px 25px;
+  color: #444;
+}
+
+/* 상세 내용 박스 스타일 */
+.total_navi_div .snb_conts_wrap {
+  width: 845px;
+  height: 450px;
+  background: #f0f5f9;
+  cursor: default;
+  border: 1px solid #dedede;
+  position: absolute;
+  left: 250px;
+  top: -1px;
+
+}
+
+.total_navi_div .snb_conts_box {
+  position: relative;
+}
+
+.total_navi_div .snb_conts {
+  width: 100%;
+  margin: auto;
+  max-width: 550px;
+  padding-top: 45px;
+  text-align: center;
+}
+
+.bh_snb_tit {
+  font-size: 21px;
+  color: #2d58b5;
+  line-height: 30px;
+  font-weight: 600;
+  margin-bottom: 13px;
+  text-align: left;
+}
+
+.bh_snb_input {
+  font-size: 0;
+  height: 35px;
+  margin-bottom: 20px;
+  border: 1px solid #2d58b5;
+  text-align: left;
+  background: #fff;
+}
+
+.input_snb_text {
+  width: 420px;
+  height: 34px;
+  border: none;
+  padding: 0 5px 0 20px;
+  line-height: 34px;
+  background: #fff;
+  color: #666;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.btn_snb_blue {
+  width: 87px;
+  height: 35px;
+  border: none;
+  background: #2d58b5;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.f_right {
+  float: right !important;
+  margin-top: -34px;
+}
+
+.bh_snb_desc {
+  display: block;
+  padding: 10px;
+  font-size: 13px;
+  color: #78819b;
+  line-height: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bh_snb_desc span {
+  display: inline;
+}
+
+.bh_snb_desc1 {
+  display: block;
+  padding: 5px 0 5px 32px;
+  font-size: 13px;
+  color: #78819b;
+  line-height: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bh_snb_desc1 span {
+  display: inline;
+}
+
+.bh_snb_desc2, .bh_snb_desc3 {
+  display: block;
+  padding: 5px 0;
+  font-size: 13px;
+  color: #78819b;
+  line-height: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bh_snb_desc2 span, .bh_snb_desc3 span {
+  display: inline;
+}
+
+.bh_snb_ul {
+  font-size: 0;
+  text-align: center;
+  background: #fff;
+  padding: 26px 0;
+  border: 1px solid #ddd;
+}
+
+.bh_snb_ul li {
+  width: 110px;
+  display: inline-block;
+  margin-left: 30px;
+  padding-left: 30px;
+}
+
+.bh_snb_ul li.bh_snb_li_1 {
+  margin-left: 0;
+  padding-left: 0;
+  background: none;
+}
+
+.bh_snb_ul li.bh_snb_li_4 {
+  margin-left: 0;
+  padding-left: 0;
+  background: none;
+}
+
+.bh_snb_ul li a {
+  display: block;
+  padding-top: 95px;
+  background: url(http://localhost:8080/images/ico_snb_1.png) center top no-repeat;
+}
+
+.bh_snb_ul li.bh_snb_li_2 a {
+  background: url(http://localhost:8080/images/ico_snb_2.png) center top no-repeat;
+}
+
+.bh_snb_ul li.bh_snb_li_3 a {
+  background: url(http://localhost:8080/images/ico_snb_3.png) center top no-repeat;
+}
+
+.bh_snb_ul li.bh_snb_li_4 a, .bh_snb_ul li.bh_snb_li_5 a, .bh_snb_ul li.bh_snb_li_6 a {
+  background: url(http://localhost:8080/images/ico_snb_3.png) center top no-repeat;
+}
+
+.bh_snb_ul li a strong {
+  font-size: 14px;
+  color: #2d58b6;
+  font-weight: 600;
+}
+
+.bh_btn_b1 {
+  background: #2749ac;
+  border: 1px solid #2749ac;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  height: 34px;
+  line-height: 34px;
+  vertical-align: top;
+  width: 87px;
+  padding: 0 5px;
+}
+
+.bh_snb_btn_wrap {
+  position: absolute;
+  top: 60px;
+  right: 120px;
+}
+
+.bh_snb_tit {
+  font-size: 21px;
+  color: #2d58b5;
+  line-height: 30px;
+  font-weight: 600;
+  margin-bottom: 13px;
+  display: block;
+  font-family: KoPub Dotum, 'KoPub Dotum';
+  text-align: left;
+}
+
+/* 로고  */
 .logo-img {
   width: 50px;
 }
@@ -74,9 +349,11 @@ a {
   display: flex;
   align-items: center;
   font-family: 'Freesentation-9Black';
-  color: black;
+  color: rgb(20, 20, 20);
   margin-left: 10px;
 }
+
+/* 로그인  */
 
 .login-box {
   width: 16%;
@@ -92,4 +369,20 @@ a {
 
 .login-box li:hover{
   font-weight: bold;
+}
+
+
+/* 로그아웃 */
+
+.loginout-div {
+  width: 300px;
+  position: absolute;
+  right: 10px;
+}
+
+.btn2 {
+  color: #444;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 10px;
 }

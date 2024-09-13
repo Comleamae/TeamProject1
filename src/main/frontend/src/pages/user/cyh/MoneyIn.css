@@ -65,8 +65,9 @@
   position: relative;
 }
 
-.left-right tr,td {
+.left-right > tr,td {
   padding: 5px;
+  /* border: 1px solid red; */
   border: 1px solid rgb(241, 241, 241);
 }
 
