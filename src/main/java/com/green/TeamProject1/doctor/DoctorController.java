@@ -63,4 +63,9 @@ public class DoctorController {
     }
 
 
+    //이름으로 의료진 검색
+    @GetMapping("/searchStaffByName/{docName}")
+    public List<DoctorVO> searchStaffByName(@PathVariable(name = "docName") String docName){
+        return doctorService.searchStaffByName(docName);
+    }
 }

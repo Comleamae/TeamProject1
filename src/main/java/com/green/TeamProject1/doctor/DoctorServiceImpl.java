@@ -65,5 +65,11 @@ public class DoctorServiceImpl implements DoctorService{
         return sqlSession.selectList("doctorMapper.treOneSelect", patNum);
     }
 
+    // 이름으로 의료진 검색 (리턴 자료형이 list인 이유는 동명이인이 존재할 경우를 위해서, 진료과도 함께 보여줌으로써 사용자가 직접 구분하도록 유도)
+    @Override
+    public List<DoctorVO> searchStaffByName(String docName) {
+        return sqlSession.selectList("doctorMapper.searchStaffByName", docName);
+    }
+
 
 }

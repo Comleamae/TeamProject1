@@ -1,0 +1,6 @@
+.search-staff-container{
+  display: flex;
+  justify-content: space-around;
+  margin: 180px;
+}
+

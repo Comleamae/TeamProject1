@@ -30,6 +30,7 @@ import AdminMain from './pages/user/kth/AdminMain';
 import AdminJoin from './pages/user/kth/AdminJoin';
 import FindId from './pages/user/kth/FindId';
 import FindPw from './pages/user/kth/FindPw';
+import SearchStaff from './pages/user/kth/SearchStaff';
 
 
 
@@ -67,6 +68,9 @@ const App = () => {
             
               {/* 메인화면 */}
               <Route path="" element={<Main/>} />
+
+              {/* 의료진 찾기 */}
+              <Route path='searchStaff' element={<SearchStaff/>} />
 
               {/* 로그인 * 회원가입 페이지 */}
               <Route path='joinStep1' element={<JoinStep1 />} />

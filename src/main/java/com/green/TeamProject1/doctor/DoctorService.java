@@ -32,4 +32,9 @@ public interface DoctorService {
 
     // 선택한 환자 한명에 대한 진료정보 조회
     List<TreatVO> treOneSelect(int patNum);
+
+
+
+    // 의료진 검색기능 BY KTH
+    List<DoctorVO> searchStaffByName(String docName);
 }

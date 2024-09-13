@@ -51,7 +51,7 @@ const Main = () => {
             </div>
           </div>
   
-          <div className='sub-idex-box' onClick={(e) => { navigate(`/`) }}>
+          <div className='sub-idex-box' onClick={(e) => { navigate(`searchStaff`) }}>
           <div className='sub-inbox'>
             <FaUserDoctor className='icon' />
             <p className='main-p'>의료진/<br /> 의료과 찾기</p>

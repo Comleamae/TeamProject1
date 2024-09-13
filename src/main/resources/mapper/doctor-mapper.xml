@@ -119,4 +119,19 @@
         ORDER BY TRE_DATE DESC
     </select>
 
+    <!-- 의료진 검색 기능(이름 버젼) by kth -->
+    <select id="searchStaffByName" resultMap="doctorMapper.doctor">
+        SELECT DOC_NAME, DEPT_NAME
+        FROM DOCTOR, MEDI_DEPT
+        WHERE DOCTOR.DEPT_NUM = MEDI_DEPT.DEPT_NUM
+        AND DOC_NAME = #{docName}
+    </select>
+
+    <!-- 의료진 검색 기능(진료과 버젼) by kth -->
+    <select id="searchStaffByDept" resultMap="doctorMapper.doctor">
+        SELECT DOC_NAME, DEPT_NAME
+        FROM DOCTOR, MEDI_DEPT
+        WHERE DOCTOR.DEPT_NUM = MEDI_DEPT.DEPT_NUM
+        AND MEDI_DEPT.DEPT_NAME = #{deptName}
+    </select>
 </mapper>
