@@ -46,6 +46,7 @@ const TreChart = () => {
       ...recInfo,
       [e.target.name] : e.target.value
     })
+    console.log(recInfo)
   }
 
   // 대기 환자 정보 가져옴
@@ -89,8 +90,6 @@ const TreChart = () => {
   function treInfoInsert(){
     axios.post('/doctor/insertTreatInfo', treInfo)
     .then((res)=>{
-      console.log(res.data)
-      setTreInfo(res.data);
     })
     .catch((error)=>{
       console.log(error)
@@ -102,8 +101,6 @@ const TreChart = () => {
   function recInfoInsert(){
     axios.post('/doctor/insertRecipeInfo', recInfo)
     .then((res)=>{
-      console.log(res.data)
-      setRecInfo(res.data);
     })  
     .catch((error)=>{
       console.log(error)
