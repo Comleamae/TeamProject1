@@ -1,6 +1,7 @@
 package com.green.TeamProject1.doctor;
 
 import com.green.TeamProject1.patient.PatientVO;
+import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public interface DoctorService {
     void insertTreatInfo(TreatVO treatVO);
 
     // 선택한 환자의 처방전 정보 삽입
-    void insertRecipeInfo(TreatVO treatVO);
+    void insertRecipeInfo(RecipeVO recipeVO);
 
     // 선택한 환자 한명에 대한 진료정보 조회
     List<TreatVO> treOneSelect(int patNum);

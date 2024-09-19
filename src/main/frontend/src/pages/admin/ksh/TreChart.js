@@ -11,7 +11,7 @@ const TreChart = () => {
   const [patientInfo, setPatientInfo] = useState([]);
 
   // 대기 환자 목록에서 환자 눌러야 환자 정보 보이게 하는 변수
-  const [isShow, setIsShow] = useState(true);
+  const [isShow, setIsShow] = useState(false);
 
   // 진료 정보 담아둘 변수
   const [treInfo, setTreInfo] = useState({
@@ -20,14 +20,15 @@ const TreChart = () => {
     // docLinum : '',
     aboutPat : '',
     treDate : '',
-  });
-
-  // 처방전 정보 담아둘 변수
-  const [recInfo, setRecInfo] = useState({
-    treNum : '',
     mediName : '',
     eatCnt : ''
   });
+
+  // 처방전 정보 담아둘 변수
+  // const [recInfo, setRecInfo] = useState({
+  //   mediName : '',
+  //   eatCnt : ''
+  // });
 
   // 환자 1명의 모든 진료기록 담아둘 변수
   const [treList, setTreList] = useState([]);
@@ -41,13 +42,13 @@ const TreChart = () => {
   }
 
   // 처방전 정보 변경되면 ...
-  function changeRecInfo(e){
-    setRecInfo({
-      ...recInfo,
-      [e.target.name] : e.target.value
-    })
-    console.log(recInfo)
-  }
+  // function changeRecInfo(e){
+  //   setRecInfo({
+  //     ...recInfo,
+  //     [e.target.name] : e.target.value
+  //   })
+  //   console.log(recInfo)
+  // }
 
   // 대기 환자 정보 가져옴
   function getPatientInfo (patNum){
@@ -88,8 +89,14 @@ const TreChart = () => {
 
   // 진료 정보 추가
   function treInfoInsert(){
+    //환자를 선택하지 않고 진행 시 경고
+    if(treInfo.patNum == ''){
+      alert('환자를 선택하세요');
+    }
+
     axios.post('/doctor/insertTreatInfo', treInfo)
     .then((res)=>{
+      alert('진료 기록이 등록되었습니다.')
     })
     .catch((error)=>{
       console.log(error)
@@ -97,16 +104,14 @@ const TreChart = () => {
     })
   }
 
-  // 처방전 정보 추가
-  function recInfoInsert(){
-    axios.post('/doctor/insertRecipeInfo', recInfo)
-    .then((res)=>{
-    })  
-    .catch((error)=>{
-      console.log(error)
-    })
-  }
 
+
+  // 화면에 표시할 페이지
+  const [markPage, setMarkPage] = useState(1); // 현재 페이지 번호
+  const postNum = 7; // 한 페이지에 표시할 게시글 수
+  const lastPage = markPage * postNum;
+  const firstPage = lastPage - postNum;
+  const markPages = treList.slice(firstPage, lastPage);
 
   return (
     <>
@@ -126,7 +131,7 @@ const TreChart = () => {
                   <tbody>
                     <tr>
                       <td>회원번호</td>
-                      <td >{patientInfo.patNum}</td>
+                      <td>{patientInfo.patNum}</td>
                     </tr>
                     <tr>
                       <td>환자명</td>
@@ -171,7 +176,7 @@ const TreChart = () => {
               
                 <tbody>
                   {
-                    treList.map((tre, i) => {
+                    markPages.map((tre, i) => {
                       return (
                         <tr key={i}>
                           <td>{tre.treDate}</td>
@@ -182,6 +187,17 @@ const TreChart = () => {
                     })
                   }
                 </tbody>
+                {
+                  isShow
+                  ?
+                  <div className='page-btn'>
+                  <div><button type='button' onClick={()=>{ setMarkPage(markPage - 1)}} disabled={markPage == 1}>이전</button></div>
+                  <div><button type='button' onClick={()=>{ setMarkPage(markPage + 1)}} disabled={markPage == Math.ceil(treList.length / postNum)}>다음</button></div>
+                </div>
+                  :
+                  null
+                }
+                
             </div>
           </div>
 
@@ -210,24 +226,24 @@ const TreChart = () => {
                       <td><textarea type='textarea' className='textarea' name='aboutPat' 
                       placeholder={'증상을 입력하세요.'} 
                       onChange={(e)=>{changeTreInfo(e)}}></textarea></td>
-                    </tr>
+                    </tr>          
                     <tr>
                       <td>처방내역</td>
                       <td><input type='text' className='chart-input-tag' name='mediName' 
                       placeholder={'처방내역 입력'} 
-                      onChange={(e)=>{changeRecInfo(e)}}></input></td>
+                      onChange={(e)=>{changeTreInfo(e)}}></input></td>
                     </tr>
                     <tr>
                       <td>일일 복용 횟수</td>
                       <td><input type='text' className='chart-input-tag' name='eatCnt' 
                       placeholder={'일일 복용 횟수'} 
-                      onChange={(e)=>{changeRecInfo(e)}}></input></td>
+                      onChange={(e)=>{changeTreInfo(e)}}></input></td>
                     </tr>
                     </tbody>
                     </table>
                       <button type='button' className='insert-btn' onClick={()=>{
                         treInfoInsert()
-                        recInfoInsert() 
+                      
                         }}>등록</button>
             </div>
             <div>2</div>
