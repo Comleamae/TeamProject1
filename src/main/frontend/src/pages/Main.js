@@ -80,46 +80,31 @@ const Main = () => {
       <div className='main-list-div'>
         {/* 진료/수납결제/의료진 박스 */}
         <div className='self-box'>
+
           <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
             <div className='sub-inbox'>
               <p className='main-p'>첫 방문 상담</p>
               <span className='main-span'>처음 방문하셨나요?</span>
-              <FaHandHoldingMedical className='icon' style={{color:'#3C32A2'}} />
+              <FaHandHoldingMedical className='icon' />
             </div>
           </div>
 
-<<<<<<< HEAD
           <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }} style={{backgroundColor:'#42D3D8'}}>
             <div className='sub-inbox' style={{color:'#fff'}}>
               <p className='main-p'  style={{color:'#fff'}}>진료예약</p>
               <span className='main-span' style={{color:'#fff'}}>진료예약 하러가기</span>
               <LuCalendarClock className='icon' style={{color:'#fff'}}/>
-=======
-          <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }}>
-            <div className='sub-inbox'>
-              <LuCalendarClock className='icon' />
-              <p className='main-p'>진료예약</p>
-              <span className='main-span'>진료예약 하러가기</span>
-            </div>
-          </div>
-  
-          <div className='sub-idex-box' onClick={(e) => { navigate(`searchStaff`) }}>
-          <div className='sub-inbox'>
-            <FaUserDoctor className='icon' />
-            <p className='main-p'>의료진/<br /> 의료과 찾기</p>
-            <button style={{marginTop:'-50px'}} type='button' className='btn'>찾기</button>
->>>>>>> kth
             </div>
           </div>
 
           <div className='sub-idex-box' onClick={(e) => { navigate('/moneyIn') }} style={{backgroundColor:'#FFC2A0'}}>
-          <div className='sub-inbox'>
-            <p className='main-p' style={{color:'#fff'}}>진료비 결제</p>
-            <span className='main-span' style={{color:'#fff'}}>
-              이제는 온라인으로<br/>
-              진료비 결제!
-            </span>
-            <IoCardOutline className='icon'  style={{color:'#fff'}}/>
+            <div className='sub-inbox'>
+              <p className='main-p' style={{color:'#fff'}}>진료비 결제</p>
+              <span className='main-span' style={{color:'#fff'}}>
+                이제는 온라인으로<br/>
+                진료비 결제!
+              </span>
+              <IoCardOutline className='icon'  style={{color:'#fff'}}/>
             </div>
           </div>
   
@@ -154,9 +139,6 @@ const Main = () => {
 
       {/* 메디컬 센터 */}
       <MedicalCenter />
-
-
-
 
 
     </div>
