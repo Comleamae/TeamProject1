@@ -1,13 +1,16 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import './JoinStep2.css'
+import { useNavigate } from 'react-router-dom'
+import { FaPeopleGroup } from "react-icons/fa6"; //사람아이콘
+import { FaChildren } from "react-icons/fa6"; //어린이 아이콘
+
 
 const JoinStep1 = () => {
 
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className='join-div'>
       <div className='user-div'>
         <h1>통합회원가입</h1>
         <p>그린대학교병원 통합회원가입을 환영합니다🎉🎉</p>
@@ -21,8 +24,8 @@ const JoinStep1 = () => {
 
       <div className='join-box'>
         <div className='join-checklist'>
-          <div><p>약관동의 및 본인인증</p> <span>01</span></div>
-          <div className='join-checklist-div'><p>회원정보입력</p> <span>02</span></div>
+          <div className='join-checklist-div'><p>약관동의 및 본인인증</p> <span>01</span></div>
+          <div><p>회원정보입력</p> <span>02</span></div>
           <div><p>회원가입완료</p> <span>03</span></div>
         </div>
         <div className='join-imgdiv'>
@@ -30,9 +33,23 @@ const JoinStep1 = () => {
           <h5>통합회원기본 정보</h5>
         </div>
         <h1>회원 가입</h1>
-        <button type='button' onClick={(e) => { navigate('/joinStep2') }}> 14세 미만 어린이 회원가입</button>
-        <button type='button' onClick={(e) => { navigate('/joinStep2') }}> 14세 이상 회원가입</button>
-        <button type='button' onClick={(e) => { navigate('/admin/join') }}> 직원 회원가입(예비) </button>
+        <div className='join-agree'>
+          <div onClick={(e) => { navigate('/joinStep2') }}>
+            <h3>일반인 회원가입</h3>
+            <p>만 14세 이상 내국인</p>
+            <FaPeopleGroup className='icon'/>
+          </div>
+          <div onClick={(e) => { navigate('/joinStep2') }}>
+            <h3>어린이 회원가입</h3>
+            <p>만 14세 미만 내국인</p>
+            <FaChildren className='icon'/>
+          </div>
+          <div onClick={(e) => { navigate('/admin/join') }}>
+            <h3>직원용 회원가입</h3>
+            <p>준비중</p>
+            {/* < className='icon'/> */}
+          </div>
+        </div>
         <div>
           <h2>이용 약관(*필수 사항)</h2>
           <textarea>
