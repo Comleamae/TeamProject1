@@ -19,8 +19,4 @@ public interface PatientService {
 
     // 신규방문자 예약 등록 + 접수 등록
     void recepInsert(PatientVO patientVO);
-
-
-
-
 }
