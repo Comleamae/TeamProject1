@@ -17,11 +17,11 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
     <div className='layout-div'>
       <div className='header'>     
         <div className='header-index'>
+          {/* 메뉴 목록들어갈 자리 길어요 접어주세요~ */}
           <div id='btn-top-menus' className='total_navi_div'>
             <button type='button' className='menu'>
               <MdMenu className='menu-icon' />
             </button>
-            {/* 메뉴 목록들어갈 자리 */}
             <ul className='sec_total_navi_ul'>
               <li>
                 <Link to='/'>
@@ -354,7 +354,7 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
               // 회원 이름 + 로그아웃 버튼
               <div className='loginout-div'>
                 {loginInfo.memName}님 안녕하세요
-                {/* Logout 글자에 손대면 cursor pointer 해주세요 */}
+                {/* Logout 글자에 손대면 cursor pointer 해주세요 - 완료🙆🏻‍♀️*/}
 
                 {/* 클릭 시 로그아웃 */}
                 <span className='btn2 ' onClick={(e) => {
@@ -371,6 +371,9 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
                 <ul className='login-box'>
                   <li>
                     <Link to='/login' className='user-login'>로그인</Link>
+                  </li>
+                  <li>
+                    <p onClick={()=>{navigate('/joinStep1')}}>회원가입</p>
                   </li>
                   <li>
                     <Link to='/admin/login' className='admin-login'>
