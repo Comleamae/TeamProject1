@@ -8,6 +8,7 @@ import { FaHandHoldingMedical } from "react-icons/fa";
 import { GrMapLocation } from "react-icons/gr"; //찾아오시는길 아이콘
 import MedicalCenter from './MedicalCenter';
 import SideList from './SideList';
+import { FaUserDoctor } from 'react-icons/fa6';
 
 
 
@@ -88,13 +89,7 @@ const Main = () => {
             </div>
           </div>
 
-<<<<<<< HEAD
-          <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }} style={{backgroundColor:'#42D3D8'}}>
-            <div className='sub-inbox' style={{color:'#fff'}}>
-              <p className='main-p'  style={{color:'#fff'}}>진료예약</p>
-              <span className='main-span' style={{color:'#fff'}}>진료예약 하러가기</span>
-              <LuCalendarClock className='icon' style={{color:'#fff'}}/>
-=======
+
           <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }}>
             <div className='sub-inbox'>
               <LuCalendarClock className='icon' />
@@ -108,7 +103,6 @@ const Main = () => {
             <FaUserDoctor className='icon' />
             <p className='main-p'>의료진/<br /> 의료과 찾기</p>
             <button style={{marginTop:'-50px'}} type='button' className='btn'>찾기</button>
->>>>>>> kth
             </div>
           </div>
 

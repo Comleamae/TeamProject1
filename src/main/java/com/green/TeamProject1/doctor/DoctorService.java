@@ -3,6 +3,7 @@ package com.green.TeamProject1.doctor;
 import com.green.TeamProject1.patient.PatientVO;
 import com.green.TeamProject1.patient.TreatVO;
 
+import javax.print.Doc;
 import java.util.List;
 
 public interface DoctorService {
@@ -30,10 +31,13 @@ public interface DoctorService {
     // 선택한 환자의 처방전 정보 삽입
     void insertRecipeInfo(TreatVO treatVO);
 
+    // 의료진 로그인
+    DoctorVO doctorLogin(DoctorVO doctorVO);
+
     // 선택한 환자 한명에 대한 진료정보 조회
     List<TreatVO> treOneSelect(int patNum);
 
-
+    List<String> getDeptNames();
 
     // 의료진 검색기능 BY KTH
     List<DoctorVO> searchStaffByName(String docName);

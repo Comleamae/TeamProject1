@@ -62,6 +62,17 @@ public class DoctorController {
         return doctorService.treOneSelect(patNum);
     }
 
+    // 의료진 로그인
+    @PostMapping("/doctorLogin")
+    public DoctorVO doctorLogin(@RequestBody DoctorVO doctorVO){
+        System.out.println(doctorVO);
+        return doctorService.doctorLogin(doctorVO);
+    }
+
+    @GetMapping("/getDeptNames")
+    public List<String> getDeptNames(){
+        return doctorService.getDeptNames();
+    }
 
     //이름으로 의료진 검색
     @GetMapping("/searchStaffByName/{docName}")
