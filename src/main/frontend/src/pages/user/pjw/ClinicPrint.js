@@ -83,10 +83,12 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
     .post(`/patient/getListCN`, inputData)
     .then((res)=>{
       if(res.data.length==0){
+        console.log(res.data)
         alert('해당하는 주민번호의 환자가 없습니다')
         setButtonStatus(true)
       }
       else{
+        console.log(res.data)
         setRecoData({
           ...recoData,
           patNum:res.data[0].patNum
