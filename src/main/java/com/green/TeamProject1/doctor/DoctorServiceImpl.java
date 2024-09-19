@@ -1,6 +1,7 @@
 package com.green.TeamProject1.doctor;
 
 import com.green.TeamProject1.patient.PatientVO;
+import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +56,8 @@ public class DoctorServiceImpl implements DoctorService{
 
     // 진료정보에 처방전 정보 추가 등
     @Override
-    public void insertRecipeInfo(TreatVO treatVO) {
-        sqlSession.insert("doctorMapper.insertRecipeInfo", treatVO);
+    public void insertRecipeInfo(RecipeVO recipeVO) {
+        sqlSession.insert("doctorMapper.insertRecipeInfo", recipeVO);
     }
 
     // 환자 한명의 진료정보 가져오기

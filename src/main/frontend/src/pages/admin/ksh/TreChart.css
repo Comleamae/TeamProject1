@@ -73,7 +73,6 @@ td {
   border-radius: 5px;
 }
 
-
 /* 3번째 div */
 .status-info-div{
   display: flex;
@@ -86,3 +85,7 @@ td {
   margin-bottom: 10px;
 }
 
+.page-btn {
+  display: flex;
+  justify-content: center;
+}

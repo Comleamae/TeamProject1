@@ -19,11 +19,13 @@
             DOC_LINUM
             , DOC_PW
             , DOC_NAME
-            , DEPT_NUM) VALUES (
+            , DEPT_NUM)
+        VALUES (
             #{docLinum}
             ,#{docPw}
             ,#{docName}
-            ,#{deptNum});
+            ,#{deptNum}
+        );
     </insert>
 
 
@@ -83,14 +85,16 @@
      -->
     <insert id="insertTreatInfo">
         INSERT INTO info_treat (
-            pat_num
+            TRE_NUM
+           , pat_num
           , disease
           , about_pat
           , tre_date
           , DOC_LINUM
         )
         VALUES (
-           #{patNum}
+            #{treNum}
+           , #{patNum}
           , #{disease}
           , #{aboutPat}
           , #{treDate}

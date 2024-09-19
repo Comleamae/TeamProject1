@@ -1,11 +1,13 @@
 package com.green.TeamProject1.doctor;
 
 import com.green.TeamProject1.patient.PatientVO;
+import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/doctor")
 @RestController
@@ -43,22 +45,42 @@ public class DoctorController {
 
     // 선택한 환자 진료정보 삽입
     @PostMapping("/insertTreatInfo")
-    public void insertTreatInfo(@RequestBody TreatVO treatVO) {
+    public void insertTreatInfo(@RequestBody Map<String, Object> mapData) {
+        //진료 중 명단에서 제외
+        //의사번호 가져와서 등록할 수 있도록 수정
+
+
+        //받아온 데이터 전체 출력
+        System.out.println(mapData);
 
         // 신규 진료 번호 생성
         int treNum = doctorService.getNextTreNum();
+
+        TreatVO treatVO = new TreatVO();
         treatVO.setTreNum(treNum);
+        treatVO.setPatNum(Integer.parseInt(mapData.get("patNum").toString()));
+        treatVO.setDisease(mapData.get("disease").toString());
+        treatVO.setAboutPat(mapData.get("aboutPat").toString());
+        treatVO.setTreDate(mapData.get("treDate").toString());
 
         // 진료 기록 접수
         doctorService.insertTreatInfo(treatVO);
 
+
+        RecipeVO recipeVO = new RecipeVO();
+        recipeVO.setTreNum(treNum);
+        recipeVO.setMediName(mapData.get("mediName").toString());
+        recipeVO.setEatCnt(mapData.get("eatCnt").toString());
+
         // 처방전 정보 같이 접수
-        doctorService.insertRecipeInfo(treatVO);
+        doctorService.insertRecipeInfo(recipeVO);
     }
 
 //    // 선택한 환자 진료정보 한개 가져오기
     @GetMapping("/treOneSelect/{patNum}")
     public List<TreatVO> treOneSelect(@PathVariable(name = "patNum") int patNum) {
+        //선택한 환자 진료상태 대기중->진료중
+
         return doctorService.treOneSelect(patNum);
     }
 
