@@ -48,7 +48,7 @@ const AdminLogin = ({}) => {
         if (res.data != '') {
           alert(`${res.data.docName} 의사님 환영합니다.`)
           //의사 메인화면으로 이동
-          navigate('/doctor')
+          navigate('/admin/treChart')
           saveLoginData(res)
         }
         else {
