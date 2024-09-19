@@ -123,6 +123,15 @@
         ORDER BY TRE_DATE DESC
     </select>
 
+    <!-- 의료진 로그인 by kth  -->
+    <select id="doctorLogin" resultMap="doctorMapper.doctor">
+        SELECT *
+        FROM DOCTOR
+        WHERE DOC_LINUM = #{docLinum}
+        AND DOC_PW = #{docPw}
+    </select>
+
+
     <!-- 의료진 검색 기능(이름 버젼) by kth -->
     <select id="searchStaffByName" resultMap="doctorMapper.doctor">
         SELECT DOC_NAME, DEPT_NAME
@@ -131,11 +140,16 @@
         AND DOC_NAME = #{docName}
     </select>
 
+    <select id="getDeptNames" resultMap="mediDept">
+        SELECT DEPT_NAME
+        FROM MEDI_DEPT;
+    </select>
+
     <!-- 의료진 검색 기능(진료과 버젼) by kth -->
     <select id="searchStaffByDept" resultMap="doctorMapper.doctor">
         SELECT DOC_NAME, DEPT_NAME
         FROM DOCTOR, MEDI_DEPT
         WHERE DOCTOR.DEPT_NUM = MEDI_DEPT.DEPT_NUM
-        AND MEDI_DEPT.DEPT_NAME = #{deptName}
+        AND DOCTOR.DEPT_NAME = #{deptName}
     </select>
 </mapper>

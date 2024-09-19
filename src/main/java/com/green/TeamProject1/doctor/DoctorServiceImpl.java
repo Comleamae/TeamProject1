@@ -60,6 +60,11 @@ public class DoctorServiceImpl implements DoctorService{
         sqlSession.insert("doctorMapper.insertRecipeInfo", recipeVO);
     }
 
+    @Override
+    public DoctorVO doctorLogin(DoctorVO doctorVO) {
+        return sqlSession.selectOne("doctorMapper.doctorLogin", doctorVO);
+    }
+
     // 환자 한명의 진료정보 가져오기
     @Override
     public  List<TreatVO> treOneSelect(int patNum) {
@@ -72,5 +77,8 @@ public class DoctorServiceImpl implements DoctorService{
         return sqlSession.selectList("doctorMapper.searchStaffByName", docName);
     }
 
-
+    @Override
+    public List<String> getDeptNames() {
+        return sqlSession.selectList("doctorMapper.getDeptNames");
+    }
 }
