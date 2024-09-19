@@ -356,10 +356,10 @@ a {
 /* 로그인  */
 
 .login-box {
-  width: 16%;
+  width: 21%;
   height: 40px;
   position: absolute;
-  right: 1%;
+  right: 0;
   display: flex;
   align-items: center;
   top: 30px;
@@ -385,4 +385,9 @@ a {
   font-weight: bold;
   cursor: pointer;
   margin-left: 10px;
+}
+
+.btn2:hover {
+  color: #3C32A2;
+  font-weight: bold;
 }

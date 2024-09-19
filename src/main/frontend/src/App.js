@@ -22,8 +22,6 @@ import NewVisit from './pages/admin/ksh/NewVisit';
 import ReVisit from './pages/admin/ksh/ReVisit';
 import Visitant from './pages/admin/ksh/Visitant';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
-import Footer from './pages/Footer';
-// import '../src/pages/Footer.css'
 import AdminLogin from './pages/user/kth/AdminLogin';
 import TreChart from './pages/admin/ksh/TreChart';
 import AdminMain from './pages/user/kth/AdminMain';
