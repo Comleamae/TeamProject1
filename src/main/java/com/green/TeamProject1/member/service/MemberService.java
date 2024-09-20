@@ -1,5 +1,6 @@
 package com.green.TeamProject1.member.service;
 
+import com.green.TeamProject1.member.vo.AdminVO;
 import com.green.TeamProject1.member.vo.MemberVO;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface MemberService {
 
     String findPw(MemberVO memberVO);
 
-
+    void insertAdmin(AdminVO adminVO);
 }

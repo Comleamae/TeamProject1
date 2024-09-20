@@ -1,5 +1,6 @@
 package com.green.TeamProject1.member.service;
 
+import com.green.TeamProject1.member.vo.AdminVO;
 import com.green.TeamProject1.member.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,11 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public String findPw(MemberVO memberVO) {
         return sqlSession.selectOne("memberMapper.findPw", memberVO);
+    }
+
+    @Override
+    public void insertAdmin(AdminVO adminVO) {
+        sqlSession.insert("memberMapper.insertAdmin", adminVO);
     }
 
 
