@@ -5,6 +5,7 @@ import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 
+import javax.print.Doc;
 import java.util.List;
 
 public interface DoctorService {
@@ -32,14 +33,20 @@ public interface DoctorService {
     // 선택한 환자의 처방전 정보 삽입
     void insertRecipeInfo(RecipeVO recipeVO);
 
+    // 의료진 로그인
+    DoctorVO doctorLogin(DoctorVO doctorVO);
+
     // 선택한 환자 한명에 대한 진료정보 조회
     List<TreatVO> treOneSelect(int patNum);
+
 
     // 진료 시작 누르면 대기중이 진료중으로 바뀌어야함.
     void statusChange(int patNum);
 
     // 진료 등록 누르면 대기중 목록에서 삭제
     void waitListDelete(int patNum);
+
+    List<String> getDeptNames();
 
     // 의료진 검색기능 BY KTH
     List<DoctorVO> searchStaffByName(String docName);

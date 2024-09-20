@@ -38,6 +38,7 @@ const FormSelector = ({recoData, setRecoData, selectData, setSelectData}) => {
     axios
     .post(`/patient/treDateList`, recoData)
     .then((res)=>{
+      console.log(res.data)
       setTreDateList(res.data)
       setIsShow(true)
     })

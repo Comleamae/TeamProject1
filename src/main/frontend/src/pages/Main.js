@@ -8,6 +8,7 @@ import { FaHandHoldingMedical } from "react-icons/fa";
 import { GrMapLocation } from "react-icons/gr"; //찾아오시는길 아이콘
 import MedicalCenter from './MedicalCenter';
 import SideList from './SideList';
+import { FaUserDoctor } from 'react-icons/fa6';
 
 
 
@@ -80,11 +81,12 @@ const Main = () => {
       <div className='main-list-div'>
         {/* 진료/수납결제/의료진 박스 */}
         <div className='self-box'>
+
           <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
             <div className='sub-inbox'>
               <p className='main-p'>첫 방문 상담</p>
               <span className='main-span'>처음 방문하셨나요?</span>
-              <FaHandHoldingMedical className='icon' style={{color:'#3C32A2'}} />
+              <FaHandHoldingMedical className='icon' />
             </div>
           </div>
 
@@ -97,13 +99,13 @@ const Main = () => {
           </div>
 
           <div className='sub-idex-box' onClick={(e) => { navigate('/moneyIn') }} style={{backgroundColor:'#FFC2A0'}}>
-          <div className='sub-inbox'>
-            <p className='main-p' style={{color:'#fff'}}>진료비 결제</p>
-            <span className='main-span' style={{color:'#fff'}}>
-              이제는 온라인으로<br/>
-              진료비 결제!
-            </span>
-            <IoCardOutline className='icon'  style={{color:'#fff'}}/>
+            <div className='sub-inbox'>
+              <p className='main-p' style={{color:'#fff'}}>진료비 결제</p>
+              <span className='main-span' style={{color:'#fff'}}>
+                이제는 온라인으로<br/>
+                진료비 결제!
+              </span>
+              <IoCardOutline className='icon'  style={{color:'#fff'}}/>
             </div>
           </div>
   
@@ -138,9 +140,6 @@ const Main = () => {
 
       {/* 메디컬 센터 */}
       <MedicalCenter />
-
-
-
 
 
     </div>

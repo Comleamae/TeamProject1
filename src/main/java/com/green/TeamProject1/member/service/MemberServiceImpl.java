@@ -41,4 +41,6 @@ public class MemberServiceImpl implements MemberService{
     public String findPw(MemberVO memberVO) {
         return sqlSession.selectOne("memberMapper.findPw", memberVO);
     }
+
+
 }

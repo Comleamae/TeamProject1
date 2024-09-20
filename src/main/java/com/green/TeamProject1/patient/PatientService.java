@@ -21,6 +21,7 @@ public interface PatientService {
     // 신규 진료 명단
     void recepInsert(PatientVO patientVO);
 
+
     // 재방문 환자 조회
     PatientVO reSelect(PatientVO patientVO);
 
@@ -32,4 +33,5 @@ public interface PatientService {
 
     // 대기 중인 환자 목록에서 환자 번호 기준으로 상세 정보 조회
     PatientVO getPatientInfo(int patNum);
+
 }
