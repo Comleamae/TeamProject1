@@ -1,6 +1,7 @@
 package com.green.TeamProject1.member.controller;
 
 import com.green.TeamProject1.member.service.MemberService;
+import com.green.TeamProject1.member.vo.AdminVO;
 import com.green.TeamProject1.member.vo.MemberVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -55,5 +56,11 @@ public class MemberController {
     @PostMapping("/findPw")
     public String findPw(@RequestBody MemberVO memberVO){
         return memberService.findPw(memberVO);
+    }
+
+    // 관리자 등록
+    @PostMapping("/insertAdmin")
+    public void insertAdmin(@RequestBody AdminVO adminVO){
+        memberService.insertAdmin(adminVO);
     }
 }

@@ -17,6 +17,13 @@
         <result column="MEM_ROLE" property="memRole"/>
     </resultMap>
 
+    <resultMap id="admin" type="com.green.TeamProject1.member.vo.AdminVO">
+        <result column="ADMIN_ID" property="adminId"/>
+        <result column="ADMIN_PW" property="adminPw"/>
+        <result column="ADMIN_NAME" property="adminName"/>
+        <result column="DEPT_NUM" property="deptNum"/>
+        <result column="ADMIN_ROLE" property="adminRole"/>
+    </resultMap>
 
     <!--id 중복 체크-->
     <select id="checkId" resultType="String">
@@ -79,5 +86,21 @@
         AND MEM_ID = #{memId}
         AND CITIZEN_NUM = #{citizenNum}
     </select>
+
+    <insert id="insertAdmin">
+        INSERT INTO ADMIN(
+            ADMIN_ID
+            , ADMIN_PW
+            , ADMIN_NAME
+            , DEPT_NUM
+            , ADMIN_ROLE
+        ) VALUES (
+            #{adminId}
+            , #{adminPw}
+            , #{adminName}
+            , #{deptNum}
+            , #{adminRole}
+        )
+    </insert>
 </mapper>
 

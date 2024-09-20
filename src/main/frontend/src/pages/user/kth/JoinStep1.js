@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './JoinStep2.css'
 import { useNavigate } from 'react-router-dom'
 import { FaPeopleGroup } from "react-icons/fa6"; //사람아이콘
@@ -8,6 +8,11 @@ import { FaChildren } from "react-icons/fa6"; //어린이 아이콘
 const JoinStep1 = () => {
 
   const navigate = useNavigate();
+
+
+  function changeJoinAgree(e){
+    
+  }
 
   return (
     <div className='join-div'>
@@ -75,7 +80,7 @@ const JoinStep1 = () => {
             (8)회원은 웹회원, 진료회원, 직원/동문회원, 운영자로 구분되며, 각 회원은 다음과 같은 권한을 가지고 있습니다.
           </textarea>
         </div>
-        <span><input type='checkbox' />이용 약관에 동의합니다</span>
+        <span><input type='checkbox' name='joinAgree1'/>이용 약관에 동의합니다</span>
         <div>
           <h2>개인 정보 수집 이용 목적(*필수 사항)</h2>
           <textarea>
@@ -98,7 +103,7 @@ const JoinStep1 = () => {
             단, 진료서비스 제공을 위하여 수집된 경우 의료법 기준에 준함(의료법 시행규칙 제15조에 명시된 기간)
           </textarea>
         </div>
-        <span><input type='checkbox' />개인정보 수집에 동의합니다</span>
+        <span><input type='checkbox' name='joinAgree2' />개인정보 수집에 동의합니다</span>
       </div>
     </div>
   )

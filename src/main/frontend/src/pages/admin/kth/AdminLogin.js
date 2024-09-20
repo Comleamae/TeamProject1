@@ -10,8 +10,8 @@ const AdminLogin = ({}) => {
 
    //로그인 시 입력한 정보
   const [loginData, setLoginData] = useState({
-    docLinum: '',
-    docPw: ''
+    adminId: '',
+    adminPw: ''
   });
 
   
@@ -26,7 +26,8 @@ const AdminLogin = ({}) => {
 
   //로그인 정보 저장
   function saveLoginData(res){
-    //sessionStorage에 로그인한 의사의 개인정보 저장
+    //sessionStorage에 로그인한 admin의 정보 저장
+    // 만약 adminRole이 doctor라면 doctor 테이블에서 불러온 정보를 저장.
     const doctorLoginInfo = {
       doc_Linum : res.data.docLinum,
       doc_pw : res.data.docPw,
@@ -40,19 +41,19 @@ const AdminLogin = ({}) => {
     // window.sessionStorage.setItem('doctorLoginInfo', JSON.stringify(doctorLoginInfo));
   }
 
-  //로그인 버튼 클릭시 실행
+  //로그인 버튼 클릭시 관리자 로그인
   function login() {
     axios.post('/doctor/doctorLogin', loginData)
       .then((res) => {
         // 관리자 로그인 시
         if (res.data != '') {
-          alert(`${res.data.docName} 의사님 환영합니다.`)
+          alert(`${res.data.adminName}님 환영합니다.`)
           //의사 메인화면으로 이동
           navigate('/admin/treChart')
           saveLoginData(res)
         }
         else {
-          alert('ID 혹은 PW를 확인하세요.')
+          alert('ID(의사번호) 혹은 PW를 확인하세요.')
         }
       })
       .catch((error) => {
@@ -68,10 +69,10 @@ const AdminLogin = ({}) => {
       <div className='admin-login-div'>
         <div>
           <div>
-            <input className='admin-input' type='text' name='docLinum' placeholder='의사번호를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
+            <input className='admin-input' type='text' name='docLinum' placeholder='아이디(의사번호)' onChange={(e) => { changeLoginData(e) }} />
           </div>
           <div>
-            <input className='admin-input' type='password' name='docPw' placeholder='비밀번호를 입력해주세요' onChange={(e) => { changeLoginData(e) }} />
+            <input className='admin-input' type='password' name='docPw' placeholder='비밀번호' onChange={(e) => { changeLoginData(e) }} />
           </div>
         </div>
         <button type='button' onClick={(e) => { login() }}> 로그인</button>

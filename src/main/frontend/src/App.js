@@ -29,6 +29,7 @@ import SearchStaff from './pages/user/kth/SearchStaff';
 import AdminLogin from './pages/admin/kth/AdminLogin';
 import AdminMain from './pages/admin/kth/AdminMain';
 import AdminJoin from './pages/admin/kth/AdminJoin';
+import JoinStep1_1 from './pages/user/kth/JoinStep1_1';
 
 
 
@@ -72,6 +73,7 @@ const App = () => {
 
               {/* 로그인 * 회원가입 페이지 */}
               <Route path='joinStep1' element={<JoinStep1 />} />
+              <Route path='joinStep1_1' element={<JoinStep1_1/>}/>
               <Route path='joinStep2' element={<JoinStep2 />} />
               <Route path='joinStep3' element={<JoinStep3 />} />
               <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
