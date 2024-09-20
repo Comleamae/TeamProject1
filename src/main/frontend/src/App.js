@@ -22,13 +22,13 @@ import NewVisit from './pages/admin/ksh/NewVisit';
 import ReVisit from './pages/admin/ksh/ReVisit';
 import Visitant from './pages/admin/ksh/Visitant';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
-import AdminLogin from './pages/user/kth/AdminLogin';
 import TreChart from './pages/admin/ksh/TreChart';
-import AdminMain from './pages/user/kth/AdminMain';
-import AdminJoin from './pages/user/kth/AdminJoin';
 import FindId from './pages/user/kth/FindId';
 import FindPw from './pages/user/kth/FindPw';
 import SearchStaff from './pages/user/kth/SearchStaff';
+import AdminLogin from './pages/admin/kth/AdminLogin';
+import AdminMain from './pages/admin/kth/AdminMain';
+import AdminJoin from './pages/admin/kth/AdminJoin';
 
 
 
