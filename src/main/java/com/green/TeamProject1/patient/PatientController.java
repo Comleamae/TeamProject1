@@ -1,6 +1,8 @@
 package com.green.TeamProject1.patient;
 
 import jakarta.annotation.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +38,7 @@ public class PatientController {
         System.out.println(patientVO);
 
         //생성되는 환자번호
-        int  patNum = patientService.getNextPatNum();
+        int patNum = patientService.getNextPatNum();
         patientVO.setPatNum(patNum);
 
         //신규 환자 정보에 등록
@@ -47,4 +49,33 @@ public class PatientController {
     }
 
 
+        //환자 이름과 주민번호를 통해 환자번호 받기
+        //환자가 번호가 있으면 react로 환자번호 전달
+        //환자가 없으면 0을 전달
+        @PostMapping("/reSelect")
+        public int reSelect (@RequestBody PatientVO patientVO) {
+            System.out.println(patientVO);
+            PatientVO result = patientService.reSelect(patientVO);
+
+            return result != null ? result.getPatNum() : 0;
+        }
+
+        // 재방문이면 접수 등록
+        @PostMapping("/reInsert")
+        public void reInsert(@RequestBody PatientVO patientVO) {
+            patientService.reInsert(patientVO);
+        }
+
+
+        // 환자 대기 목록 조회
+        @GetMapping("/waitList")
+        public List<PatientVO> waitList() {
+           return patientService.waitList();
+        }
+
+        // 대기 중인 환자 목록에서 환자 번호 기준으로 상세 정보 조회
+        @GetMapping("/getPatientInfo/{patNum}")
+        public PatientVO getPatientInfo(@PathVariable(name = "patNum") int patNum) {
+            return patientService.getPatientInfo(patNum);
+        }
 }

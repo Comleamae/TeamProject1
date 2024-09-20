@@ -45,7 +45,17 @@ const Login = ({ setLoginInfo }) => {
           const json_loginInfo = JSON.stringify(loginInfo);
 
           window.sessionStorage.setItem('loginInfo', json_loginInfo);
-          navigate('/')
+          if(res.data.memRole == 'admin'){
+            navigate('/admin')
+          }
+
+          //일단은 의사 및 관리자 로그인도 일반 로그인 화면에서 가능하게 만들었음.
+          else if(res.data.memRole == 'doctor'){
+            navigate('/doctor')
+          }
+          else{
+            navigate('/')
+          }
           setLoginInfo(loginInfo)
           window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
         }
@@ -95,19 +105,19 @@ const Login = ({ setLoginInfo }) => {
           <p>
             그린대학교병원의 회원이 아니십니까?
           </p>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/join') }}>회원가입</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/joinStep1') }}>회원가입</button>
         </div>
         <div>
           <p>
             아이디를 잊으셨습니까?
           </p>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/') }}>아이디 찾기</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/findId') }}>아이디 찾기</button>
         </div>
         <div>
           <p>
             비밀번호를 잊으셨습니까?
           </p>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/') }}>비밀번호 찾기</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/findPw') }}>비밀번호 찾기</button>
         </div>
       </div>      
     </div>

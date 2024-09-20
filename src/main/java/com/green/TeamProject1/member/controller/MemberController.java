@@ -42,7 +42,18 @@ public class MemberController {
 
     // 같은 회원번호를 가진 회원이 있는가
     @PostMapping("/isCitizen")
-    List<MemberVO> isCitizen(@RequestBody Map<String, String> inputData){
+    public List<MemberVO> isCitizen(@RequestBody Map<String, String> inputData){
         return memberService.isCitizens(inputData.get("citizenNum"));
+    }
+
+    // 아이디 찾기
+    @PostMapping("/findId")
+    public String findId(@RequestBody MemberVO memberVO){
+        return memberService.findId(memberVO);
+    }
+    // 비밀번호 찾기
+    @PostMapping("/findPw")
+    public String findPw(@RequestBody MemberVO memberVO){
+        return memberService.findPw(memberVO);
     }
 }

@@ -194,7 +194,10 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
       {sessionStorage.length!=0
         ? (
         <div className='selfDefWhenLogin'>
-            <h2>회원 발급</h2>
+          <div className='print-div'>
+            <h1>회원 발급</h1>
+            <p>주민등륵번호를 입력해주세요</p>
+          </div>
             {/* 인증 단계별 화면 구현/ 주민번호 입력 확인 화면: 인증번호 입력 화면 */}
             {!inputStatus ?(
               <div className='recoP1'>
@@ -204,9 +207,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                     type='text' 
                     name='citizenNum'
                     onChange={(e)=>{handleInputData(e)}}
-                    ref={citizenNum_1}/>
-                  -
-                  <input 
+                    ref={citizenNum_1}/> - <input 
                     type='password'
                     name='citizenNum'
                     onChange={(e)=>{handleInputData(e)}}
@@ -215,7 +216,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                 <div className='btn-div-in'>
                   <button
                     type='button'
-                    className='btn'
+                    className='btn-2'
                     onClick={(e) => {
                       onLoginAxios()}}>
                     인증번호 얻기
@@ -264,9 +265,7 @@ const ClinicPrint = ({isLogin, setIsLogin}) => {
                     type='text' 
                     name='citizenNum'
                     onChange={(e)=>{handleInputData(e)}}
-                    ref={citizenNum_1}/>
-                  -
-                  <input 
+                    ref={citizenNum_1}/> - <input 
                     type='password'
                     name='citizenNum'
                     onChange={(e)=>{handleInputData(e)}}

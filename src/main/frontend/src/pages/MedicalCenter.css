@@ -6,13 +6,12 @@
 .cntr {
   position:relative;
   width:100%;
+  height: 500px;
   top: 0px;
   background:#f4f8fb; 
   text-align:center; 
   padding-bottom:40px;
   margin: 0 auto;
-  border-top:1px solid #dddcdc; 
-  border-bottom:1px solid #dddcdc;
 }
 
 .cntr h4 {
@@ -23,7 +22,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1.2;
-
+  font-family: 'LINESeedKR-Bd';
 }
 
 .cntr h4 strong {
@@ -31,7 +30,7 @@
   color: #363636; 
   font-size: 32px; 
   font-weight: 600; 
-
+  margin: 10px 0px;
 }
 
 .cntr .slick_wrapper {
@@ -41,17 +40,17 @@
   margin:0 auto;
 }
 
-.cntr .slick-arrow {
+/* .cntr .slick-arrow {
   width:30px; 
   height:30px; 
-  /* background-color:#9eb6d0;  */
+  background-color:#9eb6d0; 
   background-repeat:no-repeat; 
   background-position:center center; 
   background-size:auto 15px; 
   text-indent:-9999px; 
   cursor:pointer; 
-  border:0;
-}
+  border:100px;
+} */
 
 
 .cntr .slide-item{
@@ -137,7 +136,6 @@
 
 .cntr .slide-item:hover .cntr_link{
   color:#fff;
-/* background:url(/front/images/main/ico_link_w.png) no-repeat right center; */
 }
 
 
@@ -150,16 +148,43 @@
 .cntr .controller_form .slick-dots{
   display:inline-block; 
   vertical-align:-1px;
+  
 }
 
 .cntr .controller_form .slick-dots button{
-  display:inline-block; width:16px; height:16px; border-radius:16px; text-indent:-9999px; border:0; background:#fff; border:1px solid #5a85d8; cursor:pointer; border: 1px solid red
+  display:inline-block; 
+  width:16px; 
+  height:16px; border-radius:16px; text-indent:-9999px; border:0; background:#fff; 
+  border:1px solid #5a85d8; cursor:pointer; 
+
 }
-.cntr .controller_form .slick-dots .slick-active button{display:inline-block; width:16px; height:16px; border-radius:16px; text-indent:-9999px; border:0; background:#5a85d8; border:1px solid #5a85d8; cursor:pointer;}
-.cntr .controller_form a {display: inline-block; width: 16px; height: 16px; border: 2px solid #ddd; background: #fff; text-align: center; vertical-align: middle; border-radius: 16px; line-height: 16px; } 
-.cntr .controller_form a img { margin-top: -3px; width:auto; height:6px;} 
+.cntr .controller_form .slick-dots .slick-active button{
+  display:inline-block; 
+  width:16px; height:16px; 
+  border-radius:16px; text-indent:-9999px; 
+  border:0; 
+  background:#5a85d8; 
+  border:1px solid #5a85d8; cursor:pointer;
+}
+
+.cntr .controller_form a {
+  display: inline-block; 
+  width: 16px; 
+  height: 16px; 
+  border: 2px solid #ddd; background: #fff; 
+  text-align: center; vertical-align: middle; border-radius: 16px; 
+  line-height: 16px;
+} 
+
+.cntr .controller_form a img { 
+  margin-top: -3px; 
+  width:auto; height:6px;
+} 
+
 .cntr .controller_form.play .play { border-color: #5a85d8; } 
-.cntr .controller_form.stop .stop { border-color: #5a85d8; }          
+
+.cntr .controller_form.stop .stop { border-color: #5a85d8; }   
+
 .cntr .slide-item.f1_bd:before{display:none !important;}              
 
 

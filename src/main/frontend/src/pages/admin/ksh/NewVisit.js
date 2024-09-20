@@ -10,6 +10,7 @@ const NewVisit = () => {
 
   // 접수를 위해 직접 본인(환자가)이 입력한 정보
   const [info, setInfo] = useState({
+    // patNum : '',
     patName : '',
     age : '',
     gender : '남',
@@ -20,6 +21,7 @@ const NewVisit = () => {
     docLinum : 0
   });
 
+  // 진료과 리스트
   const [deptList, setDeptList] = useState([]);
 
   //선택한 진료과번호를 가져오기 위한 ref
@@ -40,7 +42,17 @@ const NewVisit = () => {
     })
   }, [])
 
-
+  //진료과 선택 시 해당 진료과에 해당하는 의사 목록 조회
+  function getDoctorList(){
+    axios.get(`/doctor/getDoctorList/${doctorNumRef.current.value}`)
+    .then((res) => {
+      console.log(res.data);
+      setDoctorList(res.data);
+    })
+    .catch((error) => {console.log(error)});
+  }
+  
+  // 입력한 정보 변경 함수
   function changeInfo(e) {
     setInfo({
       ...info,
@@ -48,7 +60,8 @@ const NewVisit = () => {
     })
   }
   
-  function receiptInfoInsert() {
+  // 접수 누르면 실행
+  function infoInsert() {
     axios.post('/patient/regInsert', info)
     .then((res) => {
       console.log(res.data);
@@ -59,17 +72,6 @@ const NewVisit = () => {
       console.log(error)
       alert("접수에 실패하였습니다. 다시 시도해주세요.")
     });
-  
-  }
-
-  //진료과 선택 시 해당 진료과에 해당하는 의사 목록 조회
-  function getDoctorList(){
-    axios.get(`/doctor/getDoctorList/${doctorNumRef.current.value}`)
-    .then((res) => {
-      console.log(res.data);
-      setDoctorList(res.data);
-    })
-    .catch((error) => {console.log(error)});
   }
 
   return (
@@ -78,7 +80,7 @@ const NewVisit = () => {
       <div>
         <div>접수를 위한 정보를 입력해주세요.</div>
         <div>
-          <table>
+          <table className='new-table'>
             <thead></thead>
             <tbody>
             <tr> 
@@ -151,7 +153,7 @@ const NewVisit = () => {
             </tr>
             </tbody>
           </table>
-          <div><button type='button' className='new-btn' onClick={()=>{receiptInfoInsert()}}>접수</button></div>
+          <div><button type='button' className='new-btn' onClick={()=>{infoInsert()}}>접수</button></div>
         </div> 
       </div>
     </div>

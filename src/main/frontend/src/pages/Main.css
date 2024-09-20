@@ -7,21 +7,46 @@
   text-align: center;
 }
 
+.video {
+  width: 100%;
+  height: 650px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: top;
+  filter: brightness(75%);
+}
+
+/* .main-video {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(85%);
+} */
+
+
 .banner-main-img{
   width: 100%;
   height: 600px;
   object-fit: cover;
   object-position: center;
-  filter: brightness(70%);
+  filter: brightness(60%);
 }
 
 .img-text {
   position: absolute;
-  top: 200px;
-  left: 20%;
+  top: 240px;
+  left: 19%;
   text-align: left;
+  color: #f1f1f1;
+  font-size: 20px;
+  font-family: 'BookkMyungjo-Bd';
+}
+
+.img-text > h3 {
+  font-size: 40px;
   color: #fff;
-  font-size: 40PX;
+  margin-bottom: 6px;
+  
 }
 
 .main-list-div {
@@ -29,10 +54,10 @@
 }
 
 .self-box {
-  width: 1400px;
+  width: 1200px;
   position: absolute;
-  bottom: -60px;
-  left: 15%;
+  bottom: -50px;
+  left: 19%;
   transform: 50%;
   display: flex;
   justify-content: space-around;
@@ -52,41 +77,46 @@
 } */
 
 .sub-idex-box {
-  width: 225px;
-  height: 250px;
+  width: 230px;
+  height: 240px;
   border-radius: 5px;
-  background: #fff;
-  color: gray;
+  background: #F0F8FF;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 2px solid lightgray;
-}
-
-.sub-inbox > p {
-  font-size: 21px;
-  font-weight: 600;
-  color: black;
 }
 
 .sub-inbox {
-  margin-top: 20px;
   width: 160px;
-  height: 160px;
-
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.sub-inbox > span {
-  font-size: 13px;
-  color: black;
+
+.main-p {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: rgb(68, 68, 68);
+  font-family: 'LINESeedKR-Bd';
+  /* border: 1px solid red; */
+}
+
+.main-span {
+  font-size: 16px;
+  color: #0e0e0e;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  /* border: 1px solid red; */
 }
 
 
 .icon{
-  font-size: 40px;
-  color: #3C32A2;
-
-
+  font-size: 55px;
+  color: #2B58B3;
+  /* border: 1px solid red; */
 }
 
 .btn {
@@ -101,9 +131,14 @@
   margin-top: 10px;
 }
 
+.btn:hover {
+  background: #161061;
+}
+
 .background-div{
   width: 100%;
   height: 130px;
   margin-top: -4px;
-  background: #3C32A2;
+  background: #161061;
 }
+

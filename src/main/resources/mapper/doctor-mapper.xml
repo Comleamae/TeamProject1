@@ -5,17 +5,45 @@
 <mapper namespace="doctorMapper">
     <resultMap id="doctor" type="com.green.TeamProject1.doctor.DoctorVO">
         <id column="DOC_LINUM" property="docLinum"/>
+        <result column="DOC_PW" property="docPw"/>
         <result column="DOC_NAME" property="docName"/>
         <result column="DEPT_NUM" property="deptNum"/>
         <association property="recepVO" resultMap="patientMapper.recep"/>
         <association property="mediDeptVO" resultMap="mediDept"/>
+        <collection property="patientVO" resultMap="patientMapper.patient"/>
     </resultMap>
+
+    <!-- 관리자 페이지를 통해 의사 등록 -->
+    <insert id="insertDoctor">
+        INSERT INTO DOCTOR(
+            DOC_LINUM
+            , DOC_PW
+            , DOC_NAME
+            , DEPT_NUM)
+        VALUES (
+            #{docLinum}
+            ,#{docPw}
+            ,#{docName}
+            ,#{deptNum}
+        );
+    </insert>
+
+
+    <!--처방전에 대한 정보-->
+    <resultMap id="infoRecipe" type="com.green.TeamProject1.patient.RecipeVO">
+        <id column="RECIPE_NUM" property="recipeNum"/>
+        <result column="TRE_NUM" property="treNum"/>
+        <result column="MEDI_NAME" property="mediName"/>
+        <result column="EAT_CNT" property="eatCnt"/>
+    </resultMap>
+
 
     <!-- 의사에 연결할 진료과 정보 -->
     <resultMap id="mediDept" type="com.green.TeamProject1.doctor.MediDeptVO">
         <result column="DEPT_NUM" property="deptNum"/>
         <result column="DEPT_NAME" property="deptName"/>
     </resultMap>
+
 
     <!--의사 한명의 정보를 받아옴-->
     <select id="getOneDoc" resultMap="doctor">
@@ -44,4 +72,84 @@
         WHERE dept_NUM = #{deptNum}
     </select>
 
+    <!-- 진료 정보 번호? 생성해서 넘겨주기 -->
+    <select id="getNextTreNum" resultType="int">
+        SELECT IFNULL(MAX(TRE_NUM), 0)+ 1
+        FROM info_treat;
+    </select>
+
+
+    <!-- 대기자 목록에서 선택한 환자 진료 정보 삽입 -->
+    <!-- 아래 코드에 의사번호는 임시로 삽입(현재 관리자로그인 기능 구현안되어있음)
+         관리자 기능 구현되면 의사번호 받아와서 실행되게 만들어야함.
+     -->
+    <insert id="insertTreatInfo">
+        INSERT INTO info_treat (
+            TRE_NUM
+           , pat_num
+          , disease
+          , about_pat
+          , tre_date
+          , DOC_LINUM
+        )
+        VALUES (
+            #{treNum}
+           , #{patNum}
+          , #{disease}
+          , #{aboutPat}
+          , #{treDate}
+          , 1
+        );
+    </insert>
+
+    <!-- 대기자 목록에서 선택한 환자 진료 정보에 처방전 정보 추가 삽입 -->
+    <insert id="insertRecipeInfo">
+        INSERT INTO info_recipe (
+            TRE_NUM
+          , MEDI_NAME
+          , EAT_CNT
+        )
+        VALUES (
+           #{treNum}
+         , #{mediName}
+         , #{eatCnt}
+        );
+    </insert>
+
+    <select id="treOneSelect" resultMap="patientMapper.infoTreat">
+        SELECT *
+        FROM info_treat
+        WHERE pat_num = #{patNum}
+        ORDER BY TRE_DATE DESC
+    </select>
+
+    <!-- 의료진 로그인 by kth  -->
+    <select id="doctorLogin" resultMap="doctorMapper.doctor">
+        SELECT *
+        FROM DOCTOR
+        WHERE DOC_LINUM = #{docLinum}
+        AND DOC_PW = #{docPw}
+    </select>
+
+
+    <!-- 의료진 검색 기능(이름 버젼) by kth -->
+    <select id="searchStaffByName" resultMap="doctorMapper.doctor">
+        SELECT DOC_NAME, DEPT_NAME
+        FROM DOCTOR, MEDI_DEPT
+        WHERE DOCTOR.DEPT_NUM = MEDI_DEPT.DEPT_NUM
+        AND DOC_NAME = #{docName}
+    </select>
+
+    <select id="getDeptNames" resultMap="mediDept">
+        SELECT DEPT_NAME
+        FROM MEDI_DEPT;
+    </select>
+
+    <!-- 의료진 검색 기능(진료과 버젼) by kth -->
+    <select id="searchStaffByDept" resultMap="doctorMapper.doctor">
+        SELECT DOC_NAME, DEPT_NAME
+        FROM DOCTOR, MEDI_DEPT
+        WHERE DOCTOR.DEPT_NUM = MEDI_DEPT.DEPT_NUM
+        AND DOCTOR.DEPT_NAME = #{deptName}
+    </select>
 </mapper>

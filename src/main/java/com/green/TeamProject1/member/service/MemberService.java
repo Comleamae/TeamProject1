@@ -13,4 +13,10 @@ public interface MemberService {
     MemberVO login(MemberVO memberVO);
 
     List<MemberVO> isCitizens(String citizenNum);
+
+    String findId(MemberVO memberVO);
+
+    String findPw(MemberVO memberVO);
+
+
 }

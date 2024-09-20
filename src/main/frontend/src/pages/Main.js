@@ -1,104 +1,145 @@
-import React from 'react'
-import '../reset.css'
+import React, { useEffect, useState } from 'react'
 import './Main.css'
+import { useNavigate } from 'react-router-dom';
 import { LuCalendarClock } from "react-icons/lu";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IoCardOutline } from "react-icons/io5"; //카드 아이콘 
 import { IoNewspaperOutline } from "react-icons/io5";
-import { FaUserDoctor } from "react-icons/fa6";
 import { FaHandHoldingMedical } from "react-icons/fa";
+import { GrMapLocation } from "react-icons/gr"; //찾아오시는길 아이콘
 import MedicalCenter from './MedicalCenter';
 import SideList from './SideList';
-import { GrMapLocation } from "react-icons/gr"; //찾아오시는길 아이콘
+import { FaUserDoctor } from 'react-icons/fa6';
+
+
+
+const bannerImages = [
+  'http://localhost:8080/images/병원병원.jpg',
+  'http://localhost:8080/images/병원.jpg'
+];
+
+const bannerVideos = [
+  'http://localhost:8080/images/병원.mp4'
+];
 
 const Main = () => {
 
   const navigate = useNavigate();
 
+  const [media, setMedia] = useState('');
+
+  useEffect(() => {
+    const isVideo = Math.random() < 0.5;
+
+    if (isVideo) {
+      // 배너 동영상 배열이 유효한지 확인
+      if (bannerVideos.length > 0) {
+        const randomIndex = Math.floor(Math.random() * bannerVideos.length);
+        setMedia({ type: 'video', src: bannerVideos[randomIndex] });
+      } else {
+        console.error('배너 동영상 안나옴');
+      }
+    } else {
+      // 배너 이미지 배열이 유효한지 확인
+      if (bannerImages.length > 0) {
+        const randomIndex = Math.floor(Math.random() * bannerImages.length);
+        setMedia({ type: 'image', src: bannerImages[randomIndex] });
+      } else {
+        console.error('배너 이미지 안나옴.');
+      }
+    }
+  }, []);
+
   return (
     
     <div className='intro-div'>
-      
       {/* 병원이미지 배너*/}
-      <img className='banner-main-img' src='http://localhost:8080/images/병원병원.jpg'/>
-      {/* <img className='banner-main-img' src='http://localhost:8080/images/병원.jpg'/> */}
+      {media ? (
+        media.type === 'video' ? (
+          <video className='video' 
+            src={media.src} 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+          >
+          </video>
+        ) : (
+          <img className='banner-main-img' 
+            src={media.src} 
+            alt="Main Banner" 
+          />
+        )
+      ) : (
+        <p>배너를 불러오는 중입니다...</p>
+      )}
+
       <div className='img-text'>
-        <h3>안녕하세요 그린대학교병원입니다</h3>
-        <p>우리가 국내 TOP</p>
+        <h3>Lead the Standard Build the Trust</h3>
+        <p>세계 의료의 표준을 선도하는 국민의 병원, 그린대학교병원</p>
       </div>
 
       <div className='main-list-div'>
         {/* 진료/수납결제/의료진 박스 */}
         <div className='self-box'>
+
           <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
             <div className='sub-inbox'>
+              <p className='main-p'>첫 방문 상담</p>
+              <span className='main-span'>처음 방문하셨나요?</span>
               <FaHandHoldingMedical className='icon' />
-              <p>첫 방문 상담</p>
-              <span>그린대학교병원이<br />처음이신가요?</span>
             </div>
           </div>
 
-          <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }}>
-          <div className='sub-inbox'>
-            <LuCalendarClock className='icon' />
-            <p>온라인 진료예약</p>
-            <span>편하게 온라인으로<br />진료예약 하러가기</span>
-            </div>
-          </div>
-  
-          <div className='sub-idex-box' onClick={(e) => { navigate(`/`) }}>
-          <div className='sub-inbox'>
-            <FaUserDoctor className='icon' />
-            <p>의료진/<br /> 의료과 찾기</p>
-            <button type='button' className='btn'>찾기</button>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }} style={{backgroundColor:'#42D3D8'}}>
+            <div className='sub-inbox' style={{color:'#fff'}}>
+              <p className='main-p'  style={{color:'#fff'}}>진료예약</p>
+              <span className='main-span' style={{color:'#fff'}}>진료예약 하러가기</span>
+              <LuCalendarClock className='icon' style={{color:'#fff'}}/>
             </div>
           </div>
 
-          <div className='sub-idex-box' onClick={(e) => { navigate('/moneyIn') }}>
-          <div className='sub-inbox'>
-            <IoCardOutline className='icon' />
-            <p>진료비 결제</p>
-            <span>
-              기다림 NO!
-              온라인으로 진료비 결제하세요!
-            </span>
-            </div>
-          </div>
-  
-          <div className='sub-idex-box' onClick={(e) => { navigate('/clinicPrint') }}>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/moneyIn') }} style={{backgroundColor:'#FFC2A0'}}>
             <div className='sub-inbox'>
-              <IoNewspaperOutline className='icon' />
-              <p>증명서 발급</p>
-              <span>증명서/제증명 발급</span>
+              <p className='main-p' style={{color:'#fff'}}>진료비 결제</p>
+              <span className='main-span' style={{color:'#fff'}}>
+                이제는 온라인으로<br/>
+                진료비 결제!
+              </span>
+              <IoCardOutline className='icon'  style={{color:'#fff'}}/>
             </div>
           </div>
+  
+          <div className='sub-idex-box' onClick={(e) => { navigate('/clinicPrint') }} style={{backgroundColor:'#825EF6'}}>
+            <div className='sub-inbox'>
+              <p className='main-p' style={{color:'#fff'}}> 증명서 발급</p>
+              <span className='main-span' style={{color:'#fff'}}>증명서/제증명 발급</span>
+              <IoNewspaperOutline className='icon' style={{color:'#fff'}} />
+            </div>
+          </div>
+          
+          {/* <div className='sub-idex-box' onClick={(e) => { navigate(`/`) }}>
+            <div className='sub-inbox'>
+              <p className='main-p' style={{fontSize:'28px'}}>의료진/<br /> 의료과 찾기</p>
+              <button type='button' className='btn'>찾기</button>
+            </div>
+          </div> */}
 
           <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
             <div className='sub-inbox'>
-              <GrMapLocation className='icon' />
               <p className='main-p'>찾아오시는 길</p>
-              <span className='main-span'>그린대학교병원으로<br />오시는 길</span>
+              <GrMapLocation className='icon' />
             </div>
           </div>
-
         </div>
-        
-        {/*  두번째 줄 */}
-        {/* <div className='bottom-box'>
-          
-        </div> */}
-
 
       </div>
       <div className='background-div'></div>
 
-      {/* 메디컬 센터 */}
-      <MedicalCenter />
-
       {/* 사이드 */}
       <SideList />
 
-
+      {/* 메디컬 센터 */}
+      <MedicalCenter />
 
 
     </div>

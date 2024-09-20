@@ -12,7 +12,7 @@
         <result column="CITIZEN_NUM" property="citizenNum"/>
         <result column="ADDRESS" property="address"/>
         <association property="treatVO" resultMap="infoTreat"/>
-<!--        <association property="recepVO" resultMap="recep"/>-->
+        <association property="recepVO" resultMap="recep"/>
     </resultMap>
 
     <!--환자에 대한 입원 정보-->
@@ -138,20 +138,42 @@
             )
         </insert>
 
-        <!-- 재방문자 기존에 방문한적 있는지 조회하기 -->
-            <insert id="regCheckInsert">
-                INSERT INTO recep_info (pat_num, recep_status)
-                SELECT PAT_NUM, '대기중'
-                FROM patient
-                WHERE PAT_NAME = #{patName} AND CITIZEN_NUM = #{citizenNum};
-            </insert>
+        <!-- 재방문자인지 조회 -->
+        <select id="reSelect" resultMap="patient">
+            SELECT pat_num
+            FROM patient
+            WHERE pat_name = #{patName} AND citizen_num = #{citizenNum};
+        </select>
 
+        <!-- 조회후 재방문이면 접수 등록-->
+        <insert id="reInsert">
+            INSERT INTO recep_info (
+                pat_num
+              , recep_status
+              , doc_linum
+            )
+            VALUES (
+               #{patNum}
+             , '대기중'
+             , #{docLinum}
+            );
+        </insert>
 
-        <!-- 예약 접수 현황 조회 -->
-        <select id="checkList" resultMap="patient">
-            SELECT r.recep_num, p.pat_name, p.age, r.recep_status
+        <!-- 환자 대기 목록 조회(중복접수제거) -->
+        <select id="waitList" resultMap="patient">
+            SELECT p.PAT_NUM, PAT_NAME, DATE_FORMAT(RECEP_DATE, '%m-%d %H:%i') AS RECEP_DATE, RECEP_STATUS
             FROM patient p, recep_info r
-            WHERE r.pat_num = p.pat_num;
+            WHERE p.pat_num = r.pat_num
+            GROUP BY p.PAT_NUM, p.PAT_NAME, r.RECEP_STATUS
+            ORDER BY RECEP_DATE DESC;
+        </select>
+
+        <!-- 대기 목록에 있는 환자 정보 클릭 시 나올 환자 신상 정보
+             (환자 번호 기준)
+            -->
+        <select id="getPatientInfo" resultMap="patient">
+            SELECT * FROM patient
+            WHERE pat_num = #{patNum};
         </select>
 </mapper>
 

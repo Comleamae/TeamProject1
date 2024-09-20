@@ -1,0 +1,91 @@
+.main-title-div{
+  margin-top: 50px;
+}
+
+.chart-main-div{
+  width: 1400px;
+  height: 700px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+}
+
+.chart-sub1-div {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-sub2-div {
+  width: 100%;
+  height: 100%;
+}
+
+/* 공통 적용 */
+
+td {
+  vertical-align: middle;
+}
+
+.chart-input-tag {
+  border: none;
+}
+
+
+/* 1번째 div */
+.pati-pull-info{
+}
+
+.pati-pull-info > table {
+  width: 100%;
+}
+
+/* 2번째 div */
+.tre-info-div > table{
+  width: 100%;
+}
+
+.textarea {
+  resize: none;
+  height: 80px; 
+  width: 300px;
+  border: none;
+  vertical-align: middle;
+}
+
+.textarea::placeholder {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+.chart-input-tag::placeholder{
+  color: black;
+}
+
+.insert-btn {
+  background-color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* 3번째 div */
+.status-info-div{
+  display: flex;
+  border-radius: 30px;
+}
+
+.status-info-div > div{
+  flex: 0.3;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.page-btn {
+  display: flex;
+  justify-content: center;
+}

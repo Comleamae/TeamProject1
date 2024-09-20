@@ -9,7 +9,6 @@ const AdminLayout = () => {
   return (
     
     <div className='admin-div'>
-      관리자페이지 레이아웃
       <Outlet/>
     </div>
   )

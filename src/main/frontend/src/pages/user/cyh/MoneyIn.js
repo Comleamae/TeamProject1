@@ -1,7 +1,6 @@
 import React from 'react'
-import '../../../reset.css';
-import '../cyh/MoneyIn.css'
-import { Outlet, useNavigate } from 'react-router-dom'
+import './MoneyIn.css'
+import { useNavigate } from 'react-router-dom'
 
 const MoneyIn = () => {
 
@@ -9,6 +8,7 @@ const MoneyIn = () => {
 
   return (
     <div className='pay-main-box'>
+
       <div className='money-content'>
         <div className='m-top-box'>
           <div className='m-checkbox'>
@@ -17,11 +17,10 @@ const MoneyIn = () => {
             ([<input type='checkbox' /> 퇴원]
             [<input type='checkbox' /> 중간])
           </div>
-          <h4>진료비 계산서 · 영수증</h4>
+          <h5> 진료비 계산서 · 영수증</h5>
         </div>
 
         <div className='user-infor'>
-
           <table className='user-table'>
             <tr>
               <td>등록번호</td>
@@ -184,10 +183,15 @@ const MoneyIn = () => {
           </div>
         </div>
   
-        <button className='pay-btn' type='button' onClick={()=>{navigate('/')}}>취소하기</button>
-        <button className='pay-btn' type='button' onClick={()=>{navigate(`/payMoney`)}}>결제하기</button>
+        <button className='pay-btn' type='button' onClick={()=>{navigate('/')}}>
+          취소하기
+        </button>
+        <button className='pay-btn' type='button' onClick={()=>{navigate(`/payMoney`)}}>
+          결제하기
+        </button>
+
       </div>
-      <Outlet />
+
     </div>
   )
 }

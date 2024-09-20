@@ -62,5 +62,22 @@
             FROM MEMBER
         WHERE CITIZEN_NUM = #{citizenNum}
     </select>
+
+    <!-- 아이디 찾기 -->
+    <select id="findId" resultType="String">
+        SELECT MEM_ID
+            FROM MEMBER
+        WHERE MEM_NAME = #{memName}
+        AND CITIZEN_NUM = #{citizenNum}
+    </select>
+
+    <!-- 비밀번호 찾기 -->
+    <select id="findPw" resultType="String">
+        SELECT MEM_PW
+            FROM MEMBER
+        WHERE MEM_NAME = #{memName}
+        AND MEM_ID = #{memId}
+        AND CITIZEN_NUM = #{citizenNum}
+    </select>
 </mapper>
 

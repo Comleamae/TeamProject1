@@ -12,7 +12,9 @@ import PrintForm3 from './pages/user/pjw/PrintForm3';
 import PrintForm4 from './pages/user/pjw/PrintForm4';
 import MoneyIn from './pages/user/cyh/MoneyIn';
 import PayMoney from './pages/user/cyh/PayMoney';
-import Join from './pages/user/kth/Join';
+import JoinStep1 from './pages/user/kth/JoinStep1';
+import JoinStep2 from './pages/user/kth/JoinStep2';
+import JoinStep3 from './pages/user/kth/JoinStep3';
 import Login from './pages/user/kth/Login';
 import Main from './pages/Main';
 import ReservReg from './pages/user/ksh/ReservReg';
@@ -20,10 +22,15 @@ import NewVisit from './pages/admin/ksh/NewVisit';
 import ReVisit from './pages/admin/ksh/ReVisit';
 import Visitant from './pages/admin/ksh/Visitant';
 import ReservInquiry from './pages/user/ksh/ReservInquiry';
-import Footer from './pages/Footer';
-// import '../src/pages/Footer.css'
-import AdminLogin from './pages/admin/pjw/AdminLogin';
-import AdminJoin from './pages/admin/pjw/AdminJoin';
+import AdminLogin from './pages/user/kth/AdminLogin';
+import TreChart from './pages/admin/ksh/TreChart';
+import AdminMain from './pages/user/kth/AdminMain';
+import AdminJoin from './pages/user/kth/AdminJoin';
+import FindId from './pages/user/kth/FindId';
+import FindPw from './pages/user/kth/FindPw';
+import SearchStaff from './pages/user/kth/SearchStaff';
+
+
 
 const App = () => {
 
@@ -53,15 +60,23 @@ const App = () => {
   return (
     <div className="App">
           <Routes>
+
             {/* 유저 페이지 */}
             <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin}/>}>
             
               {/* 메인화면 */}
               <Route path="" element={<Main/>} />
 
+              {/* 의료진 찾기 */}
+              <Route path='searchStaff' element={<SearchStaff/>} />
+
               {/* 로그인 * 회원가입 페이지 */}
-              <Route path='join' element={<Join />} />
+              <Route path='joinStep1' element={<JoinStep1 />} />
+              <Route path='joinStep2' element={<JoinStep2 />} />
+              <Route path='joinStep3' element={<JoinStep3 />} />
               <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
+              <Route path='findId' element={<FindId/>}/>
+              <Route path='findPw' element={<FindPw/>}/>
 
               {/* 진료관련 증명서 출력 */}
               <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
@@ -70,12 +85,13 @@ const App = () => {
                 <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
                 <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
               </Route>
-            
-              {/* 진료비 수납내용 */}
-              <Route path='moneyin' element={<MoneyIn />} />
-              {/* 진료비 결제창 */}
-              <Route path='payMoney' element={<PayMoney />} />
             </Route>
+
+            {/* 진료비 수납내용 */}
+            <Route path='moneyin' element={<MoneyIn />} />
+
+            {/* 진료비 결제창 */}
+            <Route path='payMoney' element={<PayMoney />} />
   
             {/* 관리자 페이지
             <Route path='/admin' element={<AdminLayout />} >
@@ -88,15 +104,15 @@ const App = () => {
               </Route>
             </Route> */}
 
-          </Routes>
 
-          <Routes>
             <Route path='/admin' element={<AdminLayout/>}>
+              <Route path='' element={<AdminMain/>}/>
               <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
               <Route path='join' element={<AdminJoin/>}/>
               <Route path='visitant' element={<Visitant/>}/>
               <Route path='newVisit' element={<NewVisit/>}/>
               <Route path='reVisit' element={<ReVisit/>}/>
+              <Route path='treChart' element={<TreChart/>}/>
             </Route>
           </Routes>
 

@@ -1,4 +1,4 @@
-/* .new-main-div{
+.new-main-div{
   width: 400px;
   margin: 0 auto;
   margin-top: 50px;
@@ -9,6 +9,11 @@
 }
 .new-main-div > div > div > div{
   margin: 15px;
+}
+
+.new-table{
+  /* width: 100%; */
+  margin: 0 auto;
 }
 
 .ip-tag{
@@ -27,4 +32,4 @@
 
 .new-btn:hover{
   cursor: pointer;
-} */
+}
