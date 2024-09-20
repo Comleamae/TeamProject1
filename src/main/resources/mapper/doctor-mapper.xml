@@ -138,4 +138,19 @@
         WHERE DOCTOR.DEPT_NUM = MEDI_DEPT.DEPT_NUM
         AND MEDI_DEPT.DEPT_NAME = #{deptName}
     </select>
+
+
+    <!-- 진료 시작 버튼 누르면 해당 환자의 상태가 대기중 -> 진료중으로 변경되어야함. -->
+    <update id="statusChange">
+        UPDATE recep_info
+        SET recep_status = '진료중'
+        WHERE pat_num = #{patNum};
+    </update>
+
+
+    <!-- 진료 정보 등록하면 기존 대기자 목록 삭제 -->
+    <delete id="waitListDelete">
+        DELETE from recep_info
+        WHERE pat_num = #{patNum};
+    </delete>
 </mapper>

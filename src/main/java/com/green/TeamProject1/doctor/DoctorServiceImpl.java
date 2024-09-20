@@ -1,6 +1,7 @@
 package com.green.TeamProject1.doctor;
 
 import com.green.TeamProject1.patient.PatientVO;
+import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -28,7 +29,6 @@ public class DoctorServiceImpl implements DoctorService{
     public List<DoctorVO> getAllDoc() {
         return sqlSession.selectList("doctorMapper.getAllDoc");
     }
-
 
     // 진료과 정보 얻어오기
     @Override
@@ -62,15 +62,29 @@ public class DoctorServiceImpl implements DoctorService{
 
     // 환자 한명의 진료정보 가져오기
     @Override
-    public  List<TreatVO> treOneSelect(int patNum) {
+    public List<TreatVO> treOneSelect(int patNum) {
         return sqlSession.selectList("doctorMapper.treOneSelect", patNum);
     }
 
-    // 이름으로 의료진 검색 (리턴 자료형이 list인 이유는 동명이인이 존재할 경우를 위해서, 진료과도 함께 보여줌으로써 사용자가 직접 구분하도록 유도)
+
+    // 이름으로 의료진 검색 (리턴 자료형이 list인 이유는 동명이인이 존재할 경우를 위해서
+    // 진료과도 함께 보여줌으로써 사용자가 직접 구분하도록 유도)
     @Override
     public List<DoctorVO> searchStaffByName(String docName) {
         return sqlSession.selectList("doctorMapper.searchStaffByName", docName);
     }
 
+
+    // 진료 시작 버튼 누르면 해당 환자의 상태가 대기중 -> 진료중으로 변경되어야함.
+    @Override
+    public void statusChange(int patNum) {
+        sqlSession.update("doctorMapper.statusChange", patNum);
+    }
+
+    // 진료 등록 누르면 대기자 목록에서 삭제
+    @Override
+    public void waitListDelete(int patNum) {
+        sqlSession.delete("doctorMapper.waitListDelete", patNum);
+    }
 
 }

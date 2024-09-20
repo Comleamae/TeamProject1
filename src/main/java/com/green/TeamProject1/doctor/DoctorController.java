@@ -1,6 +1,7 @@
 package com.green.TeamProject1.doctor;
 
 import com.green.TeamProject1.patient.PatientVO;
+import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 import jakarta.annotation.Resource;
@@ -66,7 +67,6 @@ public class DoctorController {
         // 진료 기록 접수
         doctorService.insertTreatInfo(treatVO);
 
-
         RecipeVO recipeVO = new RecipeVO();
         recipeVO.setTreNum(treNum);
         recipeVO.setMediName(mapData.get("mediName").toString());
@@ -89,5 +89,17 @@ public class DoctorController {
     @GetMapping("/searchStaffByName/{docName}")
     public List<DoctorVO> searchStaffByName(@PathVariable(name = "docName") String docName){
         return doctorService.searchStaffByName(docName);
+    }
+
+    // 환자 대기 목록 화면에서 삭제
+    @PutMapping("/statusChange/{patNum}")
+    public void statusChange(@PathVariable(name = "patNum") int patNum){
+        doctorService.statusChange(patNum);
+    }
+
+    // 환자 진료 정보 등록 시 대기목록, DB 삭제
+    @DeleteMapping("/waitListDelete/{patNum}")
+    public void waitListDelete(@PathVariable(name = "patNum") int patNum){
+        doctorService.waitListDelete(patNum);
     }
 }

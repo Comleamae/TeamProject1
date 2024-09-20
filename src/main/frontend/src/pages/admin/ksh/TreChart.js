@@ -7,11 +7,12 @@ const TreChart = () => {
   // 대기자 목록 담을 state 변수
   const [waitList, setWaitList] = useState([]);
 
+
   // 환자 정보 담아둘 변수
   const [patientInfo, setPatientInfo] = useState([]);
 
   // 대기 환자 목록에서 환자 눌러야 환자 정보 보이게 하는 변수
-  const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(true);
 
   // 진료 정보 담아둘 변수
   const [treInfo, setTreInfo] = useState({
@@ -24,14 +25,20 @@ const TreChart = () => {
     eatCnt : ''
   });
 
-  // 처방전 정보 담아둘 변수
-  // const [recInfo, setRecInfo] = useState({
-  //   mediName : '',
-  //   eatCnt : ''
-  // });
-
   // 환자 1명의 모든 진료기록 담아둘 변수
   const [treList, setTreList] = useState([]);
+  
+  // 오늘 날짜 저장할 함수
+  const [today, setToday] = useState('');
+
+  
+  useEffect(()=>{
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    setToday(`${year}-${month}-${day}`);
+  }, [])
 
   // 진료 정보 변경되면 ...
   function changeTreInfo(e){
@@ -40,15 +47,6 @@ const TreChart = () => {
       [e.target.name] : e.target.value
     })
   }
-
-  // 처방전 정보 변경되면 ...
-  // function changeRecInfo(e){
-  //   setRecInfo({
-  //     ...recInfo,
-  //     [e.target.name] : e.target.value
-  //   })
-  //   console.log(recInfo)
-  // }
 
   // 대기 환자 정보 가져옴
   function getPatientInfo (patNum){
@@ -88,7 +86,7 @@ const TreChart = () => {
   }, []);
 
   // 진료 정보 추가
-  function treInfoInsert(){
+  function treInfoInsert(patNum){
     //환자를 선택하지 않고 진행 시 경고
     if(treInfo.patNum == ''){
       alert('환자를 선택하세요');
@@ -97,6 +95,14 @@ const TreChart = () => {
     axios.post('/doctor/insertTreatInfo', treInfo)
     .then((res)=>{
       alert('진료 기록이 등록되었습니다.')
+
+      axios.delete(`/doctor/waitListDelete/${treInfo.patNum}`)
+      .then((res)=>{
+        console.log(res.data)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
     })
     .catch((error)=>{
       console.log(error)
@@ -104,14 +110,28 @@ const TreChart = () => {
     })
   }
 
-
-
   // 화면에 표시할 페이지
   const [markPage, setMarkPage] = useState(1); // 현재 페이지 번호
   const postNum = 7; // 한 페이지에 표시할 게시글 수
   const lastPage = markPage * postNum;
   const firstPage = lastPage - postNum;
   const markPages = treList.slice(firstPage, lastPage);
+
+  function stautsChange(patNum) {
+    axios.put(`/doctor/statusChange/${patNum}`)
+    .then((res)=>{
+      console.log(res.data)
+
+      const copyWaitList = [...waitList];
+      // copyWaitList.pop();
+
+      setWaitList(copyWaitList);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
 
   return (
     <>
@@ -169,7 +189,9 @@ const TreChart = () => {
                 <thead>
                   <tr>
                     <td>접수시간</td>
-                    <td>진단명</td>
+                      <td>
+                        <span onClick={()=>{}}>진단명</span>
+                      </td>
                     <td>진료내역</td>
                   </tr>
                 </thead>
@@ -212,7 +234,7 @@ const TreChart = () => {
                     </tr>
                     <tr>
                       <td>검진일</td>
-                      <td><input type='date' className='chart-input-tag' name='treDate'  
+                      <td><input type='date' className='chart-input-tag' name='treDate' min={today}
                       onChange={(e)=>{changeTreInfo(e)}}></input></td>
                     </tr>
                     <tr>
@@ -242,11 +264,10 @@ const TreChart = () => {
                     </tbody>
                     </table>
                       <button type='button' className='insert-btn' onClick={()=>{
-                        treInfoInsert()
-                      
+                        treInfoInsert()                      
                         }}>등록</button>
             </div>
-            <div>2</div>
+            <div>처방전 상세 내역 표시될 영역</div>
           </div>
 
 
@@ -259,23 +280,32 @@ const TreChart = () => {
               <div >접수현황</div>
             </div>
               {waitList.map((wait, i) => (
-                <div className='status-info-div' key={i}>
-                  <div>{waitList.length - i}</div>
-                  <div onClick={()=>{
-                    getPatientInfo(wait.patNum)
-                    getTreInfo(wait.patNum)
-                    setIsShow(true)
-                  }}>{wait.patName}</div>
-                  <div>{wait.recepVO.recepDate}</div>
-                  <div>{wait.recepVO.recepStatus}</div>
+                <div>
+                  <div className='status-info-div' key={i}>
+                    <div>{waitList.length - i}</div>
+                    <div>{wait.patName}</div>
+                    <div>{wait.recepVO.recepDate}</div>
+                    <div>{wait.recepVO.recepStatus}</div>
+                  </div>
+                  {
+                    waitList.length == i + 1
+                    ? 
+                    <div><button type='button' onClick={()=>{
+                      getPatientInfo(wait.patNum)
+                      getTreInfo(wait.patNum)
+                      setIsShow(true)
+                      stautsChange(wait.patNum)
+                    }}>진료시작</button></div>
+                    :
+                    null
+                  }
+                  
                 </div>
+                
                 ))
               }
           </div>
         </div>
-          
-              
-              
   </>
   )
 }
