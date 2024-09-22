@@ -167,4 +167,13 @@
         DELETE from recep_info
         WHERE pat_num = #{patNum};
     </delete>
+
+
+    <!-- 진단명 클릭 시 진단명 기준으로 상세 내역 조회 -->
+    <select id="detailDisease" resultMap="patientMapper.infoTreat">
+        SELECT T.TRE_NUM, T.DISEASE, T.ABOUT_PAT, R.MEDI_NAME, R.EAT_CNT
+        FROM INFO_TREAT T, INFO_RECIPE R
+        WHERE T.TRE_NUM = R.TRE_NUM
+        AND T.TRE_NUM = #{treNum};
+    </select>
 </mapper>

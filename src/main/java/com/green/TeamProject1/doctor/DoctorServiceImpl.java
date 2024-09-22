@@ -79,6 +79,11 @@ public class DoctorServiceImpl implements DoctorService{
         return sqlSession.selectList("doctorMapper.searchStaffByName", docName);
     }
 
+    // 진료 내역에서 진단명 클릭 시 처방전 상세 내역 보여주기
+    @Override
+    public TreatVO detailDisease(int treNum) {
+        return sqlSession.selectOne("doctorMapper.detailDisease", treNum);
+    }
 
 
     // 진료 시작 버튼 누르면 해당 환자의 상태가 대기중 -> 진료중으로 변경되어야함.
@@ -98,5 +103,6 @@ public class DoctorServiceImpl implements DoctorService{
     public List<String> getDeptNames() {
         return sqlSession.selectList("doctorMapper.getDeptNames");
     }
+
 
 }

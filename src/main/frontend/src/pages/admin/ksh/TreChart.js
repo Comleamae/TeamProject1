@@ -31,7 +31,17 @@ const TreChart = () => {
   // 오늘 날짜 저장할 함수
   const [today, setToday] = useState('');
 
+  // 진단명 클릭 후 가져올 진단서 내용
+  const [test1, setTest1] = useState({
+    disease : '',
+    aboutPat : '',
+    recipeVO : {
+      mediName : '',
+      eatCnt : ''
+    }
+  });
   
+  // 당일 기준 이전 날짜 체크 못하게 하게 하기
   useEffect(()=>{
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -112,18 +122,23 @@ const TreChart = () => {
 
   // 화면에 표시할 페이지
   const [markPage, setMarkPage] = useState(1); // 현재 페이지 번호
-  const postNum = 7; // 한 페이지에 표시할 게시글 수
+  const postNum = 5; // 한 페이지에 표시할 게시글 수
   const lastPage = markPage * postNum;
   const firstPage = lastPage - postNum;
+
+  // 진료 정보 표시할 페이지 리스트
   const markPages = treList.slice(firstPage, lastPage);
+
+  // 대기 환자 정보 표시할 페이지 리스트
+  const waitList2 = waitList.slice(firstPage, lastPage);
+  
 
   function stautsChange(patNum) {
     axios.put(`/doctor/statusChange/${patNum}`)
     .then((res)=>{
       console.log(res.data)
-
       const copyWaitList = [...waitList];
-      // copyWaitList.pop();
+      copyWaitList.pop();
 
       setWaitList(copyWaitList);
     })
@@ -132,6 +147,16 @@ const TreChart = () => {
     })
   }
 
+  function detailDisease(treNum){
+    axios.get(`/doctor/detailDisease/${treNum}`)
+    .then((res)=>{
+      setTest1(res.data);
+      console.log(res.data);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
 
   return (
     <>
@@ -189,9 +214,7 @@ const TreChart = () => {
                 <thead>
                   <tr>
                     <td>접수시간</td>
-                      <td>
-                        <span onClick={()=>{}}>진단명</span>
-                      </td>
+                    <td>진단명</td>
                     <td>진료내역</td>
                   </tr>
                 </thead>
@@ -199,10 +222,11 @@ const TreChart = () => {
                 <tbody>
                   {
                     markPages.map((tre, i) => {
+                      //진료내역 조회 결과
                       return (
                         <tr key={i}>
                           <td>{tre.treDate}</td>
-                          <td>{tre.disease}</td>
+                          <td><span onClick={(e)=>{detailDisease(tre.treNum)}}>{tre.disease}</span></td>
                           <td>{tre.aboutPat}</td>
                         </tr>
                       );
@@ -267,7 +291,25 @@ const TreChart = () => {
                         treInfoInsert()                      
                         }}>등록</button>
             </div>
-            <div>처방전 상세 내역 표시될 영역</div>
+            <div>
+                <thead>
+                  <tr>
+                    <td>진단명</td>
+                    <td>진료내역</td>
+                    <td>처방내역</td>
+                    <td>복용횟수</td>
+                  </tr>
+                </thead>
+
+                  <tr>
+                    <td>{test1.disease}</td>
+                    <td>{test1.aboutPat}</td>
+                    <td>{test1.recipeVO.mediName}</td>
+                    <td>{test1.recipeVO.eatCnt}</td>
+                  </tr>   
+                
+
+            </div>
           </div>
 
 
@@ -279,16 +321,18 @@ const TreChart = () => {
               <div >접수시간</div>
               <div >접수현황</div>
             </div>
-              {waitList.map((wait, i) => (
+
+
+              {waitList2.map((wait, i) => (
                 <div>
                   <div className='status-info-div' key={i}>
-                    <div>{waitList.length - i}</div>
+                    <div>{i - 1}</div>
                     <div>{wait.patName}</div>
                     <div>{wait.recepVO.recepDate}</div>
                     <div>{wait.recepVO.recepStatus}</div>
                   </div>
                   {
-                    waitList.length == i + 1
+                    waitList2.length == i + 1
                     ? 
                     <div><button type='button' onClick={()=>{
                       getPatientInfo(wait.patNum)
@@ -299,13 +343,17 @@ const TreChart = () => {
                     :
                     null
                   }
-                  
                 </div>
-                
-                ))
-              }
+                ))}
+                <div className='page-btn'>
+                  <div><button type='button' onClick={() => setMarkPage(markPage - 1)} 
+                          disabled={markPage == 1}> 이전 </button></div>
+                  <div><button type='button' onClick={() => setMarkPage(markPage + 1)} 
+                          disabled={markPage == Math.ceil(waitList.length + 1 / postNum)}>다음</button></div>
+                </div>
           </div>
         </div>
+        
   </>
   )
 }

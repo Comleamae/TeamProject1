@@ -113,4 +113,10 @@ public class DoctorController {
     public void waitListDelete(@PathVariable(name = "patNum") int patNum){
         doctorService.waitListDelete(patNum);
     }
+
+    // 진료 내역에서 진단명 클릭 시 처방전 상세 내역 보여주기
+    @GetMapping("/detailDisease/{treNum}")
+    public TreatVO detailDisease(@PathVariable(name = "treNum") int treNum){
+        return doctorService.detailDisease(treNum);
+    }
 }
