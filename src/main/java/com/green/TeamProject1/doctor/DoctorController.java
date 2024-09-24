@@ -7,6 +7,7 @@ import com.green.TeamProject1.patient.TreatVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.Doc;
 import java.util.List;
 import java.util.Map;
 
@@ -114,9 +115,6 @@ public class DoctorController {
         doctorService.waitListDelete(patNum);
     }
 
-    // 진료 내역에서 진단명 클릭 시 처방전 상세 내역 보여주기
-    @GetMapping("/detailDisease/{treNum}")
-    public TreatVO detailDisease(@PathVariable(name = "treNum") int treNum){
-        return doctorService.detailDisease(treNum);
-    }
+
+
 }

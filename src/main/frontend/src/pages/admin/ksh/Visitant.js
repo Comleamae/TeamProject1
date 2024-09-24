@@ -8,9 +8,8 @@ const Visitant = () => {
   
   return (
     <div className='visitant-main-div'>
-      <div onClick={()=>{navigate('/admin/newVisit')}}>접수</div>
-      <div onClick={()=>{navigate('/admin/reVisit')}}>재방</div>
-      <div onClick={()=>{navigate()}}>수납</div>
+      <div onClick={()=>{navigate('/admin/newVisit')}}>신규방문</div>
+      <div onClick={()=>{navigate('/admin/reVisit')}}>재방문</div>
     </div>
   )
 }

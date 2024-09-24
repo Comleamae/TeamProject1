@@ -78,8 +78,6 @@ const AdminLogin = ({}) => {
       </div>
     </div>
     <button type='button' onClick={(e)=>{navigate(`/admin/join`)}}>관리자 등록</button>
-    <button type='button' onClick={(e)=>(navigate('/admin/visitant'))}>접수 페이지로 이동하는 임시 버튼</button>
-    <button type='button' onClick={(e)=>(navigate('/admin/treChart'))}>문진표 작성 페이지로 이동하는 임시 버튼</button>
   </div>
 
   )

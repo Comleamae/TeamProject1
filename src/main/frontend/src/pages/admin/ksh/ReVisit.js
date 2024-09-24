@@ -59,6 +59,13 @@ const ReVisit = () => {
 
     //조회 버큰 클릭 시 등록된 환자인지 검사하는 함수
     function checkInfoAndInsert(){
+
+      // 조회할 정보가 제대로 입력되었는지 확인하는 로직 추가
+      if (!reInfo.patName || !reInfo.citizenNum || !doctorNumRef.current.value || !reInfo.docLinum) {
+        alert('정보를 올바르게 입력한 후 조회를 다시 눌러주세요.');
+        return;
+      }
+
       axios.post('/patient/reSelect', reInfo)
       .then((res) => {
         //조회한 환자번호
@@ -72,7 +79,6 @@ const ReVisit = () => {
             ...reInfo, 
             patNum : pNum
           })
-          console.log("pNum값 :", pNum);
           alert('재방문 환자입니다. 접수를 눌러 접수 정보를 등록해주세요.');
         }
       })
@@ -81,6 +87,13 @@ const ReVisit = () => {
 
     // 재방문자 접수
     function reInsert(){
+
+      // 접수할 정보가 제대로 입력되었는지 확인하는 로직 추가
+      if (!reInfo.patName || !reInfo.citizenNum || !doctorNumRef.current.value || !reInfo.docLinum) {
+        alert('정보를 올바르게 입력한 후 접수를 다시 눌러주세요.');
+        return;
+      }
+
       axios.post('/patient/reInsert', reInfo)
         .then((res) => {
           console.log(res.data)
@@ -115,7 +128,7 @@ const ReVisit = () => {
               <tr>
               <td>진료과</td>
               <td>
-                <select name='mediDept' ref={doctorNumRef} 
+                <select className='mediDept-select' name='mediDept' ref={doctorNumRef} 
                 onChange={(e)=>{
                   changeInfo(e);
                   getDoctorList();
@@ -134,7 +147,7 @@ const ReVisit = () => {
             <tr> 
               <td>담당의</td>
               <td>
-              <select name='docLinum' onChange={(e)=>{changeInfo(e)}}>
+              <select className='docLinum-select' name='docLinum' onChange={(e)=>{changeInfo(e)}}>
                 <option value={''}>담당의를 선택하세요</option>
                 {
                   doctorList.map((doctor, i)=>{
@@ -148,7 +161,7 @@ const ReVisit = () => {
             </tr>
             </tbody>
           </table>
-            <div>
+            <div className="re-btn-container">
               <button type='button' className='re-btn' onClick={()=>{
                 checkInfoAndInsert()}}>조회</button>
 

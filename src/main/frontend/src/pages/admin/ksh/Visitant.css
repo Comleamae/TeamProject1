@@ -1,49 +1,27 @@
 .visitant-main-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 1200px;
   margin: 0 auto;
-  margin-top: 200px;
-  gap: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px 0;
 }
 
-.visitant-main-div > div {
-  width: 430px;
-  height: 400px; 
-  background-color: lightgray; 
+.visitant-main-div div {
+  width: 300px;
+  height: 150px;
+  border-radius: 10px;
+  background-color: #F0F8FF;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20px; 
+  font-size: 24px;
+  font-family: 'LINESeedKR-Bd';
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.visitant-main-div > div:nth-child(1){
-  background-color: rgba(210, 100, 100, 0.7);
-  font-size: 4rem;
-  color: white;
-}
-
-.visitant-main-div > div:nth-child(1):hover{
-  background-color: rgba(255, 100, 100, 1);
-}
-
-.visitant-main-div > div:nth-child(2){
-  background-color: rgba(100, 100, 210, 0.7);
-  font-size: 4rem;
-  color: white;
-}
-
-.visitant-main-div > div:nth-child(2):hover{
-  background-color: rgba(100, 100, 255, 1);
-}
-
-.visitant-main-div > div:nth-child(3){
-  background-color: rgba(100, 210, 100, 0.7);
-  font-size: 4rem;
-  color: white;
-}
-
-.visitant-main-div > div:nth-child(3):hover{
-  background-color: rgba(100, 255, 100, 1);
+.visitant-main-div div:hover {
+  background-color: #42D3D8;
+  color: #fff;
 }

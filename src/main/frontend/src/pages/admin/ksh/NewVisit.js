@@ -3,11 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import './NewVisit.css';
 import { useNavigate } from 'react-router-dom';
 
-
 const NewVisit = () => {
 
   const navigate = useNavigate();
-
   // 접수를 위해 직접 본인(환자가)이 입력한 정보
   const [info, setInfo] = useState({
     // patNum : '',
@@ -115,12 +113,13 @@ const NewVisit = () => {
             <tr>
               <td>주소</td>
               <td><input className='ip-tag' placeholder='주소를 입력해주세요.' type='text'
-              name='address' value={info.address} onChange={(e)=>{changeInfo(e)}}/></td>
+              name='address' value={info.address} onChange={(e)=>{changeInfo(e)}}/>
+              </td>
             </tr>
             <tr>
               <td>진료과</td>
               <td>
-                <select name='mediDept' value={info.mediDept} ref={doctorNumRef}
+                <select className='mediDept-select' name='mediDept' value={info.mediDept} ref={doctorNumRef}
                         onChange={(e)=>{
                           changeInfo(e);
                           getDoctorList();
@@ -139,7 +138,7 @@ const NewVisit = () => {
             <tr>
               <td>담당의</td>
               <td>
-                <select name='docLinum' onChange={(e) => {changeInfo(e)}}>
+                <select className='docLinum-select' name='docLinum' onChange={(e) => {changeInfo(e)}}>
                   <option value={''}>담당의를 선택하세요</option>
                   {
                     doctorList.map((doctor, i) => {

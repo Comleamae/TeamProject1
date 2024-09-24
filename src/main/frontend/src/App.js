@@ -17,11 +17,9 @@ import JoinStep2 from './pages/user/kth/JoinStep2';
 import JoinStep3 from './pages/user/kth/JoinStep3';
 import Login from './pages/user/kth/Login';
 import Main from './pages/Main';
-import ReservReg from './pages/user/ksh/ReservReg';
 import NewVisit from './pages/admin/ksh/NewVisit';
 import ReVisit from './pages/admin/ksh/ReVisit';
 import Visitant from './pages/admin/ksh/Visitant';
-import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import TreChart from './pages/admin/ksh/TreChart';
 import FindId from './pages/user/kth/FindId';
 import FindPw from './pages/user/kth/FindPw';
@@ -42,6 +40,11 @@ const App = () => {
   //내가 관리자?
   const [isAdmin, setIsAdmin] = useState(false)
 
+
+    // 의사 정보 저장
+    const [adminInfo, setAdminInfo] = useState({});
+
+
   //로그인한 회원의 정보로 로그인 배너 생성
   useEffect(() => {
     //로그인하면서 sessionStorage에 저장한 정보 가져오기
@@ -55,7 +58,14 @@ const App = () => {
       //state변수에 로그인한 회원 정보 저장
       setLoginInfo(obj_loginInfo)
     }
+    const sessionAdminLoginInfo = window.sessionStorage.getItem('doctroLoginInfo');
+    if(sessionLoginInfo != null){
+      const obj_loginInfo = JSON.parse(sessionLoginInfo);
+
+      setDocInfo(obj_loginInfo)
+    }
   }, [])
+
 
   return (
     <div className="App">
