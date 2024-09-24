@@ -68,9 +68,9 @@ public class PatientController {
 
 
         // 환자 대기 목록 조회
-        @GetMapping("/waitList")
-        public List<PatientVO> waitList() {
-           return patientService.waitList();
+        @GetMapping("/waitList/{docLinum}")
+        public List<PatientVO> waitList(@PathVariable("docLinum") int docLinum) {
+           return patientService.waitList(docLinum);
         }
 
         // 대기 중인 환자 목록에서 환자 번호 기준으로 상세 정보 조회

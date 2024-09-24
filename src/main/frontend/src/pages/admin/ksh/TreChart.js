@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './TreChart.css';
 import axios from 'axios';
 
@@ -39,6 +39,39 @@ const TreChart = () => {
     }
   });
   
+  // 의사정보 담아두기
+  const docInfoRef = useRef({
+    docLinum : '',
+    docName : '',
+    deptNum : '',
+    deptName : ''
+  });
+
+  const getDeptName = (deptNum) => {
+    const deptList = {
+      1: '내과',
+      2: '외과',
+      3: '신경과'
+    };
+    return deptList[deptNum] || '0'; 
+  };
+
+  // 세션에서 의사 정보 불러오기
+  useEffect(() => {
+    const sesssionInfo = window.sessionStorage.getItem('doctorLoginInfo');
+    if (sesssionInfo) {
+      const docInfo = JSON.parse(sesssionInfo);
+
+      docInfoRef.current = {
+        docLinum: docInfo.doc_Linum,
+        docName: docInfo.doc_name,
+        deptNum: docInfo.dept_num,
+        deptName: getDeptName(docInfo.dept_num)
+      };
+    }
+  }, []);
+
+
   // 당일 기준 이전 날짜 체크 못하게 하게 하기
   useEffect(()=>{
     const currentDate = new Date();
@@ -48,7 +81,6 @@ const TreChart = () => {
     setToday(`${year}-${month}-${day}`);
   }, [])
 
-  
   // 진료 정보 변경되면
   function changeTreInfo(e){
     setTreInfo({
@@ -84,7 +116,10 @@ const TreChart = () => {
   
   // 대기자 목록 화면에 띄우기
   useEffect(()=>{
-    axios.get('/patient/waitList')
+    const doctorLoginInfoString = window.sessionStorage.getItem('doctorLoginInfo');
+    const docInfo = JSON.parse(doctorLoginInfoString);
+
+    axios.get(`/patient/waitList/${docInfo.doc_Linum}`)
     .then((res)=>{
       console.log(res.data)
       setWaitList(res.data);
@@ -94,13 +129,13 @@ const TreChart = () => {
     })
   }, []);
 
+  
   // 진료 정보 추가
   function treInfoInsert(patNum){
     //환자를 선택하지 않고 진행 시 경고
     if(treInfo.patNum == ''){
       alert('환자를 선택하세요');
     }
-
     axios.post('/doctor/insertTreatInfo', treInfo)
     .then((res)=>{
       alert('진료 기록이 등록되었습니다.')
@@ -111,7 +146,7 @@ const TreChart = () => {
       })
       .catch((error)=>{
         console.log(error)
-      })
+      });
     })
     .catch((error)=>{
       console.log(error)
@@ -136,13 +171,13 @@ const TreChart = () => {
   const firstWaitPage = lastWaitPage - waitNum;
   const waitList2 = waitList.slice(firstWaitPage, lastWaitPage);
   
+  // 접수 상태 변경
   function stautsChange(patNum) {
     axios.put(`/doctor/statusChange/${patNum}`)
     .then((res)=>{
       console.log(res.data)
       const copyWaitList = [...waitList];
       copyWaitList.pop();
-
       setWaitList(copyWaitList);
     })
     .catch((error)=>{
@@ -150,6 +185,7 @@ const TreChart = () => {
     })
   }
 
+  // 진료 상세 내역
   function detailDisease(treNum){
     axios.get(`/doctor/detailDisease/${treNum}`)
     .then((res)=>{
@@ -166,7 +202,8 @@ const TreChart = () => {
       <div className='main-title-div'>
         <h1>문진표</h1>
       </div>
-        <h1>과 반갑습니다.</h1>
+        <h1>진료과 : {docInfoRef.current.deptName} </h1>
+        <h1>담당의 : {docInfoRef.current.docName}</h1>
       <div className="chart-main-div">
 
         {/* 조회 환자 정보 및 진료 내역 조회 */}
@@ -235,8 +272,8 @@ const TreChart = () => {
                 </tbody>
               </table>
               <div className="page-btn">
-                <button onClick={() => setMarkPage(markPage - 1)} disabled={markPage === 1}>이전</button>
-                <button onClick={() => setMarkPage(markPage + 1)} disabled={treList.length == 0 || Math.ceil(treList.length / postNum)}>다음</button>
+                <button onClick={()=>setMarkPage(markPage - 1)} disabled={markPage === 1}>이전</button>
+                <button onClick={()=>setMarkPage(markPage + 1)} disabled={treList.length == 0 || Math.ceil(treList.length / postNum)}>다음</button>
               </div>
             </div>
           </div>
@@ -328,7 +365,7 @@ const TreChart = () => {
                 <div>{wait.recepVO.recepDate}</div>
                 <div>{wait.recepVO.recepStatus}</div>
               </div>
-              {waitList2.length == i + 1 && (
+              {waitList2.length == i+1 && (
                 <div><button className='heal-btn' onClick={() => { getPatientInfo(wait.patNum); getTreInfo(wait.patNum); setIsShow(true); stautsChange(wait.patNum)}}>진료시작</button></div>
               )}
             </div>

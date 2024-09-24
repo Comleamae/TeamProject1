@@ -69,7 +69,7 @@ const ReVisit = () => {
       axios.post('/patient/reSelect', reInfo)
       .then((res) => {
         //조회한 환자번호
-        const pNum =res.data;
+        const pNum = res.data;
         if(pNum == 0){
         alert('첫 방문 환자입니다. 신규 등록 페이지로 이동합니다.');
           //신규 환자 등록 페이지로 이동
@@ -164,7 +164,6 @@ const ReVisit = () => {
             <div className="re-btn-container">
               <button type='button' className='re-btn' onClick={()=>{
                 checkInfoAndInsert()}}>조회</button>
-
               <button type='button' className='re-btn' onClick={()=>{
                 reInsert()}}>접수</button>
             </div>
