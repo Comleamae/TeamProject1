@@ -41,10 +41,6 @@ const App = () => {
   const [isAdmin, setIsAdmin] = useState(false)
 
 
-    // 의사 정보 저장
-    const [adminInfo, setAdminInfo] = useState({});
-
-
   //로그인한 회원의 정보로 로그인 배너 생성
   useEffect(() => {
     //로그인하면서 sessionStorage에 저장한 정보 가져오기
@@ -57,12 +53,6 @@ const App = () => {
 
       //state변수에 로그인한 회원 정보 저장
       setLoginInfo(obj_loginInfo)
-    }
-    const sessionAdminLoginInfo = window.sessionStorage.getItem('doctroLoginInfo');
-    if(sessionLoginInfo != null){
-      const obj_loginInfo = JSON.parse(sessionLoginInfo);
-
-      setDocInfo(obj_loginInfo)
     }
   }, [])
 

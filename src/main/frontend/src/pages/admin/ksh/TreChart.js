@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './TreChart.css';
 import axios from 'axios';
-import { waitFor } from '@testing-library/react';
 
 const TreChart = () => {
   
@@ -40,10 +39,6 @@ const TreChart = () => {
     }
   });
   
-
-
-  
-
   // 당일 기준 이전 날짜 체크 못하게 하게 하기
   useEffect(()=>{
     const currentDate = new Date();
@@ -51,8 +46,6 @@ const TreChart = () => {
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const day = String(currentDate.getDate()).padStart(2, '0');
     setToday(`${year}-${month}-${day}`);
-
-
   }, [])
 
   
@@ -168,13 +161,12 @@ const TreChart = () => {
     })
   }
 
-  
   return (
     <>
       <div className='main-title-div'>
         <h1>문진표</h1>
       </div>
-        <h1>{docInfo.doc_name}과 반갑습니다.</h1>
+        <h1>과 반갑습니다.</h1>
       <div className="chart-main-div">
 
         {/* 조회 환자 정보 및 진료 내역 조회 */}

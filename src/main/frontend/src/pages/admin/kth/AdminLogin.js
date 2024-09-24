@@ -14,7 +14,6 @@ const AdminLogin = ({}) => {
     docPw: ''
   });
 
-  
   //입력한 정보로 바꾸기
   function changeLoginData(e) {
     const newData = {
