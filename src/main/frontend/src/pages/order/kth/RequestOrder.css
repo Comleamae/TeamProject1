@@ -1,0 +1,14 @@
+.order-tag-table{
+  margin: 0 auto;
+  width: 70%;
+}
+
+.order-tag:hover{
+  cursor: pointer;
+}
+
+
+.order-table{
+  margin: 0 auto;
+  margin-top: 50px;
+}

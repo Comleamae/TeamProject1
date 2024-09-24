@@ -48,5 +48,10 @@ public class MemberServiceImpl implements MemberService{
         sqlSession.insert("memberMapper.insertAdmin", adminVO);
     }
 
+    @Override
+    public AdminVO adminLogin(AdminVO adminVO) {
+        return sqlSession.selectOne("memberMapper.adminLogin", adminVO);
+    }
+
 
 }

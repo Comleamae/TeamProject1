@@ -58,9 +58,15 @@ public class MemberController {
         return memberService.findPw(memberVO);
     }
 
-    // 관리자 등록
+    // 관리자(의사, 간호사, 직원) 등록
     @PostMapping("/insertAdmin")
     public void insertAdmin(@RequestBody AdminVO adminVO){
         memberService.insertAdmin(adminVO);
+    }
+
+    // 관리자 로그인
+    @PostMapping("/adminLogin")
+    public AdminVO adminLogin(@RequestBody AdminVO adminVO){
+        return memberService.adminLogin(adminVO);
     }
 }

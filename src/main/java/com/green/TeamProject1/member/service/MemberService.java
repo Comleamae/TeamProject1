@@ -20,4 +20,6 @@ public interface MemberService {
     String findPw(MemberVO memberVO);
 
     void insertAdmin(AdminVO adminVO);
+
+    AdminVO adminLogin(AdminVO adminVO);
 }

@@ -102,5 +102,11 @@
             , #{adminRole}
         )
     </insert>
+
+    <select id="adminLogin" resultMap="admin">
+        SELECT * FROM ADMIN
+        WHERE ADMIN_ID = #{adminId}
+        AND ADMIN_PW = #{adminPw}
+    </select>
 </mapper>
 

@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import AdminLayout from '../src/pages/admin/AdminLayout'
 import UserLayout from '../src/pages/user/UserLayout'
 import ClinicPrint from './pages/user/pjw/ClinicPrint';
-import ClinicList from './pages/admin/pjw/ClinicList';
 import PrintForm from './pages/user/pjw/PrintForm';
 import PrintForm2 from './pages/user/pjw/PrintForm2';
 import PrintForm3 from './pages/user/pjw/PrintForm3';
@@ -17,11 +16,9 @@ import JoinStep2 from './pages/user/kth/JoinStep2';
 import JoinStep3 from './pages/user/kth/JoinStep3';
 import Login from './pages/user/kth/Login';
 import Main from './pages/Main';
-import ReservReg from './pages/user/ksh/ReservReg';
 import NewVisit from './pages/admin/ksh/NewVisit';
 import ReVisit from './pages/admin/ksh/ReVisit';
 import Visitant from './pages/admin/ksh/Visitant';
-import ReservInquiry from './pages/user/ksh/ReservInquiry';
 import TreChart from './pages/admin/ksh/TreChart';
 import FindId from './pages/user/kth/FindId';
 import FindPw from './pages/user/kth/FindPw';
@@ -30,6 +27,13 @@ import AdminLogin from './pages/admin/kth/AdminLogin';
 import AdminMain from './pages/admin/kth/AdminMain';
 import AdminJoin from './pages/admin/kth/AdminJoin';
 import JoinStep1_1 from './pages/user/kth/JoinStep1_1';
+import OrderLayout from './pages/order/kth/OrderLayout';
+import RequestOrder from './pages/order/kth/RequestOrder';
+import ManageSupply from './pages/order/kth/ManageSupply';
+import RegistSupply from './pages/order/kth/RegistSupply';
+import OrderList from './pages/order/kth/OrderList';
+
+
 
 
 
@@ -60,42 +64,42 @@ const App = () => {
 
   return (
     <div className="App">
-          <Routes>
+      <Routes>
 
-            {/* 유저 페이지 */}
-            <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin}/>}>
-            
-              {/* 메인화면 */}
-              <Route path="" element={<Main/>} />
+        {/* 유저 페이지 */}
+        <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin} />}>
 
-              {/* 의료진 찾기 */}
-              <Route path='searchStaff' element={<SearchStaff/>} />
+          {/* 메인화면 */}
+          <Route path="" element={<Main />} />
 
-              {/* 로그인 * 회원가입 페이지 */}
-              <Route path='joinStep1' element={<JoinStep1 />} />
-              <Route path='joinStep1_1' element={<JoinStep1_1/>}/>
-              <Route path='joinStep2' element={<JoinStep2 />} />
-              <Route path='joinStep3' element={<JoinStep3 />} />
-              <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
-              <Route path='findId' element={<FindId/>}/>
-              <Route path='findPw' element={<FindPw/>}/>
+          {/* 의료진 찾기 */}
+          <Route path='searchStaff' element={<SearchStaff />} />
 
-              {/* 진료관련 증명서 출력 */}
-              <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo}/>}>
-                <Route path='printForm/:patNum/:treNum' element={<PrintForm  />} />
-                <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
-                <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
-                <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
-              </Route>
-            </Route>
+          {/* 로그인 * 회원가입 페이지 */}
+          <Route path='joinStep1' element={<JoinStep1 />} />
+          <Route path='joinStep1_1' element={<JoinStep1_1 />} />
+          <Route path='joinStep2' element={<JoinStep2 />} />
+          <Route path='joinStep3' element={<JoinStep3 />} />
+          <Route path='login' element={<Login setLoginInfo={setLoginInfo} />} />
+          <Route path='findId' element={<FindId />} />
+          <Route path='findPw' element={<FindPw />} />
 
-            {/* 진료비 수납내용 */}
-            <Route path='moneyin' element={<MoneyIn />} />
+          {/* 진료관련 증명서 출력 */}
+          <Route path='clinicPrint' element={<ClinicPrint isLogin={loginInfo} setIsLogin={setLoginInfo} />}>
+            <Route path='printForm/:patNum/:treNum' element={<PrintForm />} />
+            <Route path='printForm2/:patNum/:treNum' element={<PrintForm2 />} />
+            <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
+            <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
+          </Route>
+        </Route>
 
-            {/* 진료비 결제창 */}
-            <Route path='payMoney' element={<PayMoney />} />
-  
-            {/* 관리자 페이지
+        {/* 진료비 수납내용 */}
+        <Route path='moneyin' element={<MoneyIn />} />
+
+        {/* 진료비 결제창 */}
+        <Route path='payMoney' element={<PayMoney />} />
+
+        {/* 관리자 페이지
             <Route path='/admin' element={<AdminLayout />} >
               <Route path='clinicList' element={<ClinicList />} />
               <Route path='moneyln' element={<MoneyIn />} />
@@ -107,17 +111,24 @@ const App = () => {
             </Route> */}
 
 
-            <Route path='/admin' element={<AdminLayout/>}>
-              <Route path='' element={<AdminMain/>}/>
-              <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo}/>}/>
-              <Route path='join' element={<AdminJoin/>}/>
-              <Route path='visitant' element={<Visitant/>}/>
-              <Route path='newVisit' element={<NewVisit/>}/>
-              <Route path='reVisit' element={<ReVisit/>}/>
-              <Route path='treChart' element={<TreChart/>}/>
-            </Route>
-          </Routes>
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route path='' element={<AdminMain />} />
+          <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo} />} />
+          <Route path='join' element={<AdminJoin />} />
+          <Route path='visitant' element={<Visitant />} />
+          <Route path='newVisit' element={<NewVisit />} />
+          <Route path='reVisit' element={<ReVisit />} />
+          <Route path='treChart' element={<TreChart />} />
+        </Route>
 
+        {/* 발주 페이지 */}
+        <Route path='/order' element={<OrderLayout/>}>
+          <Route path='manageSupply' element={<ManageSupply />} />
+          <Route path='requestOrder' element={<RequestOrder />} />
+          <Route path='registSupply' element={<RegistSupply />} />
+          <Route path='orderList' element={<OrderList />} />
+        </Route>
+      </Routes>
     </div >
   );
 }

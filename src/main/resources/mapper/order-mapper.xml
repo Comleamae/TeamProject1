@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="orderMapper">
+    <resultMap id="supply" type="com.green.TeamProject1.order.vo.SupplyVO">
+        <id column="SUPPLY_NUM" property="supplyNum"/>
+        <result column="SUPPLY_NAME" property="supplyName"/>
+        <result column="SUPPLY_PRICE" property="supplyPrice"/>
+        <result column="SUPPLY_STANDARD" property="supplyStandard"/>
+        <result column="DELIVERY_DAY" property="deliveryDay"/>
+        <result column="SUPPLIER" property="supplier"/>
+        <result column="SUPPLY_MAKEDAY" property="supplyMakeday"/>
+    </resultMap>
+
+    <resultMap id="inventory" type="com.green.TeamProject1.order.vo.InventoryVO">
+        <result column="SUPPLY_NUM" property="supplyNum"/>
+        <result column="AMOUNT" property="amount"/>
+    </resultMap>
+
+    <resultMap id="order" type="com.green.TeamProject1.order.vo.OrderVO">
+        <id column="ORDER_NUM" property="orderNum"/>
+        <result column="SUPPLY_NUM" property="supplyNum"/>
+        <result column="ORDER_DATE" property="orderDate"/>
+        <result column="ORDER_AMOUNT" property="orderAmount"/>
+        <result column="DELIVERY_DATE" property="deliveryDate"/>
+        <result column="ORDER_NOTE" property="orderNote"/>
+    </resultMap>
+
+</mapper>
+
