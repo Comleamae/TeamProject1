@@ -32,6 +32,7 @@ import RequestOrder from './pages/order/kth/RequestOrder';
 import ManageSupply from './pages/order/kth/ManageSupply';
 import RegistSupply from './pages/order/kth/RegistSupply';
 import OrderList from './pages/order/kth/OrderList';
+import LocationPage from './pages/user/ksh/LocationPage';
 
 
 
@@ -71,6 +72,7 @@ const App = () => {
         {/* 유저 페이지 */}
         <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin} />}>
 
+
           {/* 메인화면 */}
           <Route path="" element={<Main />} />
 
@@ -93,6 +95,8 @@ const App = () => {
             <Route path='printForm3/:patNum/:treNum' element={<PrintForm3 />} />
             <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
           </Route>
+
+          <Route path='locationPage' element={<LocationPage/>}/>
         </Route>
 
         {/* 진료비 수납내용 */}

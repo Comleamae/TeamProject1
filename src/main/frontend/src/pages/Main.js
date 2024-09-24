@@ -124,10 +124,10 @@ const Main = () => {
             </div>
           </div> */}
 
-          <div className='sub-idex-box' onClick={(e) => { navigate('/') }}>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/locationPage') }}>
             <div className='sub-inbox'>
-              <p className='main-p'>찾아오시는 길</p>
-              <GrMapLocation className='icon' />
+                <p className='main-p'>찾아오시는 길</p>
+                <GrMapLocation className='icon'/>
             </div>
           </div>
         </div>
