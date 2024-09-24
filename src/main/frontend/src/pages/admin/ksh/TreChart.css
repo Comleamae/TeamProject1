@@ -1,91 +1,216 @@
-.main-title-div{
-  margin-top: 50px;
+/* 메인 타이틀 */
+.main-title-div {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.chart-main-div{
-  width: 1400px;
-  height: 700px;
-  margin: 0 auto;
-  margin-top: 50px;
+.main-title-div h1 {
+  font-size: 2rem;
+  color: #337ab7;
+}
+
+/* 전체 차트 레이아웃 */
+.chart-main-div {
   display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
 }
 
-.chart-sub1-div {
-  width: 100%;
-  height: 100%;
-}
-
+/* 서브 영역 공통 스타일 */
+.chart-sub1-div,
 .chart-sub2-div {
-  width: 100%;
-  height: 100%;
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* 공통 적용 */
+h1 {
+  font-size: 1.5rem;
+  color: #285e8e;
+  margin-bottom: 20px;
+}
 
-td {
+/* 조회 환자 정보 테이블 */
+.pati-pull-info table,
+.tre-info-div table,
+.chart-sub1-div table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.pati-pull-info table td,
+.tre-info-div table td,
+.chart-sub1-div table td {
+  padding: 15px;
+  text-align: center;
   vertical-align: middle;
+  border: 1px solid #ddd;
 }
 
-.chart-input-tag {
-  border: none;
+.pati-pull-info table td:first-child {
+  background-color: #eef3fb;
+  font-weight: bold;
 }
 
-
-/* 1번째 div */
-.pati-pull-info{
-}
-
-.pati-pull-info > table {
-  width: 100%;
-}
-
-/* 2번째 div */
-.tre-info-div > table{
-  width: 100%;
+/* 진료 기록 입력 폼 */
+.chart-input-tag,
+.textarea {
+  width: 90%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .textarea {
-  resize: none;
-  height: 80px; 
-  width: 300px;
-  border: none;
-  vertical-align: middle;
-}
-
-.textarea::placeholder {
-    color: black;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-}
-.chart-input-tag::placeholder{
-  color: black;
+  height: 80px;
 }
 
 .insert-btn {
-  background-color: white;
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
   border: none;
-  padding: 15px 30px;
-  font-size: 16px;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
   border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* 3번째 div */
-.status-info-div{
+.insert-btn {
+  margin-bottom: 20px;
+}
+.insert-btn:hover {
+  background-color: #3c78d8;
+}
+
+/* 대기 명단 스타일 */
+.status-info-div {
   display: flex;
-  border-radius: 30px;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #eef3fb;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.status-info-div > div{
-  flex: 0.4;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.status-info-div div {
+  flex: 1;
+  text-align: center; 
+  font-size: 1rem;
+  color: #444;
+}
+
+.status-info-div div:first-child {
+  flex: 0.5;
+}
+
+.status-info-div div:last-child {
+  flex: 1.5;
+}
+
+.heal-btn {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  margin-top: 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .page-btn {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.page-btn button {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.page-btn button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+.page-btn button:hover:not(:disabled) {
+  background-color: #3c78d8;
+}
+
+.wait-btn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.wait-btn button {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.wait-btn button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+.wait-btn button:hover:not(:disabled) {
+  background-color: #3c78d8;
+}
+
+
+/* 테이블의 헤더 스타일 */
+.chart-sub1-div table thead td {
+  background-color: #eef3fb;
+  color: #285e8e;
+  font-weight: bold;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+.tre-info-div td:nth-child(1) {
+  background-color: #eef3fb;
+  color: #285e8e;
+  font-weight: bold;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+.chart-sub1-div table tbody tr:hover {
+  background-color: #f0f7ff;
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+.click-check {
+  cursor: pointer;
 }

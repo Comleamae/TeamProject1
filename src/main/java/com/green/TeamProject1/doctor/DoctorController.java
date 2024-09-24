@@ -7,6 +7,7 @@ import com.green.TeamProject1.patient.TreatVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.Doc;
 import java.util.List;
 import java.util.Map;
 
@@ -113,4 +114,7 @@ public class DoctorController {
     public void waitListDelete(@PathVariable(name = "patNum") int patNum){
         doctorService.waitListDelete(patNum);
     }
+
+
+
 }

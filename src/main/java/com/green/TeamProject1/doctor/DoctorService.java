@@ -50,4 +50,9 @@ public interface DoctorService {
 
     // 의료진 검색기능 BY KTH
     List<DoctorVO> searchStaffByName(String docName);
+
+    // 진료 내역에서 진단명 클릭 시 처방전 상세 내역 보여주기
+    TreatVO detailDisease(int treNum);
+
+
 }

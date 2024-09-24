@@ -90,10 +90,10 @@ const Main = () => {
             </div>
           </div>
 
-          <div className='sub-idex-box' onClick={(e) => { navigate('/reservReg') }} style={{backgroundColor:'#42D3D8'}}>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/admin/visitant') }} style={{backgroundColor:'#42D3D8'}}>
             <div className='sub-inbox' style={{color:'#fff'}}>
-              <p className='main-p'  style={{color:'#fff'}}>진료예약</p>
-              <span className='main-span' style={{color:'#fff'}}>진료예약 하러가기</span>
+              <p className='main-p'  style={{color:'#fff'}}>진료접수</p>
+              <span className='main-span' style={{color:'#fff'}}>진료접수 하러가기</span>
               <LuCalendarClock className='icon' style={{color:'#fff'}}/>
             </div>
           </div>

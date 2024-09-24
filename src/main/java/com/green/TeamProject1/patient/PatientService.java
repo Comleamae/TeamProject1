@@ -29,7 +29,7 @@ public interface PatientService {
     void reInsert(PatientVO patientVO);
 
     // 환자 대기 목록 조회
-    List<PatientVO> waitList();
+    List<PatientVO> waitList(int docLinum);
 
     // 대기 중인 환자 목록에서 환자 번호 기준으로 상세 정보 조회
     PatientVO getPatientInfo(int patNum);

@@ -68,8 +68,8 @@ public class PatientServiceImpl implements PatientService{
 
     // 환자 대기 목록 조회
     @Override
-    public List<PatientVO> waitList() {
-        return sqlSession.selectList("patientMapper.waitList");
+    public List<PatientVO> waitList(int docLinum) {
+        return sqlSession.selectList("patientMapper.waitList", docLinum);
     }
 
 

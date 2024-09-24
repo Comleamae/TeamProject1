@@ -1,39 +1,85 @@
-.re-main-div{
-  width: 400px;
-  margin: 0 auto;
-  margin-top: 50px;
-}
-
-.re-main-div > div > div:nth-child(1){
-  margin: 15px;
-}
-.re-main-div > div > div > div{
-  margin: 15px;
-}
-
-.re-table{
-  width: 100%;
-}
-
-.ip-tag{
-  border: none;
+.re-main-div h1 {
   text-align: center;
+  font-size: 2rem;
+  color: #337ab7;
+  margin-bottom: 20px;
 }
 
-.re-btn{
-  width: 100px;
-  height: 50px;
-  font-size: 1.5rem;
+/* 전체 레이아웃 */
+.re-main-div {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+/* 테이블 스타일 */
+.re-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.re-table td {
+  padding: 15px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  background-color: #eef3fb;
   font-weight: bold;
+}
+
+/* 입력 폼 스타일 */
+.ip-tag {
+  width: 90%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* 버튼 스타일 */
+.re-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
   border: none;
-  background-color: white;
-}
-
-.re-btn:hover{
+  border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.btn-list{
+.re-btn:hover {
+  background-color: #3c78d8;
+}
+
+.re-btn-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.re-btn {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.re-btn:last-child {
+  margin-right: 0;
+}
+
+
+.mediDept-select, .docLinum-select {
+  width: 350px; /* 원하는 너비 */
+  height: 40px; /* 원하는 높이 */
+  border: none;
+  border-radius: 10px;
+  font-size: 1.7rem;
+  margin: 10px;
+  text-align: center;
 }

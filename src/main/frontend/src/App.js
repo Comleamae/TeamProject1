@@ -47,6 +47,7 @@ const App = () => {
   //내가 관리자?
   const [isAdmin, setIsAdmin] = useState(false)
 
+
   //로그인한 회원의 정보로 로그인 배너 생성
   useEffect(() => {
     //로그인하면서 sessionStorage에 저장한 정보 가져오기
@@ -61,6 +62,7 @@ const App = () => {
       setLoginInfo(obj_loginInfo)
     }
   }, [])
+
 
   return (
     <div className="App">
