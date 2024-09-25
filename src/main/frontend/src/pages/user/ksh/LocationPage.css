@@ -1,0 +1,12 @@
+.navigation-div {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.navigation-div > div{
+  width: 500px;
+  height: 500px;
+}
+
+
