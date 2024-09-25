@@ -373,7 +373,7 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
                     <Link to='/login' className='user-login'>로그인</Link>
                   </li>
                   <li>
-                    <p onClick={()=>{navigate('/joinStep1')}}>회원가입</p>
+                    <Link to ='/joinSelect'>회원가입</Link>
                   </li>
                   <li>
                     <Link to='/admin/login' className='admin-login'>

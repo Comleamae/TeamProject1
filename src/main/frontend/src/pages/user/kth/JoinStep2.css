@@ -5,6 +5,20 @@
   margin: 0 auto;
   text-align: left;
 }
+.join-div12{
+  width: 1300px;
+  height: 1600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.join-div13{
+  width: 1300px;
+  height: 650px;
+  margin: 0 auto;
+  text-align: left;
+}
+
 
 .join-box {
   width: 100%;
@@ -17,6 +31,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.joinh1{
+  color: #0e0e0e;
+  font-size: 35px;
 }
 
 /* 회원가입 동의 */
@@ -190,3 +209,124 @@
   border-radius: 5px;
   cursor: pointer;
 } 
+
+/* 동의사항 */
+
+
+.agreeCont {
+  height: 160px;
+  padding: 20px;
+  border: 1px solid #cdcdcd;
+  background: #f9f9f9;
+  overflow-y: scroll;
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.agreeCont h1 {
+  padding: 20px 0 5px 0;;
+  margin: 0;
+  color: #666;
+  font-size: 1.4;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.agreeCont h1:first-child {
+  padding-top: 0;
+}
+
+.agreeCont h2 {
+  padding: 20px 0 5px 0;
+  margin: 0;
+  color: #666;
+  font-size: 1.4;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.agreeCont h1+h2 {
+  padding-top: 0;
+}
+
+.agreeCont h2+ol {
+  margin-top: 0;
+}
+
+.agreeCont p {
+  padding: 0;
+  margin: 0;
+}
+
+.agreeCont ol {
+  padding: 0;
+  margin: 20px 0 0 20px;
+}
+
+.agreeCont ol li {
+  padding: 0;
+  margin: 0;
+}
+
+.agreeCont ol li p {
+  padding: 10px 0;
+  margin: 0;
+}
+
+.agreeCont ol li p strong {
+  color: #1c7ce6;
+}
+
+.agreeCont ol li ol {
+  padding: 0;
+  margin: 15px 0 15px 20px;
+  list-style-type: lower-alpha;
+}
+
+.agreeCont ol li ol li {
+  padding: 0;
+  margin: 0;
+}
+
+.agreeCont ol li ol li p {
+  padding: 0;
+  margin: 0;
+}
+
+.btn_box_ar {
+  padding: 20px 0;
+  color: #444;
+  text-align: right;
+  border-bottom: 1px solid #d5d5d5;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn_box_ar > span {
+  margin-right: 20px;
+}
+
+.btn_box_ar1 {
+  padding: 16px 0;
+  border: 1px solid #d5d5d5;
+  background: #f5f5f5;
+  color: #444;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn_box_ar1 .inline_box {
+  display: inline-block;
+  margin: 5px 30px;
+}
+
+.icon1 {
+  font-size: 70px;
+}
+
+
+.joinSelect-btn {
+  margin: 10px;
+  text-align: center;
+}

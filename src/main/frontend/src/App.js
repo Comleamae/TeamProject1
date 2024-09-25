@@ -33,6 +33,7 @@ import ManageSupply from './pages/order/kth/ManageSupply';
 import RegistSupply from './pages/order/kth/RegistSupply';
 import OrderList from './pages/order/kth/OrderList';
 import LocationPage from './pages/user/ksh/LocationPage';
+import JoinSelect from './pages/user/kth/JoinSelect';
 
 
 
@@ -80,6 +81,7 @@ const App = () => {
           <Route path='searchStaff' element={<SearchStaff />} />
 
           {/* 로그인 * 회원가입 페이지 */}
+          <Route path='joinSelect' element={<JoinSelect /> } />
           <Route path='joinStep1' element={<JoinStep1 />} />
           <Route path='joinStep1_1' element={<JoinStep1_1 />} />
           <Route path='joinStep2' element={<JoinStep2 />} />

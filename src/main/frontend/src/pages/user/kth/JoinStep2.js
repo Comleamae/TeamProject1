@@ -271,10 +271,10 @@ const JoinStep2 = () => {
         </table>
 
         <div className='join-btn-div'>
+        <button type='button' name='join-cancel' className='btn-2' onClick={(e) => { joinCancel() }}>취소</button>
           <button type='button' name='join' className='btn-1' onClick={(e) => { join() }}>
             회원가입
           </button>
-          <button type='button' name='join-cancel' className='btn-2' onClick={(e) => { joinCancel() }}>취소</button>
         </div>
       </div>
     </div>

@@ -105,7 +105,7 @@ const Login = ({ setLoginInfo }) => {
           <p>
             그린대학교병원의 회원이 아니십니까?
           </p>
-          <button type='button' className='btn-div' onClick={(e) => { navigate('/joinStep1') }}>회원가입</button>
+          <button type='button' className='btn-div' onClick={(e) => { navigate('/joinSelect') }}>회원가입</button>
         </div>
         <div>
           <p>
