@@ -3,6 +3,7 @@ import './JoinStep2.css'
 import { useNavigate } from 'react-router-dom'
 import { FaPeopleGroup } from "react-icons/fa6"; //사람아이콘
 import { FaChildren } from "react-icons/fa6"; //어린이 아이콘
+import { FaUserDoctor } from "react-icons/fa6"; //의사아ㅏ이콘
 
 
 const JoinStep1 = () => {
@@ -47,7 +48,7 @@ const JoinStep1 = () => {
           <div onClick={(e) => { navigate('/admin/join') }}>
             <h3>직원용 회원가입</h3>
             <p>준비중</p>
-            {/* < className='icon'/> */}
+            <FaUserDoctor className='icon' />
           </div>
         </div>
         <div>
