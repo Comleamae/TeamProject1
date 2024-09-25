@@ -69,7 +69,7 @@ const AdminLogin = ({}) => {
           saveLoginData(res)
         }
         else if(res.data.adminRole == 'doctor'){
-          alert(`${res.data.adminName} 의사5님 환영합니다.`)
+          alert(`${res.data.adminName} 의사님 환영합니다.`)
           navigate('/admin/treChart')
           saveLoginData(res)
         }

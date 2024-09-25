@@ -98,7 +98,7 @@
           , #{disease}
           , #{aboutPat}
           , #{treDate}
-          , 1
+          , #{docLinum}
         );
     </insert>
 
@@ -123,6 +123,8 @@
         ORDER BY TRE_DATE DESC
     </select>
 
+
+    <!--check-->
     <!-- 의료진 로그인 by kth  -->
     <select id="doctorLogin" resultMap="doctorMapper.doctor">
         SELECT *

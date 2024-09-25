@@ -19,7 +19,7 @@ public class DoctorController {
 
     //관리자 페이지를 통한 의사 등록
     @PostMapping("/insertDoctor")
-    void insertDoctor(@RequestBody DoctorVO doctorVO){
+    public void insertDoctor(@RequestBody DoctorVO doctorVO){
         doctorService.insertDoctor(doctorVO);
     }
 

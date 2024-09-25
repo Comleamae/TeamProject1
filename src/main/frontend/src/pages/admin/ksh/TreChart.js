@@ -58,15 +58,15 @@ const TreChart = () => {
 
   // 세션에서 의사 정보 불러오기
   useEffect(() => {
-    const sesssionInfo = window.sessionStorage.getItem('doctorLoginInfo');
+    const sesssionInfo = window.sessionStorage.getItem('adminLoginInfo');
     if (sesssionInfo) {
       const docInfo = JSON.parse(sesssionInfo);
 
       docInfoRef.current = {
-        docLinum: docInfo.doc_Linum,
-        docName: docInfo.doc_name,
-        deptNum: docInfo.dept_num,
-        deptName: getDeptName(docInfo.dept_num)
+        docLinum: docInfo.docLinum,
+        docName: docInfo.docName,
+        deptNum: docInfo.deptNum,
+        deptName: getDeptName(docInfo.deptNum)
       };
     }
   }, []);
@@ -116,10 +116,10 @@ const TreChart = () => {
   
   // 대기자 목록 화면에 띄우기
   useEffect(()=>{
-    const doctorLoginInfoString = window.sessionStorage.getItem('doctorLoginInfo');
-    const docInfo = JSON.parse(doctorLoginInfoString);
+    const adminLoginInfoString = window.sessionStorage.getItem('adminLoginInfo');
+    const docInfo = JSON.parse(adminLoginInfoString);
 
-    axios.get(`/patient/waitList/${docInfo.doc_Linum}`)
+    axios.get(`/patient/waitList/${docInfo.docLinum}`)
     .then((res)=>{
       console.log(res.data)
       setWaitList(res.data);
