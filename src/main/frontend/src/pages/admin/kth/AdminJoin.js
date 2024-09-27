@@ -74,59 +74,59 @@ const AdminJoin = () => {
 
 
   return (
-    <div className='join-box'>
+    <div className='join-div125'>
 
-      <div className='join-imgdiv'>
+      <div className='join-imgdiv1'>
         <img src='http://localhost:8080/images/bg_bar.gif' />
         <h5>관리자 등록</h5>
       </div>
-
-
-      <table className='join-table'>
-        <tbody>
-          <tr>
-            <td>직원 구분</td>
-            <td>
-              <input type='radio' name='adminRole' value='doctor' onChange={(e)=>{changeAdminData(e)}}/>의사
-              <input type='radio' name='adminRole' value='nurse' onChange={(e)=>{changeAdminData(e)}}/>간호사
-              <input type='radio' name='adminRole' value='staff' onChange={(e)=>{changeAdminData(e)}}/>직원
-            </td>
-          </tr>
-          <tr>
-            <td>아이디(의사번호)</td>
-            <td>
-              <input className='input-txt' type='text' name='adminId' placeholder='관리자 아이디(의사번호)'
-                onChange={(e) => {
-                  changeAdminData(e);
-                }} />
-            </td>
-          </tr>
-          <tr>
-            <td>비밀번호</td>
-            <td>
-              <input className='input-txt' type='password' name='adminPw' placeholder='비밀번호' onChange={(e) => { changeAdminData(e) }} />
-            </td>
-          </tr>
-          <tr>
-            <td>이름</td>
-            <td>
-              <input className='input-txt' type='text' name='adminName' placeholder='이름' onChange={(e) => { changeAdminData(e) }} />
-            </td>
-          </tr>
-          <tr>
-            <td>소속과의 번호 (의사만 입력)</td>
-            <td>
-              <input className='input-txt' type='text' name='deptNum' placeholder='소속과 번호' onChange={(e) => { changeAdminData(e) }} />
-            </td>
-          </tr>
-        </tbody>
-        <div className='join-btn-div'>
-          <button type='button' name='join' className='btn-1' onClick={(e) => { adminJoin() }}>
-            회원가입
-          </button>
-          <button type='button' name='join-cancel' className='btn-2' onClick={(e) => { joinCancel() }}>취소</button>
-        </div>
-      </table>
+      <div className='join-box125'>
+        <table className='join-table1'>
+          <tbody>
+            <tr>
+              <td>직원 구분</td>
+              <td>
+                <input type='radio' name='adminRole' value='doctor' onChange={(e)=>{changeAdminData(e)}}/>의사
+                <input type='radio' name='adminRole' value='nurse' onChange={(e)=>{changeAdminData(e)}}/>간호사
+                <input type='radio' name='adminRole' value='staff' onChange={(e)=>{changeAdminData(e)}}/>직원
+              </td>
+            </tr>
+            <tr>
+              <td>아이디(의사번호)</td>
+              <td>
+                <input className='input-txt' type='text' name='adminId' placeholder='관리자 아이디(의사번호)'
+                  onChange={(e) => {
+                    changeAdminData(e);
+                  }} />
+              </td>
+            </tr>
+            <tr>
+              <td>비밀번호</td>
+              <td>
+                <input className='input-txt' type='password' name='adminPw' placeholder='비밀번호' onChange={(e) => { changeAdminData(e) }} />
+              </td>
+            </tr>
+            <tr>
+              <td>이름</td>
+              <td>
+                <input className='input-txt' type='text' name='adminName' placeholder='이름' onChange={(e) => { changeAdminData(e) }} />
+              </td>
+            </tr>
+            <tr>
+              <td>소속과의 번호 (의사만 입력)</td>
+              <td>
+                <input className='input-txt' type='text' name='deptNum' placeholder='소속과 번호' onChange={(e) => { changeAdminData(e) }} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className='join-btn-div'>
+        <button type='button' name='join-cancel' className='btn-2' onClick={(e) => { joinCancel() }}>취소</button>
+        <button type='button' name='join' className='btn-1' onClick={(e) => { adminJoin() }}>
+          회원가입
+        </button>
+      </div>
     </div>
   )
 }
