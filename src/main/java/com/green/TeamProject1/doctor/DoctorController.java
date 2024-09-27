@@ -64,6 +64,7 @@ public class DoctorController {
         treatVO.setDisease(mapData.get("disease").toString());
         treatVO.setAboutPat(mapData.get("aboutPat").toString());
         treatVO.setTreDate(mapData.get("treDate").toString());
+        treatVO.setDocLinum(Integer.parseInt(mapData.get("docLinum").toString()));
 
         // 진료 기록 접수
         doctorService.insertTreatInfo(treatVO);
@@ -71,7 +72,6 @@ public class DoctorController {
         RecipeVO recipeVO = new RecipeVO();
         recipeVO.setTreNum(treNum);
         recipeVO.setMediName(mapData.get("mediName").toString());
-        recipeVO.setEatCnt(mapData.get("eatCnt").toString());
 
         // 처방전 정보 같이 접수
         doctorService.insertRecipeInfo(recipeVO);
@@ -81,7 +81,7 @@ public class DoctorController {
     @GetMapping("/treOneSelect/{patNum}")
     public List<TreatVO> treOneSelect(@PathVariable(name = "patNum") int patNum) {
         //선택한 환자 진료상태 대기중->진료중
-
+        System.out.println(doctorService.treOneSelect(patNum).toString());
         return doctorService.treOneSelect(patNum);
     }
 
@@ -115,6 +115,9 @@ public class DoctorController {
         doctorService.waitListDelete(patNum);
     }
 
-
-
+    // 질병 코드 가져오기
+    @GetMapping("/diseaseCode")
+    public List<DiseaseVO> diseaseCode(DiseaseVO diseaseVO){
+        return doctorService.diseaseCode(diseaseVO);
+    }
 }

@@ -34,7 +34,13 @@
         <id column="RECIPE_NUM" property="recipeNum"/>
         <result column="TRE_NUM" property="treNum"/>
         <result column="MEDI_NAME" property="mediName"/>
-        <result column="EAT_CNT" property="eatCnt"/>
+    </resultMap>
+
+    <!-- 질병 정보에 대한 정보 -->
+    <resultMap id="diseaseCategory" type="com.green.TeamProject1.doctor.DiseaseVO">
+        <id column="DIS_CODE" property="disCode"/>
+        <result column="DIS_NAME" property="disName"/>
+        <result column="REC_PRICE" property="recPrice"/>
     </resultMap>
 
 
@@ -86,7 +92,7 @@
     <insert id="insertTreatInfo">
         INSERT INTO info_treat (
             TRE_NUM
-           , pat_num
+          , pat_num
           , disease
           , about_pat
           , tre_date
@@ -94,7 +100,7 @@
         )
         VALUES (
             #{treNum}
-           , #{patNum}
+          , #{patNum}
           , #{disease}
           , #{aboutPat}
           , #{treDate}
@@ -107,23 +113,20 @@
         INSERT INTO info_recipe (
             TRE_NUM
           , MEDI_NAME
-          , EAT_CNT
         )
         VALUES (
            #{treNum}
          , #{mediName}
-         , #{eatCnt}
         );
     </insert>
 
     <select id="treOneSelect" resultMap="patientMapper.infoTreat">
-        SELECT *
-        FROM info_treat
-        WHERE pat_num = #{patNum}
-        ORDER BY TRE_DATE DESC
+        SELECT it.*, dc.dis_name
+        FROM info_treat it, disease_category dc
+        WHERE it.pat_num = #{patNum}
+        AND it.disease = dc.dis_code
+        ORDER BY it.tre_date DESC
     </select>
-
-
     <!--check-->
     <!-- 의료진 로그인 by kth  -->
     <select id="doctorLogin" resultMap="doctorMapper.doctor">
@@ -163,7 +166,6 @@
         WHERE pat_num = #{patNum};
     </update>
 
-
     <!-- 진료 정보 등록하면 기존 대기자 목록 삭제 -->
     <delete id="waitListDelete">
         DELETE from recep_info
@@ -180,4 +182,7 @@
     </select>
 
 
+    <select id="diseaseCode" resultMap="doctorMapper.diseaseCategory">
+        SELECT * FROM DISEASE_CATEGORY
+    </select>
 </mapper>

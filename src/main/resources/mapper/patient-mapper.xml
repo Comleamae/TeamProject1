@@ -29,7 +29,6 @@
         <id column="RECIPE_NUM" property="recipeNum"/>
         <result column="TRE_NUM" property="treNum"/>
         <result column="MEDI_NAME" property="mediName"/>
-        <result column="EAT_CNT" property="eatCnt"/>
     </resultMap>
 
     <!--처방 요금에 대한 정보-->
@@ -64,6 +63,7 @@
         <association property="recipeVO" resultMap="infoRecipe"/>
         <association property="dateVO" resultMap="infoDate"/>
         <association property="priceVO" resultMap="infoPrice"/>
+        <association property="diseaseVO" resultMap="doctorMapper.diseaseCategory"/>
     </resultMap>
 
     <!--처방전 작성 및 조회를 위한 정보 select-->
@@ -165,6 +165,7 @@
             FROM patient p, recep_info r
             WHERE p.pat_num = r.pat_num
             AND DOC_LINUM = #{docLinum}
+            AND RECEP_STATUS = '대기중'
             ORDER BY RECEP_DATE DESC;
         </select>
 

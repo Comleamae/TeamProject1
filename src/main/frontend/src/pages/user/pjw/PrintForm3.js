@@ -122,7 +122,7 @@ const printRef = useRef();
               </tr>
               <tr>
                 <td colSpan={2}>{patientOne[0].treatVO.recipeVO.mediName}</td>
-                <td colSpan={6}>{patientOne[0].treatVO.recipeVO.eatCnt}</td>
+                <td colSpan={6}>{patientOne[0].treatVO.recipeVO.mediName}</td>
               </tr>
               <tr>
                 <td>사용기간</td>

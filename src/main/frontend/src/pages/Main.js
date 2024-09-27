@@ -10,8 +10,6 @@ import MedicalCenter from './MedicalCenter';
 import SideList from './SideList';
 import { FaUserDoctor } from 'react-icons/fa6';
 
-
-
 const bannerImages = [
   'http://localhost:8080/images/병원병원.jpg',
   'http://localhost:8080/images/병원.jpg'
@@ -124,7 +122,7 @@ const Main = () => {
             </div>
           </div> */}
 
-          <div className='sub-idex-box' onClick={(e) => { navigate('/locationPage') }}>
+          <div className='sub-idex-box' onClick={(e) => { navigate('/kakaoMap') }}>
             <div className='sub-inbox'>
                 <p className='main-p'>찾아오시는 길</p>
                 <GrMapLocation className='icon'/>

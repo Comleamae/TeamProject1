@@ -26,7 +26,6 @@ public interface DoctorService {
     // 진료 번호 넘겨주기 위해 새로 생성
     int getNextTreNum();
 
-
     // 선택한 환자 진료정보 삽입
     void insertTreatInfo(TreatVO treatVO);
 
@@ -54,5 +53,6 @@ public interface DoctorService {
     // 진료 내역에서 진단명 클릭 시 처방전 상세 내역 보여주기
     TreatVO detailDisease(int treNum);
 
-
+    // 질병 코드 조회
+    List<DiseaseVO> diseaseCode(DiseaseVO diseaseVO);
 }
