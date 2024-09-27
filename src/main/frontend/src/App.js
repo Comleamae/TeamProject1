@@ -32,8 +32,8 @@ import RequestOrder from './pages/order/kth/RequestOrder';
 import ManageSupply from './pages/order/kth/ManageSupply';
 import RegistSupply from './pages/order/kth/RegistSupply';
 import OrderList from './pages/order/kth/OrderList';
-import LocationPage from './pages/user/ksh/LocationPage';
 import JoinSelect from './pages/user/kth/JoinSelect';
+import KakaoMap from './pages/user/ksh/KakaoMap';
 
 
 
@@ -100,7 +100,7 @@ const App = () => {
             <Route path='printForm4/:patNum/:treNum' element={<PrintForm4 />} />
           </Route>
 
-          <Route path='locationPage' element={<LocationPage/>}/>
+          <Route path='kakaoMap' element={<KakaoMap/>}/>
         </Route>
 
         {/* 진료비 수납내용 */}

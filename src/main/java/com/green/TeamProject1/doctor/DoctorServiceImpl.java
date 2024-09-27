@@ -84,6 +84,8 @@ public class DoctorServiceImpl implements DoctorService{
         return sqlSession.selectOne("doctorMapper.detailDisease", treNum);
     }
 
+
+
     // 진료 시작 버튼 누르면 해당 환자의 상태가 대기중 -> 진료중으로 변경되어야함.
     @Override
     public void statusChange(int patNum) {
@@ -102,5 +104,8 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
 
-
+    @Override
+    public List<DiseaseVO> diseaseCode(DiseaseVO diseaseVO) {
+        return sqlSession.selectList("doctorMapper.diseaseCode");
+    }
 }
