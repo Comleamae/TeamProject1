@@ -1,13 +1,16 @@
 
-.join-div{
+.join-div125{
   width: 1300px;
-  height: 1250px;
+  height: 500px;
+  text-align: center;
+  margin-top: 100px;
   margin: 0 auto;
-  text-align: left;
 }
 
-.join-box {
-  width: 100%;
+.join-box125 {
+  width: 55%;
+  margin: 0 auto;
+  
 }
 
 .join-checklist {
@@ -56,19 +59,20 @@
   border-radius: 50%;
 }
 
-.join-imgdiv > img {
-  width: 2%;
+.join-imgdiv1 > img {
+  width: 2.5%;
 }
 
-.join-imgdiv > h5 {
+.join-imgdiv1 > h5 {
   font-size: 21px;
   color: #1a1a1a;
   padding-top: 10px;
   font-weight: 600;
+
   margin-bottom: 17px;
 }
 
-.join-table{
+.join-table1{
   width: 100%;
   text-align: left;
   border-top: 2px solid #2c59b4;
@@ -79,14 +83,14 @@
   vertical-align: middle;
 }
 
-.join-table > tbody > tr td {
+.join-table1 > tbody > tr td {
   padding: 10px 15px;
   border-top: 1px solid #c6ccd8;
   border-bottom: 1px solid #c6ccd8;
   vertical-align: middle;
 }
 
-.join-table > tbody > tr > td:first-child {
+.join-table1 > tbody > tr > td:first-child {
   background: #f7f7f7;
 }
 

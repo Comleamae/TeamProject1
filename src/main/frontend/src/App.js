@@ -77,6 +77,8 @@ const App = () => {
           {/* 메인화면 */}
           <Route path="" element={<Main />} />
 
+          <Route path='visitant' element={<Visitant />} />
+
           {/* 의료진 찾기 */}
           <Route path='searchStaff' element={<SearchStaff />} />
 
@@ -123,7 +125,7 @@ const App = () => {
           <Route path='' element={<AdminMain />} />
           <Route path='login' element={<AdminLogin setLoginInfo={setLoginInfo} />} />
           <Route path='join' element={<AdminJoin />} />
-          <Route path='visitant' element={<Visitant />} />
+          {/* <Route path='visitant' element={<Visitant />} /> 유저로 이사감 */}
           <Route path='newVisit' element={<NewVisit />} />
           <Route path='reVisit' element={<ReVisit />} />
           <Route path='treChart' element={<TreChart />} />
