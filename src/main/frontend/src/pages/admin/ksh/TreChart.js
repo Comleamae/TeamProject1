@@ -294,6 +294,7 @@ const TreChart = () => {
                   <td>검진일</td>
                   <td>
                     <input type='date' className='chart-input-tag' name='treDate' min={today} 
+                    value={today}
                     onChange={changeTreInfo}></input>
                   </td>
                 </tr>
