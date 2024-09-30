@@ -1,4 +1,5 @@
 import axios from 'axios'
+import './Find.css'
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -43,21 +44,33 @@ const FindId = () => {
   }
 
   return (
-    <div>
-      <h1>아이디 찾기</h1>
-      <table>
-        <tr>
-          <td>이름</td>
-          <td><input type='text' name='memName' placeholder='이름' onChange={(e)=>{changeFindIdInfo(e)}}/></td>
-        </tr>
-        <tr>
-          <td>주민번호</td>
-          <td><input type='text' name='citizenNum' placeholder='주민번호 앞자리'  onChange={(e)=>{changeFindIdInfo(e)}} ref={citizenNum1}/> - 
-          <input type='password' name='citizenNum' placeholder='주민번호 뒷자리'  onChange={(e)=>{changeFindIdInfo(e)}} ref={citizenNum2}/>
-          </td>
-        </tr>
-      </table >
-      <button type='button' onClick={(e)=>{findId()}}>아이디 찾기</button>
+    <div className='find-id-div'>
+      <div className='user-div'>
+        <h2 className='hh2'>아이디 찾기</h2>
+        <p>아이디를 잊으셨습니까?</p>
+      </div>
+      <div className='user-login-txt'>
+        <h2>
+          <strong>아이디를 잊으셨습니까?</strong><br />
+          아래 방법으로 아이디를 찾으실 수 있습니다.
+        </h2>
+      </div>
+
+      <div className='idbox'>
+        <div className='id-table'>
+          <div>
+            <span>이름</span>
+            <input className='id-input' type='text' name='memName' placeholder='이름' onChange={(e)=>{changeFindIdInfo(e)}}/>
+          </div>
+          <div>
+            <span>주민번호</span>
+            <input className='id-input2' type='text' name='citizenNum' placeholder='주민번호 앞자리'  onChange={(e)=>{changeFindIdInfo(e)}} ref={citizenNum1}/> - <input className='id-input2' type='password' name='citizenNum' placeholder='주민번호 뒷자리'  onChange={(e)=>{changeFindIdInfo(e)}} ref={citizenNum2}/>
+          </div>
+        </div >
+        <button type='button' onClick={(e)=>{findId()}}>
+          아이디 찾기
+        </button>
+      </div>
     </div>
   )
 }

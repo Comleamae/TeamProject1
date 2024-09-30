@@ -36,7 +36,7 @@ const SideList = () => {
                 </p>
               </div>
               <div className='side-right'>
-                <img src='http://localhost:8080/images/banner-1.png' alt='Banner 1' />
+                <img src='http://localhost:8080/images/b2.jpg' alt='Banner 1' />
               </div>
             </div>
           </SwiperSlide>
@@ -53,7 +53,7 @@ const SideList = () => {
                 </p>
               </div>
               <div className='side-right'>
-                <img src='http://localhost:8080/images/banner-2.png' alt='Banner 2' />
+                <img src='http://localhost:8080/images/병원병원.jpg' alt='Banner 2' />
               </div>
             </div>
           </SwiperSlide>
@@ -73,7 +73,7 @@ const SideList = () => {
                 </p>
               </div>
               <div className='side-right'>
-                <img src='http://localhost:8080/images/banner-3.png' alt='Banner 3' />
+                <img src='http://localhost:8080/images/b1.jpg' alt='Banner 3' />
               </div>
             </div>
           </SwiperSlide>
