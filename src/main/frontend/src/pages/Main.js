@@ -8,7 +8,6 @@ import { FaHandHoldingMedical } from "react-icons/fa";
 import { GrMapLocation } from "react-icons/gr"; //찾아오시는길 아이콘
 import MedicalCenter from './MedicalCenter';
 import SideList from './SideList';
-import { FaUserDoctor } from 'react-icons/fa6';
 
 const bannerImages = [
   'http://localhost:8080/images/병원병원.jpg',

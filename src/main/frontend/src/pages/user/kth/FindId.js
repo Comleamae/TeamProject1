@@ -59,7 +59,7 @@ const FindId = () => {
       <div className='idbox'>
         <div className='id-table'>
           <div>
-            <span>이름</span>
+            <span>이 름</span>
             <input className='id-input' type='text' name='memName' placeholder='이름' onChange={(e)=>{changeFindIdInfo(e)}}/>
           </div>
           <div>
@@ -67,7 +67,7 @@ const FindId = () => {
             <input className='id-input2' type='text' name='citizenNum' placeholder='주민번호 앞자리'  onChange={(e)=>{changeFindIdInfo(e)}} ref={citizenNum1}/> - <input className='id-input2' type='password' name='citizenNum' placeholder='주민번호 뒷자리'  onChange={(e)=>{changeFindIdInfo(e)}} ref={citizenNum2}/>
           </div>
         </div >
-        <button type='button' onClick={(e)=>{findId()}}>
+        <button className='idbtn' type='button' onClick={(e)=>{findId()}}>
           아이디 찾기
         </button>
       </div>

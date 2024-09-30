@@ -49,6 +49,5 @@ li {
 }
 
 li::before {
-  content: "• "; /* Adds a bullet point before each list item */
   color: #000;
 }
