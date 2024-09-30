@@ -1,0 +1,48 @@
+
+
+.find-id-div{
+  width: 1300px;
+  height: 600px;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+
+.hh2{
+  font-size: 35px;
+}
+
+.idbox {
+  width: 1300px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F5F5F5;
+  border: 0.5px solid lightgray;
+  
+}
+
+.id-table {
+  width: 35%;
+  height: 200px;
+  text-align: left;
+  border: 1px solid blue;
+}
+
+.id-input {
+  width: 350px;
+  height: 40px;
+  border: 0.5px solid lightgray;
+  border-radius: 5px;
+  margin: 5px;
+  padding-left: 10px;
+}
+
+.id-input2 {
+  width: 150px;
+  height: 40px;
+  border: 0.5px solid lightgray;
+  border-radius: 5px;
+  margin: 5px;
+  padding-left: 10px;
+}

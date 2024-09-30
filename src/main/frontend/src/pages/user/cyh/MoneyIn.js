@@ -8,6 +8,32 @@ const MoneyIn = () => {
 
   return (
     <div className='pay-main-box'>
+      <div className='user-infor'>
+        <table className='user-table'>
+          <tr>
+            <td>이름</td>
+            <td>주민번호</td>
+            <td>전화번호</td>
+          </tr>
+          <tr>
+            <td>김땡댕</td>
+            <td>123456-1234567</td>
+            <td>
+              010-1234-1234
+            </td>
+          </tr>
+          <tr>
+            <td>진료과목</td>
+            <td>질병군</td>
+            <td>병실</td>
+          </tr>
+          <tr>
+            <td>외과</td>
+            <td>000</td>
+            <td>000</td>
+          </tr>
+          </table>
+      </div>
 
       <div className='money-content'>
         <div className='m-top-box'>
@@ -20,62 +46,19 @@ const MoneyIn = () => {
           <h5> 진료비 계산서 · 영수증</h5>
         </div>
 
-        <div className='user-infor'>
-          <table className='user-table'>
-            <tr>
-              <td>등록번호</td>
-              <td>환자성명</td>
-              <td colSpan={2}>진료기간</td>
-              <td>야간(공휴일)진료</td>
-            </tr>
-            <tr>
-              <td>1354-52</td>
-              <td>이야호</td>
-              <td colSpan={2}>
-                2024-05-21 부터 2024-08-26 까지
-              </td>
-              <td>
-                <input type='checkbox' /> 야간
-                <input type='checkbox' /> 공휴일
-              </td>
-            </tr>
-            <tr>
-              <td>진료과목</td>
-              <td>질병군</td>
-              <td>병실</td>
-              <td>환자구분</td>
-              <td>영수증번호</td>
-            </tr>
-            <tr>
-              <td>일반내과</td>
-              <td>식곤증</td>
-              <td>1320호</td>
-              <td>건강보험</td>
-              <td>12516-0000-0000-01</td>
-            </tr>
-            </table>
-        </div>  
         <div className='money-box'>
           <div className='left-right'>
             <table className='left-table'>
               <thead>
                 <tr>
-                  <td rowSpan={3}>항목</td>
-                  <td colSpan={3}>급여</td>
-                  <td colSpan={2}>비급여</td>
-                </tr>
-                <tr>
-                  <td colSpan={2}>일부 본인부담</td>
-                  <td>전액</td>
-                  <td>선택</td>
-                  <td>선택진료료</td>
+                  <td rowSpan={2}>항목</td>
+                  <td colSpan={2}>급여</td>
+                  <td>비급여</td>
                 </tr>
                 <tr>
                   <td>본인부담금</td>
                   <td>공단부담금</td>
-                  <td>본인부담</td>
                   <td>진료료</td>
-                  <td>이  외</td>
                 </tr>
               </thead>
               <tbody>
@@ -84,23 +67,18 @@ const MoneyIn = () => {
                   <td>0000</td>
                   <td>10000</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td>입원료</td>
                   <td>2,600</td>
                   <td>228,680</td>
                   <td>1,377</td>
-                  <td></td>
-                  <td>480,000</td>
+
                 </tr>
                 <tr>
                   <td>식  대</td>
                   <td>22,600</td>
                   <td>22,680</td>
-                  <td></td>
-                  <td></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -108,23 +86,17 @@ const MoneyIn = () => {
                   <td>00</td>
                   <td>0000</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td>주사료</td>
                   <td>00</td>
                   <td>0000</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td>마취료</td>
                   <td>00</td>
                   <td>0000</td>
-                  <td></td>
-                  <td></td>
                   <td></td>
                 </tr>
                 {
