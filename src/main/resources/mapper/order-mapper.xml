@@ -11,6 +11,9 @@
         <result column="DELIVERY_DAY" property="deliveryDay"/>
         <result column="SUPPLIER" property="supplier"/>
         <result column="SUPPLY_MAKEDAY" property="supplyMakeday"/>
+        <result column="SUPPLY_IMAGE" property="supplyImage"/>
+        <result column="SUPPLY_AMOUNT" property="supplyAmount"/>
+        <result column="SUPPLY_MIN_AMOUNT" property="supplyMinAmount"/>
     </resultMap>
 
     <resultMap id="inventory" type="com.green.TeamProject1.order.vo.InventoryVO">
@@ -27,5 +30,40 @@
         <result column="ORDER_NOTE" property="orderNote"/>
     </resultMap>
 
+    <!--재고 조회 시 모든 물품 조회-->
+    <select id="selectAllSupply" resultMap="supply">
+        SELECT * FROM SUPPLY
+    </select>
+
+    <!--물품 등록시 물품 이름을 통해 물품의 중복검사 실행-->
+    <select id="checkSupply" resultMap="supply">
+        SELECT * FROM SUPPLY
+        WHERE SUPPLY_NAME = #{supplyName}
+    </select>
+
+    <!--새로운 물품 등록-->
+    <insert id="registSupply">
+        INSERT INTO SUPPLY (
+            SUPPLY_NAME
+            , SUPPLY_PRICE
+            , SUPPLY_STANDARD
+            , SUPPLIER
+            , SUPPLY_CAUTION
+            , SUPPLY_IMAGE
+        ) VALUES (
+            #{supplyName}
+            , #{supplyPrice}
+            , #{supplyStandard}
+            , #{supplier}
+            , #{supplyCaution}
+            , #{supplyImage}
+        )
+    </insert>
+    
+
+    <!--발주 내역 확인-->
+    <select id="selectAllOrder" resultMap="order">
+        SELECT * FROM ORDER
+    </select>
 </mapper>
 
