@@ -1,7 +1,5 @@
 package com.green.TeamProject1.doctor;
 
-import com.green.TeamProject1.patient.PatientVO;
-import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -84,8 +82,6 @@ public class DoctorServiceImpl implements DoctorService{
         return sqlSession.selectOne("doctorMapper.detailDisease", treNum);
     }
 
-
-
     // 진료 시작 버튼 누르면 해당 환자의 상태가 대기중 -> 진료중으로 변경되어야함.
     @Override
     public void statusChange(int patNum) {
@@ -104,8 +100,17 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
 
+    // 질병 코드 번호 조회
     @Override
     public List<DiseaseVO> diseaseCode(DiseaseVO diseaseVO) {
         return sqlSession.selectList("doctorMapper.diseaseCode");
     }
+
+    // 수납 정보 등록
+    @Override
+    public void payMoney(TreatVO treatVO) {
+        sqlSession.insert("doctorMapper.payMoney", treatVO);
+    }
+
+
 }

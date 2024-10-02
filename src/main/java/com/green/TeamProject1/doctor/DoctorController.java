@@ -1,5 +1,6 @@
 package com.green.TeamProject1.doctor;
 
+import com.green.TeamProject1.desk.DeskService;
 import com.green.TeamProject1.patient.PatientVO;
 import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.RecipeVO;
@@ -47,7 +48,7 @@ public class DoctorController {
 
     // 선택한 환자 진료정보 삽입
     @PostMapping("/insertTreatInfo")
-    public void insertTreatInfo(@RequestBody Map<String, Object> mapData) {
+    public TreatVO insertTreatInfo(@RequestBody Map<String, Object> mapData) {
         //진료 중 명단에서 제외
         //의사번호 가져와서 등록할 수 있도록 수정
 
@@ -66,7 +67,7 @@ public class DoctorController {
         treatVO.setTreDate(mapData.get("treDate").toString());
         treatVO.setDocLinum(Integer.parseInt(mapData.get("docLinum").toString()));
 
-        // 진료 기록 접수
+        // 진료 기록 등록
         doctorService.insertTreatInfo(treatVO);
 
         RecipeVO recipeVO = new RecipeVO();
@@ -75,14 +76,22 @@ public class DoctorController {
 
         // 처방전 정보 같이 접수
         doctorService.insertRecipeInfo(recipeVO);
+
+        return treatVO;
     }
 
-//    // 선택한 환자 진료정보 한개 가져오기
+//    // 선택한 환자의 모든 진료정보 가져오기
     @GetMapping("/treOneSelect/{patNum}")
     public List<TreatVO> treOneSelect(@PathVariable(name = "patNum") int patNum) {
         //선택한 환자 진료상태 대기중->진료중
         System.out.println(doctorService.treOneSelect(patNum).toString());
         return doctorService.treOneSelect(patNum);
+    }
+
+    @GetMapping("/detailDisease/{treNum}")
+    public TreatVO detailDisease(@PathVariable(name = "treNum") int treNum){
+        System.out.println(doctorService.detailDisease(treNum));
+        return doctorService.detailDisease(treNum);
     }
 
     // 의료진 로그인
@@ -110,9 +119,19 @@ public class DoctorController {
     }
 
     // 환자 진료 정보 등록 시 대기목록, DB 삭제
-    @DeleteMapping("/waitListDelete/{patNum}")
-    public void waitListDelete(@PathVariable(name = "patNum") int patNum){
+    @PostMapping("/waitListDelete")
+    public void waitListDelete(@RequestBody Map<String, Object> map){
+        int patNum = Integer.parseInt(map.get("patNum").toString());
         doctorService.waitListDelete(patNum);
+
+        //수납테이블에 등록 (화면에서 질병코드는 가져와야 함) 001
+        TreatVO vo = new TreatVO();
+
+        vo.setTreNum(Integer.parseInt(map.get("treNum").toString()));
+        vo.setDisease(map.get("disease").toString());
+
+
+        doctorService.payMoney(vo);
     }
 
     // 질병 코드 가져오기
@@ -120,4 +139,6 @@ public class DoctorController {
     public List<DiseaseVO> diseaseCode(DiseaseVO diseaseVO){
         return doctorService.diseaseCode(diseaseVO);
     }
+
+
 }

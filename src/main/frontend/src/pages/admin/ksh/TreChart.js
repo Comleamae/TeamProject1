@@ -22,7 +22,7 @@ const TreChart = () => {
     mediName : '',
     disName : ''
   });
-  console.log(treList)
+
   // 질병 코드 저장할 변수
   const [disList, setDisList] = useState([]);
   
@@ -39,10 +39,12 @@ const TreChart = () => {
 
   // 진단명 클릭 후 가져올 진단서 내용
   const [detailDiagnosis, setDetailDiagnosis] = useState({
-    disease : '',
+    diseaseVO : {
+      disName : ''
+    },
     aboutPat : '',
     recipeVO : {
-      mediName : ''
+      mediName: ''
     }
   });
   // 의사정보 담아두기
@@ -141,7 +143,12 @@ const TreChart = () => {
     axios.post('/doctor/insertTreatInfo', treInfo)
     .then((res)=>{
       alert('진료 기록이 등록되었습니다.')
-      axios.delete(`/doctor/waitListDelete/${treInfo.patNum}`)
+      
+      axios.post(`/doctor/waitListDelete`, {
+        patNum : treInfo.patNum,
+        treNum : res.data.treNum,
+        disease : res.data.disease
+      })
       .then((res)=>{
         console.log(res.data)
       })
@@ -197,7 +204,6 @@ const TreChart = () => {
     })
   }
 
-  console.log(treInfo);
   return (
     <>
       <div className='main-title-div'>
@@ -254,6 +260,7 @@ const TreChart = () => {
                     </tr>
                   ))}
                 </tbody>
+                
               </table>
               <div className="page-btn">
                 <button onClick={()=>setMarkPage(markPage - 1)} disabled={markPage === 1}>이전</button>
@@ -272,7 +279,7 @@ const TreChart = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td>{detailDiagnosis.disease.disName}</td>
+                  <td>{detailDiagnosis.diseaseVO.disName}</td>
                   <td>{detailDiagnosis.aboutPat}</td>
                   <td>{detailDiagnosis.recipeVO.mediName}</td>
                 </tr>
@@ -294,7 +301,7 @@ const TreChart = () => {
                   <td>검진일</td>
                   <td>
                     <input type='date' className='chart-input-tag' name='treDate' min={today} 
-                    value={today}
+                    // value={today}
                     onChange={changeTreInfo}></input>
                   </td>
                 </tr>
