@@ -16,4 +16,5 @@ public class SupplyVO {
     private int supplyMinAmount;
     //첨부 이미지 파일명
     private String supplyImage;
+    private int orderAmount;
 }

@@ -14,6 +14,7 @@
         <result column="SUPPLY_IMAGE" property="supplyImage"/>
         <result column="SUPPLY_AMOUNT" property="supplyAmount"/>
         <result column="SUPPLY_MIN_AMOUNT" property="supplyMinAmount"/>
+        <association property="orderAmount" resultMap="order"/>
     </resultMap>
 
     <resultMap id="inventory" type="com.green.TeamProject1.order.vo.InventoryVO">
@@ -32,7 +33,9 @@
 
     <!--재고 조회 시 모든 물품 조회-->
     <select id="selectAllSupply" resultMap="supply">
-        SELECT * FROM SUPPLY
+        SELECT SUPPLY.*, ORDER_AMOUNT
+        FROM SUPPLY, ORDER
+        WHERE SUPPLY.SUPPLY_NUM = ORDER.SUPPLY_NUM
     </select>
 
     <!--물품 등록시 물품 이름을 통해 물품의 중복검사 실행-->

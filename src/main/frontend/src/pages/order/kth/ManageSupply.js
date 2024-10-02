@@ -7,7 +7,7 @@ const ManageSupply = () => {
   const [supplyList, setSupplyList] = useState([]);
   
   // 입고 예정 (발주 목록으로 부터 가져옴)
-  const [orderList, setOrderList] = useState([]);
+  const [orderAmount, setOrderAmount] = useState([]);
 
   // 재고 목록 불러와서 화면에 띄우기
   useEffect(() => {
@@ -20,6 +20,18 @@ const ManageSupply = () => {
         console.log(error);
       });
   }, []);
+
+  //발주 물량(입고 예정량) 조회
+  // 조인을 이용해서 한번에 조회하는게 맞아보이는데...? 조인으로 연결하고 supply와 오더량을 같이 조회
+  function getOrderAmount(){
+    axios.get('/api_order/getOrderAmount')
+    .then((res)=>{
+      setOrderAmount(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
 
   return (
     <div>
