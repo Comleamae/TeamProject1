@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service("deskService")
 public class DeskServiceImpl implements DeskService{
+
     @Autowired
     private SqlSessionTemplate sqlSession;
 

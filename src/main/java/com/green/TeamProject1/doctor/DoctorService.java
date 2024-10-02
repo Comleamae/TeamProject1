@@ -1,11 +1,8 @@
 package com.green.TeamProject1.doctor;
 
-import com.green.TeamProject1.patient.PatientVO;
-import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 
-import javax.print.Doc;
 import java.util.List;
 
 public interface DoctorService {
@@ -55,4 +52,7 @@ public interface DoctorService {
 
     // 질병 코드 조회
     List<DiseaseVO> diseaseCode(DiseaseVO diseaseVO);
+
+    // 수납 정보 등록
+    void payMoney(TreatVO treatVO);
 }

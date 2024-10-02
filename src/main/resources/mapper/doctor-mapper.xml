@@ -10,6 +10,7 @@
         <result column="DEPT_NUM" property="deptNum"/>
         <association property="recepVO" resultMap="patientMapper.recep"/>
         <association property="mediDeptVO" resultMap="mediDept"/>
+        <association property="deskVO" resultMap="deskInfo"/>
         <collection property="patientVO" resultMap="patientMapper.patient"/>
     </resultMap>
 
@@ -28,6 +29,14 @@
         );
     </insert>
 
+    <!-- 수납 정보에 대한 정보 -->
+    <resultMap id="deskInfo" type="com.green.TeamProject1.doctor.DeskVO">
+        <id column="DESK_NUM" property="deskNum"/>
+        <result column="TRE_NUM" property="treNum"/>
+        <result column="DESK_DATE" property="deskDate"/>
+        <result column="DESK_PRICE" property="deskPrice"/>
+        <result column="IS_PAY" property="isPay"/>
+    </resultMap>
 
     <!--처방전에 대한 정보-->
     <resultMap id="infoRecipe" type="com.green.TeamProject1.patient.RecipeVO">
@@ -44,12 +53,12 @@
     </resultMap>
 
 
+
     <!-- 의사에 연결할 진료과 정보 -->
     <resultMap id="mediDept" type="com.green.TeamProject1.doctor.MediDeptVO">
         <result column="DEPT_NUM" property="deptNum"/>
         <result column="DEPT_NAME" property="deptName"/>
     </resultMap>
-
 
     <!--의사 한명의 정보를 받아옴-->
     <select id="getOneDoc" resultMap="doctor">
@@ -85,10 +94,7 @@
     </select>
 
 
-    <!-- 대기자 목록에서 선택한 환자 진료 정보 삽입 -->
-    <!-- 아래 코드에 의사번호는 임시로 삽입(현재 관리자로그인 기능 구현안되어있음)
-         관리자 기능 구현되면 의사번호 받아와서 실행되게 만들어야함.
-     -->
+    <!-- 대기자 목록에서 선택한 환자 진료 정보 등록 -->
     <insert id="insertTreatInfo">
         INSERT INTO info_treat (
             TRE_NUM
@@ -109,6 +115,7 @@
     </insert>
 
     <!-- 대기자 목록에서 선택한 환자 진료 정보에 처방전 정보 추가 삽입 -->
+    <!-- 진료 기록 등록되면 DB recep_info에서 정보 삭제 -->
     <insert id="insertRecipeInfo">
         INSERT INTO info_recipe (
             TRE_NUM
@@ -175,14 +182,31 @@
 
     <!-- 진단명 클릭 시 진단명 기준으로 상세 내역 조회 -->
     <select id="detailDisease" resultMap="patientMapper.infoTreat">
-        SELECT T.TRE_NUM, T.DISEASE, T.ABOUT_PAT, R.MEDI_NAME, R.EAT_CNT
-        FROM INFO_TREAT T, INFO_RECIPE R
+        SELECT T.TRE_NUM, D.DIS_NAME, T.ABOUT_PAT, R.MEDI_NAME
+        FROM INFO_TREAT T, INFO_RECIPE R, DISEASE_CATEGORY D
         WHERE T.TRE_NUM = R.TRE_NUM
+        AND T.DISEASE = D.DIS_CODE
         AND T.TRE_NUM = #{treNum};
     </select>
 
 
+    <!-- 질병 코드 조회 -->
     <select id="diseaseCode" resultMap="doctorMapper.diseaseCategory">
         SELECT * FROM DISEASE_CATEGORY
     </select>
+
+    <!-- 수납 정보 등록 -->
+    <insert id="payMoney">
+        INSERT INTO desk (
+            tre_num
+            , desk_price
+            , is_pay
+        )
+        VALUES (
+            #{treNum}
+            , (SELECT REC_PRICE FROM disease_category WHERE DIS_CODE = #{disease})
+            , 'N'
+        );
+    </insert>
+
 </mapper>

@@ -16,21 +16,19 @@ const MoneyIn = () => {
             <td>전화번호</td>
           </tr>
           <tr>
-            <td>김땡댕</td>
-            <td>123456-1234567</td>
-            <td>
-              010-1234-1234
-            </td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
             <td>진료과목</td>
             <td>질병군</td>
-            <td>병실</td>
+            <td>결제여부</td>
           </tr>
           <tr>
-            <td>외과</td>
-            <td>000</td>
-            <td>000</td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           </table>
       </div>
