@@ -17,4 +17,5 @@ public class DoctorVO {
     private MediDeptVO mediDeptVO;
     private PatientVO patientVO;
     private DeskVO deskVO;
+    private TreatVO treatVO;
 }

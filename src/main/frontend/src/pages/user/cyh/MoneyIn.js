@@ -1,10 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './MoneyIn.css'
-import { useNavigate } from 'react-router-dom'
+import { UNSAFE_useScrollRestoration, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 const MoneyIn = () => {
 
   const navigate = useNavigate();
+      
+  const [doctorInfo, setDoctorInfo] = useState({
+    docName : ''
+  });
+
+  const [patientInfo, setPatientInfo] = useState({
+    patNum : '',
+    patName : '',
+    age : '',
+    gender : '',
+    patEmail : '',
+    citizenNum : ''
+  });
+
+  const [deskInfo, setDeskInfo] = useState({
+    treNum : '',
+    deskNum : '',
+    deskDate : '',
+    deskPrice : '',
+    isPay : ''
+  });
+
+  const [mediDept, setMediDept] = useState({
+    deptName : ''
+  });
+  
+  const [disease, setDisease] = useState({
+    disName : ''
+  });
+
+  const [treatInfo, setTreatInfo] = useState({
+    aboutPat : '',
+    treDate : ''
+  });
+
+  useEffect(()=>{
+    axios.post('/doctor/paymentWait')
+    .then((res)=>{
+      console.log(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  })
 
   return (
     <div className='pay-main-box'>
@@ -12,23 +57,13 @@ const MoneyIn = () => {
         <table className='user-table'>
           <tr>
             <td>이름</td>
-            <td>주민번호</td>
-            <td>전화번호</td>
+            <td>성별</td>
+            <td>나이</td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>진료과목</td>
-            <td>질병군</td>
-            <td>결제여부</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
           </tr>
           </table>
       </div>

@@ -3,6 +3,7 @@ package com.green.TeamProject1.doctor;
 import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 
+import javax.print.Doc;
 import java.util.List;
 
 public interface DoctorService {
@@ -55,4 +56,9 @@ public interface DoctorService {
 
     // 수납 정보 등록
     void payMoney(TreatVO treatVO);
+
+    // 수납 대기자 조회
+    List<DoctorVO> paymentWait(DoctorVO doctorVO);
+
+
 }

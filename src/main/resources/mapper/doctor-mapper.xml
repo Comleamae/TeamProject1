@@ -11,6 +11,7 @@
         <association property="recepVO" resultMap="patientMapper.recep"/>
         <association property="mediDeptVO" resultMap="mediDept"/>
         <association property="deskVO" resultMap="deskInfo"/>
+        <association property="treatVO" resultMap="patientMapper.infoTreat"/>
         <collection property="patientVO" resultMap="patientMapper.patient"/>
     </resultMap>
 
@@ -20,7 +21,8 @@
             DOC_LINUM
             , DOC_PW
             , DOC_NAME
-            , DEPT_NUM)
+            , DEPT_NUM
+            )
         VALUES (
             #{docLinum}
             ,#{docPw}
@@ -51,8 +53,6 @@
         <result column="DIS_NAME" property="disName"/>
         <result column="REC_PRICE" property="recPrice"/>
     </resultMap>
-
-
 
     <!-- 의사에 연결할 진료과 정보 -->
     <resultMap id="mediDept" type="com.green.TeamProject1.doctor.MediDeptVO">
@@ -209,4 +209,19 @@
         );
     </insert>
 
+
+    <select id="paymentWait" resultMap="com.green.TeamProject1.doctor.DoctorVO">
+        SELECT
+        p.pat_Num, p.pat_Name, p.age, p.pat_Email, p.gender, p.citizen_Num, d.doc_Name, md.dept_Name, dc.dis_Name, t.about_Pat, t.tre_Date,
+        CASE WHEN is_Pay = 'N' THEN '미완료' ELSE '완료' END
+        FROM patient p
+        LEFT JOIN info_treat t ON p.pat_Num = t.pat_Num
+        LEFT JOIN doctor d ON t.doc_Linum = d.doc_Linum
+        LEFT JOIN medi_Dept md ON d.dept_Num = md.dept_Num
+        LEFT JOIN disease_category dc ON t.disease = dc.dis_Code
+        LEFT JOIN desk ON t.tre_Num = desk.tre_Num
+        WHERE
+        p.pat_Num = p.pat_num
+        AND is_pay = 'N';
+    </select>
 </mapper>
