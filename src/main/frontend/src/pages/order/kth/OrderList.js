@@ -7,7 +7,7 @@ const OrderList = () => {
   const [orderList, setOrderList] = useState([])
 
   useEffect(() => {
-    axios.get('/api_order/orderList')
+    axios.get('/api_order/getAllOrder')
       .then((res) => {
         setOrderList(res.data)
       })
@@ -15,7 +15,7 @@ const OrderList = () => {
         console.log(error)
       })
   }, [])
-
+  console.log(orderList)
   return (
     <div>
       <h1>발주 내역</h1>
@@ -23,24 +23,26 @@ const OrderList = () => {
         <thead>
           <tr>
             <td>No.</td>
-            <td>물품번호</td>
             <td>발주자</td>
             <td>발주일</td>
             <td>수량</td>
             <td>메모</td>
+            <td>입고</td>
           </tr>
         </thead>
         <tbody>
           {
             orderList.map((order, i) => {
-              <tr key={i}>
-                <td>{orderList.length - i}</td>
-                <td>{order.supplyNum}</td>
-                <td>{order.orderManager}</td>
-                <td>{order.orderDate}</td>
-                <td>{order.supplyAmount}</td>
-                <td>{order.orderNote}</td>
-              </tr>
+              return (
+                <tr key={i}>
+                  <td>{orderList.length - i}</td>
+                  <td>{order.orderManager}</td>
+                  <td>{order.orderDate}</td>
+                  <td>{order.orderAmount}</td>
+                  <td>{order.orderNote}</td>
+                  <td><button type='button'>입고</button></td>
+                </tr>
+              )
             })
           }
         </tbody>

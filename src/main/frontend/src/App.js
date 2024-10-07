@@ -132,7 +132,7 @@ const App = () => {
         </Route>
 
         {/* 발주 페이지 */}
-        <Route path='/order' element={<OrderLayout/>}>
+        <Route path='/order' element={<OrderLayout setLoginInfo={setLoginInfo}/> }>
           <Route path='manageSupply' element={<ManageSupply />} />
           <Route path='requestOrder' element={<RequestOrder />} />
           <Route path='registSupply' element={<RegistSupply />} />

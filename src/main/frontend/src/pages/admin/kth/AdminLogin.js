@@ -100,7 +100,6 @@ const AdminLogin = ({}) => {
       </div>
     </div>
     <button type='button' onClick={(e)=>{navigate(`/admin/join`)}}>관리자 등록</button>
-    <button type='button' onClick={(e)=>(navigate('/order/manageSupply'))}>발주 버튼</button>
   </div>
 
   )

@@ -3,6 +3,7 @@ package com.green.TeamProject1.order.vo;
 import lombok.Data;
 
 import java.awt.*;
+import java.util.List;
 
 @Data
 public class SupplyVO {
@@ -16,5 +17,4 @@ public class SupplyVO {
     private int supplyMinAmount;
     //첨부 이미지 파일명
     private String supplyImage;
-    private int orderAmount;
 }
