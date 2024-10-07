@@ -1,5 +1,6 @@
 package com.green.TeamProject1.order.service;
 
+import com.green.TeamProject1.order.vo.OrderVO;
 import com.green.TeamProject1.order.vo.SupplyVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,11 @@ public class OrderServiceImpl implements OrderService {
     public void registSupply(SupplyVO supplyVO) {
         sqlSession.insert("orderMapper.registSupply", supplyVO);
     }
+
+
+    @Override
+    public List<OrderVO> getAllOrder() {
+        return sqlSession.selectList("orderMapper.getAllOrder");
+    }
+
 }

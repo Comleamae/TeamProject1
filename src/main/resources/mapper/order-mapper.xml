@@ -11,28 +11,35 @@
         <result column="DELIVERY_DAY" property="deliveryDay"/>
         <result column="SUPPLIER" property="supplier"/>
         <result column="SUPPLY_MAKEDAY" property="supplyMakeday"/>
+        <result column="SUPPLY_CAUTION" property="supplyCaution"/>
         <result column="SUPPLY_IMAGE" property="supplyImage"/>
         <result column="SUPPLY_AMOUNT" property="supplyAmount"/>
         <result column="SUPPLY_MIN_AMOUNT" property="supplyMinAmount"/>
     </resultMap>
 
-    <resultMap id="inventory" type="com.green.TeamProject1.order.vo.InventoryVO">
-        <result column="SUPPLY_NUM" property="supplyNum"/>
-        <result column="AMOUNT" property="amount"/>
-    </resultMap>
-
     <resultMap id="order" type="com.green.TeamProject1.order.vo.OrderVO">
         <id column="ORDER_NUM" property="orderNum"/>
-        <result column="SUPPLY_NUM" property="supplyNum"/>
         <result column="ORDER_DATE" property="orderDate"/>
-        <result column="ORDER_AMOUNT" property="orderAmount"/>
+        <result column="ORDER_MANAGER" property="orderManager"/>
         <result column="DELIVERY_DATE" property="deliveryDate"/>
         <result column="ORDER_NOTE" property="orderNote"/>
     </resultMap>
 
+    <resultMap id="orderedSupply" type="com.green.TeamProject1.order.vo.OrderedSupplyVO">
+        <id column="ORDER_SUPPLY_NUM" property="orderSupplyNum"/>
+        <result column="SUPPLY_NUM" property="supplyNum"/>
+        <result column="ORDER_AMOUNT" property="orderAmount"/>
+        <result column="ORDER_NUM" property="orderNum"/>
+        <association property="supply" resultMap="supply"/>
+    </resultMap>
+
+
+
     <!--재고 조회 시 모든 물품 조회-->
     <select id="selectAllSupply" resultMap="supply">
-        SELECT * FROM SUPPLY
+        SELECT SUPPLY.*
+        FROM SUPPLY;
+
     </select>
 
     <!--물품 등록시 물품 이름을 통해 물품의 중복검사 실행-->
@@ -59,11 +66,40 @@
             , #{supplyImage}
         )
     </insert>
-    
 
     <!--발주 내역 확인-->
-    <select id="selectAllOrder" resultMap="order">
-        SELECT * FROM ORDER
+    <select id="getAllOrder" resultMap="order">
+        SELECT ORDER_INFO.*, SUPPLY.*
+        FROM ORDER_INFO, SUPPLY
     </select>
+
+    <insert id="confirmOrder">
+    INSERT INTO order_info(
+          ORDER_MANAGER
+        , ORDER_DATE
+        , DELIVERY_DATE
+        , ORDER_NOTE
+        ) VALUES (
+          #{orderManager}
+        , NOW()
+        , #{deliveryDate}
+        , #{deliveryNote}
+    );
+    </insert>
+<!--컨트롤러에서 실행 시에 orderNum 값을 어딘가 변수에 저장해서 그 값을 서브쿼리에 집어 넣으면 가능 할 것 같다.-->
+    <insert id="confirmOrderedSupply">
+    INSERT INTO ORDER_SUPPLY_INFO(
+          SUPPLY_NUM
+        , ORDER_AMOUNT
+        , ORDER_NUM
+        ) VALUES (
+          #{supplyNum}
+        , #{orderAmount}
+        , (SELECT ORDER_NUM
+        FROM ORDER_INFO
+        WHERE ORDER_NUM = #{orderNum})
+    );
+    </insert>
+
 </mapper>
 

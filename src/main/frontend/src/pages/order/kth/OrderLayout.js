@@ -2,7 +2,7 @@ import React from 'react'
 import './OrderLayout.css'
 import { Outlet, useNavigate } from 'react-router-dom'
 
-const SendOrder = () => {
+const OrderLayout = () => {
   const navigate = useNavigate()
   return (
     <div className='sendOrder-main'>
@@ -37,4 +37,4 @@ const SendOrder = () => {
   )
 }
 
-export default SendOrder
+export default OrderLayout
