@@ -44,4 +44,10 @@ public class OrderServiceImpl implements OrderService {
         return sqlSession.selectList("orderMapper.getAllOrder");
     }
 
+    //발주 버튼 눌렀을 때 confirmOrder 2개 실행
+    @Override
+    public void commitOrder(OrderVO orderVO) {
+        sqlSession.insert("orderMapper.commitOrder", orderVO);
+    }
+
 }

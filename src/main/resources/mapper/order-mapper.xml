@@ -73,7 +73,7 @@
         FROM ORDER_INFO, SUPPLY
     </select>
 
-    <insert id="confirmOrder">
+    <insert id="commitOrder">
     INSERT INTO order_info(
           ORDER_MANAGER
         , ORDER_DATE
@@ -87,7 +87,7 @@
     );
     </insert>
 <!--컨트롤러에서 실행 시에 orderNum 값을 어딘가 변수에 저장해서 그 값을 서브쿼리에 집어 넣으면 가능 할 것 같다.-->
-    <insert id="confirmOrderedSupply">
+    <insert id="commitOrderedSupply">
     INSERT INTO ORDER_SUPPLY_INFO(
           SUPPLY_NUM
         , ORDER_AMOUNT

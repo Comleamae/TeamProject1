@@ -14,4 +14,5 @@ public interface OrderService {
 
     List<OrderVO> getAllOrder();
 
+    void commitOrder(OrderVO orderVO);
 }
