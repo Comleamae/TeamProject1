@@ -5,6 +5,14 @@
   margin: 0 auto;
   text-align: left;
 }
+
+.join-div11{
+  width: 1300px;
+  height: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .join-div12{
   width: 1300px;
   height: 1600px;
@@ -329,4 +337,37 @@
 .joinSelect-btn {
   margin: 10px;
   text-align: center;
+}
+
+.join-box-text{
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 30px 0px;
+  border: 1px solid #d5d5d5;
+  background: #f5f5f5;
+}
+
+.btn111 {
+  width: 200px;
+  height: 40px;
+  margin: 10px;
+  color: #3C32A2;
+  font-weight: bold;
+  border: 1px solid #3C32A2;
+  background: #fff;
+}
+
+.iicon{
+  font-size: 50px;
+  color: #3C32A2;
+  text-align: center;
+}
+
+.bb11 {
+  text-align: center;
+
 }

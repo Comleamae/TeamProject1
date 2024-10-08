@@ -73,7 +73,6 @@ const App = () => {
         {/* 유저 페이지 */}
         <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin} />}>
 
-
           {/* 메인화면 */}
           <Route path="" element={<Main />} />
 

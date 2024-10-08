@@ -99,7 +99,10 @@ const AdminLogin = ({}) => {
         <button type='button' onClick={(e) => { login() }}> 로그인</button>
       </div>
     </div>
-    <button type='button' onClick={(e)=>{navigate(`/admin/join`)}}>관리자 등록</button>
+    <div className='admin-box-btn'>
+      <button type='button' className='sh-btn1' onClick={(e)=>{navigate(`/`)}}>메인화면</button>
+      <button type='button' className='sh-btn1' onClick={(e)=>{navigate(`/admin/join`)}}>관리자 등록</button>
+    </div>
   </div>
 
   )

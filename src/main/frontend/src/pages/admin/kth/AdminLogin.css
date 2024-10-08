@@ -83,3 +83,13 @@
   border: 1px solid #3C32A2;
   background: #fff;
 }
+
+.sh-btn1 {
+  width: 180px;
+  height: 40px;
+  margin: 10px;
+  color: #3C32A2;
+  font-weight: bold;
+  border: 1px solid #3C32A2;
+  background: #fff;
+}

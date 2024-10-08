@@ -14,7 +14,7 @@ const JoinStep1_1 = () => {
   return (
     <div className='join-div'>
       <div className='user-div'>
-        <h1>통합회원가입</h1>
+        <h1  className='joinh1'>통합회원가입</h1>
         <p>그린대학교병원 통합회원가입을 환영합니다🎉🎉</p>
       </div>
       <div className='user-login-txt'>
