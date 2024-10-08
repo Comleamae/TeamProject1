@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import './UserLayout.css'
 import '../Footer.css'
 import { MdMenu } from 'react-icons/md';
@@ -10,8 +10,10 @@ import Footer from '../Footer';
 
 const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
 
-  const navigate = useNavigate();
+  const location = useLocation();
+  const showSubMenu = location.pathname !=='/';
 
+  const navigate = useNavigate();
 
   return (
     <div className='layout-div'>
@@ -391,9 +393,8 @@ const UserLayout = ({loginInfo, setLoginInfo, setIsAdmin}) => {
           }
           </div>
         </div>
-        
+      
       <Outlet />
-
       <Footer/>
     </div>    
   )

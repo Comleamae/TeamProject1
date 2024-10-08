@@ -18,11 +18,11 @@ const KakaoMap = () => {
 
 
   return (
-    <div>
+    <div className='welcom'>
     
-      <div>
-        <h1>울산그린대학병원</h1>
-        <p>울산그린대학병원에 오시는 길을 쉽게 알려드립니다.</p>
+      <div className='welcom1'>
+        <h1 className='joinh1'>오시는 길</h1>
+        <p>울산그린대학교병원에 오시는 길을 쉽게 알려드립니다.</p>
       </div>
       <div className='map-div'>
         <button className="navigate-btn" onClick={() => openNavigationPage(35.5421094, 129.3382413)}> 빠른 길찾기 </button>
@@ -39,17 +39,39 @@ const KakaoMap = () => {
         </Map>
       </div>
       <div className='movement-path'>
-        <h2>버스 노선도</h2>
+        <div className='join-imgdiv way'>
+          <img src='http://localhost:8080/images/bg_bar.gif' />
+          <h5>찾아오시는 길</h5>
+        </div>
         <div className="bus-routes">
           <div className="bus-route">
-            <div className="station"><h3>태화강역에서 버스 이용시</h3></div>
+            <div className="station">
+              <h3>울산역에서 버스 이용시</h3>
+            </div>
             <ul>
-              <li>태화강역 4번 출구 → 401번 탑승 → 시외버스터미널 하차</li>
-              <li>태화강역 4번 출구 → 401번 탑승 → 시외버스터미널 하차</li>
-              <li>태화강역 4번 출구 → 401번 탑승 → 시외버스터미널 하차</li>
+              <li>울산역 → 급행 5001 버스탑승 → 보람병원입구 하차 → 도보 2분</li>
             </ul>
           </div>
-          
+
+          <div className="bus-route">
+            <div className="station">
+              <h3>태화강역에서 버스 이용시</h3>
+            </div>
+            <ul>
+              <li>태화강역 5번 정류소 → 713번 버스탑승 → 보람병원입구 하차 → 도보 3분 </li>
+              <li>태화강역 5번 정류소 → 733번 버스탑승 → 보람병원입구 하차 → 도보 3분 </li>
+            </ul>
+          </div>
+
+          <div className="bus-route">
+            <div className="station">
+              <h3>울산시외버스터미널에서 버스 이용시</h3>
+            </div>
+            <ul>
+              <li>고속버스터미널 앞 → 975번 버스탑승 → 대현중학교 하차 → 도보 5분 </li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>

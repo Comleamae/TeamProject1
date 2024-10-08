@@ -2,9 +2,8 @@
 
 .find-id-div{
   width: 1300px;
-  height: 600px;
+  height: 730px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 
 .hh2{
@@ -26,11 +25,17 @@
   width: 35%;
   height: 110px;
   text-align: left;
-  border: 1px solid blue;
+}
+
+.id-table2 {
+  width: 35%;
+  height: 160px;
+  text-align: left;
+
 }
 
 .id-input {
-  width: 350px;
+  width: 360px;
   height: 40px;
   border: 0.5px solid lightgray;
   border-radius: 5px;
@@ -38,8 +43,15 @@
   padding-left: 10px;
 }
 
+.idd{
+  width: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .id-input2 {
-  width: 150px;
+  width: 160px;
   height: 40px;
   border: 0.5px solid lightgray;
   border-radius: 5px;
@@ -49,9 +61,52 @@
 
 .idbtn{
   width: 130px;
-  height: 100px;
+  height: 98px;
   border: none;
   color: #F5F5F5;
   background: #3C32A2;
   border-radius: 5px;
+}
+
+.idbtn1{
+  width: 130px;
+  height: 155px;
+  border: none;
+  color: #F5F5F5;
+  background: #3C32A2;
+  border-radius: 5px;
+}
+
+
+.user-btn1{
+  width: 1300px;
+  margin: 0 auto;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-btn1 > div {
+  width: 48%;
+  height: 100px;
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin-top : 10px;
+  padding-top: 30px;
+}
+
+.user-btn1 > div > p {
+  color: #1C1C1C;
+  font-weight: bold;
+}
+
+.sh-btn {
+  width: 200px;
+  height: 40px;
+  margin: 10px;
+  color: #3C32A2;
+  font-weight: bold;
+  border: 1px solid #3C32A2;
+  background: #fff;
 }

@@ -58,18 +58,33 @@ const FindId = () => {
 
       <div className='idbox'>
         <div className='id-table'>
-          <div>
-            <span>이 름</span>
+          <div className='idd'>
+            <p>이 름</p>
             <input className='id-input' type='text' name='memName' placeholder='이름' onChange={(e)=>{changeFindIdInfo(e)}}/>
           </div>
-          <div>
-            <span>주민번호</span>
+          <div className='idd'>
+            <p>주민번호</p>
             <input className='id-input2' type='text' name='citizenNum' placeholder='주민번호 앞자리'  onChange={(e)=>{changeFindIdInfo(e)}} ref={citizenNum1}/> - <input className='id-input2' type='password' name='citizenNum' placeholder='주민번호 뒷자리'  onChange={(e)=>{changeFindIdInfo(e)}} ref={citizenNum2}/>
           </div>
         </div >
         <button className='idbtn' type='button' onClick={(e)=>{findId()}}>
           아이디 찾기
         </button>
+      </div>
+
+      <div className='user-btn1'>
+        <div>
+          <p>
+            그린대학교병원의 회원이 아니십니까?
+          </p>
+          <button type='button'  className='sh-btn' onClick={(e) => { navigate('/joinSelect') }}>회원가입</button>
+        </div>
+        <div>
+          <p>
+            비밀번호를 잊으셨습니까?
+          </p>
+          <button type='button'   className='sh-btn' onClick={(e) => { navigate('/findPw') }}>비밀번호 찾기</button>
+        </div>
       </div>
     </div>
   )
