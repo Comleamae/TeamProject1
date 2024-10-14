@@ -73,7 +73,6 @@ const App = () => {
         {/* 유저 페이지 */}
         <Route path='/' element={<UserLayout loginInfo={loginInfo} setLoginInfo={setLoginInfo} isAdmin={isAdmin} />}>
 
-
           {/* 메인화면 */}
           <Route path="" element={<Main />} />
 
@@ -132,7 +131,7 @@ const App = () => {
         </Route>
 
         {/* 발주 페이지 */}
-        <Route path='/order' element={<OrderLayout/>}>
+        <Route path='/order' element={<OrderLayout setLoginInfo={setLoginInfo}/> }>
           <Route path='manageSupply' element={<ManageSupply />} />
           <Route path='requestOrder' element={<RequestOrder />} />
           <Route path='registSupply' element={<RegistSupply />} />

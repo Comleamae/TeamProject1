@@ -1,29 +1,40 @@
-.map-div {
-  display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center;     /* Centers vertically */
-  position: relative;
-  margin-top: 15px;
+.welcom{
+  width: 1300px;
+  margin: 0px auto;
+  margin-bottom: 50px;
+}
+
+.welcom1{
   width: 100%;
+  height: 100px;
+  margin: 20px;
+  border-bottom: 0.5px solid lightgray;
+}
+
+.map-div { 
+  position: relative;
 }
 
 .navigate-btn {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 10;
-  background-color: #2d58b6;
-  border: 1px solid #ccc;
-  padding: 10px 15px;
-  cursor: pointer;
-  position: absolute;
   top: 0;
-  left: 415px;
+  left: 0;
+  z-index: 10;
+  color: #fff;
+  background-color: #3C32A2;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.navigate-btn:hover {
+  font-weight: bold;
 }
 
 .movement-path {
-  margin: 0 auto;
-  margin-top: 15px;
+  width: 100%;
+  margin: 20px 0;
+  text-align: left;
 }
 
 .bus-routes {
@@ -37,6 +48,7 @@
 .station {
   font-weight: bold;
   margin-bottom: 10px;
+  color: #3C32A2;
 }
 
 ul {
@@ -50,4 +62,12 @@ li {
 
 li::before {
   color: #000;
+}
+
+.way {
+  border-bottom: 2px solid #3C32A2 ;
+}
+
+.way > h5 {
+  font-size: 25px;
 }

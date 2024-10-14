@@ -71,7 +71,7 @@ const Login = ({ setLoginInfo }) => {
 
     <div className='login-container'>
       <div className='user-div'>
-        <h1>로그인</h1>
+        <h1  className='joinh1'>로그인</h1>
         <p>로그인을 하시면 그린대학교병원 홈페이지에서 제공하는 다양한 온라인 서비스를 이용 하실 수 있습니다.</p>
       </div>
       <div className='user-login-txt'>

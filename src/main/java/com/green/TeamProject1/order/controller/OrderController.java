@@ -1,6 +1,7 @@
 package com.green.TeamProject1.order.controller;
 
 import com.green.TeamProject1.order.service.OrderService;
+import com.green.TeamProject1.order.vo.OrderVO;
 import com.green.TeamProject1.order.vo.SupplyVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -19,17 +20,21 @@ public class OrderController {
     @Resource(name = "orderService")
     private OrderService orderService;
 
+
     // 재고조회 시 모든 물품 조회
     @GetMapping("/selectAllSupply")
     public List<SupplyVO> selectAllSupply(){
         return orderService.selectAllSupply();
     }
 
+
+
     // 물품 등록 시 중복 확인
     @PostMapping("/checkSupply")
     public boolean checkSupply(@RequestBody Map<String, String> supplyName){
         return orderService.checkSupply(supplyName.get("supplyName"));
     }
+
 
     // 중복 아니라면 물품 신규 등록
     @PostMapping("/registSupply")
@@ -64,4 +69,12 @@ public class OrderController {
         }
         orderService.registSupply(supplyVO);
     }
+
+    @GetMapping("/getAllOrder")
+    public List<OrderVO> getAllOrder(){
+        return orderService.getAllOrder();
+    }
+
+    @PostMapping("/commitOrder")
+    public void
 }

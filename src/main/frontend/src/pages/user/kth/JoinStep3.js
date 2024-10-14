@@ -1,15 +1,17 @@
 import React from 'react'
+import './JoinStep2.css'
 import { useNavigate } from 'react-router-dom'
+import { BsCheck2Square } from "react-icons/bs";
 
 const JoinStep3 = () => {
 
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className='join-div11'>
       <div className='user-div'>
-        <h1>통합회원가입</h1>
-        <p>그린대학교병원 통합회원가입을 환영합니다🎉🎉</p>
+        <h1 className='joinh1'>통합회원가입</h1>
+        <p>그린대학교병원 통합회원가입을 환영합니다</p>
       </div>
       <div className='user-login-txt'>
         <h2>
@@ -21,17 +23,26 @@ const JoinStep3 = () => {
       <div className='join-box'>
         <div className='join-checklist'>
           <div><p>약관동의 및 본인인증</p> <span>01</span></div>
-          <div className='join-checklist-div'><p>회원정보입력</p> <span>02</span></div>
-          <div><p>회원가입완료</p> <span>03</span></div>
+          <div><p>회원정보입력</p> <span>02</span></div>
+          <div className='join-checklist-div'><p>회원가입완료</p> <span>03</span></div>
         </div>
         <div className='join-imgdiv'>
           <img src='http://localhost:8080/images/bg_bar.gif' />
-          <h5>통합회원기본 정보</h5>
+          <h5>회원가입완료</h5>
         </div>
-        <h3>회원가입을 축하드립니다</h3>
+        <div className='join-box-text'>
+          <div>
+            <BsCheck2Square className='iicon' />
+            <p style={{fontSize:'25px', fontWeight:'bold'}}>
+            그린대학교병원 회원으로<br/> 가입해 주셔서 감사합니다!
+            </p>
+          </div>
+        </div>
       </div>
-      <button type='button' onClick={(e)=>{navigate('/login')}}>로그인 하기</button>
-      <button type='button' onClick={(e)=>{navigate('/')}}>메인화면으로</button>
+      <div className='bb11'>
+        <button className='btn111' type='button' onClick={(e)=>{navigate('/login')}}>로그인 하기</button>
+        <button  className='btn111' type='button' onClick={(e)=>{navigate('/')}}>메인화면으로</button>
+      </div>
     </div>
   )
 }
