@@ -175,7 +175,8 @@
 
     <!-- 진료 정보 등록하면 기존 대기자 목록 삭제 -->
     <delete id="waitListDelete">
-        DELETE from recep_info
+        UPDATE recep_info
+        SET recep_status = '진료완료'
         WHERE pat_num = #{patNum};
     </delete>
 
@@ -195,33 +196,28 @@
         SELECT * FROM DISEASE_CATEGORY
     </select>
 
+
     <!-- 수납 정보 등록 -->
     <insert id="payMoney">
         INSERT INTO desk (
-            tre_num
-            , desk_price
-            , is_pay
+        tre_num
+        , desk_price
+        , is_pay
         )
         VALUES (
-            #{treNum}
-            , (SELECT REC_PRICE FROM disease_category WHERE DIS_CODE = #{disease})
-            , 'N'
+        #{treNum}
+        , (SELECT REC_PRICE FROM disease_category WHERE DIS_CODE = #{disease})
+        , 'N'
         );
     </insert>
 
-
-    <select id="paymentWait" resultMap="com.green.TeamProject1.doctor.DoctorVO">
-        SELECT
-        p.pat_Num, p.pat_Name, p.age, p.pat_Email, p.gender, p.citizen_Num, d.doc_Name, md.dept_Name, dc.dis_Name, t.about_Pat, t.tre_Date,
-        CASE WHEN is_Pay = 'N' THEN '미완료' ELSE '완료' END
-        FROM patient p
-        LEFT JOIN info_treat t ON p.pat_Num = t.pat_Num
-        LEFT JOIN doctor d ON t.doc_Linum = d.doc_Linum
-        LEFT JOIN medi_Dept md ON d.dept_Num = md.dept_Num
-        LEFT JOIN disease_category dc ON t.disease = dc.dis_Code
-        LEFT JOIN desk ON t.tre_Num = desk.tre_Num
-        WHERE
-        p.pat_Num = p.pat_num
-        AND is_pay = 'N';
+    <!-- 수납 대기자 조회 -->
+    <select id="payDesk" resultMap="doctorMapper.deskInfo">
+        SELECT desk.*,  info_treat.PAT_NUM
+        FROM desk, info_treat
+        WHERE is_pay = 'N'
+        AND info_treat.TRE_NUM = desk.TRE_NUM;
     </select>
+
+    <!-- 수납 대기자 1명 상세 정보-->
 </mapper>

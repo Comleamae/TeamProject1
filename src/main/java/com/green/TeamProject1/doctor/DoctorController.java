@@ -1,16 +1,11 @@
 package com.green.TeamProject1.doctor;
 
-import com.green.TeamProject1.desk.DeskService;
-import com.green.TeamProject1.patient.PatientVO;
-import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
-import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 
@@ -144,56 +139,9 @@ public class DoctorController {
 
 
     // 수납 대기자 조회
-    @PostMapping("/paymentWait")
-    public List<DoctorVO> paymentWait(@RequestBody Map<String, Object> mapData) {
-
-
-
-        DoctorVO doctorVO = new DoctorVO();
-        doctorVO.setDocName(mapData.get("docName").toString());
-
-        doctorService.paymentWait(doctorVO);
-
-        PatientVO patientVO = new PatientVO();
-        patientVO.setPatNum(Integer.parseInt(mapData.get("patNum").toString()));
-        patientVO.setPatName(mapData.get("patName").toString());
-        patientVO.setAge(Integer.parseInt(mapData.get("age").toString()));
-        patientVO.setGender(mapData.get("gender").toString());
-        patientVO.setPatEmail(mapData.get("patEmail").toString());
-        patientVO.setCitizenNum(mapData.get("citizenNum").toString());
-
-        doctorService.paymentWait(doctorVO);
-
-        DeskVO deskVO = new DeskVO();
-        deskVO.setTreNum(Integer.parseInt(mapData.get("treNum").toString()));
-        deskVO.setDeskNum(Integer.parseInt(mapData.get("deskNum").toString()));
-        deskVO.setDeskDate(mapData.get("deskDate").toString());
-        deskVO.setDeskPrice(Integer.parseInt(mapData.get("deskPrice").toString()));
-        deskVO.setIsPay(mapData.get("isPay").toString());
-
-        doctorService.paymentWait(doctorVO);
-
-        MediDeptVO mediDeptVO = new MediDeptVO();
-
-        mediDeptVO.setDeptName(mapData.get("deptName").toString());
-
-        doctorService.paymentWait(doctorVO);
-
-        DiseaseVO diseaseVO = new DiseaseVO();
-        diseaseVO.setDisName(mapData.get("disName").toString());
-
-        doctorService.paymentWait(doctorVO);
-
-        TreatVO treatVO = new TreatVO();
-        treatVO.setAboutPat(mapData.get("aboutPat").toString());
-        treatVO.setTreDate(mapData.get("treDate").toString());
-
-        doctorService.paymentWait(doctorVO);
-
-        return doctorService.paymentWait(doctorVO);
+    @PostMapping("/payDesk")
+    public List<DeskVO> payDesk(DeskVO deskVO){
+        return doctorService.payDesk(deskVO);
     }
-
-
-
 
 }

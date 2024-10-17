@@ -74,7 +74,5 @@ public class OrderController {
     public List<OrderVO> getAllOrder(){
         return orderService.getAllOrder();
     }
-
-    @PostMapping("/commitOrder")
-    public void
+    
 }

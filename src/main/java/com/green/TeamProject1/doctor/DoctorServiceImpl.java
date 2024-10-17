@@ -112,10 +112,14 @@ public class DoctorServiceImpl implements DoctorService{
         sqlSession.insert("doctorMapper.payMoney", treatVO);
     }
 
+
+
     // 수납 대기자 조회
     @Override
-    public List<DoctorVO> paymentWait(DoctorVO doctorVO) {
-        return sqlSession.selectList("doctorMapper.paymentWait", doctorVO);
+    public List<DeskVO> payDesk(DeskVO deskVO) {
+        return sqlSession.selectList("doctorMapper.payDesk", deskVO);
     }
+
+
 
 }
