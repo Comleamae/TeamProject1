@@ -22,3 +22,87 @@
 }
 
 
+/* 모달창 디자인 */
+.modal-container{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  z-index: 99;
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+.modal-container.show{
+  animation-name: fadeIn;
+}
+
+.modal-container > .modal{
+  width: 1200px;
+  height: 600px;
+  background-color: white;
+  margin-top: 8rem;
+  padding: 20px;
+  border-radius: 10px;
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+.modal-container.show > .modal{
+  animation-name: slideDown;
+}
+
+
+.modal-header {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.modal-header > span{
+  cursor: pointer;
+}
+
+.modal-footer{
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* 모달 애니메니션 정의 */
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
+@keyframes slideDown{
+  from{
+    transform: translateY(-50px);
+  }
+  to{
+    transform: translateY(0px);
+  }
+}
+
+@keyframes slideUp{
+  from{
+    transform: translateY(0px);
+  }
+  to{
+    transform: translateY(-50px);
+  }
+}

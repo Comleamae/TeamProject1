@@ -15,14 +15,11 @@ const RequestOrder = ({ adminLoginInfo }) => {
   const [orderInfo, setOrderInfo] = useState({
     orderManager : '',
     deliveryDate : '',
-    deliveryNote : '',
+    orderNote : '',
   })
 
   //발주할 물품 담아둘 목록
   const [OrderedSupplyList, setOrderedSupplyList] = useState([]);
-
-  const [orderAmounts, setOrderAmounts] = useState({}); // 각 품목의 수량을 저장
-
 
 
 
@@ -40,7 +37,7 @@ const RequestOrder = ({ adminLoginInfo }) => {
   useEffect(() => {
     axios.get('/api_order/selectAllSupply')
       .then((res) => {
-        setSupplyList(res.data.reverse());
+        setSupplyList(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -49,6 +46,7 @@ const RequestOrder = ({ adminLoginInfo }) => {
 
   // 버튼 누르면 발주 목록에 물품 추가
   function addSupply(supply) {
+    console.log(supplyList)
     // OrderedSupplyList에서 넣으려는 물품과 같은 물품 있는지 찾기
     const checkOrder = OrderedSupplyList.findIndex(order => order.supplyNum === supply.supplyNum);
 
@@ -59,19 +57,15 @@ const RequestOrder = ({ adminLoginInfo }) => {
     else {
       // 새로운 항목이면 추가
       setOrderedSupplyList([...OrderedSupplyList, { ...supply, orderAmount: 1 }]);
-      setOrderAmounts(({ ...OrderedSupplyList, [supply.supplyNum]: 1 }));
     }
   }
 
   // 수량 변경 핸들러
   const handleAmountChange = (supplyNum, amount) => {
-    setOrderAmounts(({ ...orderAmounts, [supplyNum]: amount }));
-    setOrderedSupplyList(prev => {
-      const updatedOrderedSupplyList = prev.map(order =>
+    setOrderedSupplyList(OrderedSupplyList.map(order =>
         order.supplyNum === supplyNum ? { ...order, orderAmount: parseInt(amount, 10) || 1 } : order
-      );
-      return updatedOrderedSupplyList;
-    });
+      ));
+      console.log(OrderedSupplyList)
   };
 
 
@@ -93,12 +87,21 @@ const RequestOrder = ({ adminLoginInfo }) => {
   function commitOrder() {
     axios.post('/api_order/commitOrder', orderInfo)
       .then((res) => {
-        alert('발주가 신청되었습니다.')
+        const orderNum = res.data.orderNum; 
+        const orderOrderNum = OrderedSupplyList.map((order, i) => ({
+          ...order,
+          orderNum: orderNum // OrderedSupplyList(발주할 물품 리스트에) orderNum 추가
+        }));
+        return axios.post('/api_order/commitOrderedSupply', orderOrderNum);
+      })
+      .then(() => {
+        alert('발주가 신청되었습니다.');
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
+        alert('발주 오류');
+        console.log(error);
+      });
+}
 
   return (
     <div>
@@ -107,12 +110,11 @@ const RequestOrder = ({ adminLoginInfo }) => {
       <table className='order-table'>
         <thead>
           <tr>
-            <td><input type='checkbox' /></td>
             <td>No.</td>
             <td>이미지</td>
             <td>품목</td>
+            <td>규격</td>
             <td>가격</td>
-            <td>남은 수량</td>
             <td></td>
           </tr>
         </thead>
@@ -120,12 +122,11 @@ const RequestOrder = ({ adminLoginInfo }) => {
           {
             supplyList.map((supply, i) => (
               <tr key={i}>
-                <td><input type='checkbox' /></td>
-                <td>{supplyList.length - i}</td>
+                <td>{i+1}</td>
                 <td className='supplyImage'><img src={`http://localhost:8080/upload/${supply.supplyImage}`} alt={supply.supplyName} /></td>
                 <td>{supply.supplyName}</td>
+                <td>{supply.supplyStandard}</td>
                 <td>{supply.supplyPrice}</td>
-                <td>{supply.supplyAmount}</td>
                 <td><button type='button' onClick={() => addSupply(supply)}>추가</button></td>
               </tr>
             ))
@@ -178,7 +179,7 @@ const RequestOrder = ({ adminLoginInfo }) => {
           </tr>
           <tr>
             <td colSpan={2}>메모</td>
-            <td colSpan={6}><textarea name='deliveryNote' onChange={(e)=>{changeOrderInfo(e)}}></textarea></td>
+            <td colSpan={6}><textarea name='orderNote' onChange={(e)=>{changeOrderInfo(e)}}></textarea></td>
           </tr>
         </tbody>
       </table>

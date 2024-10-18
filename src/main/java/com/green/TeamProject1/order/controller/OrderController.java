@@ -2,6 +2,7 @@ package com.green.TeamProject1.order.controller;
 
 import com.green.TeamProject1.order.service.OrderService;
 import com.green.TeamProject1.order.vo.OrderVO;
+import com.green.TeamProject1.order.vo.OrderedSupplyVO;
 import com.green.TeamProject1.order.vo.SupplyVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,11 @@ public class OrderController {
         return orderService.selectAllSupply();
     }
 
-
+    // 재고 조회 시 발주한 양 조회
+    @GetMapping("/getOrderAmount/{orderNum}")
+    public int getOrderAmount(@PathVariable(name = "orderNum")int orderNum){
+        return orderService.getOrderAmount(orderNum);
+    }
 
     // 물품 등록 시 중복 확인
     @PostMapping("/checkSupply")
@@ -76,5 +81,30 @@ public class OrderController {
     }
 
     @PostMapping("/commitOrder")
-    public void
+    public void commitOrder(@RequestBody OrderVO orderVO){
+        orderService.commitOrder(orderVO);
+    }
+
+
+    @PostMapping("/commitOrderedSupply")
+    public void commitOrderedSupply(@RequestBody List<OrderedSupplyVO> orderedSupply){
+        orderService.commitOrderedSupply(orderedSupply);
+    }
+
+    @GetMapping("/getOrderSupplyList/{orderNum}")
+    public List<SupplyVO> getOrderSupplyList(@PathVariable(name = "orderNum") int orderNum){
+        return orderService.getOrderSupplyList(orderNum);
+    }
+/*
+    @DeleteMapping("/deleteOrderSupply/{orderSupplyNum}")
+    public void deleteOrderSupply(@PathVariable(name = "orderSupplyNum") int orderSupplyNum){
+        orderService.deleteOrderSupply(orderSupplyNum);
+    }*/
+
+    //orderNum 이용해서 받아오면 될듯?
+    @PutMapping("/updateOrderSupply")
+    public void updateOrderSupply(@RequestBody List<OrderedSupplyVO> orderedSupplyList){
+        orderService.updateOrderSupply(orderedSupplyList);
+    }
+
 }

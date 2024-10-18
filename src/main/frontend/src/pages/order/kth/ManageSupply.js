@@ -1,40 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import './ManageSupply.css'
+import './ManageSupply.css';
 import axios from 'axios';
 
 const ManageSupply = () => {
-  // 재고 목록
   const [supplyList, setSupplyList] = useState([]);
+  const [orderAmountList, setOrderAmountList] = useState({}); // order amounts를 객체로 저장
 
-  // 입고 예정 (발주 목록으로 부터 가져옴)
-  const [orderAmountList, setOrderAmountList] = useState([]);
-
-
-
-  // 재고 목록 불러와서 화면에 띄우기
   useEffect(() => {
+    // 재고 목록 불러오기
     axios.get('/api_order/selectAllSupply')
       .then((res) => {
-        // 불러온 재고데이터 역순으로 정렬
-        setSupplyList(res.data.reverse());
-        console.log(res.data)
+        setSupplyList(res.data);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  //발주 물량(입고 예정량) 조회
-  // 조인을 이용해서 한번에 조회하는게 맞아보이는데...? 조인으로 연결하고 supply와 오더량을 같이 조회
-  // function getOrderAmount(){
-  //   axios.get('/api_order/getOrderAmount')
-  //   .then((res)=>{
-  //     setOrderAmount(res.data)
-  //   })
-  //   .catch((error)=>{
-  //     console.log(error)
-  //   })
-  // }
+  useEffect(() => {
+    // 모든 발주 물량을 불러오는 요청
+    const fetchOrderAmounts = async () => {
+      const amounts = {};
+      for (const supply of supplyList) {
+        try {
+          const res = await axios.get(`/api_order/getOrderAmount/${supply.supplyNum}`);
+          amounts[supply.supplyNum] = res.data;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      setOrderAmountList(amounts);
+    };
+
+    if (supplyList.length > 0) {
+      fetchOrderAmounts();
+    }
+  }, [supplyList]);
 
   return (
     <div>
@@ -55,16 +57,18 @@ const ManageSupply = () => {
         <tbody>
           {
             supplyList.map((supply, i) => {
-              console.log(supply)
+              const orderAmount = orderAmountList[supply.supplyNum] || 0; // 기본값 설정
               return (
                 <tr key={i}>
-                  <td>{supplyList.length - i}</td>
-                  <td className='supplyImage'><img src={`http://localhost:8080/upload/${supply.supplyImage}`}></img></td>
+                  <td>{i+1}</td>
+                  <td className='supplyImage'>
+                    <img src={`http://localhost:8080/upload/${supply.supplyImage}`} alt={supply.supplyName} />
+                  </td>
                   <td>{supply.supplyName}</td>
                   <td>{supply.supplier}</td>
                   <td>{supply.supplyPrice}</td>
                   <td>{supply.supplyAmount}</td>
-                  <td>입고예정량</td>
+                  <td>{orderAmount}</td> {/* 여기에 발주 물량 표시 */}
                   <td>{supply.supplyMinAmount}</td>
                 </tr>
               );

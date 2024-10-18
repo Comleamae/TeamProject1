@@ -27,10 +27,9 @@
 
     <resultMap id="orderedSupply" type="com.green.TeamProject1.order.vo.OrderedSupplyVO">
         <id column="ORDER_SUPPLY_NUM" property="orderSupplyNum"/>
-        <result column="SUPPLY_NUM" property="supplyNum"/>
         <result column="ORDER_AMOUNT" property="orderAmount"/>
         <result column="ORDER_NUM" property="orderNum"/>
-        <association property="supply" resultMap="supply"/>
+        <collection property="supply" resultMap="supply"/>
     </resultMap>
 
 
@@ -39,7 +38,13 @@
     <select id="selectAllSupply" resultMap="supply">
         SELECT SUPPLY.*
         FROM SUPPLY;
+    </select>
 
+<!--    각 물품별 발주량의 합 가져오기-->
+    <select id="getOrderAmount" resultType="int">
+        SELECT IFNULL(SUM(ORDER_AMOUNT), 0)
+        FROM order_supply_info
+        WHERE SUPPLY_NUM = #{supplyNum};
     </select>
 
     <!--물품 등록시 물품 이름을 통해 물품의 중복검사 실행-->
@@ -67,12 +72,6 @@
         )
     </insert>
 
-    <!--발주 내역 확인-->
-    <select id="getAllOrder" resultMap="order">
-        SELECT ORDER_INFO.*, SUPPLY.*
-        FROM ORDER_INFO, SUPPLY
-    </select>
-
     <insert id="commitOrder">
     INSERT INTO order_info(
           ORDER_MANAGER
@@ -83,23 +82,55 @@
           #{orderManager}
         , NOW()
         , #{deliveryDate}
-        , #{deliveryNote}
+        , #{orderNote}
     );
     </insert>
 <!--컨트롤러에서 실행 시에 orderNum 값을 어딘가 변수에 저장해서 그 값을 서브쿼리에 집어 넣으면 가능 할 것 같다.-->
     <insert id="commitOrderedSupply">
-    INSERT INTO ORDER_SUPPLY_INFO(
-          SUPPLY_NUM
-        , ORDER_AMOUNT
-        , ORDER_NUM
+        INSERT INTO ORDER_SUPPLY_INFO(
+        SUPPLY_NUM,
+        ORDER_AMOUNT,
+        ORDER_NUM
         ) VALUES (
-          #{supplyNum}
-        , #{orderAmount}
-        , (SELECT ORDER_NUM
-        FROM ORDER_INFO
-        WHERE ORDER_NUM = #{orderNum})
-    );
+        #{supplyNum},
+        #{orderAmount},
+        (SELECT MAX(ORDER_NUM) FROM ORDER_INFO)
+        )
     </insert>
+
+    <!--발주 내역 확인-->
+    <select id="getAllOrder" resultMap="order">
+        SELECT * FROM ORDER_INFO
+    </select>
+
+    <select id="getOrderSupplyList" resultMap="orderedSupply">
+        SELECT SUPPLY.SUPPLY_NUM,
+               ORDER_SUPPLY_NUM,
+               ORDER_NUM,
+               SUPPLY_NAME,
+               SUPPLY_PRICE,
+               ORDER_AMOUNT,
+               SUPPLY_STANDARD,
+               SUPPLIER,
+               SUPPLY_CAUTION
+        FROM SUPPLY, ORDER_SUPPLY_INFO
+        WHERE SUPPLY.SUPPLY_NUM = ORDER_SUPPLY_INFO.SUPPLY_NUM
+        AND ORDER_NUM = #{orderNum}
+        AND SUPPLY.SUPPLY_NUM IN(SELECT SUPPLY_NUM
+                                 FROM ORDER_SUPPLY_INFO
+                                 WHERE ORDER_NUM = #{orderNum})
+        ORDER BY SUPPLY_NUM;
+    </select>
+
+<!--    <delete id="deleteOrderSupply">-->
+<!--        DELETE FROM ORDER_SUPPLY_INFO-->
+<!--        WHERE ORDER_SUPPLY_NUM = #{orderSupplyNum}-->
+<!--    </delete>-->
+
+    <update id="updateOrderSupply">
+        UPDATE ORDER_SUPPLY_INFO SET ORDER_AMOUNT = #{orderAmount}
+        WHERE ORDER_SUPPLY_NUM = #{orderSupplyNum}
+    </update>
 
 </mapper>
 

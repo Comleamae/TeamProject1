@@ -1,6 +1,7 @@
 package com.green.TeamProject1.order.service;
 
 import com.green.TeamProject1.order.vo.OrderVO;
+import com.green.TeamProject1.order.vo.OrderedSupplyVO;
 import com.green.TeamProject1.order.vo.SupplyVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<SupplyVO> selectAllSupply() {
         return sqlSession.selectList("orderMapper.selectAllSupply");
+    }
+
+    @Override
+    public int getOrderAmount(int orderNum) {
+        return sqlSession.selectOne("orderMapper.getOrderAmount", orderNum);
     }
 
     //물품 등록 시 중복 확인
@@ -49,5 +55,27 @@ public class OrderServiceImpl implements OrderService {
     public void commitOrder(OrderVO orderVO) {
         sqlSession.insert("orderMapper.commitOrder", orderVO);
     }
+
+    @Override
+    public void commitOrderedSupply(List<OrderedSupplyVO> orderedSupply) {
+        for (OrderedSupplyVO supply : orderedSupply) {
+            // 각 supply에 대해 INSERT 실행
+            sqlSession.insert("orderMapper.commitOrderedSupply", supply);
+        }
+    }
+
+    @Override
+    public List<SupplyVO> getOrderSupplyList(int orderNum) {
+        return sqlSession.selectList("orderMapper.getOrderSupplyList", orderNum);
+    }
+
+    @Override
+    public void updateOrderSupply(List<OrderedSupplyVO> orderedSupply) {
+        for (OrderedSupplyVO supply : orderedSupply) {
+            //각 supply에 대해 update진행
+        sqlSession.update("orderMapper.updateOrderSupply", supply);
+        }
+    }
+
 
 }
