@@ -16,7 +16,6 @@ const KakaoMap = () => {
     window.open(navigateUrl, '_blank'); // 새 탭에서 길찾기 페이지 열기
   }
 
-
   return (
     <div className='welcom'>
     
