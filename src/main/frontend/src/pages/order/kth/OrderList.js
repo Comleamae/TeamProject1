@@ -29,11 +29,11 @@ const OrderList = () => {
   const handleSave = () => {
     axios.put(`/api_order/updateOrderSupply`, orderSupplyList)
       .then(res => {
-        alert('db변경 성공');
+        alert('DB 변경 성공');
       })
       .catch(error => {
         console.log(error);
-        alert('db변경 오류');
+        alert('DB 변경 오류');
       });
     setIsEditing(-1); // 수정 모드 종료
     console.log(orderSupplyList);
@@ -45,29 +45,39 @@ const OrderList = () => {
       return;
     }
 
-    checkedOrders.forEach(orderNum => {
-      axios.put(`/api_order/updateOrderStatus/${orderNum}`)
+    const updateStatusPromises = checkedOrders.map(orderNum => {
+      return axios.put(`/api_order/updateOrderStatus/${orderNum}`)
         .then(res => {
           console.log(`주문 ${orderNum} 상태 업데이트 완료:`, res.data);
-          // 여기에 공급품의 현재 보유량을 늘리는 로직 추가
-          //ex. 주문번호 1,2번 선택 후 입고 시 1,2번에 있는 각각의 물품량을 supply 테이블에 업데이트
-          //그러면 우리는 order 자체를 넘기냐 orderSupply정보를 넘기냐...
-          //반복문을 통해 체크한 order를 전부 보내고 있다
-          //그러면 우리는 
-          axios.put(`/api_order/updateSupplyAmount/${orderNum}`)
-            .then(res => {
-              console.log(`주문 ${orderNum} 공급품 보유량 업데이트 완료:`, res.data);
-            })
-            .catch(error => {
-              console.log(`주문 ${orderNum} 공급품 보유량 업데이트 실패:`, error);
-            });
+          // 공급품 보유량 업데이트 요청
+          return axios.put(`/api_order/updateSupplyAmount/${orderNum}`); // 주문 번호를 이용해 업데이트
+        })
+        .then(res => {
+          console.log(`주문 ${orderNum} 공급품 보유량 업데이트 완료:`, res.data);
         })
         .catch(error => {
           console.log(`주문 ${orderNum} 상태 업데이트 실패:`, error);
         });
     });
 
-    setCheckedOrders([]); // 체크 상태 초기화
+    // 모든 요청이 완료된 후
+    Promise.all(updateStatusPromises)
+      .then(() => {
+        alert('선택한 주문이 성공적으로 처리되었습니다.');
+        setCheckedOrders([]); // 체크 상태 초기화
+        return axios.get('/api_order/getAllOrder'); // 상태 업데이트 후 재조회
+      })
+      .then((res) => {
+        setOrderList(res.data); // 새로운 주문 목록으로 업데이트
+      })
+      .catch(error => {
+        console.log('요청 처리 중 오류 발생:', error);
+      });
+  };
+
+  // 주문이 입고 완료 상태인지 확인하는 함수
+  const isOrderCompleted = (order) => {
+    return order.orderStatus === '입고 완료'; // 입고 완료 상태에 맞게 수정
   };
 
   function setModalContent() {
@@ -179,7 +189,9 @@ const OrderList = () => {
                   <td>
                     <input
                       type="checkbox"
+                      checked={checkedOrders.includes(order.orderNum)}
                       onChange={() => handleCheckboxChange(order.orderNum)}
+                      disabled={isOrderCompleted(order)} // 입고 완료 상태일 경우 체크박스 비활성화
                     />
                   </td>
                   <td>{i + 1}</td>
@@ -200,9 +212,10 @@ const OrderList = () => {
         </tbody>
       </table>
 
-      {/* 버튼을 테이블 아래에 위치시킵니다. */}
       <div style={{ marginTop: '20px' }}>
-        <button type='button' onClick={store}>입고</button>
+        <button type='button' onClick={store} disabled={checkedOrders.some(orderNum => isOrderCompleted(orderList.find(order => order.orderNum === orderNum)))}>
+          입고
+        </button>
       </div>
 
       {isShow &&
