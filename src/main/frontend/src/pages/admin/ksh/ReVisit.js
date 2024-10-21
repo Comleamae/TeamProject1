@@ -94,6 +94,8 @@ const ReVisit = () => {
         return;
       }
 
+      
+
       axios.post('/patient/reInsert', reInfo)
         .then((res) => {
           console.log(res.data)
@@ -102,7 +104,7 @@ const ReVisit = () => {
         })
         .catch((error) => {
           console.log(error);
-          alert("접수 실패");
+          alert("접수 실패"); 
         });
       }
 

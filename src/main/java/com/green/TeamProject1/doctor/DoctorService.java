@@ -17,7 +17,7 @@ public interface DoctorService {
     // 모든 진료과 정보 받아오기
     List<MediDeptVO> getDeptList();
 
-    //선택한 진료과에 소속된 의사 목록 조회
+    // 선택한 진료과에 소속된 의사 목록 조회
     List<DoctorVO> getDoctorList(int deptNum);
 
     // 진료 번호 넘겨주기 위해 새로 생성
@@ -34,7 +34,6 @@ public interface DoctorService {
 
     // 선택한 환자 한명에 대한 진료정보 조회
     List<TreatVO> treOneSelect(int patNum);
-
 
     // 진료 시작 누르면 대기중이 진료중으로 바뀌어야함.
     void statusChange(int patNum);
@@ -55,4 +54,10 @@ public interface DoctorService {
 
     // 수납 정보 등록
     void payMoney(TreatVO treatVO);
+
+    // 수납 대기자 조회
+    List<DeskVO> payDesk(DeskVO deskVO);
+
+
+
 }

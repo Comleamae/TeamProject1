@@ -1,35 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './MoneyIn.css'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 const MoneyIn = () => {
 
   const navigate = useNavigate();
+      
+  const [deskInfo, setDeskInfo] = useState([]);
+
+  useEffect(()=>{
+    axios.post('/doctor/payDesk', deskInfo)
+    .then((res)=>{
+      console.log(res.data)
+      setDeskInfo(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }, [])
 
   return (
     <div className='pay-main-box'>
       <div className='user-infor'>
         <table className='user-table'>
           <tr>
-            <td>이름</td>
-            <td>주민번호</td>
-            <td>전화번호</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
+            <td>진료번호</td>
+            <td>환자번호</td>
             <td></td>
           </tr>
-          <tr>
-            <td>진료과목</td>
-            <td>질병군</td>
-            <td>결제여부</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          
+            {
+              deskInfo.map((desk, i)=>{
+                return(
+                <tr key={i}>
+                  <td>{desk.deskNum}</td>
+                  <td>
+                    {desk.treNum}
+                  </td>
+                  <td></td>
+                </tr>
+                );
+              })
+            }
+          
           </table>
       </div>
 
@@ -47,6 +61,56 @@ const MoneyIn = () => {
         <div className='money-box'>
           <div className='left-right'>
             <table className='left-table'>
+              <thead>
+                <tr>환자번호
+                  <td>1</td>
+                </tr>
+                <tr>이름
+                  <td>ABC</td>
+                </tr>
+                <tr>나이
+                  <td>25</td>
+                </tr>
+                <tr>성별
+                  <td>남</td>
+                </tr>
+                <tr>주민번호
+                  <td>990101-4747291</td>
+                </tr>
+                <tr>이메일
+                  <td>abcd@gmail.com</td>
+                </tr>
+                <tr>진료과
+                  <td>내과</td>
+                </tr>
+                <tr>담당의
+                  <td>김세훈</td>
+                </tr>
+                <tr>병명
+                  <td>감기</td>
+                </tr>
+                <tr>증상
+                  <td>기침 많이함</td>
+                </tr>
+                <tr>진료일
+                  <td>2024-10-07</td>
+                </tr>
+                <tr>결제여부
+                  <td>N</td>
+                </tr>
+                  
+              </thead>
+            </table>
+          </div>
+  
+          <div className='left-right'>
+            <table className='right-table'>
+              <colgroup>
+                <col width='20%'/>
+                <col width='*'/>
+                <col width='20%'/>
+                <col width='*'/>
+              </colgroup>
               <thead>
                 <tr>
                   <td rowSpan={2}>항목</td>
@@ -101,54 +165,12 @@ const MoneyIn = () => {
   
                 }
               </tbody>
-            </table>
-  
-            <div className='money-memo'>
+              <div className='money-memo'>
               <p>수납메모</p>
               <textarea placeholder='메모메모메모빔' />
               <button type='button'>
                 진료 서비스<br/> 복사</button>
             </div>
-          </div>
-  
-          <div className='left-right'>
-            <table className='right-table'>
-              <colgroup>
-                <col width='20%'/>
-                <col width='*'/>
-                <col width='20%'/>
-                <col width='*'/>
-              </colgroup>
-              <tr>
-                <td>견적금액</td>
-                <td>0000000</td>
-                <td>결제일자</td>
-                <td><input type='date'/></td>
-              </tr>
-              <tr>
-                <td>진료금액(VAT)</td>
-                <td>0000000</td>
-                <td>실수납금액</td>
-                <td>00000</td>
-              </tr>
-              <tr>
-                <td>매출금액</td>
-                <td>0000000</td>
-                <td>카드결제</td>
-                <td>0000000</td>
-              </tr>
-              <tr>
-                <td>미수금액</td>
-                <td>0</td>
-                <td>현금결제</td>
-                <td>00000</td>
-              </tr>
-              <tr>
-                <td>환불금액</td>
-                <td>0000000</td>
-                <td>추가할인</td>
-                <td>0000000</td>
-              </tr>
             </table>
           </div>
         </div>

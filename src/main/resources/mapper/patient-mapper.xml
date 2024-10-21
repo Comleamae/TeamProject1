@@ -15,15 +15,6 @@
         <association property="recepVO" resultMap="recep"/>
     </resultMap>
 
-    <!--환자에 대한 입원 정보-->
-    <resultMap id="infoDate" type="com.green.TeamProject1.patient.DateVO">
-        <id column="DATE_NUM" property="dateNum"/>
-        <result column="IN_HOPI" property="inHopi"/>
-        <result column="OUT_HOPI" property="outHopi"/>
-        <result column="ROOM_NUM" property="roomNum"/>
-        <result column="OPER_DATE" property="operDate"/>
-    </resultMap>
-
     <!--처방전에 대한 정보-->
     <resultMap id="infoRecipe" type="com.green.TeamProject1.patient.RecipeVO">
         <id column="RECIPE_NUM" property="recipeNum"/>
@@ -58,10 +49,8 @@
         <result column="DOC_LINUM" property="docLinum"/>
         <result column="ABOUT_PAT" property="aboutPat"/>
         <result column="TRE_DATE" property="treDate"/>
-        <result column="DATE_NUM" property="dateNum"/>
         <result column="MED_NUM" property="medNum"/>
         <association property="recipeVO" resultMap="infoRecipe"/>
-        <association property="dateVO" resultMap="infoDate"/>
         <association property="priceVO" resultMap="infoPrice"/>
         <association property="diseaseVO" resultMap="doctorMapper.diseaseCategory"/>
     </resultMap>

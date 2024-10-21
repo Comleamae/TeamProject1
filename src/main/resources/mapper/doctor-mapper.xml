@@ -11,6 +11,7 @@
         <association property="recepVO" resultMap="patientMapper.recep"/>
         <association property="mediDeptVO" resultMap="mediDept"/>
         <association property="deskVO" resultMap="deskInfo"/>
+        <association property="treatVO" resultMap="patientMapper.infoTreat"/>
         <collection property="patientVO" resultMap="patientMapper.patient"/>
     </resultMap>
 
@@ -20,7 +21,8 @@
             DOC_LINUM
             , DOC_PW
             , DOC_NAME
-            , DEPT_NUM)
+            , DEPT_NUM
+            )
         VALUES (
             #{docLinum}
             ,#{docPw}
@@ -51,8 +53,6 @@
         <result column="DIS_NAME" property="disName"/>
         <result column="REC_PRICE" property="recPrice"/>
     </resultMap>
-
-
 
     <!-- 의사에 연결할 진료과 정보 -->
     <resultMap id="mediDept" type="com.green.TeamProject1.doctor.MediDeptVO">
@@ -175,7 +175,8 @@
 
     <!-- 진료 정보 등록하면 기존 대기자 목록 삭제 -->
     <delete id="waitListDelete">
-        DELETE from recep_info
+        UPDATE recep_info
+        SET recep_status = '진료완료'
         WHERE pat_num = #{patNum};
     </delete>
 
@@ -195,18 +196,28 @@
         SELECT * FROM DISEASE_CATEGORY
     </select>
 
+
     <!-- 수납 정보 등록 -->
     <insert id="payMoney">
         INSERT INTO desk (
-            tre_num
-            , desk_price
-            , is_pay
+        tre_num
+        , desk_price
+        , is_pay
         )
         VALUES (
-            #{treNum}
-            , (SELECT REC_PRICE FROM disease_category WHERE DIS_CODE = #{disease})
-            , 'N'
+        #{treNum}
+        , (SELECT REC_PRICE FROM disease_category WHERE DIS_CODE = #{disease})
+        , 'N'
         );
     </insert>
 
+    <!-- 수납 대기자 조회 -->
+    <select id="payDesk" resultMap="doctorMapper.deskInfo">
+        SELECT desk.*,  info_treat.PAT_NUM
+        FROM desk, info_treat
+        WHERE is_pay = 'N'
+        AND info_treat.TRE_NUM = desk.TRE_NUM;
+    </select>
+
+    <!-- 수납 대기자 1명 상세 정보-->
 </mapper>

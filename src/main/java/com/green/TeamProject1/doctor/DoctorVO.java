@@ -5,8 +5,6 @@ import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.TreatVO;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 public class DoctorVO {
     private int docLinum;
@@ -17,4 +15,5 @@ public class DoctorVO {
     private MediDeptVO mediDeptVO;
     private PatientVO patientVO;
     private DeskVO deskVO;
+    private TreatVO treatVO;
 }

@@ -1,19 +1,17 @@
 package com.green.TeamProject1.doctor;
 
-import com.green.TeamProject1.desk.DeskService;
-import com.green.TeamProject1.patient.PatientVO;
-import com.green.TeamProject1.patient.RecepVO;
 import com.green.TeamProject1.patient.RecipeVO;
 import com.green.TeamProject1.patient.TreatVO;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
 import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/doctor")
 @RestController
+@Slf4j
 public class DoctorController {
     @Resource(name = "doctorService")
     private DoctorServiceImpl doctorService;
@@ -51,7 +49,6 @@ public class DoctorController {
     public TreatVO insertTreatInfo(@RequestBody Map<String, Object> mapData) {
         //진료 중 명단에서 제외
         //의사번호 가져와서 등록할 수 있도록 수정
-
 
         //받아온 데이터 전체 출력
         System.out.println(mapData);
@@ -140,5 +137,11 @@ public class DoctorController {
         return doctorService.diseaseCode(diseaseVO);
     }
 
+
+    // 수납 대기자 조회
+    @PostMapping("/payDesk")
+    public List<DeskVO> payDesk(DeskVO deskVO){
+        return doctorService.payDesk(deskVO);
+    }
 
 }

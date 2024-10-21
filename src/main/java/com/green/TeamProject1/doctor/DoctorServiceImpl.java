@@ -113,4 +113,13 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
 
+
+    // 수납 대기자 조회
+    @Override
+    public List<DeskVO> payDesk(DeskVO deskVO) {
+        return sqlSession.selectList("doctorMapper.payDesk", deskVO);
+    }
+
+
+
 }
