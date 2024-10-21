@@ -32,8 +32,6 @@
         <collection property="supply" resultMap="supply"/>
     </resultMap>
 
-
-
     <!--재고 조회 시 모든 물품 조회-->
     <select id="selectAllSupply" resultMap="supply">
         SELECT SUPPLY.*
