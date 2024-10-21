@@ -6,49 +6,68 @@ import Modal from '../../user/kth/Modal';
 
 const OrderList = () => {
   const navigate = useNavigate();
-
   const [orderList, setOrderList] = useState([]);
   const [isShow, setIsShow] = useState(false);
   const [orderSupplyList, setOrderSupplyList] = useState([]);
   const [isEditing, setIsEditing] = useState(-1); // 수정 모드 활성화 인덱스
+  const [checkedOrders, setCheckedOrders] = useState([]); // 체크된 주문 관리
 
-  // const deleteOrderSupply = (orderSupplyNum) => {
-  //   const chkDelete = window.confirm('삭제하시겠습니까?');
-  //   if (chkDelete) {
-  //     axios
-  //       .delete(`/api_order/deleteOrderSupply/${orderSupplyNum}`)
-  //       .then((res) => {
-  //         alert('삭제가 완료되었습니다.');
-  //         const currentOrderNum = orderSupplyList[0]?.orderNum; 
-  //         if (currentOrderNum) {
-  //           getSupplyList(currentOrderNum);
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         alert('삭제 실패');
-  //         console.log(error);
-  //       });
-  //   }
-  // };
+  const handleCheckboxChange = (orderNum) => {
+    setCheckedOrders((prevCheckedOrders) => {
+      if (prevCheckedOrders.includes(orderNum)) {
+        return prevCheckedOrders.filter(num => num !== orderNum);
+      } else {
+        return [...prevCheckedOrders, orderNum];
+      }
+    });
+  };
 
   const handleEdit = (index) => {
     setIsEditing(index);
   };
 
   const handleSave = () => {
-    // 수정된 값을 서버에 저장하는 로직 추가
-    // 예를 들어, axios.put을 사용
-    // 현재 orderSupplyList는 수정이 완료 된 상태인데 이걸 어떻게 넘겨야 전체를 다 바꾸는 or 하나씩 반복해 전체를 바꾸는 방식이 될까
     axios.put(`/api_order/updateOrderSupply`, orderSupplyList)
       .then(res => {
-        alert('db변경 성공')
+        alert('db변경 성공');
       })
       .catch(error => {
-        console.log(error)
+        console.log(error);
         alert('db변경 오류');
-      })
+      });
     setIsEditing(-1); // 수정 모드 종료
-    console.log(orderSupplyList)
+    console.log(orderSupplyList);
+  };
+
+  const store = () => {
+    if (checkedOrders.length === 0) {
+      alert("체크된 주문이 없습니다.");
+      return;
+    }
+
+    checkedOrders.forEach(orderNum => {
+      axios.put(`/api_order/updateOrderStatus/${orderNum}`)
+        .then(res => {
+          console.log(`주문 ${orderNum} 상태 업데이트 완료:`, res.data);
+          // 여기에 공급품의 현재 보유량을 늘리는 로직 추가
+          //ex. 주문번호 1,2번 선택 후 입고 시 1,2번에 있는 각각의 물품량을 supply 테이블에 업데이트
+          //그러면 우리는 order 자체를 넘기냐 orderSupply정보를 넘기냐...
+          //반복문을 통해 체크한 order를 전부 보내고 있다
+          //그러면 우리는 
+          axios.put(`/api_order/updateSupplyAmount/${orderNum}`)
+            .then(res => {
+              console.log(`주문 ${orderNum} 공급품 보유량 업데이트 완료:`, res.data);
+            })
+            .catch(error => {
+              console.log(`주문 ${orderNum} 공급품 보유량 업데이트 실패:`, error);
+            });
+        })
+        .catch(error => {
+          console.log(`주문 ${orderNum} 상태 업데이트 실패:`, error);
+        });
+    });
+
+    setCheckedOrders([]); // 체크 상태 초기화
   };
 
   function setModalContent() {
@@ -68,7 +87,6 @@ const OrderList = () => {
                 <td>총 가격</td>
                 <td>메모</td>
                 <td>수정</td>
-                {/* <td>삭제</td> */}
               </tr>
             </thead>
             <tbody>
@@ -86,7 +104,7 @@ const OrderList = () => {
                             type="number"
                             min={0}
                             defaultValue={supplyList.orderAmount}
-                            onChange={(e) => supplyList.orderAmount = e.target.value} // 실시간으로 화면과 react 데이터에서 수정(db에 넘기기만 하면 됨.)
+                            onChange={(e) => supplyList.orderAmount = e.target.value}
                           />
                         ) : (
                           supplyList.orderAmount
@@ -102,7 +120,6 @@ const OrderList = () => {
                           <button type='button' onClick={() => handleEdit(i)}>수정</button>
                         )}
                       </td>
-                      {/* <td><button type='button' onClick={() => { deleteOrderSupply(supplyList.orderSupplyNum); }}>삭제</button></td> */}
                     </tr>
                   );
                 })
@@ -145,10 +162,12 @@ const OrderList = () => {
       <table className='orderList-table-div'>
         <thead>
           <tr>
+            <td>선택</td>
             <td>No.</td>
             <td>발주자</td>
             <td>발주일</td>
             <td>메모</td>
+            <td>상태</td>
             <td>상세</td>
           </tr>
         </thead>
@@ -157,20 +176,35 @@ const OrderList = () => {
             orderList.map((order, i) => {
               return (
                 <tr key={i}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      onChange={() => handleCheckboxChange(order.orderNum)}
+                    />
+                  </td>
                   <td>{i + 1}</td>
                   <td>{order.orderManager}</td>
                   <td>{order.orderDate}</td>
                   <td>{order.orderNote}</td>
-                  <td><button type='button' onClick={() => {
-                    setIsShow(true);
-                    getSupplyList(order.orderNum);
-                  }}>상세</button></td>
+                  <td>{order.orderStatus}</td>
+                  <td>
+                    <button type='button' onClick={() => {
+                      setIsShow(true);
+                      getSupplyList(order.orderNum);
+                    }}>상세</button>
+                  </td>
                 </tr>
               );
             })
           }
         </tbody>
       </table>
+
+      {/* 버튼을 테이블 아래에 위치시킵니다. */}
+      <div style={{ marginTop: '20px' }}>
+        <button type='button' onClick={store}>입고</button>
+      </div>
+
       {isShow &&
         <Modal content={setModalContent}
           setIsShow={setIsShow}

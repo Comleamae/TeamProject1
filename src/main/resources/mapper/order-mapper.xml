@@ -23,6 +23,7 @@
         <result column="ORDER_MANAGER" property="orderManager"/>
         <result column="DELIVERY_DATE" property="deliveryDate"/>
         <result column="ORDER_NOTE" property="orderNote"/>
+        <result column="ORDER_STATUS" property="orderStatus"/>
     </resultMap>
 
     <resultMap id="orderedSupply" type="com.green.TeamProject1.order.vo.OrderedSupplyVO">
@@ -61,6 +62,7 @@
             , SUPPLY_STANDARD
             , SUPPLIER
             , SUPPLY_CAUTION
+            , SUPPLY_MIN_AMOUNT
             , SUPPLY_IMAGE
         ) VALUES (
             #{supplyName}
@@ -68,6 +70,7 @@
             , #{supplyStandard}
             , #{supplier}
             , #{supplyCaution}
+            , #{supplyMinAmount}
             , #{supplyImage}
         )
     </insert>
@@ -132,5 +135,29 @@
         WHERE ORDER_SUPPLY_NUM = #{orderSupplyNum}
     </update>
 
+
+    <update id="updateOrderStatus">
+        UPDATE ORDER_INFO
+        SET ORDER_STATUS = '배송 전'
+        WHERE ORDER_NUM = #{orderNum};
+
+    </update>
+
+
+    <!--여러개 받아와야 하는데...
+        checkBox로 전달받은 orderNum에 있는 orderSupplyInfo에서 supplyNum을 가져와야하는데 -->
+    <update id="updateSupplyAmount">
+        UPDATE SUPPLY
+        SET SUPPLY_AMOUNT = SUPPLY_AMOUNT + (
+        SELECT ORDER_AMOUNT
+        FROM order_SUPPLY_info
+        WHERE ORDER_NUM = #{orderNum} AND SUPPLY_NUM = SUPPLY.SUPPLY_NUM
+        )
+        WHERE SUPPLY_NUM IN (
+        SELECT SUPPLY_NUM
+        FROM order_SUPPLY_info
+        WHERE ORDER_NUM = #{orderNum}
+        );
+    </update>
 </mapper>
 

@@ -74,4 +74,13 @@ public class OrderController {
     }
 
 
+    @PutMapping("/updateOrderStatus/{orderNum}")
+    public void updateOrderStatus(@PathVariable(name = "orderNum") int orderNum) {
+        orderService.updateOrderStatus(orderNum);
+    }
+
+    @PutMapping("/updateSupplyAmount/{orderNum}")
+    public void updateSupplyAmount(@PathVariable(name = "orderNum") int orderNum){
+        orderService.updateSupplyAmount(orderNum);
+    }
 }
