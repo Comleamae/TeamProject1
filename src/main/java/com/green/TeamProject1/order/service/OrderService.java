@@ -28,5 +28,8 @@ public interface OrderService {
 
     void updateOrderSupply(List<OrderedSupplyVO> orderedSupplyList);
 
+    void updateOrderStatus(int orderNum);
+
+    void updateSupplyAmount(int orderNum);
 
 }

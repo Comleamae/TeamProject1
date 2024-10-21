@@ -65,7 +65,7 @@ const AdminLogin = ({}) => {
         else if(res.data.adminRole == 'staff'){
           alert(`${res.data.adminName} 님 환영합니다.`)
           //직원 메인화면(발주화면)으로 이동
-          navigate('/order')
+          navigate('/order/manageSupply')
           saveLoginData(res)
         }
         else if(res.data.adminRole == 'doctor'){

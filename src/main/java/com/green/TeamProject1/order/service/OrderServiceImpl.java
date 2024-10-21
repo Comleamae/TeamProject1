@@ -77,5 +77,15 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    @Override
+    public void updateOrderStatus(int orderNum) {
+        sqlSession.update("orderMapper.updateOrderStatus", orderNum);
+    }
+
+    @Override
+    public void updateSupplyAmount(int orderNum) {
+        sqlSession.update("orderMapper.updateSupplyAmount", orderNum);
+    }
+
 
 }

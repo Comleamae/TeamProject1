@@ -12,5 +12,6 @@ public class OrderVO {
     private int orderAmount;
     private String deliveryDate;
     private String orderNote;
+    private String orderStatus;
     private List<SupplyVO> supplyList;
 }
