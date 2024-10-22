@@ -9,8 +9,8 @@ const OrderList = () => {
   const [orderList, setOrderList] = useState([]);
   const [isShow, setIsShow] = useState(false);
   const [orderSupplyList, setOrderSupplyList] = useState([]);
-  const [isEditing, setIsEditing] = useState(-1); // 수정 모드 활성화 인덱스
-  const [checkedOrders, setCheckedOrders] = useState([]); // 체크된 주문 관리
+  const [isEditing, setIsEditing] = useState(-1);
+  const [checkedOrders, setCheckedOrders] = useState([]);
 
   const handleCheckboxChange = (orderNum) => {
     setCheckedOrders((prevCheckedOrders) => {
@@ -35,8 +35,7 @@ const OrderList = () => {
         console.log(error);
         alert('DB 변경 오류');
       });
-    setIsEditing(-1); // 수정 모드 종료
-    console.log(orderSupplyList);
+    setIsEditing(-1);
   };
 
   const store = () => {
@@ -45,12 +44,15 @@ const OrderList = () => {
       return;
     }
 
+    if (!window.confirm("선택한 주문을 입고하시겠습니까?")) {
+      return;
+    }
+
     const updateStatusPromises = checkedOrders.map(orderNum => {
       return axios.put(`/api_order/updateOrderStatus/${orderNum}`)
         .then(res => {
           console.log(`주문 ${orderNum} 상태 업데이트 완료:`, res.data);
-          // 공급품 보유량 업데이트 요청
-          return axios.put(`/api_order/updateSupplyAmount/${orderNum}`); // 주문 번호를 이용해 업데이트
+          return axios.put(`/api_order/updateSupplyAmount/${orderNum}`);
         })
         .then(res => {
           console.log(`주문 ${orderNum} 공급품 보유량 업데이트 완료:`, res.data);
@@ -60,24 +62,44 @@ const OrderList = () => {
         });
     });
 
-    // 모든 요청이 완료된 후
     Promise.all(updateStatusPromises)
       .then(() => {
         alert('선택한 주문이 성공적으로 처리되었습니다.');
-        setCheckedOrders([]); // 체크 상태 초기화
-        return axios.get('/api_order/getAllOrder'); // 상태 업데이트 후 재조회
+        setCheckedOrders([]);
+        return axios.get('/api_order/getAllOrder');
       })
       .then((res) => {
-        setOrderList(res.data); // 새로운 주문 목록으로 업데이트
+        setOrderList(res.data);
       })
       .catch(error => {
         console.log('요청 처리 중 오류 발생:', error);
       });
   };
 
-  // 주문이 입고 완료 상태인지 확인하는 함수
+  const cancelOrder = (orderNum) => {
+    if (!window.confirm("이 주문을 취소하시겠습니까?")) {
+      return;
+    }
+
+    axios.put(`/api_order/cancelOrder/${orderNum}`)
+      .then((res) => {
+        alert('취소되었습니다.');
+        return axios.get('/api_order/getAllOrder');
+      })
+      .then((res) => {
+        setOrderList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const isOrderCompleted = (order) => {
-    return order.orderStatus === '입고 완료'; // 입고 완료 상태에 맞게 수정
+    return order.orderStatus === '입고 완료';
+  };
+
+  const isOrderCanceled = (order) => {
+    return order.orderStatus === '취소 됨';
   };
 
   function setModalContent() {
@@ -179,6 +201,7 @@ const OrderList = () => {
             <td>메모</td>
             <td>상태</td>
             <td>상세</td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -191,7 +214,7 @@ const OrderList = () => {
                       type="checkbox"
                       checked={checkedOrders.includes(order.orderNum)}
                       onChange={() => handleCheckboxChange(order.orderNum)}
-                      disabled={isOrderCompleted(order)} // 입고 완료 상태일 경우 체크박스 비활성화
+                      disabled={isOrderCompleted(order) || isOrderCanceled(order)}
                     />
                   </td>
                   <td>{i + 1}</td>
@@ -203,8 +226,13 @@ const OrderList = () => {
                     <button type='button' onClick={() => {
                       setIsShow(true);
                       getSupplyList(order.orderNum);
-                    }}>상세</button>
+                    }}
+                      disabled={isOrderCompleted(order) || isOrderCanceled(order)}>
+                      상세</button>
                   </td>
+                  <td><button type='button' onClick={() => cancelOrder(order.orderNum)}
+                    disabled={isOrderCompleted(order) || isOrderCanceled(order)}>
+                    취소</button></td>
                 </tr>
               );
             })

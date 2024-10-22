@@ -32,4 +32,5 @@ public interface OrderService {
 
     void updateSupplyAmount(int orderNum);
 
+    void cancelOrder(int orderNum);
 }

@@ -44,7 +44,8 @@
         SELECT IFNULL(SUM(ORDER_AMOUNT), 0)
         FROM order_supply_info, ORDER_INFO
         WHERE SUPPLY_NUM = #{supplyNum}
-        AND ORDER_STATUS = '배송 전'
+        AND ORDER_INFO.ORDER_STATUS = '배송 전'
+        AND ORDER_SUPPLY_INFO.ORDER_NUM = ORDER_INFO.ORDER_NUM
     </select>
 
     <!--물품 등록시 물품 이름을 통해 물품의 중복검사 실행-->
@@ -138,6 +139,12 @@
     <update id="updateOrderStatus">
         UPDATE ORDER_INFO
         SET ORDER_STATUS = '입고 완료'
+        WHERE ORDER_NUM = #{orderNum};
+
+    </update>
+    <update id="cancelOrder">
+        UPDATE ORDER_INFO
+        SET ORDER_STATUS = '취소 됨'
         WHERE ORDER_NUM = #{orderNum};
 
     </update>
