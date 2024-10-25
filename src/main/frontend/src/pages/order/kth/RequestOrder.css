@@ -1,20 +1,65 @@
-.order-tag-table{
-  margin: 0 auto;
-  width: 70%;
+.container {
+  background-color: white;
+  padding: 20px; /* 여백 추가 */
 }
 
-.order-tag:hover{
+.title-div {
+  font-size: 2rem;
+  color: black;
+  margin-top: 30px;
+  text-align: center; /* 중앙 정렬 */
+  font-weight: bold; /* 두껍게 */
+}
+
+.order-table {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 1200px;
+  text-align: center;
+  align-items: center;
+}
+
+.order-table tr {
+  height: 40px;
+}
+
+.order-table td {
+  border: 1px solid rgb(153, 153, 153);
+  width: 250px;
+  vertical-align: middle; /* 세로 중앙 정렬 */
+  padding: 10px; /* 여백 추가 (선택 사항) */
+}
+.order-table thead{
+  background-color: #393753;
+  color:white;
+}
+/* 회색과 흰색 번갈아 나오는 스타일 */
+.order-table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2; /* 회색 */
+}
+
+.order-table tbody tr:nth-child(even) {
+  background-color: white; /* 흰색 */
+}
+
+/* 발주자 이름 등 추가 텍스트 스타일 */
+.order-info {
+  margin-top: 20px; /* 간격 추가 */
+  font-size: 1.2rem; /* 크기 조정 */
+  text-align: center; /* 왼쪽 정렬 */
+}
+
+.register-button {
+  background-color: #393753;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px; /* 버튼 크기 증가 */
+  font-size: 1rem; /* 폰트 크기 증가 */
+  margin-top: 20px; /* 위 여백 추가 */
+}
+
+.register-button:hover {
+  background-color: #5a5781;
   cursor: pointer;
-}
-
-
-.order-table{
-  margin: 0 auto;
-  margin-top: 50px;
-}
-
-.supplyImage > img {
-  width: 50px;
-  height: 30px;
-  object-fit: contain;
 }
