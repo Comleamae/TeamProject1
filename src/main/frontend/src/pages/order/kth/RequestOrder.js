@@ -131,6 +131,21 @@ const RequestOrder = ({ adminLoginInfo }) => {
     }
   }
 
+  function saveOrders(){
+    axios.post('/api_order/commitOrder', orderInfo)
+    .then((res)=>{
+      return axios.post('/api_order/commitOrderedSupply', orderedSupplyList);
+    })
+      .then(()=>{
+        console.log('발주성공')
+        navigate('/order/orderList')
+      }
+    )
+    .catch((error)=>{
+      console.log('발주실패')
+    })
+  }
+
   // function commitOrder() {
   //   axios.get('http://192.168.30.117:8080/order/order/receiveOrder')
   //     .then((res) => {
@@ -224,7 +239,9 @@ const RequestOrder = ({ adminLoginInfo }) => {
         </tbody>
       </table>
 
-      <button type='button' className='register-button' onClick={(e) => { commitOrder() }}>발주</button>
+      <button type='button' className='register-button' onClick={(e) => { 
+                                                                          commitOrder() 
+                                                                          saveOrders()}}>발주</button>
 
     </div>
   );
