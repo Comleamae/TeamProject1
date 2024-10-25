@@ -1,37 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import './RequestOrder.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // 발주 화면
 const RequestOrder = ({ adminLoginInfo }) => {
 
+
+  const navigate = useNavigate();
+
+
   //로그인 한 어드민 정보 저장할 state 변수
   const [loginInfo, setLoginInfo] = useState({});
+
 
   //물품 전체 목록 불러오기
   const [supplyList, setSupplyList] = useState([]);
 
+
   //발주 정보 담을 state변수(발주자, 발주일 등등)
   const [orderInfo, setOrderInfo] = useState({
-    orderManager : '',
-    deliveryDate : '',
-    orderNote : '',
+    orderManager: '',
+    deliveryDate: '',
+    orderNote: '',
   })
+
 
   //발주할 물품 담아둘 목록
   const [OrderedSupplyList, setOrderedSupplyList] = useState([]);
 
 
-
   //로그인 정보로 발주자 설정
-  useEffect(()=>{
+  useEffect(() => {
     const sessionAdminInfo = window.sessionStorage.getItem('adminLoginInfo')
     setLoginInfo(JSON.parse(sessionAdminInfo))
     setOrderInfo({
       ...orderInfo,
-      orderManager : loginInfo.adminName
+      orderManager: loginInfo.adminName
     })
   }, [orderInfo.deliveryDate])//일단 대충 막은거
+
 
   // 재고 목록 불러오기
   useEffect(() => {
@@ -43,6 +51,7 @@ const RequestOrder = ({ adminLoginInfo }) => {
         console.log(error);
       });
   }, []);
+
 
   // 버튼 누르면 발주 목록에 물품 추가
   function addSupply(supply) {
@@ -60,19 +69,20 @@ const RequestOrder = ({ adminLoginInfo }) => {
     }
   }
 
-  // 수량 변경 핸들러
+
+  // 수량 변경
   const handleAmountChange = (supplyNum, amount) => {
     setOrderedSupplyList(OrderedSupplyList.map(order =>
-        order.supplyNum === supplyNum ? { ...order, orderAmount: parseInt(amount, 10) || 1 } : order
-      ));
-      console.log(OrderedSupplyList)
+      order.supplyNum === supplyNum ? { ...order, orderAmount: parseInt(amount, 10) || 1 } : order
+    ));
+    console.log(OrderedSupplyList)
   };
 
-
-  function changeOrderInfo(e){
+  // 발주 내용 바꾸기(발주 전)
+  function changeOrderInfo(e) {
     setOrderInfo({
       ...orderInfo,
-      [e.target.name] : e.target.value
+      [e.target.name]: e.target.value
     })
     console.log(orderInfo)
   }
@@ -83,30 +93,43 @@ const RequestOrder = ({ adminLoginInfo }) => {
     setOrderedSupplyList(prev => prev.filter(order => order.supplyNum !== supplyNum));
   }
 
-  // 발주 버튼 누르면 목록에 있는거 발주 안에 넣기
+
+  // 발주 버튼 누르면 발주 목록 데이터 발주 내역에 넣기
+  // function commitOrder() {
+  //   axios.post('http://192.168.30.117/api_order/commitOrder', orderInfo)
+  //     .then((res) => {
+  //       const orderNum = res.data.orderNum;
+  //       const orderOrderNum = OrderedSupplyList.map((order, i) => ({
+  //         ...order,
+  //         orderNum: orderNum // OrderedSupplyList(발주할 물품 리스트에) orderNum 추가
+  //       }));
+  //       return axios.post('/api_order/commitOrderedSupply', orderOrderNum);
+  //     })
+  //     .then(() => {
+  //       alert('발주가 신청되었습니다.');
+  //       navigate('/order/orderList')
+  //     })
+  //     .catch((error) => {
+  //       alert('발주에 실패하였습니다.');
+  //       console.log(error);
+  //     });
+  // }
+
   function commitOrder() {
-    axios.post('/api_order/commitOrder', orderInfo)
+    axios.get('http://192.168.30.117:8080/order/order/receiveOrder')
       .then((res) => {
-        const orderNum = res.data.orderNum; 
-        const orderOrderNum = OrderedSupplyList.map((order, i) => ({
-          ...order,
-          orderNum: orderNum // OrderedSupplyList(발주할 물품 리스트에) orderNum 추가
-        }));
-        return axios.post('/api_order/commitOrderedSupply', orderOrderNum);
-      })
-      .then(() => {
-        alert('발주가 신청되었습니다.');
+        alert('통신성공');
       })
       .catch((error) => {
-        alert('발주 오류');
+        alert('발주에 실패하였습니다.');
         console.log(error);
       });
-}
+  }
+
 
   return (
-    <div>
-      <h1>발주 신청 페이지</h1>
-      <p>여기는 모든 물품을 띄워두고 검색 기능 활성화 하여 발주 화면을 구현할 것</p>
+    <div className='container'>
+      <h1 className='title-div'>발주 신청</h1>
       <table className='order-table'>
         <thead>
           <tr>
@@ -122,7 +145,7 @@ const RequestOrder = ({ adminLoginInfo }) => {
           {
             supplyList.map((supply, i) => (
               <tr key={i}>
-                <td>{i+1}</td>
+                <td>{i + 1}</td>
                 <td className='supplyImage'><img src={`http://localhost:8080/upload/${supply.supplyImage}`} alt={supply.supplyName} /></td>
                 <td>{supply.supplyName}</td>
                 <td>{supply.supplyStandard}</td>
@@ -134,8 +157,9 @@ const RequestOrder = ({ adminLoginInfo }) => {
         </tbody>
       </table>
 
-      <h1>신청 목록</h1>
-      <p>발주자 : {loginInfo.adminName}</p>
+      <h1 className='title-div'>신청 목록</h1>
+      <p className='order-info'>발주자 : {loginInfo.adminName}</p>
+
       <table className='order-table'>
         <thead>
           <tr>
@@ -146,7 +170,7 @@ const RequestOrder = ({ adminLoginInfo }) => {
             <td>단가</td>
             <td>총 가격</td>
             <td>메모</td>
-            <td></td>
+            <td>삭제</td>
           </tr>
         </thead>
         <tbody>
@@ -158,7 +182,7 @@ const RequestOrder = ({ adminLoginInfo }) => {
                 <td>{order.supplyNum}</td>
                 <td>{order.supplyName}</td>
                 <td>
-                  <input
+                  <input className='orderMount'
                     type='number'
                     name='orderAmount'
                     value={order.orderAmount}
@@ -175,15 +199,17 @@ const RequestOrder = ({ adminLoginInfo }) => {
           }
           <tr>
             <td colSpan={2}>희망 발주 일</td>
-            <td colSpan={6} ><input type='date' name='deliveryDate' onChange={(e)=>{changeOrderInfo(e)}}></input></td>
+            <td colSpan={6} ><input type='date' name='deliveryDate' onChange={(e) => { changeOrderInfo(e) }}></input></td>
           </tr>
           <tr>
             <td colSpan={2}>메모</td>
-            <td colSpan={6}><textarea name='orderNote' onChange={(e)=>{changeOrderInfo(e)}}></textarea></td>
+            <td colSpan={6}><textarea name='orderNote' onChange={(e) => { changeOrderInfo(e) }}></textarea></td>
           </tr>
         </tbody>
       </table>
-      <button type='button' onClick={(e) => { commitOrder() }}>발주</button>
+
+      <button type='button' className='register-button' onClick={(e) => { commitOrder() }}>발주</button>
+
     </div>
   );
 }

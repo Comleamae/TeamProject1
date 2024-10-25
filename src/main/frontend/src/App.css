@@ -70,6 +70,18 @@
   text-align: right;
 }
 
+button{
+  background-color: #393753;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+button:hover{
+  background-color: #5a5781;
+  cursor: pointer;
+}
+
 /* 모달 애니메니션 정의 */
 @keyframes fadeIn{
   from{

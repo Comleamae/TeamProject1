@@ -1,3 +1,74 @@
-.regist-table-div{
+.container {
+  background-color: white;
+}
+
+.regist-table-div {
   margin: 0 auto;
+  width: 60%;
+  align-items: center;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif; /* 기본 폰트 설정 */
+}
+
+.regist-table-div th,
+.regist-table-div td {
+  padding: 12px 15px; /* 여백 추가 */
+  text-align: left;
+  border: 1px solid #e0e0e0; /* 연한 회색 테두리 */
+}
+
+.regist-table-div th {
+  background-color: #f9f9f9; /* 부드러운 배경색 */
+  color: #333; /* 텍스트 색상 */
+  font-weight: bold; /* 두꺼운 폰트 */
+}
+
+.regist-table-div tr {
+  transition: background-color 0.3s; /* 마우스 오버 애니메이션 */
+}
+
+.regist-table-div tr:hover {
+  background-color: #f1f1f1; /* 마우스 오버 시 배경 색상 */
+}
+
+.regist-table-div tr:nth-child(even) {
+  background-color: #f9f9f9; /* 짝수 행에 배경 색상 추가 */
+}
+
+.regist-table-div tr:nth-child(odd) {
+  background-color: #ffffff; /* 홀수 행은 흰색 배경 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+  .regist-table-div th, 
+  .regist-table-div td {
+    display: block;
+    width: 100%; /* 100% 너비 사용 */
+    box-sizing: border-box; /* 여백 및 테두리 포함 */
+  }
+}
+
+.fileButton {
+  display: none; /* 기본 파일 입력 숨기기 */
+}
+
+.custom-button {
+  background-color: #393753; /* 버튼 색상 */
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.custom-button:hover {
+  background-color: #5a5781; /* 마우스 오버 시 더 어두운 색상 */
+}
+
+.reg-button {
+  font-size: 1rem;
+  margin-top: 10px;
 }
