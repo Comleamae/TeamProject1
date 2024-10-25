@@ -20,6 +20,7 @@ const ManageSupply = () => {
 
   useEffect(() => {
     // 모든 발주 물량을 불러오는 요청
+    // async 비동기 처리
     const fetchOrderAmounts = async () => {
       const amounts = {};
       for (const supply of supplyList) {
@@ -39,15 +40,16 @@ const ManageSupply = () => {
   }, [supplyList]);
 
   return (
-    <div>
-      <h1>재고 관리 페이지</h1>
-      <table className='order-table'>
+    <div className='container'>
+      <h1 className='title-div'>재고 관리</h1>
+      <table className='supply-table'>
         <thead>
           <tr>
             <td>No.</td>
             <td>이미지</td>
             <td>품목</td>
             <td>제조사</td>
+            
             <td>가격</td>
             <td>남은 수량</td>
             <td>입고 예정량</td>

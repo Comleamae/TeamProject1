@@ -21,6 +21,7 @@ public class OrderController {
     @Resource(name = "orderService")
     private OrderService orderService;
 
+    //Impl에 더 자세한 주석 (이 줄은 삭제)
 
     // 재고조회 시 모든 물품 조회
     @GetMapping("/selectAllSupply")
@@ -75,22 +76,26 @@ public class OrderController {
         orderService.registSupply(supplyVO);
     }
 
+    //모든 발주내역 조회
     @GetMapping("/getAllOrder")
     public List<OrderVO> getAllOrder(){
         return orderService.getAllOrder();
     }
 
+
+    //발주
     @PostMapping("/commitOrder")
     public void commitOrder(@RequestBody OrderVO orderVO){
         orderService.commitOrder(orderVO);
     }
 
-
+    //발주 내용 채우기
     @PostMapping("/commitOrderedSupply")
     public void commitOrderedSupply(@RequestBody List<OrderedSupplyVO> orderedSupply){
         orderService.commitOrderedSupply(orderedSupply);
     }
 
+    //각 주문서별 내용 가져오기(상세버튼)
     @GetMapping("/getOrderSupplyList/{orderNum}")
     public List<SupplyVO> getOrderSupplyList(@PathVariable(name = "orderNum") int orderNum){
         return orderService.getOrderSupplyList(orderNum);
@@ -101,22 +106,25 @@ public class OrderController {
         orderService.deleteOrderSupply(orderSupplyNum);
     }*/
 
-    //orderNum 이용해서 받아오면 될듯?
+    //주문서 내용 변경
     @PutMapping("/updateOrderSupply")
     public void updateOrderSupply(@RequestBody List<OrderedSupplyVO> orderedSupplyList){
         orderService.updateOrderSupply(orderedSupplyList);
     }
 
+    //입고 완료 시 상태 변경
     @PutMapping("/updateOrderStatus/{orderNum}")
     public void updateOrderStatus(@PathVariable(name = "orderNum") int orderNum) {
         orderService.updateOrderStatus(orderNum);
     }
 
+    //입고 완료 시 재고 변경
     @PutMapping("/updateSupplyAmount/{orderNum}")
     public void updateSupplyAmount(@PathVariable(name = "orderNum") int orderNum){
         orderService.updateSupplyAmount(orderNum);
     }
 
+    //취소 시 상태 변경
     @PutMapping("/cancelOrder/{orderNum}")
     public void cancelOrder(@PathVariable(name = "orderNum")int orderNum){
         orderService.cancelOrder(orderNum);

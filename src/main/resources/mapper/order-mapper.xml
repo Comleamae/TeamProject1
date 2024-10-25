@@ -75,6 +75,7 @@
         )
     </insert>
 
+    <!--발주 주문-->
     <insert id="commitOrder">
     INSERT INTO order_info(
           ORDER_MANAGER
@@ -88,7 +89,7 @@
         , #{orderNote}
     );
     </insert>
-<!--컨트롤러에서 실행 시에 orderNum 값을 어딘가 변수에 저장해서 그 값을 서브쿼리에 집어 넣으면 가능 할 것 같다.-->
+    <!--발주 주문 안에 주문물품 넣기(주문서 내용 채우기)-->
     <insert id="commitOrderedSupply">
         INSERT INTO ORDER_SUPPLY_INFO(
         SUPPLY_NUM,
@@ -106,6 +107,7 @@
         SELECT * FROM ORDER_INFO
     </select>
 
+    <!--주문서 내용 불러오기-->
     <select id="getOrderSupplyList" resultMap="orderedSupply">
         SELECT SUPPLY.SUPPLY_NUM,
                ORDER_SUPPLY_NUM,
@@ -130,18 +132,20 @@
 <!--        WHERE ORDER_SUPPLY_NUM = #{orderSupplyNum}-->
 <!--    </delete>-->
 
+    <!--주문서 내용 변경-->
     <update id="updateOrderSupply">
         UPDATE ORDER_SUPPLY_INFO SET ORDER_AMOUNT = #{orderAmount}
         WHERE ORDER_SUPPLY_NUM = #{orderSupplyNum}
     </update>
 
-
+    <!--입고 시 상태 변경-->
     <update id="updateOrderStatus">
         UPDATE ORDER_INFO
         SET ORDER_STATUS = '입고 완료'
         WHERE ORDER_NUM = #{orderNum};
-
     </update>
+
+    <!--취소 시 상태변경-->
     <update id="cancelOrder">
         UPDATE ORDER_INFO
         SET ORDER_STATUS = '취소 됨'

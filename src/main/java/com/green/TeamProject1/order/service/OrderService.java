@@ -24,8 +24,6 @@ public interface OrderService {
 
     List<SupplyVO> getOrderSupplyList(int orderNum);
 
-//    void deleteOrderSupply(int orderSupplyNum);
-
     void updateOrderSupply(List<OrderedSupplyVO> orderedSupplyList);
 
     void updateOrderStatus(int orderNum);

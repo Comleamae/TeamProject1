@@ -1,3 +1,50 @@
-.orderList-table-div{
+.container{
+  background-color: white;
+}
+.container h1 {
+  text-align: center; /* 중앙 정렬 */
+  margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+.orderList-table-div {
+  text-align: center;
   margin: 0 auto;
+  width: 85%;
+  border-collapse: collapse;
+}
+
+.orderList-table-div th,
+.orderList-table-div td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.orderList-table-div tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* 흰색 */
+}
+
+.orderList-table-div tbody tr:nth-child(odd) {
+  background-color: #dddddd; /* 회색 */
+}
+
+.orderList-table-div thead {
+  background-color: #393753; /* 헤더 배경 색 */
+  color: white;
+}
+
+.modal-table-container{
+  margin: 0 auto;
+}
+
+.buttons{
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+/* 비활성화된 버튼 스타일 */
+button:disabled {
+  background-color: #b0b0b0; /* 흐리게 보이게 하는 배경색 */
+  color: #ffffff; /* 텍스트 색상 */
+  cursor: not-allowed; /* 커서 모양 변경 */
+  opacity: 0.6; /* 투명도 조정 */
 }

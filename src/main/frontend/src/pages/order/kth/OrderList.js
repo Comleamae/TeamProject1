@@ -12,6 +12,7 @@ const OrderList = () => {
   const [isEditing, setIsEditing] = useState(-1);
   const [checkedOrders, setCheckedOrders] = useState([]);
 
+  //체크박스 여부에 따라 입고할 orderNum 저장
   const handleCheckboxChange = (orderNum) => {
     setCheckedOrders((prevCheckedOrders) => {
       if (prevCheckedOrders.includes(orderNum)) {
@@ -22,43 +23,46 @@ const OrderList = () => {
     });
   };
 
+  //모달 창에서 수량 변경하는지 체크(수정버튼 클릭 시 수량 변경 가능)
   const handleEdit = (index) => {
     setIsEditing(index);
   };
 
+  //모달창에서 변경버튼 클릭시 db에 바꾼 데이터로 변경
   const handleSave = () => {
     axios.put(`/api_order/updateOrderSupply`, orderSupplyList)
       .then(res => {
-        alert('DB 변경 성공');
+        alert('발주 정보 변경 성공');
       })
       .catch(error => {
         console.log(error);
-        alert('DB 변경 오류');
+        alert('발주 정보 변경 오류');
       });
     setIsEditing(-1);
   };
 
+  //입고 버튼 클릭 시 
   const store = () => {
+    //선택한 주문이 없다면
     if (checkedOrders.length === 0) {
       alert("체크된 주문이 없습니다.");
       return;
     }
 
+    //주문이 있다면 확인창 띄우기
     if (!window.confirm("선택한 주문을 입고하시겠습니까?")) {
       return;
     }
 
+    //확인 눌렀다면 입고 완료 시키기
     const updateStatusPromises = checkedOrders.map(orderNum => {
       return axios.put(`/api_order/updateOrderStatus/${orderNum}`)
         .then(res => {
-          console.log(`주문 ${orderNum} 상태 업데이트 완료:`, res.data);
           return axios.put(`/api_order/updateSupplyAmount/${orderNum}`);
         })
         .then(res => {
-          console.log(`주문 ${orderNum} 공급품 보유량 업데이트 완료:`, res.data);
         })
         .catch(error => {
-          console.log(`주문 ${orderNum} 상태 업데이트 실패:`, error);
         });
     });
 
@@ -76,6 +80,7 @@ const OrderList = () => {
       });
   };
 
+  //취소 버튼 클릭시(체크박스랑은 관계 X)
   const cancelOrder = (orderNum) => {
     if (!window.confirm("이 주문을 취소하시겠습니까?")) {
       return;
@@ -102,12 +107,13 @@ const OrderList = () => {
     return order.orderStatus === '취소 됨';
   };
 
+  //모달창 내용 설정
   function setModalContent() {
     return (
       <div>
-        <h3>주문한 물품정보 테이블</h3>
+        <h3>발주 정보</h3>
         <div>
-          <table>
+          <table className='modal-table-container'>
             <thead>
               <tr>
                 <td>상품번호</td>
@@ -163,6 +169,7 @@ const OrderList = () => {
     );
   }
 
+  //발주 내역 띄우기
   useEffect(() => {
     axios.get('/api_order/getAllOrder')
       .then((res) => {
@@ -173,6 +180,7 @@ const OrderList = () => {
       });
   }, []);
 
+  //상세 버튼 누르면 나오는 주문서 내용 채우기
   const getSupplyList = (orderNum) => {
     axios.get(`/api_order/getOrderSupplyList/${orderNum}`)
       .then((res) => {
@@ -189,8 +197,8 @@ const OrderList = () => {
   }
 
   return (
-    <div>
-      <h1>발주 내역</h1>
+    <div className='container'>
+      <h1 className='title-div'>발주 내역</h1>
       <table className='orderList-table-div'>
         <thead>
           <tr>
