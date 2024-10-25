@@ -14,4 +14,7 @@ public class OrderVO {
     private String orderNote;
     private String orderStatus;
     private List<SupplyVO> supplyList;
+
+    private List<OrderedSupplyVO> orderedSupply;
+    private int orderSupplyNum;
 }

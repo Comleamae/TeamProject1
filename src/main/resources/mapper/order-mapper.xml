@@ -24,6 +24,7 @@
         <result column="DELIVERY_DATE" property="deliveryDate"/>
         <result column="ORDER_NOTE" property="orderNote"/>
         <result column="ORDER_STATUS" property="orderStatus"/>
+        <collection property="orderedSupply" resultMap="orderedSupply"/>
     </resultMap>
 
     <resultMap id="orderedSupply" type="com.green.TeamProject1.order.vo.OrderedSupplyVO">
@@ -126,6 +127,7 @@
                                  WHERE ORDER_NUM = #{orderNum})
         ORDER BY SUPPLY_NUM;
     </select>
+
 
 <!--    <delete id="deleteOrderSupply">-->
 <!--        DELETE FROM ORDER_SUPPLY_INFO-->

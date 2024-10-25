@@ -64,7 +64,7 @@ const RegistSupply = () => {
           axios.post('/api_order/registSupply', supplyForm, fileConfig)
             .then(() => {
               alert('물품 등록 완료');
-              navigate('/order/registSupply');
+              navigate('/order/manageSupply');
             })
             .catch((error) => {
               console.log(error);
@@ -89,7 +89,7 @@ const RegistSupply = () => {
           </tr>
           <tr>
             <td>가격</td>
-            <td><input type='number' name='supplyPrice' onChange={changeSupplyInfo} /></td>
+            <td><input type='text' name='supplyPrice' onChange={changeSupplyInfo} /></td>
           </tr>
           <tr>
             <td>규격</td>
