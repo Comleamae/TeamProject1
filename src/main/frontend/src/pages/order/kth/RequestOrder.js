@@ -183,7 +183,6 @@ const RequestOrder = ({ adminLoginInfo }) => {
           </tr>
         </tbody>
       </table>
-
       <button type='button' onClick={(e) => { commitOrder() }}>발주</button>
     </div>
   );
