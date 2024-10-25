@@ -23,11 +23,12 @@ const RequestOrder = ({ adminLoginInfo }) => {
     orderManager: '',
     deliveryDate: '',
     orderNote: '',
+    orderSupplyList : []
   })
 
 
   //발주할 물품 담아둘 목록
-  const [OrderedSupplyList, setOrderedSupplyList] = useState([]);
+  const [orderedSupplyList, setOrderedSupplyList] = useState([]);
 
 
   //로그인 정보로 발주자 설정
@@ -55,9 +56,8 @@ const RequestOrder = ({ adminLoginInfo }) => {
 
   // 버튼 누르면 발주 목록에 물품 추가
   function addSupply(supply) {
-    console.log(supplyList)
-    // OrderedSupplyList에서 넣으려는 물품과 같은 물품 있는지 찾기
-    const checkOrder = OrderedSupplyList.findIndex(order => order.supplyNum === supply.supplyNum);
+    // orderedSupplyList에서 넣으려는 물품과 같은 물품 있는지 찾기
+    const checkOrder = orderedSupplyList.findIndex(order => order.supplyNum === supply.supplyNum);
 
     if (checkOrder > -1) {
       // 이미 있는 항목이면 알림창
@@ -65,18 +65,22 @@ const RequestOrder = ({ adminLoginInfo }) => {
     }
     else {
       // 새로운 항목이면 추가
-      setOrderedSupplyList([...OrderedSupplyList, { ...supply, orderAmount: 1 }]);
+      setOrderedSupplyList([...orderedSupplyList, { ...supply, orderAmount: 0 }]);
+
     }
   }
 
 
   // 수량 변경
   const handleAmountChange = (supplyNum, amount) => {
-    setOrderedSupplyList(OrderedSupplyList.map(order =>
+    const updatedOrderedSupplyList = orderedSupplyList.map(order =>
       order.supplyNum === supplyNum ? { ...order, orderAmount: parseInt(amount, 10) || 1 } : order
-    ));
-    console.log(OrderedSupplyList)
+    );
+  
+    setOrderedSupplyList(updatedOrderedSupplyList);
+    setOrderInfo({...orderInfo, orderedSupplyList: updatedOrderedSupplyList});
   };
+  
 
   // 발주 내용 바꾸기(발주 전)
   function changeOrderInfo(e) {
@@ -84,7 +88,6 @@ const RequestOrder = ({ adminLoginInfo }) => {
       ...orderInfo,
       [e.target.name]: e.target.value
     })
-    console.log(orderInfo)
   }
 
 
@@ -95,36 +98,49 @@ const RequestOrder = ({ adminLoginInfo }) => {
 
 
   // 발주 버튼 누르면 발주 목록 데이터 발주 내역에 넣기
+  function commitOrder() {
+      const checkAmount = orderedSupplyList.findIndex(order => order.orderAmount == 0)
+      if(checkAmount > -1){
+        alert('수량을 확인하세요')
+      }
+      else{
+
+    console.log(orderInfo)
+
+    axios.post('http://192.168.30.117:8080/order/order/receiveOrder', orderInfo)
+      .then((res) => {
+        // const orderNum = res.data.orderNum;
+        // const orderOrderNum = OrderedSupplyList.map((order, i) => ({
+        //   ...order,
+        //   orderNum: orderNum, // OrderedSupplyList(발주할 물품 리스트에) orderNum 추가
+
+        // })
+      // );
+        // return axios.post('/api_order/commitOrderedSupply', OrderedSupplyList);
+      // })
+      // .then(() => {
+        alert('발주가 신청되었습니다.');
+        // navigate('/order/orderList')
+      }
+  )
+      .catch((error) => {
+        alert('발주에 실패하였습니다.');
+        // console.log(error);
+        console.log(orderInfo);
+      });
+    }
+  }
+
   // function commitOrder() {
-  //   axios.post('http://192.168.30.117/api_order/commitOrder', orderInfo)
+  //   axios.get('http://192.168.30.117:8080/order/order/receiveOrder')
   //     .then((res) => {
-  //       const orderNum = res.data.orderNum;
-  //       const orderOrderNum = OrderedSupplyList.map((order, i) => ({
-  //         ...order,
-  //         orderNum: orderNum // OrderedSupplyList(발주할 물품 리스트에) orderNum 추가
-  //       }));
-  //       return axios.post('/api_order/commitOrderedSupply', orderOrderNum);
-  //     })
-  //     .then(() => {
-  //       alert('발주가 신청되었습니다.');
-  //       navigate('/order/orderList')
+  //       alert('통신성공');
   //     })
   //     .catch((error) => {
   //       alert('발주에 실패하였습니다.');
   //       console.log(error);
   //     });
   // }
-
-  function commitOrder() {
-    axios.get('http://192.168.30.117:8080/order/order/receiveOrder')
-      .then((res) => {
-        alert('통신성공');
-      })
-      .catch((error) => {
-        alert('발주에 실패하였습니다.');
-        console.log(error);
-      });
-  }
 
 
   return (
@@ -176,7 +192,7 @@ const RequestOrder = ({ adminLoginInfo }) => {
         <tbody>
           {
             //supplyNum 기준 오름차순 정렬
-            OrderedSupplyList.slice().sort((a, b) => a.supplyNum - b.supplyNum).map((order, i) => (
+            orderedSupplyList.slice().sort((a, b) => a.supplyNum - b.supplyNum).map((order, i) => (
               <tr key={i}>
                 <td>{i + 1}</td>
                 <td>{order.supplyNum}</td>
