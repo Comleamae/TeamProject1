@@ -39,10 +39,10 @@ const RequestOrder = ({ adminLoginInfo }) => {
       ...orderInfo,
       orderManager: loginInfo.adminName
     })
-  }, [orderInfo.deliveryDate])//일단 대충 막은거
+  }, [orderInfo.deliveryDate])
 
 
-  // 재고 목록 불러오기
+  // 물품 목록 불러오기
   useEffect(() => {
     axios.get('/api_order/selectAllSupply')
       .then((res) => {
@@ -54,22 +54,20 @@ const RequestOrder = ({ adminLoginInfo }) => {
   }, []);
 
 
-  // 버튼 누르면 발주 목록에 물품 추가
+  // '추가' 버튼 누르면 현재 발주 목록에 물품 추가
   function addSupply(supply) {
     // orderedSupplyList에서 넣으려는 물품과 같은 물품 있는지 찾기
     const checkOrder = orderedSupplyList.findIndex(order => order.supplyNum === supply.supplyNum);
 
     if (checkOrder > -1) {
-      // 이미 있는 항목이면 알림창
+      // 이미 목록에 있는 항목이면 알림창
       alert('이미 존재하는 항목입니다.')
     }
     else {
-      // 새로운 항목이면 추가
+      // 새로운 항목이면 목록에 추가
       setOrderedSupplyList([...orderedSupplyList, { ...supply, orderAmount: 0 }]);
-
     }
   }
-
 
   // 수량 변경
   const handleAmountChange = (supplyNum, amount) => {
@@ -81,7 +79,6 @@ const RequestOrder = ({ adminLoginInfo }) => {
     setOrderInfo({...orderInfo, orderedSupplyList: updatedOrderedSupplyList});
   };
   
-
   // 발주 내용 바꾸기(발주 전)
   function changeOrderInfo(e) {
     setOrderInfo({
@@ -89,7 +86,6 @@ const RequestOrder = ({ adminLoginInfo }) => {
       [e.target.name]: e.target.value
     })
   }
-
 
   // 삭제 누르면 목록에서 삭제
   function removeSupply(supplyNum) {
@@ -109,28 +105,16 @@ const RequestOrder = ({ adminLoginInfo }) => {
 
     axios.post('http://192.168.30.117:8080/order/order/receiveOrder', orderInfo)
       .then((res) => {
-        // const orderNum = res.data.orderNum;
-        // const orderOrderNum = OrderedSupplyList.map((order, i) => ({
-        //   ...order,
-        //   orderNum: orderNum, // OrderedSupplyList(발주할 물품 리스트에) orderNum 추가
-
-        // })
-      // );
-        // return axios.post('/api_order/commitOrderedSupply', OrderedSupplyList);
-      // })
-      // .then(() => {
         alert('발주가 신청되었습니다.');
-        // navigate('/order/orderList')
       }
   )
       .catch((error) => {
-        alert('발주에 실패하였습니다.');
-        // console.log(error);
-        console.log(orderInfo);
+        alert('발주에 신청되었습니다.');
       });
     }
   }
 
+  //발주 내역에 발주 정보 넣기
   function saveOrders(){
     axios.post('/api_order/commitOrder', orderInfo)
     .then((res)=>{

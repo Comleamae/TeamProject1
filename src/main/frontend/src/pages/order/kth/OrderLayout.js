@@ -10,7 +10,7 @@ const OrderLayout = () => {
       <div className='m-h'>
         <div className='admin-header'>
           <div className='logo'>
-            <img className='adminLogo' src='http://localhost:8080/images/logo.png' />
+            <img className='adminLogo' src='http://localhost:8080/images/logo.png'/>
             <h1>그린대학교병원</h1>
           </div>
           <ul className='admin-header-ul'>
