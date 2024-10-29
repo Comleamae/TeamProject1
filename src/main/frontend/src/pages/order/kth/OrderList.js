@@ -12,16 +12,6 @@ const OrderList = () => {
   const [isEditing, setIsEditing] = useState(-1);
   const [checkedOrders, setCheckedOrders] = useState([]);
 
-  //체크박스 여부에 따라 입고할 orderNum 저장
-  const handleCheckboxChange = (orderNum) => {
-    setCheckedOrders((prevCheckedOrders) => {
-      if (prevCheckedOrders.includes(orderNum)) {
-        return prevCheckedOrders.filter(num => num !== orderNum);
-      } else {
-        return [...prevCheckedOrders, orderNum];
-      }
-    });
-  };
 
   //모달 창에서 수량 변경하는지 체크(수정버튼 클릭 시 수량 변경 가능)
   const handleEdit = (index) => {
@@ -40,6 +30,18 @@ const OrderList = () => {
       });
     setIsEditing(-1);
   };
+
+  //체크박스 여부에 따라 입고할 orderNum 저장
+  const handleCheckboxChange = (orderNum) => {
+    setCheckedOrders((prevCheckedOrders) => {
+      if (prevCheckedOrders.includes(orderNum)) {
+        return prevCheckedOrders.filter(num => num !== orderNum);
+      } else {
+        return [...prevCheckedOrders, orderNum];
+      }
+    });
+  };
+
 
   //입고 버튼 클릭 시 
   const store = () => {
@@ -80,7 +82,7 @@ const OrderList = () => {
       });
   };
 
-  //취소 버튼 클릭시(체크박스랑은 관계 X)
+  //취소 버튼 클릭시 그 행의 주문 취소
   const cancelOrder = (orderNum) => {
     if (!window.confirm("이 주문을 취소하시겠습니까?")) {
       return;
@@ -124,7 +126,7 @@ const OrderList = () => {
                 <td>단가</td>
                 <td>총 가격</td>
                 <td>메모</td>
-                <td>수정</td>
+                {/* <td>수정</td> */}
               </tr>
             </thead>
             <tbody>
@@ -151,13 +153,13 @@ const OrderList = () => {
                       <td>{supplyList.supply.supplyPrice}</td>
                       <td>{supplyList.supply.supplyPrice * supplyList.orderAmount}</td>
                       <td>{supplyList.supply.supplyCaution}</td>
-                      <td>
+                      {/* <td>
                         {isEditing === i ? (
                           <button type='button' onClick={() => setIsEditing(-1)}>저장</button>
                         ) : (
                           <button type='button' onClick={() => handleEdit(i)}>수정</button>
                         )}
-                      </td>
+                      </td> */}
                     </tr>
                   );
                 })

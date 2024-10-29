@@ -47,6 +47,11 @@
   cursor: pointer;
 }
 
+.order-main p span{
+  cursor: pointer;
+}
+
+
 .login-box{
   width: 20%;
   display: flex;

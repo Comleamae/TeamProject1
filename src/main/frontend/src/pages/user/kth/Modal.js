@@ -27,7 +27,7 @@ const Modal = ({content, setIsShow, clickCloseBtn, handleSave}) => {
           }
         </div>
         <div className='modal-footer'>
-          <button type='button' className='btn btn-primary'
+          {/* <button type='button' className='btn btn-primary'
           onClick={()=>{
             modalContainer.current.className = 'modal-container';
             setTimeout(()=>{
@@ -36,7 +36,7 @@ const Modal = ({content, setIsShow, clickCloseBtn, handleSave}) => {
               //일단은 alert지만 update axios 실행
               clickCloseBtn();
             }, 300)
-          }}>변경</button>
+          }}>변경</button> */}
           <button type='button' className='btn btn-primary'
             onClick={() => {
               modalContainer.current.className = 'modal-container';
@@ -44,7 +44,7 @@ const Modal = ({content, setIsShow, clickCloseBtn, handleSave}) => {
                 //모달창 닫기
                 setIsShow(false)
               }, 300);
-            }}>취소</button>
+            }}>닫기</button>
         </div>
       </div>
     </div>
