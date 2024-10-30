@@ -19,8 +19,9 @@
 
 
 # 주요 기능 소개
-## 회원가입 
-<details><summary>기능 확인</summary>
+<details><summary>전체 기능</summary>
+
+<details><summary>회원가입</summary>
 
 ![메인화면](https://github.com/user-attachments/assets/ea622c5d-47c8-400e-8c2e-473bc045d539)
 
@@ -64,8 +65,8 @@
 
 </details>
 
-## 로그인한 회원의 증명서 출력
-<details><summary>기능 확인</summary>
+
+<details><summary>회원 증명서 출력</summary>
 
 ![로그인 성공 화면](https://github.com/user-attachments/assets/9f1bd055-568e-45f4-89cc-d0591ef97c24)
 
@@ -97,8 +98,8 @@
 
 </details>
 
-## 비회원의 증명서 출력
-<details><summary>기능 확인</summary>
+
+<details><summary>비회원 증명서 출력</summary>
     
 ![비회원 메인](https://github.com/user-attachments/assets/92c05ccf-cf31-4711-9cf4-b7a0c3323d68)
 
@@ -130,7 +131,6 @@
 
 </details>
 
-## 진료 기록 여부
 
 <details><summary>진료 기록이 없는 경우</summary>
     ![인증이 되었지만 해당 환자의 진료 정보가 없음](https://github.com/user-attachments/assets/a4d83007-2f9e-4c13-85c5-ede21d4f1df2)
