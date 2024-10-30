@@ -19,8 +19,7 @@
 
 
 # 주요 기능 소개
-<details><summary>전체 기능</summary>
-
+<details><summary>전체 기능</summary><br>
 <details><summary>회원가입</summary>
 
 ![메인화면](https://github.com/user-attachments/assets/ea622c5d-47c8-400e-8c2e-473bc045d539)
@@ -255,4 +254,6 @@
 </details>
 
 # 프로젝트 구조
+<details><summary>프로젝트 상세 구조도</summary>
 
+</details>
