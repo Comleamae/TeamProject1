@@ -160,3 +160,19 @@
 저장한 PDF를 인쇄할 수 있는 화면
 
 </details>
+
+
+<details><summary>신규 접수 등록</summary>
+    
+![메인화면](https://github.com/user-attachments/assets/9eea6627-ffac-4771-8c68-39953b166e49)
+
+![접수 페이지](https://github.com/user-attachments/assets/25e51965-018f-4a7c-b266-108aa8dba62a)
+
+![신규 접수](https://github.com/user-attachments/assets/af01dd48-6492-45d8-b0e5-3161f425db83)
+
+![신규 접수 정보 입력](https://github.com/user-attachments/assets/fc517a0d-c46b-4e33-8af3-db32f2de23c9)
+
+![접수 완료](https://github.com/user-attachments/assets/d2e7baef-fa84-4a9d-af79-a623f524cdf4)
+
+
+</details>
