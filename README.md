@@ -69,18 +69,31 @@
 
 ![로그인 성공 화면](https://github.com/user-attachments/assets/9f1bd055-568e-45f4-89cc-d0591ef97c24)
 
+기존에 회원가입한 아이디로 로그인에 성공한 경우
 
 ![초기화면](https://github.com/user-attachments/assets/89736dad-e610-4993-b07a-03b171b957a8)
 
+로그인한 상태로 메인화면으로 돌아가며, 우측 상단에 로그인한 회원의 이름이 출력됨.
+
 ![로그인 인증 1단계](https://github.com/user-attachments/assets/09e2f6dd-0db1-4f91-86f3-b80c0a63518c)
+
+로그인한 상태에서 증명서 발급을 누르면, 또 한번 더 주민등록번호 확인을 거침.
 
 ![주민번호가 맞아서 이메일 보내기](https://github.com/user-attachments/assets/e1ca6f39-37d9-4588-9594-a70d664c94f8)
 
+가입한 회원의 주민번호와 일치하면, 로그인에 입력했던 이메일로 인증번호를 발송함.
+
 ![이메일로 인증번호가 온 화면](https://github.com/user-attachments/assets/5c2495c0-2194-4d06-ba28-19f5c89bdee4)
+
+인증번호를 받은 이메일 화면
 
 ![인증번호 입력](https://github.com/user-attachments/assets/9c23b3cb-1812-4b14-9220-7756a00d71e9)
 
+발급받은 인증번호를 입력하면
+
 ![인증된 화면](https://github.com/user-attachments/assets/f25bfb7e-8402-4b1e-b6f2-d31e65992a27)
+
+인증되었다고 출력되면서 증명서를 발급받을 수 있는 상황이 됨
 
 </details>
 
