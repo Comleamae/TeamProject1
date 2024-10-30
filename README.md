@@ -4,10 +4,7 @@
     - [프로젝트 설명](#프로젝트-설명)   
     - [주요 기능 소개](#주요-기능-소개)   
     - [프로젝트 구조](#프로젝트-구조)   
-    - [List](#list)      
-    - [Link](#link)   
-    - [Code Block](#code-block)   
-    - [Table](#table)   
+    - [테이블 구조](#테이블-구조)
    
 
 # 프로젝트 설명
@@ -349,3 +346,10 @@ src
  ┣ reportWebVitals.js
  ┣ reset.css
  ┗ setupTests.js
+
+
+
+# 테이블 구조
+<details><summary>asdf</summary>
+
+</details>
