@@ -105,11 +105,24 @@
 <details><summary>진료 기록이 있는 경우</summary>
     
 ![해당 환자의 첫 번째 진료에 대한 진료 확인서](https://github.com/user-attachments/assets/0de3f503-61f9-4a84-8bef-35bc88fdf0e0)
+
+해당 환자의 진료 내역이 표시됩니다.
+
 ![해당 환자의 이름과 진료 날짜가 파일명에 들어오는지 확인](https://github.com/user-attachments/assets/21c8aa6e-532a-4b00-9efa-0e7413be73a9)
 
+출력 버튼을 누르면 이미지를 저장할 수 있는 창이 뜨며, 파일창에 해당 증명서의 이름이 제대로 입력되어있는지 확인합니다.
+
 ![출력버튼 누르고 pdf저장 화면](https://github.com/user-attachments/assets/cee0ea69-2b92-4702-8c20-8c53584d6156)
+
+마지막으로 저장을 누르면 PDF 형식으로 저장됩니다.
+
 ![프린트 화면](https://github.com/user-attachments/assets/2542c33d-79fe-4210-b95e-13442b322cd2)
+
+저장한 PDF를 프린트 할 수 있는 화면
+
 ![인쇄 화면](https://github.com/user-attachments/assets/bf4b8a82-c246-4900-ba6d-9a24a6973070)
+
+저장한 PDF를 인쇄할 수 있는 화면
 
 </details>
 
