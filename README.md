@@ -141,6 +141,7 @@
 
 ![인증번호 인증됨](https://github.com/user-attachments/assets/51a9e69d-8085-4161-b1e9-b7027afb7a0d)
 
-    
+![증명서 선택화면](https://github.com/user-attachments/assets/6e6daedc-7683-415c-9c18-63596c947f1d)
 
-</details?
+
+</details>
