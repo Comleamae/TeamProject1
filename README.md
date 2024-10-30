@@ -186,3 +186,20 @@
 
 
 </details>
+
+<details><summary>의사 관점 환자 진료</summary>
+
+![관리자 로그인](https://github.com/user-attachments/assets/e38093e4-c000-48bb-b912-cae929bf6f68)
+![의사 환여 ㅇ얼럿](https://github.com/user-attachments/assets/d5943b4f-e4d4-4a4e-9fa0-1e44230f4ed9)
+![환자 차트 조회 가능](https://github.com/user-attachments/assets/ffc6b070-e22b-4375-99cd-e25dd04b5ffc)
+![진료 시작 누르면](https://github.com/user-attachments/assets/fb6b26e9-b12b-4d33-bb28-298adc886cdd)
+![환자 기본 정보 출력 및 접수 대기 명단 삭제](https://github.com/user-attachments/assets/38b75390-787c-4907-8a89-d801465af73e)
+![처방내역 등록](https://github.com/user-attachments/assets/25ae0cd7-4716-4a2b-b527-2c540601f26d)
+![진료 기록 등록](https://github.com/user-attachments/assets/7f1ac151-cf27-49d7-b83e-a64175b9543c)
+![접수했던 기존 내역이 존재하는 환자는 이전 진료내역도 조회 가능함](https://github.com/user-attachments/assets/6f796836-0505-465a-abc1-9d2ffc90ac20)
+![진단명 클릭 시 진료 상세 내역 출력](https://github.com/user-attachments/assets/e74449b9-40af-4380-8f38-6c8c7d38ce67)
+
+</details>
+
+
+
