@@ -11,6 +11,12 @@
 병원에 방문한 환자가 간편하게 진료 증명서 내역을 출력할 수 있게 만드는 기능을 구현했습니다.
 
 ### 개발 환경
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-D12A17?style=flat&logo=MySQL&logoColor=black)
 
 ### 개발 기간
 
