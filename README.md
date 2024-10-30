@@ -67,8 +67,24 @@
 ## 로그인한 회원의 증명서 출력
 <details><summary>기능 확인</summary>
 
+![로그인 성공 화면](https://github.com/user-attachments/assets/9f1bd055-568e-45f4-89cc-d0591ef97c24)
 
-    
+
+![초기화면](https://github.com/user-attachments/assets/89736dad-e610-4993-b07a-03b171b957a8)
+
+![로그인 인증 1단계](https://github.com/user-attachments/assets/09e2f6dd-0db1-4f91-86f3-b80c0a63518c)
+
+![주민번호가 맞아서 이메일 보내기](https://github.com/user-attachments/assets/e1ca6f39-37d9-4588-9594-a70d664c94f8)
+
+![이메일로 인증번호가 온 화면](https://github.com/user-attachments/assets/5c2495c0-2194-4d06-ba28-19f5c89bdee4)
+
+![인증번호 입력](https://github.com/user-attachments/assets/9c23b3cb-1812-4b14-9220-7756a00d71e9)
+
+![인증된 화면](https://github.com/user-attachments/assets/f25bfb7e-8402-4b1e-b6f2-d31e65992a27)
+
+
+
+
 </details>
 
 
