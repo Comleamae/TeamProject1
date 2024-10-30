@@ -133,7 +133,8 @@
 
 
 <details><summary>진료 기록이 없는 경우</summary>
-    ![인증이 되었지만 해당 환자의 진료 정보가 없음](https://github.com/user-attachments/assets/a4d83007-2f9e-4c13-85c5-ede21d4f1df2)
+    
+![인증이 되었지만 해당 환자의 진료 정보가 없음](https://github.com/user-attachments/assets/a4d83007-2f9e-4c13-85c5-ede21d4f1df2)    
 
 </details>
 
