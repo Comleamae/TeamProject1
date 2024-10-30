@@ -346,10 +346,13 @@ src
  ┣ reportWebVitals.js
  ┣ reset.css
  ┗ setupTests.js
+```
 
 
 
 # 테이블 구조
-<details><summary>asdf</summary>
+<details><summary>구조도 보기</summary>
+    
+![테이블 구조](https://github.com/user-attachments/assets/06576686-188e-4b92-a473-2e34688de019)
 
 </details>
