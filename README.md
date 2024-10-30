@@ -135,7 +135,7 @@
 ![입력값 넣기](https://github.com/user-attachments/assets/ca5c249e-44d7-40b8-baef-a65c7574316c)
 ![이메일 발송](https://github.com/user-attachments/assets/0e694d43-0a8c-4c4b-92a8-8951232011b2)
 
-    ![인증번호 확인](https://github.com/user-attachments/assets/e272032b-28c6-47b1-9ef3-58ab1740e709)
+![인증번호 확인](https://github.com/user-attachments/assets/e272032b-28c6-47b1-9ef3-58ab1740e709)
 
 ![인증번호 입력](https://github.com/user-attachments/assets/be993c22-c0ed-4701-b2a4-b1adc2b6e98d)
 
