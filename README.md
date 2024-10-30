@@ -132,16 +132,30 @@
     
 ![비회원 메인](https://github.com/user-attachments/assets/92c05ccf-cf31-4711-9cf4-b7a0c3323d68)
 
+메인화면에서 증명서 발급 메뉴를 선택합니다.
+
 ![입력값 넣기](https://github.com/user-attachments/assets/ca5c249e-44d7-40b8-baef-a65c7574316c)
+
+비회원인 상태에서는 주민등록번호와 이메일 인증을 받을 정보를 입력합니다.
+
 ![이메일 발송](https://github.com/user-attachments/assets/0e694d43-0a8c-4c4b-92a8-8951232011b2)
+
+이메일이 발송되면,
 
 ![인증번호 확인](https://github.com/user-attachments/assets/e272032b-28c6-47b1-9ef3-58ab1740e709)
 
+해당 이메일이 도착했는지 확인한 후에
+
 ![인증번호 입력](https://github.com/user-attachments/assets/be993c22-c0ed-4701-b2a4-b1adc2b6e98d)
+
+인증번호를 입력합니다.
 
 ![인증번호 인증됨](https://github.com/user-attachments/assets/51a9e69d-8085-4161-b1e9-b7027afb7a0d)
 
+인증번호가 정상적으로 확인되면 아래의 증명서 선택화면으로 넘어갑니다.
+
 ![증명서 선택화면](https://github.com/user-attachments/assets/6e6daedc-7683-415c-9c18-63596c947f1d)
 
+증명서 선택화면에서 진료 확인서를 선택하면, 회원과 동일한 프로세스로 작동됩니다.
 
 </details>
