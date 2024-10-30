@@ -16,8 +16,9 @@
 * Front :: HTML, React
 * Back-end :: Java, Java Script
 
+
 ## 주요 기능
-* project1
+* project1 - 증명서 출력
 	* 회원 가입 및 로그인
 		*  유효성 검사 / 중복 확인
 	* 진료 예약 
@@ -27,7 +28,7 @@
 	* 카카오맵 및 주소 검색 
 		* API 이용
 
-* project2
+* project2 - 발주 시스템
 	* 회원 가입 및 로그인 (관리자) 전용
  		* 중복 확인
    	* 양방향 통신 기능 ( 발주, 수주 )
