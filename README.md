@@ -178,6 +178,7 @@
 </details>
 
 <details><summary>재방문 접수 등록</summary>
+    
 ![기존 방문환자가 재방문 한 경우 동일한 정보이면 재방문 환자](https://github.com/user-attachments/assets/daf564b1-e9ea-4032-b758-a4137fc94ee7)
 
     
