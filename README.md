@@ -98,7 +98,6 @@
 
 </details>
 
-
 <details><summary>비회원 증명서 출력</summary>
     
 ![비회원 메인](https://github.com/user-attachments/assets/92c05ccf-cf31-4711-9cf4-b7a0c3323d68)
@@ -250,6 +249,8 @@
 진료 내역 조회에서 진단명을 클릭하면 아래에 진료 상세 내역에 해당 진료에 대한 상세 내역이 출력됩니다.
 
 ![진단명 클릭 시 진료 상세 내역 출력](https://github.com/user-attachments/assets/5abb61b4-64bd-49d2-8277-a67268bda918)
+
+</details>
 
 </details>
 
