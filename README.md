@@ -20,6 +20,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-D12A17?style=flat&logo=MySQL&logoColor=black)
 
 ### 개발 기간
+2024.08.23 ~ 2024.09.06
 
 
 # 주요 기능 소개
