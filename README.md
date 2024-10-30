@@ -178,7 +178,8 @@
 </details>
 
 <details><summary>재방문 접수 등록</summary>
-![기존 방문환자가 재방문 한 경우 동일한 정보이면 재방문 환자](https://github.com/user-attachments/assets/0926ca50-dab5-4a3f-8c83-5ea8ebe416a1)
+![기존 방문환자가 재방문 한 경우 동일한 정보이면 재방문 환자](https://github.com/user-attachments/assets/daf564b1-e9ea-4032-b758-a4137fc94ee7)
+
     
 ![재방문 얼럿](https://github.com/user-attachments/assets/8ab4676f-19ad-42de-8357-63a90ebf3d67)
 
