@@ -136,6 +136,8 @@
     
 ![인증이 되었지만 해당 환자의 진료 정보가 없음](https://github.com/user-attachments/assets/a4d83007-2f9e-4c13-85c5-ede21d4f1df2)    
 
+해당 회원의 진료 내역이 없습니다. 라는 화면만 표시해줍니다.
+
 </details>
 
 <details><summary>진료 기록이 있는 경우</summary>
@@ -167,11 +169,19 @@
     
 ![메인화면](https://github.com/user-attachments/assets/9eea6627-ffac-4771-8c68-39953b166e49)
 
+메인화면에서 진료 접수 클릭 시 진료 접수할 수 있는 페이지로 이동됩니다.
+
 ![접수 페이지](https://github.com/user-attachments/assets/25e51965-018f-4a7c-b266-108aa8dba62a)
+
+접수 페이지에서 신규방문이면 신규방문을 클릭합니다.
 
 ![신규 접수](https://github.com/user-attachments/assets/af01dd48-6492-45d8-b0e5-3161f425db83)
 
+신규방문자는 기존 진료 내역이 없기에 신상정보를 입력 후 진료과 및 담당의를 선택한 후 접수 등록을 누릅니다.
+
 ![신규 접수 정보 입력](https://github.com/user-attachments/assets/fc517a0d-c46b-4e33-8af3-db32f2de23c9)
+
+정상적으로 등록이 되면 아래와 같은 알림창이 뜨며 접수되었다고 알려줍니다.
 
 ![접수 완료](https://github.com/user-attachments/assets/d2e7baef-fa84-4a9d-af79-a623f524cdf4)
 
@@ -182,10 +192,17 @@
     
 ![기존 방문환자가 재방문 한 경우 동일한 정보이면 재방문 환자](https://github.com/user-attachments/assets/daf564b1-e9ea-4032-b758-a4137fc94ee7)
 
-    
+기존에 방문했던 환자가 재방문한 경우 조회하기 편하도록 기존 내역에서 이름, 주민등럭번호만 조회한 후 기존에 방문 내역이 있는지 조회합니다.
+
 ![재방문 얼럿](https://github.com/user-attachments/assets/8ab4676f-19ad-42de-8357-63a90ebf3d67)
 
+조회를 눌렀는데 재방문 환자인 경우, 접수를 바로 누르면 된다는 알림창이 뜹니다.
+
+만약, 기존 방문 내역이 없는데 재방문으로 입력 시 신규방문으로 가라는 알림창이 뜹니다.
+
 ![재방문 접수 완료](https://github.com/user-attachments/assets/a2773e4d-b9d0-4dac-bc04-56e9ac4dd9df)
+
+재방문 환자인걸 확인한 후 접수를 누르면 접수 등록이 완료됩니다.
 
 
 </details>
@@ -193,14 +210,46 @@
 <details><summary>의사 관점 환자 진료</summary>
 
 ![관리자 로그인](https://github.com/user-attachments/assets/e38093e4-c000-48bb-b912-cae929bf6f68)
+
+접수한 환자를 진료하기 위해 메인페이지의 우측상단의 직원전용을 눌러 관리자 로그인창으로 이동합니다.
+기존에 가입했던 관리자(의사, 간호사, 직원)로 입력하면 해당 내역으로 로그인 됩니다.
+
 ![의사 환여 ㅇ얼럿](https://github.com/user-attachments/assets/d5943b4f-e4d4-4a4e-9fa0-1e44230f4ed9)
+위 경우 의사로 로그인 했기에 해당 의사님을 환영한다는 알림창이 뜹니다.
+
 ![환자 차트 조회 가능](https://github.com/user-attachments/assets/ffc6b070-e22b-4375-99cd-e25dd04b5ffc)
+
+의사로 로그인한 경우에만 자기가 맡은 진료과의 환자 내역만 조회가 가능합니다.
+( 다른 진료과에 접수한 환자는 조회 불가능 )
+
 ![진료 시작 누르면](https://github.com/user-attachments/assets/fb6b26e9-b12b-4d33-bb28-298adc886cdd)
+
+우측의 대기자 목록 아래에 있는 진료 시작을 누르면 첫번째 대기자부터 순서대로 진료를 볼 수 있고,
+진료 시작을 누르면 좌측에 있는 환자 정보에 접수한 환자의 기본 정보가 노출됩니다.
+
 ![환자 기본 정보 출력 및 접수 대기 명단 삭제](https://github.com/user-attachments/assets/38b75390-787c-4907-8a89-d801465af73e)
+
+진료 시작을 누르면 진료가 시작되고, 대기중이였던 환자는 접수 대기 명단에서 사라집니다.
+( 상태는 진료완료로 미리 변경됨 )
+
 ![처방내역 등록](https://github.com/user-attachments/assets/25ae0cd7-4716-4a2b-b527-2c540601f26d)
+
+해당 환자에 대한 진료 내역을 순차적으로 모두 등록해야 진료 내역 등록이 가능합니다.
+검진일의 경우 진료일 당일 이전 날짜는 체크가 불가능하게 막아두었습니다.
+
 ![진료 기록 등록](https://github.com/user-attachments/assets/7f1ac151-cf27-49d7-b83e-a64175b9543c)
+
+진료 내역을 모두 입력한 경우에는 진료 기록이 정상적으로 등록됩니다.
+
 ![접수했던 기존 내역이 존재하는 환자는 이전 진료내역도 조회 가능함](https://github.com/user-attachments/assets/6f796836-0505-465a-abc1-9d2ffc90ac20)
+
+기존 환자에서 재방문 환자 -> 즉, 병원에 진료 내역이 있던 환자는 다시 방문한 경우 이전의 진료 내역도 확인이 가능합니다.
+
 ![진단명 클릭 시 진료 상세 내역 출력](https://github.com/user-attachments/assets/e74449b9-40af-4380-8f38-6c8c7d38ce67)
+
+진료 내역 조회에서 진단명을 클릭하면 아래에 진료 상세 내역에 해당 진료에 대한 상세 내역이 출력됩니다.
+
+![진단명 클릭 시 진료 상세 내역 출력](https://github.com/user-attachments/assets/5abb61b4-64bd-49d2-8277-a67268bda918)
 
 </details>
 
