@@ -251,6 +251,8 @@
 </details>
 
 # 프로젝트 구조
+<details><summary>구조도 보기</summary>
+
 ```plaintext
 src
  ┣ pages
@@ -347,6 +349,11 @@ src
  ┣ reset.css
  ┗ setupTests.js
 ```
+
+</details>
+
+
+
 
 
 
