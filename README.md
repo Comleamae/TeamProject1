@@ -26,11 +26,9 @@
 
 메인화면에서 회원가입을 누르면 회원가입 페이지로 이동합니다.
 
-
 ![회원가입 화면](https://github.com/user-attachments/assets/e97b0a2a-8377-49b9-9f6d-ea679df98470)
 
 회원가입 방식은 모두 동일 시 되기에 일반인 회원가입 방식으로 진행하여 일반인 회원가입을 누르면
-
 
 ![찐회원가입 화면](https://github.com/user-attachments/assets/60d5430a-d5fd-4f61-9e6b-423ddad34056)
 
@@ -64,5 +62,13 @@
 
 메인페이지로 가기를 누르면 처음 보았던 메인 페이지로 이동합니다.
 
-
 </details>
+
+## 로그인한 회원의 증명서 출력
+<details><summary>기능 확인</summary>
+
+
+    
+</details>
+
+
