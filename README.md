@@ -33,8 +33,8 @@
 
 
 ![관리자 등록](https://github.com/user-attachments/assets/ae2fd98c-b1d8-454d-9665-b2bce895d56d)
-![로그인 후 증명서 발급](https://github.com/user-attachments/assets/9a0b97b1-5e2f-4fa5-822e-951641531096)
-![비회원 인증](https://github.com/user-attachments/assets/a4466bc7-aa29-43c7-afa3-e0ece9bd0c32)
+
+
 ![신규 접수](https://github.com/user-attachments/assets/02facf1f-7437-41a4-8e2d-e8b47995255e)
 ![신규 환자 진료](https://github.com/user-attachments/assets/cfa07f44-8ca9-4ee1-8ab1-0f1e2f7ed1f0)
 ![재방문 접수](https://github.com/user-attachments/assets/75c970ac-276b-4c3f-83c1-48b830f7e7d5)
@@ -57,9 +57,15 @@
 
 </details>
 
-<details><summary>회원가입 및 로그인</summary>
+<details><summary>회원 인증</summary>
 
+![회원 인증](https://github.com/user-attachments/assets/9a0b97b1-5e2f-4fa5-822e-951641531096)
 
+</details>
+
+<details><summary>비회원 인증</summary>
+
+![비회원 인증](https://github.com/user-attachments/assets/a4466bc7-aa29-43c7-afa3-e0ece9bd0c32)
 
 </details>
 
