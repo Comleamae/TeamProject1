@@ -32,6 +32,9 @@
 2024.08.23 ~ 2024.09.06
 
 
+
+
+
 # 주요 기능 소개
 <details><summary>전체 기능</summary><br>
 <details><summary>회원가입</summary>
