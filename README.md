@@ -32,11 +32,15 @@
 2024.08.23 ~ 2024.09.06
 
 # 주요 기능 소개
-<details><summary>전체 기능</summary><br>
+<details><summary>구현 완료된 기능 목록</summary><br>
 
 <details><summary>회원가입 및 로그인</summary>
     
 ![가입 및 로그인](https://github.com/user-attachments/assets/7daba2b5-c121-4fd2-a6a3-fb9d663fde29)
+
+* 회원가입 및 로그인 기능을 구현한 화면을 GIF로 보여드립니다.
+* 해당 화면에서의 주요 기능은 유효성 검사 및 신상 정보 등록에 필요한 아이디, 비밀번호, 주민등록번호에 대한 중복 검사
+* 주민등록번호의 경우 다른 테이블에서의 데이터 조회에 필요하여 UNIQUE값을 부여해줌.
 
 </details>
 
