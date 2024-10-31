@@ -31,7 +31,7 @@
 ### 개발 기간
 2024.08.23 ~ 2024.09.06
 
-![가입 및 로그인](https://github.com/user-attachments/assets/7daba2b5-c121-4fd2-a6a3-fb9d663fde29)
+
 ![관리자 등록](https://github.com/user-attachments/assets/ae2fd98c-b1d8-454d-9665-b2bce895d56d)
 ![로그인 후 증명서 발급](https://github.com/user-attachments/assets/9a0b97b1-5e2f-4fa5-822e-951641531096)
 ![비회원 인증](https://github.com/user-attachments/assets/a4466bc7-aa29-43c7-afa3-e0ece9bd0c32)
@@ -46,7 +46,13 @@
 
 # 주요 기능 소개
 <details><summary>전체 기능</summary><br>
-<details><summary>회원가입</summary></details>
+
+<details><summary>회원가입 및 로그인</summary>
+    ![가입 및 로그인](https://github.com/user-attachments/assets/7daba2b5-c121-4fd2-a6a3-fb9d663fde29)
+</details>
+
+<details><summary>회원가입 및 로그인</summary>
+</details>
 
 
 
