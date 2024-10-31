@@ -32,7 +32,7 @@
 2024.08.23 ~ 2024.09.06
 
 
-
+<img src="https://github.com/user-attachments/assets/d393bc88-8d03-4ce1-b8b5-213fe6b045fb">
 
 
 # 주요 기능 소개
