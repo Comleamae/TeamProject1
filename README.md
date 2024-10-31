@@ -48,10 +48,19 @@
 <details><summary>전체 기능</summary><br>
 
 <details><summary>회원가입 및 로그인</summary>
-    ![가입 및 로그인](https://github.com/user-attachments/assets/7daba2b5-c121-4fd2-a6a3-fb9d663fde29)
+![가입 및 로그인](https://github.com/user-attachments/assets/7daba2b5-c121-4fd2-a6a3-fb9d663fde29)
 </details>
 
 <details><summary>회원가입 및 로그인</summary>
+
+
+
+</details>
+
+<details><summary>회원가입 및 로그인</summary>
+
+
+
 </details>
 
 
