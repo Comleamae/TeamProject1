@@ -31,7 +31,7 @@
 ### 개발 기간
 2024.08.23 ~ 2024.09.06
 
-![GIFMaker_me](https://github.com/user-attachments/assets/e7257ef4-1ceb-4530-850d-8ed0c4cbb981)
+![GIFMaker_me (1)](https://github.com/user-attachments/assets/068a6bf6-3446-4495-a35a-bd41b7958831)
 
 # 주요 기능 소개
 <details><summary>전체 기능</summary><br>
