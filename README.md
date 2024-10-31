@@ -37,6 +37,8 @@
 <details><summary>회원가입</summary>
 
 ![GIFMaker_me (1)](https://github.com/user-attachments/assets/068a6bf6-3446-4495-a35a-bd41b7958831)
+
+https://github.com/Comleamae/TeamProject1/issues/2#issue-2626039812
 </details>
 
 
