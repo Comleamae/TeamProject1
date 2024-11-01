@@ -95,36 +95,36 @@ const RequestOrder = ({ adminLoginInfo }) => {
 
 
   // 발주 버튼 누르면 발주 목록 데이터 발주 내역에 넣기
-  // function commitOrder() {
-  //   axios.post('http://192.168.30.117/api_order/commitOrder', orderInfo)
-  //     .then((res) => {
-  //       const orderNum = res.data.orderNum;
-  //       const orderOrderNum = OrderedSupplyList.map((order, i) => ({
-  //         ...order,
-  //         orderNum: orderNum // OrderedSupplyList(발주할 물품 리스트에) orderNum 추가
-  //       }));
-  //       return axios.post('/api_order/commitOrderedSupply', orderOrderNum);
-  //     })
-  //     .then(() => {
-  //       alert('발주가 신청되었습니다.');
-  //       navigate('/order/orderList')
-  //     })
-  //     .catch((error) => {
-  //       alert('발주에 실패하였습니다.');
-  //       console.log(error);
-  //     });
-  // }
-
   function commitOrder() {
-    axios.get('http://192.168.30.117:8080/order/order/receiveOrder')
+    axios.post('/api_order/commitOrder', orderInfo)
       .then((res) => {
-        alert('통신성공');
+        const orderNum = res.data.orderNum;
+        const orderOrderNum = OrderedSupplyList.map((order, i) => ({
+          ...order,
+          orderNum: orderNum // OrderedSupplyList(발주할 물품 리스트에) orderNum 추가
+        }));
+        return axios.post('/api_order/commitOrderedSupply', orderOrderNum);
+      })
+      .then(() => {
+        alert('발주가 신청되었습니다.');
+        navigate('/order/orderList')
       })
       .catch((error) => {
         alert('발주에 실패하였습니다.');
         console.log(error);
       });
   }
+
+  // function commitOrder() {
+  //   axios.get('http://192.168.30.117:8080/order/order/receiveOrder')
+  //     .then((res) => {
+  //       alert('통신성공');
+  //     })
+  //     .catch((error) => {
+  //       alert('발주에 실패하였습니다.');
+  //       console.log(error);
+  //     });
+  // }
 
 
   return (
