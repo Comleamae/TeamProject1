@@ -89,6 +89,7 @@ src
  ┣ reset.css
  ┗ setupTests.js
 ```
+</details>
 
 
 # 테이블 구조
