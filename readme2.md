@@ -40,23 +40,31 @@
 <details><summary>구현 완료된 기능 목록</summary><br>
 
 <details><summary>관리자 로그인 및 재고관리 페이지</summary>
+    
 ![1-1](https://github.com/user-attachments/assets/67306f0e-2db6-41d3-814d-1c96c703edf5)
+
 </details>
 
 
 <details><summary>신규 물품 등록</summary>
+    
 ![21-1](https://github.com/user-attachments/assets/f6834279-a2f1-436b-9799-6b9f4b61ca03)
 ![22-2](https://github.com/user-attachments/assets/cc4c2840-0395-421c-b4cc-c79c5afe9bd2)
+
 </details>
 
 
 <details><summary>발주 신청</summary>
+    
 ![3-1](https://github.com/user-attachments/assets/93a3eb7b-0301-4766-ba5d-edb29679eb5e)
+
 </details>
 
 
 <details><summary>발주 내역 관리</summary>
+    
 ![4-1](https://github.com/user-attachments/assets/2b20c1c2-40f7-4abb-a166-013d3a9953e7)
+
 </details>
 
 
