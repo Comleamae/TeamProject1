@@ -108,7 +108,7 @@ src
 # 테이블 구조
 <details><summary>구조도 보기</summary>
     
-![테이블 구조](https://github.com/user-attachments/assets/06576686-188e-4b92-a473-2e34688de019)
+![image33](https://github.com/user-attachments/assets/1708b498-a55c-4309-9e1b-9eea75262602)
 
 </details>
 
