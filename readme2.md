@@ -76,7 +76,7 @@
 src
  ┣ pages
  ┃ ┣ admin
- ┃ ┣ order (다른 프로젝트와 겹침)
+ ┃ ┣ order
  ┃ ┃ ┗ kth
  ┃ ┃ ┃ ┣ ManageSupply.css
  ┃ ┃ ┃ ┣ ManageSupply.js
@@ -98,6 +98,9 @@ src
  ┣ reset.css
  ┗ setupTests.js
 ```
+
+* 다른 프로젝트와 겹치는 부분이지만, 다른 페이지의 내용이 더 많기에 해당 프로젝트 구조부분만 추출하여 가져옴.
+* 혹여나 확인이 필요하다면 README.md를 참고하면 됨.
 </details>
 
 
