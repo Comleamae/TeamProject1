@@ -18,6 +18,10 @@
     * 발주한 물품 주문 내역 수정, 취소 기능
     * 발주한 물품 공급사 입고 기능
  
+
+### 개발 기간
+2024.09.30 ~ 2024.10.30
+ 
 ### 개발 환경
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white)
@@ -31,9 +35,6 @@
 ![HeidiSQL](https://img.shields.io/badge/HeidiSQL-006400?style=for-the-badge&logo=heidisql&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
-
-### 개발 기간
-2024.08.23 ~ 2024.09.06
 
 # 주요 기능 소개
 <details><summary>구현 완료된 기능 목록</summary><br>
@@ -110,6 +111,7 @@ src
 
 
 # 팀원 소개
+ddd
 | 팀원    |박주원         | 김탁현              | 김세훈           | 최윤형         |
 |---------|--------------------|---------------------|------------------|-----------------|
 | 담당기능     | 증명서 출력 기능 | 회원가입 및 로그인 기능 | 진료 예약 / 환자 진료 기능 | 웹페이지 제작 및 PPT 제작 |
